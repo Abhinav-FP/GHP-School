@@ -7,6 +7,8 @@
   --foreground: #171717;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -17,7 +19,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 @layer utilities {
@@ -25,3 +27,7 @@ body {
     text-wrap: balance;
   }
 }
+
+
+.sliderbg{background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.9) 100%);}
+.merriweather-font{font-family: "Merriweather", serif;}

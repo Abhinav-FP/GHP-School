@@ -9,9 +9,9 @@ SwiperCore.use([Pagination, Autoplay]);
 
 export default function Slider() {
     const slides = [
-        { bgImage: 'url(/Home/Slider1.jpg)' },
-        { bgImage: 'url(/Home/Slider2.jpg)' },
-        { bgImage: 'url(/Home/Slider3.jpg)' }
+        { bgImage: '/Home/Slider1.jpg' },
+        { bgImage: '/Home/Slider2.jpg' },
+        { bgImage: '/Home/Slider3.jpg' }
     ];
 
     const data = [
@@ -49,24 +49,26 @@ export default function Slider() {
                         <div
                             className="slide-content"
                             style={{
-                                backgroundImage: slide.bgImage,
+                                // backgroundImage: slide.bgImage,
                                 backgroundSize: 'cover',
-                                backgroundPosition: 'center',
-                                height: '500px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
+                                backgroundPosition: 'center', 
+                                maxHeight:'700px',
+                                // display: 'flex',
+                                // alignItems: 'center',
+                                // justifyContent: 'center',
                                 color: '#fff',
                                 fontSize: '2rem',
                                 fontWeight: 'bold'
                             }}
                         >
-                            <div className="flex flex-col">
-                                <h2>Welcome to Bal Vishwa Bharti School</h2>
-                                <p>
-                                    At Bal Vishwa Bharti School, we are committed to nurturing young minds through holistic education,
-                                    fostering academic excellence, and instilling strong moral values to shape the leaders of tomorrow.
-                                </p>
+                            <img className='w-full max-h-[700px]' src={slide.bgImage} alt='img' />
+                            <div className="absolute h-full flex items-center left-0 w-full top-1/2 -translate-y-1/2 sliderbg ">
+                                <div className="mx-auto container sm:container md:container lg:max-w-[1232px] px-4">
+                                    <h2 className='merriweather-font font-medium tracking-[-0.04em] text-3xl text-center md:text-4xl lg:text-5xl mb-3'>Welcome to Bal Vishwa Bharti School</h2>
+                                    <p className='max-w-[759px] mx-auto font-medium tracking-[-0.04em]  text-center text-base xl:text-xl'>
+                                        At Bal Vishwa Bharti School, we are committed to nurturing young minds through holistic education, fostering academic excellence, and instilling strong moral values to shape the leaders of tomorrow.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </SwiperSlide>

@@ -34,7 +34,7 @@ export default function VisionMission() {
         },
     ];
   return (
-    <div className="mt-10">
+    <div className=" container mt-10">
         {data && data.map((item, index) => (
   <div className="flex w-full" key={index}>
     <div className="w-1/2 bg-[#ECE1C5]">

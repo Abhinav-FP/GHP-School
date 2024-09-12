@@ -2,6 +2,7 @@ import React from 'react'
 import Header from './Header'
 import Slider from './Slider'
 import VisionMission from './VisionMission'
+import Follow from './Follow'
 
 export default function MainPage() {
   return (
@@ -9,6 +10,7 @@ export default function MainPage() {
       <Header/>
       <Slider/>
       <VisionMission/>
+      <Follow/>
     </div>
   )
 }
