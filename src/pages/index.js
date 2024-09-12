@@ -1,9 +1,8 @@
 import Image from "next/image";
+import MainPage from "./Home/MainPage";
 
 export default function Home() {
   return (
-   <div className="mt-10 bg-red-400">
-    Hello
-   </div>
+   <MainPage/>
   );
 }
