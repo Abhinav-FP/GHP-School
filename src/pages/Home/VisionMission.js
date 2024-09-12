@@ -35,17 +35,26 @@ export default function VisionMission() {
     ];
   return (
     <div className="mt-10">
-        <div className="flex w-full">
-            <div className="w-1/2">
-
-            </div>
-            <div className="w-1/2">
-            {/* <Image src={}/> */}
-
-            </div>
-
-        </div>
-                
+        {data && data.map((item, index) => (
+  <div className="flex w-full" key={index}>
+    <div className="w-1/2 bg-[#ECE1C5]">
+      <h1>{item?.heading}</h1>
+      <p>{item?.text}</p>
+      <button className="bg-[#EE834E] text-white">
+        {item?.btnText}
+      </button>
+    </div>
+    <div className="w-1/2">
+        <Image 
+          src={item.imgsrc} 
+          alt={`School Image`} 
+          width={500} 
+          height={300} 
+          className="object-cover"
+        />
+    </div>
+  </div>
+))}             
     </div>
   )
 }
