@@ -20,7 +20,7 @@ export default function Header() {
         <div className="mx-auto container sm:container md:container lg:max-w-[1232px] px-4">
           <div className="relative flex items-center justify-between">
             <div className="flex-shrink-0">
-              <a href="/"><Image className="max-w-full w-auto max-h-[70px] md:max-h-[70px] lg:max-h-[91px]" src={Logo} alt="BVBS School logo" /></a>
+              <Link href="/"><Image className="max-w-full w-auto max-h-[70px] md:max-h-[70px] lg:max-h-[91px]" src={Logo} alt="BVBS School logo" /></Link>
             </div>
             <div className="hidden lg:ml-6 lg:block">
               <div className="flex space-x-6 lg:space-x-8 xl:space-x-10">
