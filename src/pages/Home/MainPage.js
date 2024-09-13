@@ -3,6 +3,7 @@ import Header from './Header'
 import Slider from './Slider'
 import VisionMission from './VisionMission'
 import Follow from './Follow'
+import Footer from './Footer'
 
 export default function MainPage() {
   return (
@@ -11,6 +12,7 @@ export default function MainPage() {
       <Slider/>
       <VisionMission/>
       <Follow/>
+      <Footer/>
     </div>
   )
 }
