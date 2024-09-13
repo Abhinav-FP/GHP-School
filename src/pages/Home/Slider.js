@@ -38,7 +38,7 @@ export default function Slider() {
     ];
     return (
         <>
-            <div className='sticky'>
+            <div className='sticky top-0 lg:top-5 z-0'>
                 <Swiper
                     spaceBetween={50}
                     slidesPerView={1}
@@ -76,9 +76,9 @@ export default function Slider() {
                     ))}
                 </Swiper>
             </div>
-            <div className="bg-[#EE834E] py-[35px] md:py-[40px] lg:py-[62px]">
+            <div className="z-[1] relative bg-[#EE834E] py-[35px] md:py-[40px] lg:py-[62px]">
                 <div className="mx-auto container sm:container md:container lg:max-w-[1232px] px-4">
-                    <div className='grid gap-5 lg:gap-5 grid-cols-1 sm:grid-cols-2  md:grid-cols-3  lg:grid-cols-5'>
+                    <div className='grid gap-5 lg:gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-5'>
                         {data && data?.map((item, index) => (
                             <div className="flex flex-col text-white lg:w-[170px]" key={index}>
                                 <h3 className='text-lg md:text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2'>{item?.text1}</h3>
@@ -86,8 +86,9 @@ export default function Slider() {
                             </div>
                         ))}
                     </div>
-                </div>
+                </div> 
             </div>
+
         </>
     );
 }

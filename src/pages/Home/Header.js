@@ -23,28 +23,146 @@ export default function Header() {
               <Link href="/"><Image className="max-w-full w-auto max-h-[70px] md:max-h-[70px] lg:max-h-[91px]" src={Logo} alt="BVBS School logo" /></Link>
             </div>
             <div className="hidden lg:ml-6 lg:block">
-              <div className="flex space-x-6 lg:space-x-8 xl:space-x-10">
+              <div>
                 {/* <!-- Current: "text-[#EE834E]" --> */}
-                <Link href="/" className={'text-[17px] tracking-[-0.04em] font-medium hover:text-[#EE834E] ' + (url === '/' ? 'text-[#EE834E]' : 'text-[#1E1E1E]')}>
-                  About
-                  <MdOutlineKeyboardArrowDown className="inline" size={18} />
-                </Link>
-                <Link href="/academies" className={'text-[17px] tracking-[-0.04em] font-medium hover:text-[#EE834E] ' + (url.startsWith('/academies') ? 'text-[#EE834E]' : 'text-[#1E1E1E]')}>
-                  Academies
-                  <MdOutlineKeyboardArrowDown className="inline" size={18} />
-                </Link>
-                <Link href="/facilities" className={'text-[17px] tracking-[-0.04em] font-medium hover:text-[#EE834E] ' + (url === '/facilities' ? 'text-[#EE834E]' : 'text-[#1E1E1E]')}>
-                  Facilities
-                  <MdOutlineKeyboardArrowDown className="inline" size={18} />
-                </Link>
-                <Link href="/admissions" className={'text-[17px] tracking-[-0.04em] font-medium hover:text-[#EE834E] ' + (url.startsWith('/admissions') ? 'text-[#EE834E]' : 'text-[#1E1E1E]')}>
-                  Admissions
-                  <MdOutlineKeyboardArrowDown className="inline" size={18} />
-                </Link>
-                <Link href="/contact" className={'text-[17px] tracking-[-0.04em] font-medium hover:text-[#EE834E] ' + (url.startsWith('/contact') ? 'text-[#EE834E]' : 'text-[#1E1E1E]')}>
-                  Contact
-                  <MdOutlineKeyboardArrowDown className="inline" size={18} />
-                </Link>
+                <ul className="flex space-x-6 lg:space-x-8 xl:space-x-10">
+                  <li className="group relative cursor-pointer">
+                    <Link href="/" className={'text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] ' + (url === '/' ? 'text-[#EE834E]' : 'text-[#1E1E1E]')}>
+                      About
+                      <MdOutlineKeyboardArrowDown className="inline" size={18} />
+                    </Link>
+                    <ul className="invisible min-w-[249px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0 ">
+                      <li>
+                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                          Vision
+                        </a>
+                      </li>
+                      <li>
+                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                          Mission
+                        </a>
+                      </li>
+                      <li>
+                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                          Faculty
+                        </a>
+                      </li>
+                      <li>
+                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                          Founder & Directors
+                        </a>
+                      </li>
+                      <li>
+                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                          Sister Schools
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li className="group relative cursor-pointer">
+
+                    <Link href="/academies" className={'text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] ' + (url.startsWith('/academies') ? 'text-[#EE834E]' : 'text-[#1E1E1E]')}>
+                      Academies
+                      <MdOutlineKeyboardArrowDown className="inline" size={18} />
+                    </Link>
+                    <ul className="invisible min-w-[239px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0">
+                      <li>
+                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                          Calendar
+                        </a>
+                      </li>
+                      <li>
+                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                          Syllabus & Board
+                        </a>
+                      </li>
+                      <li>
+                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                          Results
+                        </a>
+                      </li>
+                    </ul>
+
+                  </li>
+                  <li className="group relative cursor-pointer">
+                    <Link href="/facilities" className={'text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] ' + (url === '/facilities' ? 'text-[#EE834E]' : 'text-[#1E1E1E]')}>
+                      Facilities
+                      <MdOutlineKeyboardArrowDown className="inline" size={18} />
+                    </Link>
+                    <ul className="invisible min-w-[239px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0">
+                      <li>
+                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                          Houses
+                        </a>
+                      </li>
+                      <li>
+                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                          infrastructure
+                        </a>
+                      </li>
+                      <li>
+                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                          Sports
+                        </a>
+                      </li>
+                      <li>
+                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                          Activities
+                        </a>
+                      </li>
+                       
+                    </ul>
+
+                  </li>
+                  <li className="group relative cursor-pointer">
+                    <Link href="/admissions" className={'text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] ' + (url.startsWith('/admissions') ? 'text-[#EE834E]' : 'text-[#1E1E1E]')}>
+                      Admissions
+                      <MdOutlineKeyboardArrowDown className="inline" size={18} />
+                    </Link>
+                    <ul className="invisible min-w-[249px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0">
+                      <li>
+                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        Admission Form 
+                        </a>
+                      </li>
+                      <li>
+                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        Age criteria 
+                        </a>
+                      </li>
+                      <li>
+                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        Fee Structure 
+                        </a>
+                      </li> 
+                    </ul>
+
+                  </li>
+                  <li className="group relative cursor-pointer">
+                    <Link href="/contact" className={'text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] ' + (url.startsWith('/contact') ? 'text-[#EE834E]' : 'text-[#1E1E1E]')}>
+                      Contact
+                      <MdOutlineKeyboardArrowDown className="inline" size={18} />
+                    </Link>
+                    <ul className="invisible min-w-[249px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white right-0">
+                      <li>
+                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        Get in touch 
+                        </a>
+                      </li>
+                      <li>
+                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        Make a donation                        
+                         </a>
+                      </li>
+                      <li>
+                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        Careers
+                        </a>
+                      </li> 
+                    </ul>
+                  </li>
+                </ul>
+
               </div>
             </div>
 
@@ -79,11 +197,11 @@ export default function Header() {
         <div className={`lg:hidden ${menuOpen ? 'block' : 'hidden'}`} id="mobile-menu">
           <div className="space-y-1 px-2 pb-3 pt-2">
             {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-            <Link href="/" className="px-3 py-2 block text-[17px] tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]">About</Link>
-            <Link href="/subscription" className={' px-3 py-2 block  text-[17px] tracking-[-0.04em] font-medium  hover:text-[#0367F7]  ' + (url.startsWith('/subscription') ? 'text-[#0367F7]' : '')}>Academies</Link>
-            <a href="#pricing" className="px-3 py-2 block  text-[17px] tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]">Facilities</a>
-            <Link href="/about" className="px-3 py-2 block text-[17px] tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]">Admissions</Link>
-            <Link href="/contact" className="px-3 py-2 block text-[17px] tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]">Contact</Link>
+            <Link href="/" className="px-3 py-2 block text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]">About</Link>
+            <Link href="/subscription" className={' px-3 py-2 block  text-base xl:text-lg tracking-[-0.04em] font-medium  hover:text-[#0367F7]  ' + (url.startsWith('/subscription') ? 'text-[#0367F7]' : '')}>Academies</Link>
+            <a href="#pricing" className="px-3 py-2 block  text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]">Facilities</a>
+            <Link href="/about" className="px-3 py-2 block text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]">Admissions</Link>
+            <Link href="/contact" className="px-3 py-2 block text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]">Contact</Link>
           </div>
 
         </div>
