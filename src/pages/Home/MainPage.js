@@ -11,7 +11,7 @@ export default function MainPage() {
       <Header/>
       <Slider/>
       <VisionMission/>
-      <Follow/>
+      {/* <Follow/> */}
       <Footer/>
     </div>
   )

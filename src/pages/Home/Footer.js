@@ -10,7 +10,7 @@ import { AiOutlineYoutube } from "react-icons/ai";
 
 export default function Footer() {
   return (
-    <div className='flex'>
+    <div className='flex '>
         <div className='flex flex-col'>
             <h3>BAL VISHWA BHARTI PUBLIC SR SEC SCHOOL</h3>
             <p><IoCallOutline/> 01412282790/ 01412282298/ 90018-69684</p>
