@@ -79,10 +79,10 @@ export default function Header() {
         <div className={`lg:hidden ${menuOpen ? 'block' : 'hidden'}`} id="mobile-menu">
           <div className="space-y-1 px-2 pb-3 pt-2">
             {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-            <Link href="/" className="px-3 py-2 block text-[17px] tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]">Home</Link>
-            <Link href="/subscription" className={' px-3 py-2 block  text-[17px] tracking-[-0.04em] font-medium  hover:text-[#0367F7]  ' + (url.startsWith('/subscription') ? 'text-[#0367F7]' : '')}>Subscription</Link>
-            <a href="#pricing" className="px-3 py-2 block  text-[17px] tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]">Pricing</a>
-            <Link href="/about" className="px-3 py-2 block text-[17px] tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]">About</Link>
+            <Link href="/" className="px-3 py-2 block text-[17px] tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]">About</Link>
+            <Link href="/subscription" className={' px-3 py-2 block  text-[17px] tracking-[-0.04em] font-medium  hover:text-[#0367F7]  ' + (url.startsWith('/subscription') ? 'text-[#0367F7]' : '')}>Academies</Link>
+            <a href="#pricing" className="px-3 py-2 block  text-[17px] tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]">Facilities</a>
+            <Link href="/about" className="px-3 py-2 block text-[17px] tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]">Admissions</Link>
             <Link href="/contact" className="px-3 py-2 block text-[17px] tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]">Contact</Link>
           </div>
 
