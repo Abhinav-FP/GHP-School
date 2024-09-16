@@ -61,8 +61,8 @@ export default function Header() {
                   </li>
                   <li className="group relative cursor-pointer">
 
-                    <Link href="/academies" className={'text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] ' + (url.startsWith('/academies') ? 'text-[#EE834E]' : 'text-[#1E1E1E]')}>
-                      Academies
+                    <Link href="/academics" className={'text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] ' + (url.startsWith('/academies') ? 'text-[#EE834E]' : 'text-[#1E1E1E]')}>
+                      Academics
                       <MdOutlineKeyboardArrowDown className="inline" size={18} />
                     </Link>
                     <ul className="invisible min-w-[239px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0">
