@@ -17,7 +17,6 @@ export default function index() {
                                 <p className='tracking-[-0.04em] text-[#666666] text-2xl merriweather-font '>At Bal Vishwa Bharti School, we provide high-quality education from Nursery to Grade XII, following the Rajasthan Board of Secondary Education (RBSE) curriculum. Our English Medium instruction enhances global language proficiency and prepares students for national and international success, fostering intellectual growth and critical thinking.</p>
                              </div>
                          </div>
-
                     </div>
                 </div>
             </div>
