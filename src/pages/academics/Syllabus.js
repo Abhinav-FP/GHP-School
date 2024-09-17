@@ -28,7 +28,6 @@ export default function index() {
             link: 'PDFlink4' 
         },      
     ];
-
    
     return (
         <>
