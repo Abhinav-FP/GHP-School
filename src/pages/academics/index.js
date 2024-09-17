@@ -5,6 +5,7 @@ import TopBanner from './TopBanner';
 import BoardDetail from './BoardDetail';
 import ClassesInfo from './ClassesInfo';
 import Syllabus from './Syllabus';
+import Results from './Results';
 
 export default function index() {
   return (
@@ -15,6 +16,7 @@ export default function index() {
       <BoardDetail /> 
       <ClassesInfo /> 
       <Syllabus />
+      <Results/>
       <Footer/>
     </div>     
        

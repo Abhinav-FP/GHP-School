@@ -1,16 +1,6 @@
-import React from "react";
-import Header from "../Home/Header";
-import Footer from "../Home/Footer";
-import Image from "next/image";
-import Mentor from "./Mentor";
-import Vision from "./Vision";
-import Directors from "./Directors";
-import Principal from "./Principal";
-import Faculty from "./Faculty";
-import SisterSchools from "./SisterSchools";
-import ComingSoon from "./ComingSoon";
+import React from 'react'
 
-export default function index() {
+export default function Directors() {
     const profiles = [
         {
           name: "Prashant Sharma",
@@ -33,29 +23,23 @@ export default function index() {
           quote: "Our School caters to students hailing from diverse Socio-Economic backgrounds. We believe that education cannot be merely reduced to cramming of syllabus but the evolution of a child in a holistic manner. As an educational institution, it becomes imperative for us to see that children are given opportunities to exhibit and nurture their talents."
         }
       ];
-      
   return (
-    <div>
-      <Header />
-      {/* Banner Section */}
-      <div
-        style={{
-          backgroundImage: `url('/About/Banner.png')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: "400px",
-        }}
-      >
-        <h2>About Us</h2>
-      </div>
-      <Vision/>
-      <Mentor/>
-      <Directors/>
-      <Principal/>   
-      <Faculty/>
-      <SisterSchools/>  
-      <ComingSoon/>
-      <Footer />
+    <div className="container mt-10">
+        <h2>Directors Desk</h2>
+        <div className="mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-8">
+      {profiles && profiles.map((profile, index) => (
+        <div className="flex" key={index}>
+            <div className="w-1/2">
+            <img src={profile.image} alt={profile.name} />
+            </div>
+            <div className="w-1/2 flex flex-col">
+            <h2>{profile.name}</h2>
+            <p>{profile.quote}</p>
+            </div>
+        </div>
+      ))}
     </div>
-  );
+
+      </div>
+  )
 }

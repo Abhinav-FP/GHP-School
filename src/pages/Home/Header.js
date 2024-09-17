@@ -33,27 +33,27 @@ export default function Header() {
                     </Link>
                     <ul className="invisible min-w-[249px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0 ">
                       <li>
-                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <a className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                           Vision
                         </a>
                       </li>
                       <li>
-                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <a className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                           Mission
                         </a>
                       </li>
                       <li>
-                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <a className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                           Faculty
                         </a>
                       </li>
                       <li>
-                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <a className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                           Founder & Directors
                         </a>
                       </li>
                       <li>
-                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <a className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                           Sister Schools
                         </a>
                       </li>
@@ -67,17 +67,17 @@ export default function Header() {
                     </Link>
                     <ul className="invisible min-w-[239px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0">
                       <li>
-                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <a className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                           Calendar
                         </a>
                       </li>
                       <li>
-                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <a className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                           Syllabus & Board
                         </a>
                       </li>
                       <li>
-                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <a className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                           Results
                         </a>
                       </li>
@@ -91,22 +91,22 @@ export default function Header() {
                     </Link>
                     <ul className="invisible min-w-[239px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0">
                       <li>
-                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <a className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                           Houses
                         </a>
                       </li>
                       <li>
-                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <a className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                           infrastructure
                         </a>
                       </li>
                       <li>
-                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <a className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                           Sports
                         </a>
                       </li>
                       <li>
-                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <a className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                           Activities
                         </a>
                       </li>
@@ -121,17 +121,17 @@ export default function Header() {
                     </Link>
                     <ul className="invisible min-w-[249px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0">
                       <li>
-                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <a className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                         Admission Form 
                         </a>
                       </li>
                       <li>
-                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <a className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                         Age criteria 
                         </a>
                       </li>
                       <li>
-                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <a className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                         Fee Structure 
                         </a>
                       </li> 
@@ -145,17 +145,17 @@ export default function Header() {
                     </Link>
                     <ul className="invisible min-w-[249px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white right-0">
                       <li>
-                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <a className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                         Get in touch 
                         </a>
                       </li>
                       <li>
-                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <a className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                         Make a donation                        
                          </a>
                       </li>
                       <li>
-                        <a class="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <a className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                         Careers
                         </a>
                       </li> 
