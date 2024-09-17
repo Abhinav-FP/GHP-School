@@ -3,7 +3,7 @@ import { FaPlus, FaMinus } from "react-icons/fa6";
 import { useState } from "react";
 import Image from 'next/image';
 
-export default function index() {
+export default function ClassesInfo() {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const faqItems = [
