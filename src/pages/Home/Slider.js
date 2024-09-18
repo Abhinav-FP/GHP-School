@@ -43,14 +43,18 @@ export default function Slider() {
                     spaceBetween={50}
                     slidesPerView={1}
                     pagination={{ clickable: true }}
-                    autoplay={{ delay: 3000 }} // Slide automatically every 3 seconds
+                    loop={true}
+                    // speed={5000}
+                    autoplay={{
+                        delay: 1000,
+                        disableOnInteraction: false,
+                      }} // Slide automatically every 3 seconds
                 >
                     {slides.map((slide, index) => (
                         <SwiperSlide key={index}>
                             <div
                                 className="slide-content relative"
                                 style={{
-                                    // backgroundImage: slide.bgImage,
                                     backgroundSize: 'cover',
                                     backgroundPosition: 'center',
                                     maxHeight: '700px',
