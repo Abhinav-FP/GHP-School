@@ -5,7 +5,7 @@ import Image from 'next/image';
 export default function index() {
     return (
         <>
-            <div  className='bg-white pt-[100px] pb-[100px]'>                 
+            <div  className='bg-white py-[40px] md:py-[80px] lg:py-[100px]'>                 
                 <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto ">
                     <div className='border-t border-b border-black border-opacity-10 py-[45px]'>
                          <div className='flex flex-wrap -mx-[30px] items-center'>

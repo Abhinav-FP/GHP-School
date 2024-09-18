@@ -69,7 +69,7 @@ export default function Slider() {
                                 <img className='w-full max-h-[700px] object-cover' src={slide.bgImage} alt='img' />
                                 <div className="absolute h-full flex items-center left-0 w-full top-1/2 -translate-y-1/2 sliderbg ">
                                     <div className="mx-auto container sm:container md:container lg:max-w-[1232px] px-4">
-                                        <h2 className='merriweather-font font-medium tracking-[-0.04em] text-center text-2xl  md:text-4xl lg:text-5xl mb-3'>Welcome to Bal Vishwa Bharti School</h2>
+                                        <h2 className='merriweather-font font-medium tracking-[-0.04em] text-center text-3xl  md:text-4xl lg:text-5xl mb-3'>Welcome to Bal Vishwa Bharti School</h2>
                                         <p className='max-w-[759px] mx-auto font-medium tracking-[-0.04em]  text-center text-sm md:text-base lg:text-xl'>
                                             At Bal Vishwa Bharti School, we are committed to nurturing young minds through holistic education, fostering academic excellence, and instilling strong moral values to shape the leaders of tomorrow.
                                         </p>

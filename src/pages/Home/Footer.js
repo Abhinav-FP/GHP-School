@@ -11,7 +11,7 @@ import { AiOutlineYoutube } from "react-icons/ai";
 export default function Footer() {
   return (
     <>
-      <div className='z-[1] relative bg-white py-[40px] md:py-[60px] lg:py-[70px] '>
+      <div className='z-[1] relative bg-[#FCFBF4] py-[40px] md:py-[60px] lg:py-[70px] '>
         <div className='container sm:container md:container lg:max-w-[1232px] px-4 mx-auto '>
           <div className='flex flex-wrap -mx-2'>
             <div className='w-full md:w-7/12 md:w-7/12 px-2'>
@@ -43,7 +43,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className='z-[1] relative bg-white border-t border-black border-opacity-10 py-5'>
+      <div className='z-[1] relative bg-[#FCFBF4] border-t border-black border-opacity-10 py-5'>
         <div className='container sm:container md:container lg:max-w-[1232px] px-4 mx-auto'>
           <p className='text-[#1E1E1E] opacity-50 tracking-[-0.04em] font-medium text-center text-base'>© Bal Vishwa Bharti School, 2024</p>
         </div>
