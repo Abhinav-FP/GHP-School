@@ -1,23 +1,22 @@
 import React from 'react';
-import Header from '../Home/Header';
-import Footer from '../Home/Footer'; 
 import TopBanner from './TopBanner';
 import BoardDetail from './BoardDetail';
 import ClassesInfo from './ClassesInfo';
 import Syllabus from './Syllabus';
 import Results from './Results';
+import Layout from '@/Component/Layout';
 
 export default function index() {
   return (
      <>
      <div>
-      <Header/>
+      <Layout>
       <TopBanner /> 
       <BoardDetail /> 
       <ClassesInfo /> 
       <Syllabus />
       <Results/>
-      <Footer/>
+      </Layout>
     </div>     
        
      </>
