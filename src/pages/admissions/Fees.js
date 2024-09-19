@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function Fees() {
-    const feesData=[
+    const feesData = [
         {
             "Sr No": 1,
             "Class": "Nursery",
@@ -174,43 +174,47 @@ export default function Fees() {
             "total": 23400
         }
     ];
-    
-  return (
-    <div className="container mt-10">
-        <h2>Fee Structure</h2>
-        <table className="border border-gray-200">
-        <thead>
-          <tr className="bg-[#36C9B4] text-white">
-            <th className="py-2 px-4 border border-gray-200 text-left">Sr. No.</th>
-            <th className="py-2 px-4 border border-gray-200 text-left">CLASS</th>
-            <th className="py-2 px-4 border border-gray-200 text-left">I</th>
-            <th className="py-2 px-4 border border-gray-200 text-left">II</th>
-            <th className="py-2 px-4 border border-gray-200 text-left">III</th>
-            <th className="py-2 px-4 border border-gray-200 text-left">IV</th>
-            <th className="py-2 px-4 border border-gray-200 text-left uppercase">Total Fees</th>
 
-          </tr>
-        </thead>
-        <tbody>
-          {feesData && feesData?.map((item,index)=>(
-            <tr key={index}>
-            <td className="py-2 px-4 border border-gray-200">{index+1}</td>
-            <td className="py-2 px-4 border border-gray-200">{item?.Class}</td>
-            <td className="py-2 px-4 border border-gray-200">{item?.I}</td>
-            <td className="py-2 px-4 border border-gray-200">{item?.II}</td>
-            <td className="py-2 px-4 border border-gray-200">{item?.III}</td>
-            <td className="py-2 px-4 border border-gray-200">{item?.IV}</td>
-            <td className="py-2 px-4 border border-gray-200 text-[#EE834E]">{item?.total}</td>
-          </tr>
-          ))}
-        </tbody>
-      </table>
-      <h2 className="text-[#EE834E] capitalize">Please note</h2>
-      <ol className="list-decimal list-inside">
-        <li>Registration fee Rs. 500/- only for new admission.</li>
-        <li>Renewal fee Rs. 200/- for students of X class passed from this school.</li>
-        <li>Conveyance Charges - Only for the students availing conveyance facility.</li>
-      </ol>
-    </div>
-  )
+    return (
+        <div className='bg-white pb-[40px] md:pb-[80px] lg:pb-[100px]'>
+            <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto">
+                <h2 className='merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-3 lg:mb-4 text-[#1E1E1E]  tracking-[-0.04em] text-center'>Fee Structure</h2>
+                <div className='overflow-x-auto mb-6 lg:mb-10'>
+                <table className="border border-gray-200 w-full">
+                    <thead>
+                        <tr className="bg-[#36C9B4] text-white">
+                            <th width="80px" className="text-white text-sm px-3.5 py-5 tracking-[-0.04em] uppercase  font-medium">Sr. No.</th>
+                            <th   className="text-white text-sm px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] uppercase font-medium">CLASS</th>
+                            <th width="127px" className="text-white text-sm px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] uppercase font-medium">I</th>
+                            <th width="127px" className="text-white text-sm px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] uppercase font-medium">II</th>
+                            <th width="127px" className="text-white text-sm px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] uppercase font-medium">III</th>
+                            <th width="127px" className="text-white text-sm px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] uppercase font-medium">IV</th>
+                            <th width="150px" className="text-white text-sm px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] uppercase font-medium">Total Fees</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {feesData && feesData?.map((item, index) => (
+                            <tr key={index}>
+                                <td className="text-[#666666] text-base px-3.5 py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{index + 1}</td>
+                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.Class}</td>
+                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.I}</td>
+                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.II}</td>
+                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.III}</td>
+                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.IV}</td>
+                                <td className="text-[#EE834E] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.total}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>                
+                </div>
+                <h2 className="tracking-[-0.04em] merriweather-font text-xl lg:text-2xl mb-2 md:mb-2.5 capitalize text-[#EE834E]">Please note</h2>
+                <ol className="list-decimal list-inside text-[#666666] text-sm lg:text-base tracking-[-0.04em] italic">
+                    <li>Registration fee Rs. 500/- only for new admission.</li>
+                    <li>Renewal fee Rs. 200/- for students of X class passed from this school.</li>
+                    <li>Conveyance Charges - Only for the students availing conveyance facility.</li>
+                </ol>
+            </div>
+        </div>
+    )
 }

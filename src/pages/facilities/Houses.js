@@ -32,7 +32,7 @@ export default function Houses() {
         <div className='bg-white py-[40px] md:py-[80px] lg:py-[100px]'>
             <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto">
                 <h1 className="capitalize merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-2 text-[#1E1E1E]  tracking-[-0.04em] mb-4 lg:mb-5 text-center ">Distinct Colors, Shared Values</h1>
-                <div className="flex -mx-4 lg:-mx-[11px]">
+                <div className="flex flex-wrap -mx-4 lg:-mx-[11px]">
                     {houseData && houseData?.map((item, index) => (
                         <div key={index} className="w-full sm:w-6/12 lg:w-3/12 px-4 lg:px-[11px] mb-5 lg:mb-0 text-center ">
                             <Image className='mx-auto mb-4 lg:mb-5 block' width={190} height={210} src={item.imagesrc} alt={item.name} />
