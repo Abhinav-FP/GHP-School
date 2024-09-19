@@ -42,7 +42,7 @@ export default function Gallery() {
     ];
     return (
         <div className='bg-white pb-[40px] md:pb-[80px] lg:pb-[100px]'>
-            <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto">
+            <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto" id="activities">
                 <h2 className='merriweather-font font-normal text-2xl md:text-3xl lg:text-4xl mb-2.5 text-[#1E1E1E] tracking-[-0.04em] text-center'>Gallery</h2>
                 <p className='max-w-[965px] text-center tracking-[-0.04em] mx-auto text-center text-[#666666] text-base font-medium mb-10 lg:mb-[50px]'>
                     Explore our gallery to see the vibrant life and activities at BVBS School. From events and achievements to daily moments, experience the essence of our school community through these images.
