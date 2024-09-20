@@ -72,3 +72,9 @@ body {
 .libre-baskerville {
   font-family: "Merriweather", serif;
 }
+
+.galleryBg{background: linear-gradient(180deg, rgba(0, 0, 0, 0) 71.5%, rgba(0, 0, 0, 0.8) 100%);
+}
+html{
+  scroll-behavior: smooth;
+}

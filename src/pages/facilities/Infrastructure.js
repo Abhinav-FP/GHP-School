@@ -47,7 +47,7 @@ export default function Infrastructure() {
     return (
         <div className='bg-white pb-[40px] md:pb-[80px] lg:pb-[100px]'>
             <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto">
-                <div className='bg-[#ECE1C5]'>
+                <div className='bg-[#ECE1C5]' id="infrastructure">
                     <div className='px-[30px] lg:px-[50px] py-6 lg:py-10 border-b border-black border-opacity-10'>
                         <h2 className='merriweather-font font-normal text-2xl md:text-3xl lg:text-4xl mb-2.5 text-[#1E1E1E] tracking-[-0.04em] text-center'>Infrastructure</h2>
                         <p className='max-w-[965px] text-center tracking-[-0.04em] mx-auto text-center text-[#666666] text-base font-medium '>BVBS School offers state-of-the-art infrastructure, including modern classrooms, advanced science and computer laboratories, and a serene Saraswati Mandir. Our campus is designed to create a conducive environment for holistic education and the overall development of our students.</p>
