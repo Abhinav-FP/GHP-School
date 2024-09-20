@@ -12,6 +12,9 @@ export default function ComingSoon() {
                 </div>
                 <div className='py-6 lg:py-10 px-[30px] lg:px-[50px]'>
                      <div className='flex -mx-[15px] flex-wrap'>
+                          <div className='w-full md:w-6/12 px-[15px] mb-5 lg:mb-[30px]'>
+                             
+                          </div>
 
                      </div>
                 </div>
