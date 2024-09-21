@@ -224,7 +224,7 @@ function ContactForm() {
                             <p className='text-base lg:text-lg font-medium text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-3'>Submitting the form does not guarantee admission. The student will be required to take a test, after which a physical copy of the following supporting documents must be submitted to the school:  </p>
                             <ul className='text-base lg:text-lg font-medium text-[#1E1E1E] tracking-[-0.04em] opacity-80 pl-5 list-disc'>
                                 <li>
-                                Student's photograph
+                                {`Student's photograph`}
                                 </li>
                                 <li>Birth certificate</li>
                                 <li>Aadhar card</li>
