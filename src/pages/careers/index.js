@@ -9,6 +9,7 @@ export default function index() {
       <div className=''  >
         <Image className='w-full object-cover' height={867} width={1440} src={CareerBg} alt='img' ></Image>
       </div>
+      
     </Layout>
   )
 }
