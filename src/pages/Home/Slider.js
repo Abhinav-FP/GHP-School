@@ -9,9 +9,9 @@ SwiperCore.use([Pagination, Autoplay]);
 
 export default function Slider() {
     const slides = [
-        { bgImage: '/Home/Slider1.jpg' },
-        { bgImage: '/Home/Slider2.jpg' },
-        { bgImage: '/Home/Slider3.jpg' }
+        { bgImage: '/Home/Slider1.JPG' },
+        { bgImage: '/Home/Slider2.JPG' },
+        { bgImage: '/Home/Slider3.JPG' }
     ];
 
     const data = [
@@ -46,7 +46,7 @@ export default function Slider() {
                     loop={true}
                     // speed={5000}
                     autoplay={{
-                        delay: 1000,
+                        delay: 3000,
                         disableOnInteraction: false,
                       }} // Slide automatically every 3 seconds
                 >
