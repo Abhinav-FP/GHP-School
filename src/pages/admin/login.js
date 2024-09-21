@@ -54,7 +54,10 @@ export default function Login() {
 
   return (
     <>
-      <div className="bg-white">
+      <div
+      className="h-screen tab-mob-height bg-cover"
+      style={{ backgroundImage: `url(/Admin/Login-bg.JPG)` }}
+    >
         <div className="min-h-screen sm:flex sm:flex-row mx-0 justify-center">
           <div className="flex justify-center self-center  z-10">
             <div className="p-12 bg-white mx-auto rounded-2xl w-100 ">
