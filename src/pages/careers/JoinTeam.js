@@ -15,7 +15,6 @@ export default function ComingSoon() {
                           <div className='w-full md:w-6/12 px-[15px] mb-5 lg:mb-[30px]'>
                              
                           </div>
-
                      </div>
                 </div>
             </div>
