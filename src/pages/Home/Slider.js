@@ -1,11 +1,8 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import SwiperCore, { Pagination, Autoplay } from 'swiper';
-
-// Install Swiper modules
-SwiperCore.use([Pagination, Autoplay]);
 
 export default function Slider() {
     const slides = [
@@ -36,19 +33,20 @@ export default function Slider() {
             text2: "years in Education",
         },
     ];
+
     return (
         <>
             <div className='sticky top-0 lg:top-5 z-0'>
                 <Swiper
                     spaceBetween={50}
                     slidesPerView={1}
-                    pagination={{ clickable: true }}
+                    // pagination={{ clickable: true }}
                     loop={true}
-                    // speed={5000}
                     autoplay={{
                         delay: 3000,
                         disableOnInteraction: false,
-                      }} // Slide automatically every 3 seconds
+                    }}
+                    modules={[Autoplay, Pagination]}
                 >
                     {slides.map((slide, index) => (
                         <SwiperSlide key={index}>
@@ -58,9 +56,9 @@ export default function Slider() {
                                     backgroundSize: 'cover',
                                     backgroundPosition: 'center',
                                     maxHeight: '700px',
-                                    // display: 'flex',
-                                    // alignItems: 'center',
-                                    // justifyContent: 'center',
+                                    display: 'flex',    
+                                    alignItems: 'center',  
+                                    justifyContent: 'center', 
                                     color: '#fff',
                                     fontSize: '2rem',
                                     fontWeight: 'bold'
@@ -92,7 +90,6 @@ export default function Slider() {
                     </div>
                 </div> 
             </div>
-
         </>
     );
 }

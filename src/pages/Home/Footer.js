@@ -41,7 +41,7 @@ export default function Footer() {
                   </a> 
                 </p>
                 <p className='relative pl-6 text-[#1E1E1E] opacity-80 tracking-[-0.04em] text-base font-medium gotham-font'>
-                  <a href="https://www.google.com/maps/dir//D,+74,+Ghiya+Marg,+Sindhi+Colony,+Bani+Park,+Jaipur,+Rajasthan+302032+@26.931568,75.791982/@27.7436422,76.5794786,7z/data=!4m7!4m6!1m1!4e2!1m2!1m1!1s0x396db3efafa594ef:0x2da3b3ab79a793f4!3e0">
+                  <a target="_blank" href="https://www.google.com/maps/dir//D,+74,+Ghiya+Marg,+Sindhi+Colony,+Bani+Park,+Jaipur,+Rajasthan+302032+@26.931568,75.791982/@27.7436422,76.5794786,7z/data=!4m7!4m6!1m1!4e2!1m2!1m1!1s0x396db3efafa594ef:0x2da3b3ab79a793f4!3e0">
                     <CiLocationOn className='absolute left-0 top-1/2 -translate-y-1/2' /> D-74, Ghiya Marg, Bani Park, Jaipur, Rajasthan 302016
                     </a>
                     </p>

@@ -7,6 +7,9 @@ class Details extends Component {
   async login(data) {
     return Api.post("/user/login", data);
   }
+  async getFaculty() {
+    return Api.get("/about/faculty/get");
+  }
    
   render() {
     return (
