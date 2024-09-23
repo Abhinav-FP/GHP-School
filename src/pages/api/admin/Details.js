@@ -10,6 +10,9 @@ class Details extends Component {
   async getFaculty() {
     return Api.get("/about/faculty/get");
   }
+  async verify() {
+    return Api.get("/user/verify");
+  }
    
   render() {
     return (
