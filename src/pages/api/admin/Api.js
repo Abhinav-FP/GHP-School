@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const API_URL =  process.env.NEXT_PUBLIC_ADMIN_BASE_URL;
 
+
 function getToken() {
   if (typeof window !== 'undefined') {
     const data = localStorage.getItem('token');

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import Image from 'next/image';
 import InquiryformBanner from '../../../public/Contacts/InquiryformBanner.png';
-import Captcha from '../../../public/Contacts/captcha.png';
+import ReCAPTCHA from "react-google-recaptcha";
 
 
 function EnquirySec() {
+    console.log("key",process.env.NEXT_PUBLIC_CAPTCHA_SECRET_KEY);
+    const recaptcha = useRef(null);
     return (
         <div className="bg-white pb-[50px] md:pb-[70px] lg:pb-[100px]">
             <div className='container sm:container md:container lg:max-w-[1232px] px-4 mx-auto'>
@@ -39,17 +41,13 @@ function EnquirySec() {
                                 </div>
                                 <div className="flex flex-warp -mx-4">
                                     <div className="px-4 items-center w-full lg:w-7/12">
-                                        <Image src={Captcha} />
+                                    <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY} ref={recaptcha}/>
                                     </div>
                                     <div className="px-4 items-center w-full lg:w-5/12 text-right">
                                     <button type="submit" class="bg-[#EE834E] hover:bg-[#ECCD6E] rounded px-8 lg:px-12 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]" fdprocessedid="1gg5s">Submit</button>
                                     </div>
-
                                 </div>
-
-
                             </div>
-
                         </div>
                     </div>
                 </div>
