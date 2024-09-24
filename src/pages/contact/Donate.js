@@ -1,8 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 function Donate() {
-
     const TuitionFees = [
         {
             imagesrc: "/Contacts/Tutionfees.png",
@@ -29,10 +29,6 @@ function Donate() {
             amount: "15000",
             content: "Named after the revered sage and teacher of Lord Rama, Guru Vashishtha symbolizes wisdom, righteousness, and the pursuit of knowledge. This house inspires students to uphold moral values and seek enlightenment.",
         },
-
-
-
-
     ];
     return (
         <div className="bg-white pb-[50px] md:pb-[70px] lg:pb-[100px]" >
@@ -49,10 +45,9 @@ function Donate() {
                                 <h3 className='lg:min-h-[64px] merriweather-font font-normal tracking-[-0.04em] text-xl lg:text-2xl text-[#1E1E1E] mb-2 lg:mb-2.5'>{item.title}</h3>
                                 <p className='text-[#EE834E] text-lg lg:text-xl tracking-[-0.04em] uppercase mb-4 lg:mb-5'>AMOUNT : ₹ {item.amount}</p>
                                 <p className='text-[#666666] font-medium text-base gotham-font mb-1.5 tracking-[-0.04em] mb-8 md:mb-10 lg:mb-14  min-h-[107px]'>{item.content}</p>
-                                <a href='#' className='block text-[#EE834E] hover:bg-[#EE834E] hover:text-white border border-[#EE834E] text-base lg:text-lg rounded px-4 py-3 text-center tracking-[-0.04em]'>Sponsor Now</a>
+                                <Link href='contact/donation/123' className='block text-[#EE834E] hover:bg-[#EE834E] hover:text-white border border-[#EE834E] text-base lg:text-lg rounded px-4 py-3 text-center tracking-[-0.04em]'>Sponsor Now</Link>
                             </div>
                         </div>
-
                     ))
                     }
                 </div>
