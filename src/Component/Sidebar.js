@@ -59,8 +59,8 @@ export default function Sidebar() {
 
       {!isMobile || (isMobile && isOpen) ? (
         <aside
-          className={`absolute top-0 left-0 z-10 w-64 h-screen transition-transform 
-              translate-x-0 bg-gray-500 `}
+          className={`transition-transform sticky top-0 
+              translate-x-0  `}
           aria-label="Sidebar"
         >
           <div className="h-full px-3 py-4 overflow-y-auto">
@@ -68,20 +68,20 @@ export default function Sidebar() {
               <li>
                 <Link
                   href="#"
-                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  className="flex items-center p-2 hover:bg-gray-100 whitespace-nowrap"
                 >
-                  <FaCalendarAlt className="w-5 h-5 text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-                  <span className="ms-3">Dashboard</span>
+                  <FaCalendarAlt className="w-5 h-5 " />
+                  <span className="ms-3 truncate">Dashboard</span>
                 </Link>
               </li>
               <li>
                 <button
                   type="button"
                   onClick={() => toggleDropdown(1)}
-                  className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  className="flex items-center w-full p-2 text-base transition duration-75 rounded-lg group hover:bg-gray-100"
                 >
-                  <FaMoneyBillWave className="w-5 h-5 text-gray-500 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" />
-                  <span className="flex-1 ms-3 text-left">E-commerce</span>
+                  {/* <FaMoneyBillWave className="w-5 h-5" /> */}
+                  <span className="flex-1 ms-3 text-left truncate">About</span>
                   <IoMdArrowDropdown
                     className={`w-3 h-3 transform ${
                       dropdownOpen[1] ? "rotate-180" : ""
@@ -96,7 +96,7 @@ export default function Sidebar() {
                   <li>
                     <Link
                       href="#"
-                      className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                      className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 hover:bg-gray-100 whitespace-nowrap"
                     >
                       Products
                     </Link>
@@ -104,7 +104,7 @@ export default function Sidebar() {
                   <li>
                     <Link
                       href="#"
-                      className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                      className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 hover:bg-gray-100 whitespace-nowrap"
                     >
                       Billing
                     </Link>
@@ -112,7 +112,7 @@ export default function Sidebar() {
                   <li>
                     <Link
                       href="#"
-                      className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                      className="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 hover:bg-gray-100 whitespace-nowrap"
                     >
                       Invoice
                     </Link>
@@ -122,10 +122,10 @@ export default function Sidebar() {
               <li>
                 <Link
                   href="#"
-                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  className="flex items-center p-2 rounded-lg  hover:bg-gray-100 whitespace-nowrap"
                 >
-                  <FaChartBar className="w-5 h-5 text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-                  <span className="ms-3">Kanban</span>
+                  <FaChartBar className="w-5 h-5" />
+                  <span className="ms-3 truncate">Others</span>
                   <span className="ms-3 inline-flex items-center justify-center px-2 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">
                     Pro
                   </span>

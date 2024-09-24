@@ -1,4 +1,4 @@
-import Layout from '@/Component/Layout'
+import Layout from '@/layout/Layout'
 import React from 'react';
 import CareerBg from '../../../public/Career/careerbg.jpg';
 import Image from 'next/image';

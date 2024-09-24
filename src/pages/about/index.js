@@ -8,7 +8,7 @@ import Directors from "./Directors";
 import Principal from "./Principal";
 import SisterSchools from "./SisterSchools";
 import ComingSoon from "./ComingSoon";
-import Layout from "@/Component/Layout";
+import Layout from "@/layout/Layout";
 import Faculty from "./Faculty";
 
 export default function index() {
