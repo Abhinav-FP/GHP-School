@@ -16,7 +16,7 @@ export default function Header() {
   };
   return (
     <>
-      <nav className="bg-white py-3 lg:py-3.5">
+      <nav className="bg-white py-3 lg:py-3.5 border-b border-black border-opacity-10">
         <div className="mx-auto container sm:container md:container lg:max-w-[1232px] px-4">
           <div className="relative flex items-center justify-between">
             <div className="flex-shrink-0">
