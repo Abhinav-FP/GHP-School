@@ -7,12 +7,12 @@ import Link from 'next/link';
 
 export default function donation() {
 
-  var [Qty, setdata] = useState(0o1);
+  const[Qty, setQty] = useState(0);
   function Increment() {
-    setdata(Qty + 1);
+    setQty(Qty + 1);
   }
   function decrement() {
-    setdata(Qty - 1);
+    setQty(Qty - 1);
   } 
 
   return (
