@@ -13,7 +13,7 @@ export default function donation() {
   }
   function decrement() {
     setdata(Qty - 1);
-  }
+  } 
 
   return (
     <Layout>

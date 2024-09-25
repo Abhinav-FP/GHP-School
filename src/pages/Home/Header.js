@@ -23,7 +23,7 @@ export default function Header() {
               <Link href="/"><Image className="max-w-full w-auto max-h-[70px] md:max-h-[70px] lg:max-h-[91px]" src={Logo} alt="BVBS School logo" /></Link>
             </div>
             <div className="hidden lg:ml-6 lg:block">
-              <div>
+              <div> 
                 {/* <!-- Current: "text-[#EE834E]" --> */}
                 <ul className="flex space-x-6 lg:space-x-8 xl:space-x-10">
                   <li className="group relative cursor-pointer">
