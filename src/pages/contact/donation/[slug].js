@@ -73,7 +73,7 @@ export default function donation() {
                 </div>
               </div>
               <div className='w-full mb-8 lg:mb-10'>
-                <button className='block w-full text-white bg-[#EE834E] hover:text-white hover:bg-[#ECCD6E] border border-[#EE834E] hover:border-[#ECCD6E] text-base lg:text-lg rounded px-4 py-3.5 text-center tracking-[-0.04em]'>Continue to checkout</button>
+                <Link href="/checkout" className='block w-full text-white bg-[#EE834E] hover:text-white hover:bg-[#ECCD6E] border border-[#EE834E] hover:border-[#ECCD6E] text-base lg:text-lg rounded px-4 py-3.5 text-center tracking-[-0.04em]'>Continue to checkout</Link>
               </div>
               <div className='w-full flex flex-wrap items-center'>
                 <div className='mr-1.5 text-[#666666] text-sm font-medium  tracking-[-0.04em]'>
