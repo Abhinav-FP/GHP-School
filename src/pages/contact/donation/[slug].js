@@ -5,7 +5,7 @@ import ProductImg from '../../../../public/Contacts/TutionFees2x.png';
 import { useState } from 'react';
 import Link from 'next/link';
 
-export default function donation() {
+export default function Donation() {
 
   const[Qty, setQty] = useState(0);
   function Increment() {
