@@ -14,7 +14,7 @@ export default function Success() {
              Please check your email for the invoice. To avail tax benefits under Section 80G, kindly download and print a copy of the invoice.</p>
              <a href='' className='inline-block bg-white hover:bg-[#EE834E] rounded px-6 lg:px-10 py-2 lg:py-2.5 text-[#EE834E] hover:text-white font-normal tracking-[-0.04em] border border-[#EE834E] '>Download Invoice </a>
         </div>
-      </div>
+      </div> 
     </Layout>
   )
 }
