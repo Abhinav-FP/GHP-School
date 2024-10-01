@@ -2,7 +2,7 @@ import React from 'react'
 import Slider from './Slider'
 import VisionMission from './VisionMission'
 import Follow from './Follow'
-import Layout from '@/Component/Layout'
+import Layout from '@/layout/Layout'
 
 export default function MainPage() {
   return (

@@ -32,7 +32,7 @@ export default function index() {
     return (
         <>
             <div className='pb-[100px]'>
-                <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto ">
+                <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto " id="syllabus">
                     <h2 className='merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-6 lg:mb-[36px] text-[#1E1E1E]  tracking-[-0.04em] text-center'>Syllabus</h2>
 
                     <table className='w-full '>
@@ -44,16 +44,16 @@ export default function index() {
                             </tr>
                         </thead>
                         <tbody>
-                             {gradeItems.map((item, index) => (
+                             {gradeItems && gradeItems?.map((item, index) => (
                                 <tr key={index}>
                                     <td className='text-[#666666] text-base px-3.5 py-5 tracking-[-0.04em] border border-black border-opacity-10'>
                                         {index + 1}
                                     </td>
                                     <td className='text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10'>
-                                        {item.ClassGrade}
+                                        {item?.ClassGrade}
                                     </td>
                                     <td className='text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10'> 
-                                        <a href={item.link} className='text-[#EE834E] hover:text-[#ECCD6E] underline'>
+                                        <a href={item?.link} className='text-[#EE834E] hover:text-[#ECCD6E] underline'>
                                         Download PDF
                                         </a> 
                                     </td>
