@@ -13,7 +13,6 @@ export default function Fees() {
         .getfees()
         .then((r) => {
           setLoading(false);
-          console.log("r?.data?.faculties", r?.data);
           setFees(r?.data?.fees);
         })
         .catch((err) => {

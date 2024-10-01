@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
-
+import React, { useEffect, useState } from "react";
+import Details from '../api/admin/Details';
 const ProfileCard = ({ percentage, name, imagesrc }) => {
     return (
         <div className='text-center w-full sm:w-6/12 md:w-4/12 lg:w-auto px-4 lg:px-0 mb-5 lg:mb-0'>
@@ -17,34 +17,8 @@ export default function Results() {
     const handleSelect = (category) => {
         setSelected(category);
     };
-
-    const data = [
-        {
-            percentage: "96.33%",
-            name: "Tanishka Meena",
-            imagesrc: "/Academic/Student.png"
-        },
-        {
-            percentage: "95.67%",
-            name: "Tanisha Kumawat",
-            imagesrc: "/Academic/Student.png"
-        },
-        {
-            percentage: "94.33%",
-            name: "Vishesh Saini",
-            imagesrc: "/Academic/Student.png"
-        },
-        {
-            percentage: "92.33%",
-            name: "Darshil Deegwal",
-            imagesrc: "/Academic/Student.png"
-        },
-        {
-            percentage: "91.17%",
-            name: "Vaishali Bhardwaj",
-            imagesrc: "/Academic/Student.png"
-        },
-    ];
+    const [result, SetResult] = useState([])
+    const [Loading, setLoading] = useState(false)
 
     const XIIdata = {
         "science": [
@@ -84,7 +58,24 @@ export default function Results() {
             },
         ],
     };
+    const classID = "X";
+    const resultmanage = async (classID) => {
+        setLoading(true);
+        const main = new Details();
+        const response = main.resultget(classID);
+        try {
+            const res = await response;
+            SetResult(res?.data?.data)
+        } catch (error) {
+            console.log("Error:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
+    useEffect(() => {
+        resultmanage(classID);
+    }, [classID]);
     return (
 
         <div className='pb-[40px] md:pb-[80px] lg:pb-[100px]'>
@@ -92,8 +83,8 @@ export default function Results() {
                 <h2 className='merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-6 lg:mb-[36px] text-[#1E1E1E]  tracking-[-0.04em] text-center'>100% results</h2>
                 <h3 className='tracking-[-0.04em] merriweather-font text-[#1E1E1E] text-lg md:text-xl lg:text-2xl mb-6 lg:mb-[36px] text-center'>Grade X</h3>
                 <div className="flex flex-wrap lg:grid lg:gap-8 text-center lg:grid-cols-5 ">
-                    {data && data.map((item, index) => (
-                        <ProfileCard key={index} percentage={item.percentage} name={item.name} imagesrc={item.imagesrc} />
+                    {result && result.map((item, index) => (
+                        <ProfileCard key={index} percentage={item.percentage} name={item.name} imagesrc={item.photo} />
                     ))}
                 </div>
                 <div className='pt-12 mt-12 border-t border-black border-opacity-10'>

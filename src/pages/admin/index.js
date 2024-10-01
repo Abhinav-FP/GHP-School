@@ -39,7 +39,6 @@ export default function Index() {
       .then((r) => {
         setLoading(false);
         setTeachers(r?.data?.faculties);
-        console.log("r?.data?.faculties", r?.data?.faculties);
       })
       .catch((err) => {
         setLoading(false);
@@ -56,9 +55,7 @@ export default function Index() {
       drop(draggedItem) {
         // Handle the item drop and log the ID of the dragged item
         if (draggedItem.index !== index) {
-          console.log("Dragged item ID:", draggedItem._id); // Log the ID of the dragged item
           moveRow(draggedItem.index, index);
-          console.log(`Item with srNo: ${draggedItem.srNo} dropped to position: ${index + 1}`);
           draggedItem.index = index;
            // Moving the task through api
            const main = new Details();

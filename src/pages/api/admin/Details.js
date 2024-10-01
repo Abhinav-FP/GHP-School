@@ -40,7 +40,7 @@ class Details extends Component {
     return Api.get("/fees/get");
   }
  
-  async resetget(id) {
+  async resultget(id) {
     return Api.get(`/result/get/${id}`);
   }
  

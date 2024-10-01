@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Details from '../api/admin/Details';
 
 import Director1 from "../../../public/About/bydefalult.png";
+import Image from "next/image";
 
 
 export default function Directors() {
@@ -16,7 +17,6 @@ export default function Directors() {
       .getdirector()
       .then((r) => {
         setLoading(false);
-        console.log("r?.data?.faculties", r?.data);
         setProfiles(r?.data?.director);
       })
       .catch((err) => {
@@ -37,7 +37,7 @@ export default function Directors() {
           {profiles && profiles.map((profile, index) => (
             <div className="flex bg-[#ECE1C5]" key={index}>
               <div className="w-full md:w-1/2">
-                <img className="max-w-full" src={profile.photo ? profile.photo : Director1} height={379} width={285} alt={profile.name} />
+                <Image className="max-w-full" src={profile.photo ? profile.photo : Director1} height={379} width={285} alt={profile.name} />
               </div>
               <div className="w-full md:w-1/2 flex flex-col px-3.5 lg:px-[14px] py-3.5 lg:py-[26px]">
                 <h2 className="merriweather-font font-normal text-xl md:text-2xl  mb-2 text-[#1E1E1E]  tracking-[-0.04em] mb-2 lg:mb-2.5">{profile.name}</h2>

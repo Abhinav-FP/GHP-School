@@ -5,7 +5,6 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 
 function EnquirySec() {
-    console.log("key",process.env.NEXT_PUBLIC_CAPTCHA_SECRET_KEY);
     const recaptcha = useRef(null);
     return (
         <div className="bg-white pb-[50px] md:pb-[70px] lg:pb-[100px]">

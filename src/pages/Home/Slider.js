@@ -16,7 +16,6 @@ const getbanner = () => {
       .gethomebanner()
       .then((r) => {
         setLoading(false);
-        console.log("r?.data?.faculties", r?.data?.banners);
         setLisitng(r?.data?.banners);
       })
       .catch((err) => {

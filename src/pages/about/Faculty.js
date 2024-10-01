@@ -11,7 +11,6 @@ export default function Faculty() {
       .getFaculty()
       .then((r) => {
         setLoading(false);
-        console.log("r?.data?.faculties", r?.data);
         setTeachers(r?.data?.faculties);
       })
       .catch((err) => {
