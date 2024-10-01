@@ -14,12 +14,12 @@ export default function Directors() {
     },
     {
       name: "Himanshu Sharma",
-      image: "/About/Director1.png",
+      image: "/About/Director3.jpeg",
       quote: "I believe the right educational environment is crucial for a child's development. Inspired by my late grandfather Shri Gopal Sharma's vision, we've created schools in Mumbai and Jaipur with ample natural light and play spaces. My father, Mr. Prashant Sharma, and uncle, Mr. Dikshant Sharma, continue this legacy."
     },
     {
       name: "Yugank Sharma",
-      image: "/About/Director2.png",
+      image: "/About/Director4.jpg",
       quote: "Our School caters to students hailing from diverse Socio-Economic backgrounds. We believe that education cannot be merely reduced to cramming of syllabus but the evolution of a child in a holistic manner. As an educational institution, it becomes imperative for us to see that children are given opportunities to exhibit and nurture their talents."
     }
   ];
