@@ -22,6 +22,10 @@ class Details extends Component {
   async verify() {
     return Api.get("/user/verify");
   }
+
+  async gethomebanner() {
+    return Api.get("/home/banner/get");
+  }
    
   render() {
     return (

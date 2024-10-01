@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import Details from "../api/admin/Details";
 
 export default function Slider() {
+const[listing,setLisitng] = useState([])
+const[Loading,setLoading] = useState(false)
+
+console.log("listing",listing)
+    useEffect(() => {
+        setLoading(true);
+        const main = new Details();
+        main.home_banner()
+          .then((r) => {
+            console.log("r",r )
+            setLoading(false);
+            const data = r?.data?.data;
+            setLisitng(data)
+          })
+          .catch((err) => {
+            setLoading(false);
+            console.log(err);
+          });
+      }, []);
     const slides = [
         { bgImage: '/Home/Slider1.JPG' },
         { bgImage: '/Home/Slider2.JPG' },
