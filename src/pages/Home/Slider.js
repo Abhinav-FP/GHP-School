@@ -4,8 +4,6 @@ import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import Details from "../api/admin/Details";
-import SiderImg from "../../../public/Home/Slider1.JPG"
-
 export default function Slider() {
 const[listing,setLisitng] = useState([])
 const[Loading,setLoading] = useState(false)
@@ -28,11 +26,7 @@ const getbanner = () => {
   useEffect(() => {
     getbanner();
   }, []);
-    const slides = [
-        { bgImage: '/Home/Slider1.JPG' },
-        { bgImage: '/Home/Slider2.JPG' },
-        { bgImage: '/Home/Slider3.JPG' }
-    ];
+ 
 
     const data = [
         {
