@@ -72,7 +72,7 @@ const getbanner = () => {
                     }}
                     modules={[Autoplay, Pagination]}
                 >
-                    {listing && listing.map((slide, index) => (
+                    {slides && slides.map((slide, index) => (
                         <SwiperSlide key={index}>
                             <div
                                 className="slide-content relative"
@@ -88,7 +88,7 @@ const getbanner = () => {
                                     fontWeight: 'bold'
                                 }}
                             >
-                                <img className='w-full max-h-[700px] object-cover' src={slide.photo} alt={slide?.heading} />
+                                <img className='w-full max-h-[700px] object-cover' src={slide.bgImage} alt={"header"} />
                                 <div className="absolute h-full flex items-center left-0 w-full top-1/2 -translate-y-1/2 sliderbg ">
                                     <div className="mx-auto container sm:container md:container lg:max-w-[1232px] px-4">
                                         <h2 className='merriweather-font font-medium tracking-[-0.04em] text-center text-3xl  md:text-4xl lg:text-5xl mb-3'>Welcome to Bal Vishwa Bharti School</h2>

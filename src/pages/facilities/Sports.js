@@ -1,7 +1,16 @@
 import Image from 'next/image'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 import React from 'react'
 
 export default function Sports() {
+  const slides = [
+    { bgImage: '/Home/Slider1.JPG' },
+    { bgImage: '/Home/Slider2.JPG' },
+    { bgImage: '/Home/Slider3.JPG' }
+];
   return (
     <div className='bg-white pb-[40px] md:pb-[80px] lg:pb-[100px]' id="sports">
       <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto">
@@ -18,12 +27,29 @@ export default function Sports() {
                 </ul>            
             </div>
             <div className="w-full lg:w-7/12 relative">
+            <Swiper
+                    spaceBetween={50}
+                    slidesPerView={1}
+                    // pagination={{ clickable: true }}
+                    loop={true}
+                    autoplay={{
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    }}
+                    modules={[Autoplay, Pagination]}
+                >
+                  {data && data?.map((item,index)=>(
+
+                    <SwiperSlide key={index}>
+
             <Image 
              src="/Facilities/Sports.png" 
-             alt="Sports" 
-             
+             alt="Sports"  
              objectFit="cover" className='w-full'  height={420} width={692} 
-            ></Image>
+             ></Image>
+             </SwiperSlide>
+            ))}
+           </Swiper>
             </div>
         </div>
     </div>
