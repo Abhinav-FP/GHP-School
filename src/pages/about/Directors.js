@@ -27,13 +27,13 @@ export default function Directors() {
     <div className="bg-white pb-[50px] md:pb-[70px] lg:pb-[100px]" id="directors">
         <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto">
           <h2 className="merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-2 text-[#1E1E1E]  tracking-[-0.04em] mb-4 lg:mb-5 text-center ">Directors Desk</h2>
-          <div className="mx-auto px-4 py-8 grid lg:grid-cols-2 gap-3.5 lg:gap-5">
+          <div className="mx-auto lg:px-4 py-8 grid lg:grid-cols-2 gap-3.5 lg:gap-5">
             {profiles && profiles.map((profile, index) => (
-              <div className="flex bg-[#ECE1C5]" key={index}>
-                <div className="w-full md:w-1/2">
-                <img className="max-w-full" src={profile.image} height={379} width={285} alt={profile.name} />
+              <div className="flex border border-gray-100 !shadow-sm director-box bg-[#ECE1C5]" key={index}>
+                <div className="w-full sm:w-1/3 md:w-1/2 bg-white">
+                  <img className="max-h-[350px]   sm:max-h-full   object-top max-w-full h-full object-cover !w-full" src={profile.image} height={379} width={285} alt={profile.name} />
                 </div>
-                <div className="w-full md:w-1/2 flex flex-col px-3.5 lg:px-[14px] py-3.5 lg:py-[26px]">
+                <div className="w-full sm:w-2/3 md:w-1/2 flex flex-col px-3.5 lg:px-[14px] py-3.5 lg:py-[26px]">
                   <h2 className="merriweather-font font-normal text-xl md:text-2xl  mb-2 text-[#1E1E1E]  tracking-[-0.04em] mb-2 lg:mb-2.5">{profile.name}</h2>
                   <p className="text-[#666666] font-medium text-base gotham-font mb-0 tracking-[-0.04em]">{profile.quote}</p>
                 </div>

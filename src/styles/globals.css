@@ -160,3 +160,11 @@ html{
   border-color: transparent;
   background-color: currentColor;
 }
+
+
+@media (max-width:575px) {
+  .director-box { 
+    display: block;
+  }
+}
+
