@@ -21,7 +21,7 @@ const getbanner = () => {
       })
       .catch((err) => {
         setLoading(false);
-        setTeachers([]);
+        setLisitng([]);
         console.log("error", err);
       });
   };
