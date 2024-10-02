@@ -4,8 +4,6 @@ import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import Details from "../api/admin/Details";
-import SiderImg from "../../../public/Home/Slider1.JPG"
-
 export default function Slider() {
 const[listing,setLisitng] = useState([])
 const[Loading,setLoading] = useState(false)
@@ -16,12 +14,11 @@ const getbanner = () => {
       .gethomebanner()
       .then((r) => {
         setLoading(false);
-        console.log("r?.data?.faculties", r?.data?.banners);
         setLisitng(r?.data?.banners);
       })
       .catch((err) => {
         setLoading(false);
-        setTeachers([]);
+        setLisitng([]);
         console.log("error", err);
       });
   };
@@ -29,11 +26,7 @@ const getbanner = () => {
   useEffect(() => {
     getbanner();
   }, []);
-    const slides = [
-        { bgImage: '/Home/Slider1.JPG' },
-        { bgImage: '/Home/Slider2.JPG' },
-        { bgImage: '/Home/Slider3.JPG' }
-    ];
+ 
 
     const data = [
         {
@@ -72,7 +65,7 @@ const getbanner = () => {
                     }}
                     modules={[Autoplay, Pagination]}
                 >
-                    {slides && slides.map((slide, index) => (
+                    {listing && listing.map((slide, index) => (
                         <SwiperSlide key={index}>
                             <div
                                 className="slide-content relative"
@@ -88,7 +81,7 @@ const getbanner = () => {
                                     fontWeight: 'bold'
                                 }}
                             >
-                                <img className='w-full max-h-[700px] object-cover' src={slide.bgImage} alt={"header"} />
+                                <img className='w-full max-h-[700px] object-cover' src={slide.photo} alt={slide?.heading} />
                                 <div className="absolute h-full flex items-center left-0 w-full top-1/2 -translate-y-1/2 sliderbg ">
                                     <div className="mx-auto container sm:container md:container lg:max-w-[1232px] px-4">
                                         <h2 className='merriweather-font font-medium tracking-[-0.04em] text-center text-3xl  md:text-4xl lg:text-5xl mb-3'>Welcome to Bal Vishwa Bharti School</h2>

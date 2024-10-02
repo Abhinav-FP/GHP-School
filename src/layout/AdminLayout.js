@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Details from '@/pages/api/admin/Details';
 import Sidebar from '@/Component/Sidebar';
+import SideBarAdmin from '@/pages/admin/Component/SideBar';
 
 export default function AdminLayout({ children, title, subhead }) {
     // useEffect(() => {
@@ -19,7 +20,7 @@ export default function AdminLayout({ children, title, subhead }) {
   return (
     <div className='flex  max-h-screen overflow-auto'>
         <div className='bg-[#f0f0f0] w-[400px] p-6 text-gray-500'>
-          <Sidebar />
+          <SideBarAdmin />
         </div>
         <div className='p-12 content  w-[calc(100%-300px)]   overflow-auto'>
           <div className='pb-10 bborder-b-4'> 

@@ -23,11 +23,9 @@ export default function Login() {
     setLoading(true);
     const main = new Details();
     const formData = new FormData();
-    console.log("record",record);
     formData.append("email", record.email);
     formData.append("password", record.password);
     const response = main.login(formData);
-    console.log("response",response);
     response
       .then((res) => {
         if (res && res?.data && res?.data?.status) {

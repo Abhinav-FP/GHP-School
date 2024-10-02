@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useDrag, useDrop, DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import Details from "../api/admin/Details";
 import Link from "next/link";
 import AdminLayout from "@/layout/AdminLayout";
 import { RiDeleteBinLine } from "react-icons/ri";
 import toast from "react-hot-toast";
+import Details from "@/pages/api/admin/Details";
 
 export default function Index() {
   const [loading, setLoading] = useState(false);

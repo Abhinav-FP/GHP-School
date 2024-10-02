@@ -1,6 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+
+import Details from '../api/admin/Details';
 
 export default function Fees() {
+
+    const [Fees, setFees] = useState([])
+    const [Loading, setLoading] = useState(false)
+    const getFeesStruture = () => {
+      setLoading(true);
+      const main = new Details();
+      main
+        .getfees()
+        .then((r) => {
+          setLoading(false);
+          setFees(r?.data?.fees);
+        })
+        .catch((err) => {
+          setLoading(false);
+          setTeachers([]);
+          console.log("error", err);
+        });
+    };
+  
+    useEffect(() => {
+        getFeesStruture();
+    }, []);
     const feesData = [
         {
             "Sr No": 1,
@@ -194,14 +218,14 @@ export default function Fees() {
                         </tr>
                     </thead>
                     <tbody>
-                        {feesData && feesData?.map((item, index) => (
+                        {Fees && Fees?.map((item, index) => (
                             <tr key={index}>
                                 <td className="text-[#666666] text-base px-3.5 py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{index + 1}</td>
-                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.Class}</td>
-                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.I}</td>
-                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.II}</td>
-                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.III}</td>
-                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.IV}</td>
+                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.grade}</td>
+                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.first}</td>
+                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.second}</td>
+                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.third}</td>
+                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.fourth}</td>
                                 <td className="text-[#EE834E] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.total}</td>
                             </tr>
                         ))}

@@ -26,6 +26,30 @@ class Details extends Component {
   async gethomebanner() {
     return Api.get("/home/banner/get");
   }
+
+  async getprinciple() {
+    return Api.get("/about/principal/get");
+  }
+
+  async getdirector() {
+    return Api.get("/about/director/get");
+  }
+
+
+  async getfees() {
+    return Api.get("/fees/get");
+  }
+ 
+  
+
+  async Adminline() {
+    return Api.get("/home/admission/get");
+  }
+  async resultget(id) {
+    return Api.get(`/result/get/${id}`);
+  }
+ 
+  // /result/get/XII
    
   render() {
     return (

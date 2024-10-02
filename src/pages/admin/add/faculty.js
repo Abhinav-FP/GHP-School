@@ -29,7 +29,7 @@ export default function Faculty() {
     data.append("subjects", formData.subjects);
     data.append("grades", formData.grades);
     const response = main.addFaculty(data);
-    console.log("response",response);
+    ("response",response);
     response
       .then((res) => {
         if (res && res?.data && res?.data?.status) {
