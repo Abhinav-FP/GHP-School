@@ -20,7 +20,7 @@ export default function Sports() {
           <div className="h-full w-full lg:w-5/12 text-white px-[40px] py-[50px]">
             <div className="">
               <h3 className="merriweather-font font-normal text-base lg:text-xl xl:leading-[25px] mb-6 lg:mb-10 tracking-[-0.04em] text-left">{`"Sports is not just about winning; it's about the passion, the teamwork, the perseverance, and the growth that happens both on and off the field."`}</h3>
-              <h4 className="merriweather-font font-normal text-xl lg:text-2xl xl:leading-[25px] mb-2.5 lg:m-3.5 tracking-[-0.04em] text-left">
+              <h4 className="capitalize merriweather-font font-normal text-xl lg:text-2xl xl:leading-[25px] mb-2.5 lg:m-3.5 tracking-[-0.04em] text-left">
                 List of sports
               </h4>
               <ul className="list-disc list-inside tracking-[-0.04em] text-base lg:text-lg font-medium pl-4">

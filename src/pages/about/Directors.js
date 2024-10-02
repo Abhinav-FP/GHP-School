@@ -35,7 +35,7 @@ export default function Directors() {
                 </div>
                 <div className="w-full sm:w-2/3 md:w-1/2 flex flex-col px-3.5 lg:px-[14px] py-3.5 lg:py-[26px]">
                   <h2 className="merriweather-font font-normal text-xl md:text-2xl  mb-2 text-[#1E1E1E]  tracking-[-0.04em] mb-2 lg:mb-2.5">{profile.name}</h2>
-                  <p className="text-[#666666] font-medium text-base gotham-font mb-0 tracking-[-0.04em]">{`"${profile.quote}"`}</p>
+                  <p className="text-[#666666] font-medium text-base gotham-font mb-0 tracking-[-0.04em]"><q>{profile.quote}</q></p>
                 </div>
               </div>
             ))}

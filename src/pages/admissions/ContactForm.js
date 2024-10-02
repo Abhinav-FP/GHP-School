@@ -3,11 +3,27 @@ import React, { useState } from "react";
 function ContactForm() {
   const [record, setRecord] = useState({
     class: "",
+    type: "",
+    selectedDate: "",
   });
   const handleChange = (e) => {
     const value = e.target.value;
     const name = e.target.name;
     setRecord((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  console.log("record", record);
+
+  const handleDateChange = (event) => {
+    const date = event.target.value;
+    
+    // Correctly updating the selectedDate field in the state
+    setRecord((prevState) => ({ ...prevState, selectedDate: date }));
+
+    // Convert to a human-readable format
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = new Date(date).toLocaleDateString('en-US', options);
+    console.log(`Selected Date: ${formattedDate}`);
   };
   return (
     <div className="bg-white py-[50px] md:py-[70px] lg:py-[100px]">
@@ -75,7 +91,7 @@ function ContactForm() {
               </label>
               <input className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
             </div>
-            <div className="w-full lg:w-12/12 px-2.5 mb-5">
+            <div className="w-full lg:w-8/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Full Name{" "}
               </label>
@@ -83,9 +99,33 @@ function ContactForm() {
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
+                Type of Admission{" "}
+              </label>
+              <select
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                name="type"
+                value={record.type}
+                onChange={handleChange}
+                id="type"
+                required
+              >
+                <option value="" disabled>
+                  Select Type
+                </option>
+                <option value="new">New Admission</option>
+                <option value="renwe">Renew after Class X for Grade XI</option>
+              </select>
+            </div>
+            <div className="w-full lg:w-4/12 px-2.5 mb-5">
+              <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Date of birth
               </label>
-              <input className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+              <input
+                type="date"
+                value={record.selectedDate}
+                onChange={handleDateChange}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+              />
             </div>
             <div className="w-full lg:w-8/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
