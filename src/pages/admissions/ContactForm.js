@@ -381,78 +381,78 @@ function ContactForm() {
                 </div>
               </div>
             </div>
-            <div className="w-full lg:w-12/12 px-2.5 mb-5">
+            <div className="w-full lg:w-12/12 px-2.5 mb-2">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 I Solemnly declare that
               </label>
               <ul className="space-y-2">
-                <li className="relative">
+                <li className="relative pl-5">
                   <input
                     id=""
                     type="checkbox"
                     name=""
                     value="1"
-                    class="w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
+                    class="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
                     aria-labelledby="1"
                     aria-describedby="1"
                   />
                   <label
                     for="1"
-                    class="cursor-pointer ml-1 text-base font-medium text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
+                    class="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
                   >
                     The above information is correct.
                   </label>
                 </li>
-                <li>
+                <li className="relative pl-5">
                   <input
                     id=""
                     type="checkbox"
                     name=""
                     value="2"
-                    class="w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
+                    class="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
                     aria-labelledby="2"
                     aria-describedby="2"
                   />
                   <label
                     for="2"
-                    class="cursor-pointer ml-1 text-base font-medium text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
+                    class="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
                   >
                     I agree to abide by Rules and Regulations of the school and
                     the Education Department (Subject to any change that may be
                     made in them.)
                   </label>
                 </li>
-                <li>
+                <li className="relative pl-5">
                   <input
                     id=""
                     type="checkbox"
                     name=""
                     value="3"
-                    class="w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
+                    class="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
                     aria-labelledby="3"
                     aria-describedby="3"
                   />
                   <label
                     for="3"
-                    class="cursor-pointer ml-1 text-base font-medium text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
+                    class="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
                   >
                     The date of birth entered above is correct and no request
                     for any change will be made.
                   </label>
                 </li>
-                <li>
+                <li className="relative pl-5">
                   <input
                     id=""
                     type="checkbox"
                     name=""
                     value="4"
-                    class="w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
+                    class="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
                     aria-labelledby="4"
                     aria-describedby="4"
                   />
                   <label
                     for="4"
-                    class="cursor-pointer ml-1 text-base font-medium text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
+                    class="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
                   >
                     I have explained these rules and regulations to my
                     son/daughter and in case if he/she violates any rules and
@@ -463,38 +463,38 @@ function ContactForm() {
                     and my son/daughter.
                   </label>
                 </li>
-                <li>
+                <li className="relative pl-5">
                   <input
                     id=""
                     type="checkbox"
                     name=""
                     value="5"
-                    class="w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
+                    class="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
                     aria-labelledby="5"
                     aria-describedby="5"
                   />
                   <label
                     for="5"
-                    class="cursor-pointer ml-1 text-base font-medium text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
+                    class="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
                   >
                     The School will not be held responsible for any accident,
                     injuries of loss to the student while at the school or at
                     the time of participating in any activity.
                   </label>
                 </li>
-                <li>
+                <li className="relative pl-5">
                   <input
                     id=""
                     type="checkbox"
                     name=""
                     value="6"
-                    class="w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
+                    class="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
                     aria-labelledby="6"
                     aria-describedby="6"
                   />
                   <label
                     for="6"
-                    class="cursor-pointer ml-1 text-base font-medium text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
+                    class="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
                   >
                     Admission granted to a student will be provisional until the
                     relevant documents are not submitted duely signed/counter
@@ -505,13 +505,13 @@ function ContactForm() {
             </div>
 
             <div className="w-full lg:w-12/12 px-2.5 mb-10 md:mb-14 lg:mb-20">
-              <p className="text-base lg:text-lg font-medium text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-3">
+              <p className="Gotham-reguler text-base lg:text-lg font-normal text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-0">
                 Submitting the form does not guarantee admission. The student
                 will be required to take a test, after which a physical copy of
                 the following supporting documents must be submitted to the
                 school:{" "}
               </p>
-              <ul className="text-base lg:text-lg font-medium text-[#1E1E1E] tracking-[-0.04em] opacity-80 pl-5 list-disc">
+              <ul className="Gotham-reguler text-base lg:text-lg font-normal text-[#1E1E1E] tracking-[-0.04em] opacity-80 pl-5 list-disc">
                 <li>{`Student's photograph`}</li>
                 <li>Birth certificate</li>
                 <li>Aadhar card</li>

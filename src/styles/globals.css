@@ -17,6 +17,20 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'Gotham';
+  src: url('../pages/fonts/Gotham-BookItalic.eot');
+  src: url('../pages/fonts/Gotham-BookItalic.eot?#iefix') format('embedded-opentype'),
+      url('../pages/fonts/Gotham-BookItalic.woff2') format('woff2'),
+      url('../pages/fonts/Gotham-BookItalic.woff') format('woff'),
+      url('../pages/fonts/Gotham-BookItalic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+ 
+
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 @media (prefers-color-scheme: dark) {
@@ -181,7 +195,11 @@ html{
   font-size: 20px; /* You can adjust the arrow size if needed */
 }
 
-
+.Gotham-reguler{
+  font-family: 'Gotham';
+  font-weight: 400;
+  font-style: italic;
+}
 .button-animation {  
   background: #EE834E;
   background-image: linear-gradient(to left, transparent, transparent 50%, #ECCD6E 50%, #ECCD6E); background-position: 100% 0;
