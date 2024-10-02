@@ -4,6 +4,7 @@ import Results from "../../../public/Home/Results.png"
 import Facilities from "../../../public/Home/Facilities.png"
 import Assembly from "../../../public/Home/Assembly.jpg"
 import Image from 'next/image'
+import Link from 'next/link'
 
 
 export default function VisionMission() {
@@ -12,24 +13,28 @@ export default function VisionMission() {
       heading: "Vision",
       text: "The School’s vision is to provide a learning environment that encourages children to bring out the best in themselves and which supports their all-round development, through discovering the joy of learning, awakening and illuminating their intellect in multi-dimensional ways, and instilling abiding values in themselves.",
       btnText: "About Us ",
+      to:"/about#vision",
       imgsrc: Vision,
     },
     {
       heading: "Results",
       text: "Explore our students' remarkable achievements and academic milestones. Dive into the details of our latest exam results and witness the success stories that define our commitment to excellence.",
       btnText: "Read More",
+      to:"/academics#results",
       imgsrc: Results,
     },
     {
       heading: "Facilities",
       text: "Bal Vishwa Bharti School offers state-of-the-art classrooms, well-equipped science and computer labs, and a resource-rich library to foster academic excellence. The School Hall can accommodate 520 people.",
       btnText: "View more",
+      to:"/facilities",
       imgsrc: Facilities,
     },
     {
       heading: "Our Pre-Primary Program",
       text: "Our Pre-Primary section offers a nurturing and stimulating environment where young children explore, learn, and grow. With play-based activities and dedicated educators, we lay the foundation for a lifelong love of learning.",
       btnText: "Apply Now",
+      to:"/admissions#form",
       imgsrc: Assembly,
     },
   ];
@@ -57,9 +62,9 @@ export default function VisionMission() {
                     {item?.text}
                   </p>
 
-                  <button className="bg-[#EE834E] hover:bg-[#ECCD6E] rounded px-8 lg:px-10 py-2 text-white text-base lg:text-lg font-normal tracking-[-0.04em]">
+                  <Link href={item?.to} className="bg-[#EE834E] hover:bg-[#ECCD6E] rounded px-8 lg:px-10 py-2 text-white text-base lg:text-lg font-normal tracking-[-0.04em]">
                     {item?.btnText}
-                  </button>
+                  </Link>
                 </div>
 
               </>
@@ -80,9 +85,9 @@ export default function VisionMission() {
                     {item?.text}
                   </p>
 
-                  <button className="bg-[#EE834E] rounded px-8 lg:px-10 py-2 text-white text-base lg:text-lg font-normal tracking-[-0.04em]">
+                  <Link href={item?.to} className="bg-[#EE834E] rounded px-8 lg:px-10 py-2 text-white text-base lg:text-lg font-normal tracking-[-0.04em]">
                     {item?.btnText}
-                  </button>
+                  </Link>
                 </div>
 
               </>
