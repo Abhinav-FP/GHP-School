@@ -45,7 +45,7 @@ function EnquirySec() {
                                     <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY} ref={recaptcha}/>
                                     </div>
                                     <div className="px-4 items-center w-full lg:w-5/12 text-right">
-                                    <button type="submit" class="bg-[#EE834E] hover:bg-[#ECCD6E] rounded px-8 lg:px-12 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]" fdprocessedid="1gg5s">Submit</button>
+                                    <button type="submit" class="button-animation rounded px-8 lg:px-12 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]" fdprocessedid="1gg5s">Submit</button>
                                     </div>
                                 </div>
                             </div>
