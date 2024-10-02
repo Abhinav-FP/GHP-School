@@ -31,8 +31,15 @@ class Details extends Component {
     return Api.get("/about/principal/get");
   }
 
+  async addprinciple(data) {
+    return Api.post("/about/principal/edit", data);
+  
+  }
   async getdirector() {
     return Api.get("/about/director/get");
+  }
+  async editdirector(data) {
+    return Api.post("/about/director/edit" ,data);
   }
 
   async getGallery() {
@@ -47,7 +54,17 @@ class Details extends Component {
     return Api.get("/fees/get");
   }
  
-  
+  async careerget() {
+    return Api.get("/career/vacancy/get");
+  }
+
+  async careerpost(data) {
+    return Api.post("/career/vacancy/add", data);
+  }
+  async careerdelete(data) {
+    return Api.post("/career/vacancy/delete", data);
+  }
+ 
 
   async Adminline() {
     return Api.get("/home/admission/get");
