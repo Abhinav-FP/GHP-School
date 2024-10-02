@@ -62,7 +62,7 @@ export default function VisionMission() {
                     {item?.text}
                   </p>
 
-                  <Link href={item?.to} className="bg-[#EE834E] hover:bg-[#ECCD6E] rounded px-8 lg:px-10 py-2 text-white text-base lg:text-lg font-normal tracking-[-0.04em]">
+                  <Link href={item?.to} className="button-animation rounded px-8 lg:px-10 py-2.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]">
                     {item?.btnText}
                   </Link>
                 </div>
@@ -85,7 +85,7 @@ export default function VisionMission() {
                     {item?.text}
                   </p>
 
-                  <Link href={item?.to} className="bg-[#EE834E] rounded px-8 lg:px-10 py-2 text-white text-base lg:text-lg font-normal tracking-[-0.04em]">
+                  <Link href={item?.to} className="button-animation rounded px-8 lg:px-10 py-2.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]">
                     {item?.btnText}
                   </Link>
                 </div>

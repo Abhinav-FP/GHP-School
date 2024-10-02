@@ -180,3 +180,13 @@ html{
 }
 
 
+.button-animation {  
+  background: #EE834E;
+  background-image: linear-gradient(to left, transparent, transparent 50%, #ECCD6E 50%, #ECCD6E); background-position: 100% 0;
+  background-size: 200% 100%;
+  transition: all 0.25s ease-in;
+}
+.button-animation:hover {
+  background-position: 0 0;
+  color: #333;
+}

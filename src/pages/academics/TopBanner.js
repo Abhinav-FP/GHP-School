@@ -10,7 +10,7 @@ export default function index() {
                     <h1 className='text-black merriweather-font font-normal tracking-[-0.04em] text-center text-3xl md:text-4xl lg:text-5xl mb-2.5'>Academic Year at a Glance</h1>
                     <p className='text-black font-medium tracking-[-0.04em]  text-center text-sm md:text-base lg:text-xl mb-6 lg:mb-10'>(2024 - 2025)</p>
                     <div className='text-center'>
-                        <a href='#' className='bg-[#EE834E] text-white inline-block tracking-[-0.04em] rounded text-lg font-normal px-16 py-3.5'>Download</a>
+                        <a href='#' className='button-animation text-white inline-block tracking-[-0.04em] rounded text-lg font-normal px-16 py-3.5'>Download</a>
                     </div>
                 </div>
             </div>
