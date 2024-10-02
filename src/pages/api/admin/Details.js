@@ -31,6 +31,10 @@ class Details extends Component {
     return Api.get("/about/principal/get");
   }
 
+  async addprinciple(data) {
+    return Api.post("/about/principal/add", data);
+  
+  }
   async getdirector() {
     return Api.get("/about/director/get");
   }
