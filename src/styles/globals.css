@@ -30,6 +30,8 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: 'Gotham';
+  -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 @layer utilities {
@@ -187,6 +189,17 @@ html{
   transition: all 0.25s ease-in;
 }
 .button-animation:hover {
+  background-position: 0 0;
+  color: #333;
+}
+
+.button-animation-border {  
+  background: #fff;
+  background-image: linear-gradient(to left, transparent, transparent 50%, #ECCD6E 50%, #ECCD6E); background-position: 100% 0;
+  background-size: 200% 100%;
+  transition: all 0.25s ease-in;
+}
+.button-animation-border:hover {
   background-position: 0 0;
   color: #333;
 }
