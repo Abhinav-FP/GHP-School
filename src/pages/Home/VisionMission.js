@@ -2,7 +2,7 @@ import React from 'react'
 import Vision from "../../../public/Home/Vision.png"
 import Results from "../../../public/Home/Results.png"
 import Facilities from "../../../public/Home/Facilities.png"
-import Assembly from "../../../public/Home/Assembly.png"
+import Assembly from "../../../public/Home/Assembly.jpg"
 import Image from 'next/image'
 
 

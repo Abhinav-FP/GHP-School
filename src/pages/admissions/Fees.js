@@ -232,7 +232,7 @@ export default function Fees() {
                     </tbody>
                 </table>                
                 </div>
-                <h2 className="tracking-[-0.04em] merriweather-font text-xl lg:text-2xl mb-2 md:mb-2.5 capitalize text-[#EE834E]">Please note</h2>
+                <h2 className="tracking-[-0.04em] merriweather-font text-xl lg:text-2xl mb-2 md:mb-2.5 capitalize text-[#EE834E]">Please note :</h2>
                 <ol className="list-decimal list-inside text-[#666666] text-sm lg:text-base tracking-[-0.04em] italic">
                     <li>Registration fee Rs. 500/- only for new admission.</li>
                     <li>Renewal fee Rs. 200/- for students of X class passed from this school.</li>

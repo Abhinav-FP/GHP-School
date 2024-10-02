@@ -168,3 +168,15 @@ html{
   }
 }
 
+/* Add this to your global CSS file or a specific CSS module */
+.custom-swiper-navigation .swiper-button-next,
+.custom-swiper-navigation .swiper-button-prev {
+  color: white; /* Change arrow color to white */
+}
+
+.custom-swiper-navigation .swiper-button-next::after,
+.custom-swiper-navigation .swiper-button-prev::after {
+  font-size: 20px; /* You can adjust the arrow size if needed */
+}
+
+

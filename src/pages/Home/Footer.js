@@ -8,6 +8,7 @@ import { FaFacebook } from "react-icons/fa";
 import { IoLogoInstagram } from "react-icons/io5";
 import { AiOutlineYoutube } from "react-icons/ai";
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -50,7 +51,10 @@ export default function Footer() {
             <div className='w-full md:w-6/12 lg:w-2/12 px-2 mb-6 md:mb-0'>
               <h3 className='pb-3 md:pb-4 lg:pb-5 border-b border-black border-opacity-10 text-xl lg:text-2xl merriweather-font font-medium  tracking-[-0.04em] mb-5'>Quick Links </h3>
               <div className='space-y-2.5'>
-                <p className='relative pl-6 text-[#1E1E1E] opacity-80 tracking-[-0.04em] text-base font-medium gotham-font'><Link href='/careers' className='text-[#1E1E1E] hover:text-[#EE834E]'><IoCallOutline className='absolute left-0 top-1/2 -translate-y-1/2' /> Careers</Link></p>
+                <p className='relative pl-6 text-[#1E1E1E] opacity-80 tracking-[-0.04em] text-base font-medium gotham-font'><Link href='/careers' className='text-[#1E1E1E] hover:text-[#EE834E]'>
+                <Image className='absolute left-0 top-1/2 -translate-y-1/2' src={'/Home/FooterCareer.png'} alt="Career Icon" width={18} height={18} />
+                 Careers
+                 </Link></p>
                 <p className='relative pl-6 text-[#1E1E1E] opacity-80 tracking-[-0.04em] text-base font-medium gotham-font'><Link href='/contact' className='text-[#1E1E1E] hover:text-[#EE834E]'><BiDonateHeart className='absolute left-0 top-1/2 -translate-y-1/2' /> Sponsor/ Donations</Link></p>
                 <p className='relative pl-6 text-[#1E1E1E] opacity-80 tracking-[-0.04em] text-base font-medium gotham-font'><Link href='/facilities#infrastructure' className='text-[#1E1E1E] hover:text-[#EE834E]'><LuSchool className='absolute left-0 top-1/2 -translate-y-1/2' /> Infrastructure</Link></p>
               </div>

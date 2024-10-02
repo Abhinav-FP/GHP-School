@@ -16,7 +16,7 @@ function ContactForm() {
           Apply Now
         </h1>
         <p className="text-center text-base text-[#1E1E1E]  tracking-[-0.04em] opacity-80 font-medium mb-5  lg:mb-[30px]">
-          (Form no. : 45666)
+          (Form no : E01)
         </p>
 
         <div className="border-t border-black border-opacity-10 pt-10 lg:pt-[50px]">
