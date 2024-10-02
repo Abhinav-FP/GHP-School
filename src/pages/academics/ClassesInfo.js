@@ -9,17 +9,17 @@ export default function ClassesInfo() {
     const faqItems = [
         {
             title: '1. Pre Primary ( Nursery, LKG, UKG ) ',
-            Subtitle: 'Learners Aged: 6-11 years',
+            Subtitle: 'Learners Aged: 6 - 11 years',
             content: 'At BVBS, we believe that knowledge is actively constructed by the student, not passively absorbed from textbooks. In our primary classes, "hands-on" learning is essential for developing lifelong competencies. Following the RBSE curriculum, we design activities that cater to children"s interests—communication, inquiry, construction, and artistic expression. Aligned with our philosophy, "Let learning be a joy and teaching a pleasure," we enrich education through field trips, experiments, hobbies, and life skills, aiming to develop each child"s potential and prepare them for a rapidly evolving world.',
             bgImages: [
                 '/Academic/Pre1.JPG',
                 '/Academic/Pre2.JPG',
-                '/Academic/Pre3.JPG'
+                '/Academic/Pre3.jpg'
             ]
         },
         {
             title: '2. Primary ( Grade I - Grade V ) ',
-            Subtitle: 'Learners Aged: 6-11 years',
+            Subtitle: 'Learners Aged: 6 - 11 years',
             content: 'At BVBS, we believe that knowledge is actively constructed by the student, not passively absorbed from textbooks. In our primary classes, "hands-on" learning is essential for developing lifelong competencies. Following the RBSE curriculum, we design activities that cater to children"s interests—communication, inquiry, construction, and artistic expression. Aligned with our philosophy, "Let learning be a joy and teaching a pleasure," we enrich education through field trips, experiments, hobbies, and life skills, aiming to develop each child"s potential and prepare them for a rapidly evolving world.',
             bgImages: [
                 '/Academic/primaryimg01.png',
@@ -29,17 +29,17 @@ export default function ClassesInfo() {
         },
         {
             title: '3. Secondary ( Grade VI - Grade X )  ',
-            Subtitle: 'Learners Aged: 6-11 years',
+            Subtitle: 'Learners Aged: 6 - 11 years',
             content: 'At BVBS, we believe that knowledge is actively constructed by the student, not passively absorbed from textbooks. In our primary classes, "hands-on" learning is essential for developing lifelong competencies. Following the RBSE curriculum, we design activities that cater to children"s interests—communication, inquiry, construction, and artistic expression. Aligned with our philosophy, "Let learning be a joy and teaching a pleasure," we enrich education through field trips, experiments, hobbies, and life skills, aiming to develop each child"s potential and prepare them for a rapidly evolving world.',
             bgImages: [
-                '/Academic/Secondary1.JPG',
+                '/Academic/Secondary1.jpg',
                 '/Academic/Secondary2.JPG',
-                '/Academic/Secondary3.JPG'
+                '/Academic/Secondary3.jpg'
             ]
         },
         {
             title: '4. Senior Secondary ( Grade XI - Grade XII )  ',
-            Subtitle: 'Learners Aged: 6-11 years',
+            Subtitle: 'Learners Aged: 6 - 11 years',
             content: 'At BVBS, we believe that knowledge is actively constructed by the student, not passively absorbed from textbooks. In our primary classes, "hands-on" learning is essential for developing lifelong competencies. Following the RBSE curriculum, we design activities that cater to children"s interests—communication, inquiry, construction, and artistic expression. Aligned with our philosophy, "Let learning be a joy and teaching a pleasure," we enrich education through field trips, experiments, hobbies, and life skills, aiming to develop each child"s potential and prepare them for a rapidly evolving world.',
             bgImages: [
                 '/Academic/Senior1.JPG',
