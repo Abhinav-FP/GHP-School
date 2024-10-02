@@ -28,10 +28,10 @@ export default function SisterSchools() {
             {images && images.map((item,index)=>(
               <div key={index} className='w-full sm-w-6/12 lg:w-4/12 px-2 lg:px-5 mb-4 lg:mb-10'>
               <div className='bg-white h-[212px] flex items-center justify-center'>
-                <Image src={item?.imgsrc} width={200} height={200} layout="intrinsic" />
+                <Image src={item?.imgsrc} className='max-w-full w-auto h-auto' width={233} height={140} alt='img'  />
               </div>
             </div>
-            )) }
+            )) } 
           </div>
         </div>
       </div>
