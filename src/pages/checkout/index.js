@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
 
-export default function index() {
+export default function Index() {
   const cartItemsRedux = useSelector((state) => state.cart.cartItems);
   console.log("cartItemsRedux",cartItemsRedux);
  
