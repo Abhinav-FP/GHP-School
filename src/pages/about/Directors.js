@@ -19,7 +19,7 @@ export default function Directors() {
     },
     {
       name: "Yugank Sharma",
-      image: "/About/Director4.jpg",
+      image: "/About/Director4.jpeg",
       quote: "Our School caters to students hailing from diverse Socio-Economic backgrounds. We believe that education cannot be merely reduced to cramming of syllabus but the evolution of a child in a holistic manner. As an educational institution, it becomes imperative for us to see that children are given opportunities to exhibit and nurture their talents."
     }
   ];
