@@ -27,7 +27,7 @@ export default function Header() {
                 {/* <!-- Current: "text-[#EE834E]" --> */}
                 <ul className="flex space-x-6 lg:space-x-8 xl:space-x-10">
                   <li className="group relative cursor-pointer">
-                    <Link href="/about" className={'text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] ' + (url === '/' ? 'text-[#EE834E]' : 'text-[#1E1E1E]')}>
+                    <Link href="/about" className={'text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] ' + (url === '/about' ? 'text-[#EE834E]' : 'text-[#1E1E1E]')}>
                       About
                       <MdOutlineKeyboardArrowDown className="inline" size={18} />
                     </Link>

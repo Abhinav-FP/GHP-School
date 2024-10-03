@@ -5,7 +5,7 @@ const ProfileCard = ({ percentage, name, imagesrc }) => {
     return (
         <div className='text-center w-full sm:w-6/12 md:w-4/12 lg:w-auto px-4 lg:px-0 mb-5 lg:mb-0'>
             <Image className='max-w-full mx-auto rounded-full  block mb-6 md:mb-8 lg:mb-10' src={imagesrc} alt={name} width={210} height={210} />
-            <h3 className='text-[#EE834E] merriweather-font font-normal tracking-[-0.04em] text-center mb-1 text-lg md:text-xl lg:text-2xl'>{percentage}</h3>
+            <h3 className='text-[#EE834E] merriweather-font font-normal tracking-[-0.04em] text-center mb-1 text-lg md:text-xl lg:text-2xl'>{percentage}%</h3>
             <p className='text-[#1E1E1E] text-base font-medium uppercase tracking-[-0.04em]'>{name}</p>
         </div>
     );

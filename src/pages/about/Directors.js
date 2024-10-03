@@ -4,12 +4,12 @@ export default function Directors() {
   const profiles = [
     {
       name: "Prashant Sharma",
-      image: "/About/Director1.png",
+      image: "/About/Director1.jpg",
       quote: "Throughout its history, the Gopal Sharma Group of Schools has changed tremendously not only in the number of students it teaches but also in the quality of teaching and other extracurricular activities. I aim to provide the best high-quality education with a friendly and supportive environment to give shape to a promising and confident young breed of future citizens."
     },
     {
       name: "Dikshant Sharma",
-      image: "/About/Director2.jpg",
+      image: "/About/Director2.jpeg",
       quote: "The world's future rests upon the quality of its youth, so it has always been our endeavour to raise children of quality and purpose, to make them the kind of citizens the world needs today. We emphasise on building values, nurturing talents and developing strong academics among students. We not only teach students, we empower them."
     },
     {
