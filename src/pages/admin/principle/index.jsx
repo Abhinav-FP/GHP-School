@@ -7,7 +7,7 @@ import Image from "next/image";
 import Modal from "../Component/Modal";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
-import NoData from "../Component/Nodata";
+// import NoData from "../Component/Nodata";
 
 
 function Index() {
@@ -132,7 +132,8 @@ function Index() {
                                 <LoadingData />
                             ) : (
                                 (listing?.length < 0 ? (
-                                    <NoData />
+                                    // <NoData />
+                                    <>No Data</>
                                 ) : (
                                     <table className="min-w-full">
                                         <thead>
