@@ -1,8 +1,11 @@
 import Layout from '@/layout/Layout'
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { useSelector } from 'react-redux';
 
 export default function index() {
+  const cartItemsRedux = useSelector((state) => state.cart.cartItems);
+  console.log("cartItemsRedux",cartItemsRedux);
  
       const cartItems = [
       {

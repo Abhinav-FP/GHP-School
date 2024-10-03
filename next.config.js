@@ -4,12 +4,18 @@ module.exports = {
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: 'ghp-school-backend.vercel.app',
-        port: '', // Leave empty if not using a specific port
+        hostname: 'localhost',
+        port: '8000', // Use the correct port for localhost
         pathname: '/images/**', // Adjust this path if necessary
       },
       {
-        protocol: 'https', // If your backend supports HTTPS
+        protocol: 'http',
+        hostname: 'ghp-school-backend.vercel.app',
+        port: '',
+        pathname: '/images/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'ghp-school-backend.vercel.app',
         port: '',
         pathname: '/images/**',
