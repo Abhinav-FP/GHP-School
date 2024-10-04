@@ -102,6 +102,8 @@ function Index() {
             .then((res) => {
                 if (res?.data?.status) {
                     toast.success(res.data.message);
+                    handleClose();
+                    principledata();
                 } else {
                     toast.error(res.data.message);
                 }
