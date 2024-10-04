@@ -79,6 +79,18 @@ class Details extends Component {
   async resultget(id) {
     return Api.get(`/result/get/${id}`);
   }
+
+
+  async inquiryAdd(data) {
+    return Api.post("/inquiry/add" ,data);
+  }
+
+  async inquirydelete(data) {
+    return Api.post("/inquiry/delete" ,data);
+  }
+  async inquiryget() {
+    return Api.get("/inquiry/get");
+  }
  
   // /result/get/XII
    

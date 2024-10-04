@@ -4,7 +4,6 @@ import Header from "../Component/Header";
 import LoadingData from "../Component/Loading";
 import SideBarAdmin from "../Component/SideBar";
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import Modal from "../Component/Modal";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
@@ -203,7 +202,7 @@ function Index() {
                                                                 </svg>
                                                             </button>
 
-                                                         <Delete grade={item?.grade}  getfeesdata={getfeesdata}/>
+                                                         <Delete item={item?.uuid}/>
                                                         </div>
                                                     </td>
                                                 </tr>

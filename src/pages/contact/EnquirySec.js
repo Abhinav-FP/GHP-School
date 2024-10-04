@@ -1,11 +1,47 @@
-import React, { useRef } from "react";
+import React, { useRef,useState } from "react";
 import Image from 'next/image';
 import InquiryformBanner from '../../../public/Contacts/InquiryformBanner.png';
 import ReCAPTCHA from "react-google-recaptcha";
+import Details from "../api/admin/Details";
+import toast from "react-hot-toast";
 
 
 function EnquirySec() {
     const recaptcha = useRef(null);
+
+    const [formdata, setFormdata] = useState({
+      "name" : "", 
+      "email": "", 
+      "contact"  :"",
+      "message" :""
+    });
+
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormdata({
+            ...formdata,
+            [name]: value
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        const main = new Details();
+        try {
+            const res = await main.inquiryAdd(formdata);
+            if (res?.data) {
+                toast.success(res.data.message);
+            } else {
+                toast.error(res.message);
+            }
+        } catch (error) {
+            toast.error("An error occurred while updating.");
+        } finally {
+            setLoading(false);
+        }
+    };
 
     
     return (
@@ -24,16 +60,28 @@ function EnquirySec() {
                             <div className="px-4 lg:px-[30px] py-4 lg:py-[30px] ">
                                 <div className="mb-4 lg:mb-6">
                                   <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">Name </label>
-                                  <input type="text" className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+                                  <input type="text" 
+                                  name ="name"
+                                  value= {formdata?.name}
+                                  onchange ={handleChange}
+                                  className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
                                 </div>
                                 <div className="mb-4 lg:mb-6">
                                   <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">Email  </label>
-                                  <input type="email" className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+                                  <input type="email" 
+                                    name ="email"
+                                    value= {formdata?.email}
+                                    onchange ={handleChange}
+                                  className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
                                 </div>
 
                                 <div className="mb-4 lg:mb-6">
                                   <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">Contact no </label>
-                                  <input type="text" className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+                                  <input type="text"
+                                    name ="email"
+                                    value= {formdata?.email}
+                                    onchange ={handleChange}
+                                  className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
                                 </div>
 
                                 <div className="mb-4 lg:mb-6">

@@ -1,9 +1,9 @@
 import Details from "@/pages/api/admin/Details";
-import Modal from "./Modal";
+import Modal from "../Component/Modal";
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
-function Delete({ grade , getfeesdata}) {
+function DeleteEnquiry({ id, getenquirydata }) {
     const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -15,14 +15,14 @@ function Delete({ grade , getfeesdata}) {
         e.preventDefault();
         setLoading(true);
         const main = new Details();
-        const response = main.feedelete({ grade: grade });
+        const response = main.inquirydelete({  id });
         response
             .then((res) => {
-                if (res && res?.data && res?.data?.status) {
+                if (res && res?.data) {
                     toast.success(res.data.message);
                     setLoading(false);
                     handleClose();
-                    getfeesdata();
+                    getenquirydata();
                 } else {
                     toast.error(res.data.message);
                     setLoading(false);
@@ -71,7 +71,7 @@ function Delete({ grade , getfeesdata}) {
 
                     <div className="py-6 lg:py-8">
                         <div className="max-h-[60vh] overflow-y-auto customscroll px-6 lg:px-10">
-                            <p>Are you sure you want to delete this Services. </p>
+                            <p>Are you sure you want to delete this enquiry. </p>
                         </div>
 
                         <div className="flex justify-end px-6 lg:px-10 py-4 space-x-4">
@@ -95,4 +95,4 @@ function Delete({ grade , getfeesdata}) {
     </>);
 }
 
-export default Delete;
+export default DeleteEnquiry;
