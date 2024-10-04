@@ -145,17 +145,17 @@ export default function Header() {
                     </Link>
                     <ul className="invisible min-w-[180px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white -right-8">
                       <li>
-                        <Link href="/contact" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <Link href="/contact#touch" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                         Get in touch 
                         </Link>
                       </li>
                       <li>
-                        <Link href="/contact" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <Link href="/contact#donate" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                         Make a donation                        
                          </Link>
                       </li>
                       <li>
-                        <Link href="/contact" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <Link href="/careers" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                         Careers
                         </Link>
                       </li> 

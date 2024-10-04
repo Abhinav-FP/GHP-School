@@ -72,8 +72,8 @@ class Details extends Component {
   async Adminline() {
     return Api.get("/home/admission/get");
   }
-  async resultget(id) {
-    return Api.get(`/result/get/${id}`);
+  async resultget() {
+    return Api.get(`/result/get`);
   }
  
   // /result/get/XII

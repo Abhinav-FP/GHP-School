@@ -77,7 +77,7 @@ export default function Footer() {
                 </p>
                 <p className="relative pl-6 text-[#1E1E1E] opacity-80 tracking-[-0.04em] text-base font-medium gotham-font">
                   <Link
-                    href="/contact"
+                    href="/contact#donate"
                     className="text-[#1E1E1E] hover:text-[#EE834E]"
                   >
                     <BiDonateHeart className="absolute left-0 top-1/2 -translate-y-1/2" />{" "}
@@ -102,19 +102,19 @@ export default function Footer() {
                 </h3>
                 <div className="space-y-2.5">
                   <p className="relative pl-6 text-[#1E1E1E] opacity-80 tracking-[-0.04em] text-base font-medium gotham-font">
-                    <a href="" className="text-[#1E1E1E] hover:text-[#EE834E]">
+                    <a href="https://www.facebook.com/profile.php?id=61557061876412" target="blank" className="text-[#1E1E1E] hover:text-[#EE834E]">
                       <FaFacebook className="absolute left-0 top-1/2 -translate-y-1/2" />{" "}
                       Bal Vishwa Bharti
                     </a>
                   </p>
                   <p className="relative pl-6 text-[#1E1E1E] opacity-80 tracking-[-0.04em] text-base font-medium gotham-font">
-                    <a href="" className="text-[#1E1E1E] hover:text-[#EE834E]">
+                    <a href="https://www.instagram.com/bvbschool?igsh=ZTR5ZWl3bmdjYThv" target="blank" className="text-[#1E1E1E] hover:text-[#EE834E]">
                       <IoLogoInstagram className="absolute left-0 top-1/2 -translate-y-1/2" />{" "}
                       @bvbschool
                     </a>
                   </p>
                   <p className="relative pl-6 text-[#1E1E1E] opacity-80 tracking-[-0.04em] text-base font-medium gotham-font">
-                    <a href="" className="text-[#1E1E1E] hover:text-[#EE834E]">
+                    <a href="https://www.youtube.com/@bvbschool-t9z" target="blank" className="text-[#1E1E1E] hover:text-[#EE834E]">
                       <AiOutlineYoutube className="absolute left-0 top-1/2 -translate-y-1/2" />
                       @bvbschool-t9z
                     </a>

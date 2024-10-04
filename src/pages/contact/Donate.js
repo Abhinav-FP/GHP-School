@@ -32,7 +32,7 @@ function Donate() {
         },
     ];
     return (
-        <div className="bg-white pb-[50px] md:pb-[70px] lg:pb-[100px]" >
+        <div className="bg-white pb-[50px] md:pb-[70px] lg:pb-[100px]" id="donate">
             <div className='container sm:container md:container lg:max-w-[1232px] px-4 mx-auto'>
                 <h2 className='merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-5 text-[#1E1E1E]  tracking-[-0.04em] text-center'>Donate Today, Shape Tomorrow</h2>
                 <p className='text-[#666666] font-medium text-base gotham-font text-center mb-1.5 tracking-[-0.04em] text-center mb-8 md:mb-10 lg:mb-14 mx-auto max-w-[883px] text-center'>{`Support BVBS School's mission as an NGO by contributing to our initiatives. You can sponsor a child’s education, donate books and stationery, or sponsor a set of uniforms. In addition, your contributions are eligible for tax benefits under Section 80G. Contact us to make a difference in our students' lives while enjoying tax benefits.`}</p>

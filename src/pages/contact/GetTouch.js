@@ -5,8 +5,8 @@ import { CiLocationOn } from "react-icons/ci";
 
 function GetTouch() {
   return (
-    <div className="bg-white py-[50px] md:py-[70px] lg:py-[100px]">
-      <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto">
+    <div className="bg-white py-[50px] md:py-[70px] lg:py-[100px]" id="touch">
+      <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto" >
         <div className="flex flex-wrap items-center -mx-4">
           <div className="w-full lg:w-6/12 px-4 mb-6 lg:mb-0">
             <h2 className="merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-5 md:mb-6 lg:mb-8 text-[#1E1E1E]  tracking-[-0.04em]">
