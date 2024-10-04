@@ -254,18 +254,8 @@ const[deltedata, setDelete] =useState("");
             )}
             {isDeleteOpen && (
 
-                <Modal isOpen={isDeleteOpen} onClose={handleDeleteClose}>
-                    <style>
-                        {`
-                          /* Corrected CSS for modal width */
-                          #modal .sm\\:max-w-2xl {
-                          margin: auto;
-                          box-shadow:none;
-                          max-width: 561px !important; /* Ensure !important is spelled correctly */
-                          }
-                      `}
-                    </style>
-                    <div className="relative bg-white w-full rounded-[30px] lg:rounded-[40px] h-auto m-auto">
+                <Modal isOpen={isDeleteOpen} onClose={handleDeleteClose} width={"200px"}>
+                    <div className=" max-w-[200px] relative bg-white w-full rounded-[30px] lg:rounded-[40px] h-auto m-auto">
                         <button
                             type="button"
                             onClick={handleDeleteClose}
