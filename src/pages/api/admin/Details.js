@@ -53,7 +53,14 @@ class Details extends Component {
   async getfees() {
     return Api.get("/fees/get");
   }
- 
+
+  async feesAdd(data) {
+    return Api.post("/fees/add" ,data);
+  }
+
+  async feedelete(data) {
+    return Api.post("/fees/delete" ,data);
+  }
   async careerget() {
     return Api.get("/career/vacancy/get");
   }
