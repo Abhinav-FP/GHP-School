@@ -180,16 +180,7 @@ const[deltedata, setDelete] =useState("");
             {isOpen && (
                 <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
                     <div className="relative bg-white w-full rounded-[30px] lg:rounded-[40px] m-auto">
-                        <button
-                            type="button"
-                            onClick={() => setIsOpen(false)}
-                            className="absolute top-5 right-6 text-gray-700 hover:text-gray-900"
-                        >
-                            {/* Close button SVG */}
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
+                        
                         <div className="border-b border-black border-opacity-10 pt-6 pb-5 px-6">
                             <h2 className="text-xl lg:text-2xl text-[#212121] font-semibold">Add New Principle</h2>
                         </div>
@@ -202,7 +193,7 @@ const[deltedata, setDelete] =useState("");
                                         name="designation"
                                         value={formData.designation}
                                         onChange={handleChange}
-                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] focus:ring focus:ring-[#0367F7] focus:ring-opacity-50"
+                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
                                         required
                                     />
                                 </div>
@@ -213,7 +204,7 @@ const[deltedata, setDelete] =useState("");
                                         name="qualification"
                                         value={formData.qualification}
                                         onChange={handleChange}
-                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] focus:ring focus:ring-[#0367F7] focus:ring-opacity-50"
+                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
                                         required
                                     />
                                 </div>
@@ -224,7 +215,7 @@ const[deltedata, setDelete] =useState("");
                                         name="experience"
                                         value={formData.experience}
                                         onChange={handleChange}
-                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] focus:ring focus:ring-[#0367F7] focus:ring-opacity-50"
+                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
                                         required
                                     />
                                 </div>
@@ -234,7 +225,7 @@ const[deltedata, setDelete] =useState("");
                                         name="description"
                                         value={formData.description}
                                         onChange={handleChange}
-                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] focus:ring focus:ring-[#0367F7] focus:ring-opacity-50"
+                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
                                         rows="3"
                                         required
                                     />
@@ -242,7 +233,7 @@ const[deltedata, setDelete] =useState("");
                                 <div className="flex justify-end">
                                     <button
                                         type="submit"
-                                        className="text-white bg-[#0367F7] hover:bg-opacity-90 text-sm font-normal tracking-[-0.03em] py-2 px-4 border border-[#0367F7] rounded-md"
+                                        className="text-white button-animation text-sm font-normal tracking-[-0.03em] py-2 px-4 border-0 min-w-[100px] rounded-md"
                                     >
                                         {loading ? "Saving..." : "Save"}
                                     </button>
@@ -256,22 +247,7 @@ const[deltedata, setDelete] =useState("");
 
                 <Modal isOpen={isDeleteOpen} onClose={handleDeleteClose} width={"200px"}>
                     <div className=" max-w-[200px] relative bg-white w-full rounded-[30px] lg:rounded-[40px] h-auto m-auto">
-                        <button
-                            type="button"
-                            onClick={handleDeleteClose}
-                            className="absolute top-5 md:top-6 lg:top-9 right-6 lg:right-10 text-gray-700 hover:text-gray-900"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-6 w-6"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-
+                        
                         <div className="border-b border-black border-opacity-10 pt-6 pb-5 px-6 lg:pt-8 lg:pb-6 lg:px-10">
                             <h2 className="text-xl lg:text-2xl text-[#212121] tracking-[-0.04em] font-semibold mb-0">
                                 Delete
