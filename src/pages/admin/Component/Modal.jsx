@@ -33,13 +33,13 @@ function Modal({ isOpen, onClose, children, width }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed top-0 w-full z-50 left-0 p-2 max-h-[100vh] h-full overflow-y-auto bg-[#1f293780]">
-      <div className={`modal-dialog max-w-${width || 'lg'}`}>
+    <div className="fixed top-0 w-full z-50 left-0 p-2 max-h-[200vh] h-full overflow-y-auto bg-[#1f293780]">
+      <div className="modal-dialog mt-[20px] mx-auto max-w-[600px]">
         <div className={`modal-content overflow-hidden mx-auto bg-white w-full rounded shadow-lg z-50 relative rounded-lg`}>
-          <button onClick={onClose} className="absolute top-0 right-0 m-4 text-gray-600 hover:text-gray-800 z-[10]">
+          <button onClick={onClose} className="absolute top-2.5 right-0 m-4 text-gray-600 hover:text-gray-800 z-[10]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-white"
+              className="h-6 w-6"
               viewBox="0 0 24 24"
               stroke="currentColor"
             >

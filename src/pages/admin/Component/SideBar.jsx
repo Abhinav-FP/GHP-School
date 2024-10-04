@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
-import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import Logo from "../../../../public/Header/Logo.png";
 
 function SideBarAdmin() {
     const pathname = usePathname();
@@ -12,19 +12,14 @@ function SideBarAdmin() {
     const [isOpen, SetIsopen] = useState(false);
     const [isWorkOpen, SetisWorkOpen] = useState(false);
 
-    isWorkOpen
     return (<>
-
-
         <div className={`z-50 w-[260px] md:w-[304px] fixed lg:relative left-0 top-0 bottom-0 overflow-y-auto  lg:block bg-white ${isOpen ? 'block' : 'hidden'}`} >
             <div className="px-4 py-4 md:px-6 md:py-6 lg:px-[28px] lg:py-8">
                 <div className='mb-5 md:mb-10 lg:mb-[53px] text-center'>
-                    {/* <img className="max-w-full block m-auto" src={LOGO} alt='img' width="208" /> */}
+                    <img className="max-w-full block m-auto" src={"/Header/Logo.png"} alt='img' width="208" />
                 </div>
-
                 <h3 className="uppercase text-[#808080] px-[15px] text-sm font-semibold mb-2.5 lg:mb-3.5">Overview</h3>
                 <ul className="space-y-3">
-                    {/* active link  bg-[#0367F7],  bg-opacity-10, text-[#0367F7] */}
                     <li>
                         <Link href="/admin/dashboard"
                             className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium hover:text-[#0367F7] ${pathname === "/admin/dashboard" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
@@ -102,146 +97,49 @@ function SideBarAdmin() {
                     </li>
 
                     <li>
-                        <div className="relative">
-                            <button
-                                id="dropdownDefaultButton"
-                                data-dropdown-toggle="dropdown"
-                                className={`px-[15px] relative w-full flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium  hover:text-[#0367F7] ${isWorkOpen ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
-                            >
-                                <svg
-
-                                    className="inline align-middle mr-[4px]" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g clipPath="pathname(#clip0_438_275)">
-                                        <path d="M14.2722 10.8009H15.3266L15.6429 8.90299H16.9081L15.9592 6.05619C15.6429 5.10725 15.2514 4.47462 14.3776 4.47462C13.5039 4.47462 13.1124 5.10725 12.7961 6.05619L12.6084 6.61852" stroke="#8D929A" strokeWidth="1.13" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M13.1123 2.57676C13.1123 2.74291 13.145 2.90745 13.2086 3.06095C13.2722 3.21446 13.3654 3.35394 13.4829 3.47142C13.6003 3.58892 13.7399 3.68212 13.8933 3.7457C14.0468 3.80928 14.2114 3.84201 14.3776 3.84201C14.5437 3.84201 14.7082 3.80928 14.8617 3.7457C15.0152 3.68212 15.1547 3.58892 15.2722 3.47142C15.3897 3.35394 15.4829 3.21446 15.5465 3.06095C15.61 2.90745 15.6428 2.74291 15.6428 2.57676C15.6428 2.4106 15.61 2.24608 15.5465 2.09257C15.4829 1.93907 15.3897 1.79959 15.2722 1.68209C15.1547 1.5646 15.0152 1.47141 14.8617 1.40782C14.7082 1.34424 14.5437 1.31151 14.3776 1.31151C14.2114 1.31151 14.0468 1.34424 13.8933 1.40782C13.7399 1.47141 13.6003 1.5646 13.4829 1.68209C13.3654 1.79959 13.2722 1.93907 13.2086 2.09257C13.145 2.24608 13.1123 2.4106 13.1123 2.57676Z" stroke="#8D929A" strokeWidth="1.13" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M3.72773 10.8009H2.67336L2.35705 8.90299H1.0918L2.04073 6.05619C2.35705 5.10725 2.74857 4.47462 3.6223 4.47462C4.49602 4.47462 4.88755 5.10725 5.20386 6.05619L5.39154 6.61852" stroke="#8D929A" strokeWidth="1.13" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M2.35742 2.57676C2.35742 2.74291 2.39015 2.90745 2.45374 3.06095C2.51731 3.21446 2.61051 3.35394 2.72801 3.47142C2.84549 3.58892 2.98497 3.68212 3.13848 3.7457C3.29198 3.80928 3.45652 3.84201 3.62267 3.84201C3.78883 3.84201 3.95335 3.80928 4.10686 3.7457C4.26037 3.68212 4.39985 3.58892 4.51734 3.47142C4.63483 3.35394 4.72802 3.21446 4.79161 3.06095C4.85519 2.90745 4.88792 2.74291 4.88792 2.57676C4.88792 2.24119 4.75462 1.91937 4.51734 1.68209C4.28006 1.44481 3.95824 1.31151 3.62267 1.31151C3.28711 1.31151 2.96528 1.44481 2.72801 1.68209C2.49072 1.91937 2.35742 2.24119 2.35742 2.57676Z" stroke="#8D929A" strokeWidth="1.13" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M7.14648 4.63855C7.14648 5.13015 7.34177 5.60162 7.68939 5.94924C8.03698 6.29686 8.5085 6.49214 9.00005 6.49214C9.49167 6.49214 9.96311 6.29686 10.3108 5.94924C10.6584 5.60162 10.8536 5.13015 10.8536 4.63855C10.8536 4.14695 10.6584 3.67548 10.3108 3.32786C9.96311 2.98025 9.49167 2.78496 9.00005 2.78496C8.5085 2.78496 8.03698 2.98025 7.68939 3.32786C7.34177 3.67548 7.14648 4.14695 7.14648 4.63855Z" stroke="#8D929A" strokeWidth="1.13" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M12.2438 10.6638C12.2438 9.80344 11.902 8.97829 11.2936 8.36998C10.6853 7.76161 9.86018 7.41982 8.99981 7.41982C8.13944 7.41982 7.31435 7.76161 6.70599 8.36998C6.09763 8.97829 5.75586 9.80344 5.75586 10.6638V12.0542H7.14623L7.60944 16.6885H10.3902L10.8534 12.0542H12.2438V10.6638Z" stroke="#8D929A" strokeWidth="1.13" strokeLinecap="round" strokeLinejoin="round" />
-                                    </g>
-                                    <defs>
-                                        <clipPath id="clip0_438_275">
-                                            <rect width="18" height="18" fill="white" />
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-                                Manage Staff  <svg
-                                    className={` w-2.5 h-2.5 absolute right-4 top-1/2 -translate-y-1/2 ${isWorkOpen ? 'rotate-90' : 'rotate-0 '}`} width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5.99975 5.00016L1.75775 9.24316L0.34375 7.82816L3.17175 5.00016L0.34375 2.17216L1.75775 0.757164L5.99975 5.00016Z" fill="currentColor" />
-                                </svg>
-
-                            </button>
-
-                            {isWorkOpen && (
-                                <div
-                                    id="dropdown"
-                                    className="z-10 pt-2 pl-[34px]  divide-y divide-gray-100 rounded-lg  dark:bg-gray-700"
-                                >
-                                    <ul
-                                        aria-labelledby="dropdownDefaultButton"
-                                    >
-                                        <li>
-                                            <Link
-                                                href="/admin/manage-staff"
-                                                className={`px-0 flex flex-wrap items-center py-[7px] rounded-full text-sm tracking-[-0.03em] font-medium hover:text-[#0367F7] ${pathname === "/admin/manage-staff" ? '  text-[#0367F7]' : 'text-[#8D929A] '}`}>
-                                                Work schedule
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link
-                                                href="/admin/manage-staff/feedback"
-                                                className={`px-0 flex flex-wrap items-center py-[7px] rounded-full text-sm tracking-[-0.03em] font-medium hover:text-[#0367F7] ${pathname === "/admin/manage-staff/feedback" ? 'text-[#0367F7]' : 'text-[#8D929A] '}`}>
-
-                                                Feedbacks
-                                            </Link>
-                                        </li>
-                                    </ul>
-                                </div>
-                            )}
-                        </div>
-                    </li>
-                    <li>
-                        <Link href="/admin/reports"
-                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium  hover:text-[#0367F7] ${pathname === "/admin/reports" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
-
+                        <Link href="/admin/fees"
+                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#0367F7] ${pathname === "/admin/fees" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
                         >
-                            <svg className="inline align-middle mr-[4px]" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g clipPath="pathname(#clip0_169_177)">
-                                    <path d="M1.77925 9.57227H16.22C16.22 9.57227 16.9074 9.57227 16.9074 10.2597V16.2197C16.9074 16.2197 16.9074 16.9072 16.22 16.9072H1.77925C1.77925 16.9072 1.0918 16.9072 1.0918 16.2197V10.2597C1.0918 10.2597 1.0918 9.57227 1.77925 9.57227Z" stroke="#8D929A" strokeWidth="1.13" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M2.14648 9.5719V5.46898C2.1476 5.28597 2.22127 5.11087 2.35134 4.98212C2.48142 4.85337 2.65725 4.78148 2.84026 4.78223H8.73633C8.8438 4.78206 8.9498 4.80687 9.0461 4.85469C9.14233 4.90251 9.22612 4.97203 9.29093 5.05778L10.1246 6.36239H14.6331C14.8162 6.36183 14.9921 6.434 15.122 6.56303C15.252 6.69206 15.3254 6.86741 15.3262 7.05054V9.5719" stroke="#8D929A" strokeWidth="1.13" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M6.93652 11.6348H11.0626" stroke="#8D929A" strokeWidth="1.13" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M14.4383 4.25395V3.36055C14.4372 3.17753 14.3635 3.00244 14.2335 2.87369C14.1034 2.74493 13.9276 2.67305 13.7445 2.6738H10.1245L9.29084 1.36637C9.22603 1.28062 9.14225 1.2111 9.04602 1.16328C8.94972 1.11547 8.84372 1.09066 8.73624 1.09083H3.72796C3.63722 1.09046 3.54729 1.10796 3.46332 1.14235C3.37935 1.17673 3.30297 1.22731 3.23855 1.29122C3.17412 1.35512 3.12292 1.43108 3.08785 1.51477C3.05279 1.59846 3.03455 1.68825 3.03418 1.77898V2.51213" stroke="#8D929A" strokeWidth="1.13" strokeLinecap="round" strokeLinejoin="round" />
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clipPath="pathname(#clip0_464_1678)">
+                                    <path d="M14.2732 10.8009H15.3276L15.6439 8.903H16.9091L15.9602 6.05619C15.6439 5.10726 15.2523 4.47463 14.3786 4.47463C13.5049 4.47463 13.1134 5.10726 12.7971 6.05619L12.6094 6.61853" stroke="#8D929A" strokeWidth="1.13" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M13.1113 2.57675C13.1113 2.74291 13.144 2.90744 13.2076 3.06094C13.2712 3.21445 13.3644 3.35393 13.4819 3.47142C13.5994 3.58891 13.7389 3.68211 13.8923 3.7457C14.0459 3.80928 14.2104 3.842 14.3766 3.842C14.5427 3.842 14.7072 3.80928 14.8607 3.7457C15.0143 3.68211 15.1537 3.58891 15.2712 3.47142C15.3887 3.35393 15.4819 3.21445 15.5455 3.06094C15.6091 2.90744 15.6418 2.74291 15.6418 2.57675C15.6418 2.4106 15.6091 2.24607 15.5455 2.09256C15.4819 1.93906 15.3887 1.79958 15.2712 1.68209C15.1537 1.5646 15.0143 1.4714 14.8607 1.40782C14.7072 1.34423 14.5427 1.3115 14.3766 1.3115C14.2104 1.3115 14.0459 1.34423 13.8923 1.40782C13.7389 1.4714 13.5994 1.5646 13.4819 1.68209C13.3644 1.79958 13.2712 1.93906 13.2076 2.09256C13.144 2.24607 13.1113 2.4106 13.1113 2.57675Z" stroke="#8D929A" strokeWidth="1.13" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M3.72773 10.8009H2.67336L2.35705 8.903H1.0918L2.04073 6.05619C2.35705 5.10726 2.74857 4.47463 3.6223 4.47463C4.49602 4.47463 4.88755 5.10726 5.20386 6.05619L5.39154 6.61853" stroke="#8D929A" strokeWidth="1.13" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M2.35742 2.57675C2.35742 2.74291 2.39015 2.90744 2.45374 3.06094C2.51731 3.21445 2.61051 3.35393 2.72801 3.47142C2.84549 3.58891 2.98497 3.68211 3.13848 3.7457C3.29198 3.80928 3.45652 3.842 3.62267 3.842C3.78883 3.842 3.95335 3.80928 4.10686 3.7457C4.26037 3.68211 4.39985 3.58891 4.51734 3.47142C4.63483 3.35393 4.72802 3.21445 4.79161 3.06094C4.85519 2.90744 4.88792 2.74291 4.88792 2.57675C4.88792 2.24119 4.75462 1.91937 4.51734 1.68209C4.28006 1.44481 3.95824 1.3115 3.62267 1.3115C3.28711 1.3115 2.96528 1.44481 2.72801 1.68209C2.49072 1.91937 2.35742 2.24119 2.35742 2.57675Z" stroke="#8D929A" strokeWidth="1.13" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M7.14648 4.63854C7.14648 5.13015 7.34177 5.60162 7.68939 5.94923C8.03698 6.29685 8.5085 6.49213 9.00005 6.49213C9.49167 6.49213 9.96311 6.29685 10.3108 5.94923C10.6584 5.60162 10.8536 5.13015 10.8536 4.63854C10.8536 4.14694 10.6584 3.67548 10.3108 3.32786C9.96311 2.98024 9.49167 2.78495 9.00005 2.78495C8.5085 2.78495 8.03698 2.98024 7.68939 3.32786C7.34177 3.67548 7.14648 4.14694 7.14648 4.63854Z" stroke="#8D929A" strokeWidth="1.13" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M12.2438 10.6638C12.2438 9.80343 11.902 8.97828 11.2936 8.36998C10.6853 7.7616 9.86018 7.41981 8.99981 7.41981C8.13944 7.41981 7.31435 7.7616 6.70599 8.36998C6.09763 8.97828 5.75586 9.80343 5.75586 10.6638V12.0542H7.14623L7.60944 16.6885H10.3902L10.8534 12.0542H12.2438V10.6638Z" stroke="#8D929A" strokeWidth="1.13" strokeLinecap="round" strokeLinejoin="round" />
                                 </g>
                                 <defs>
-                                    <clipPath id="clip0_169_177">
+                                    <clipPath id="clip0_464_1678">
                                         <rect width="18" height="18" fill="white" />
                                     </clipPath>
                                 </defs>
-                            </svg>
-                            Reports & Analytics
+                            </svg> &nbsp; Manage Fees structure
                         </Link>
                     </li>
-                    <li>
-                        <Link href="/admin/service-suggestions"
-                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium  hover:text-[#0367F7] ${pathname === "/admin/service-suggestions" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
-                        >
-                            <svg className="inline align-middle mr-[4px]" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1.6875 10.125V16.875" stroke="#8D929A" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M12.9375 15.75C12.9375 15.1533 12.7004 14.581 12.2785 14.159C11.8565 13.7371 11.2842 13.5 10.6875 13.5H7.875C7.875 12.9033 7.63792 12.331 7.21599 11.909C6.79403 11.4871 6.22174 11.25 5.625 11.25H1.6875V15.75H12.9375Z" stroke="#8D929A" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M5.625 13.5H7.875" stroke="#8D929A" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M12.9375 1.18048C13.8326 1.18048 14.6911 1.53606 15.324 2.169C15.9569 2.80194 16.3125 3.66038 16.3125 4.55548C16.3125 5.99623 14.2965 8.7375 13.3807 9.909C13.3282 9.97635 13.2609 10.0308 13.1841 10.0682C13.1073 10.1057 13.0229 10.1252 12.9375 10.1252C12.8521 10.1252 12.7677 10.1057 12.6909 10.0682C12.6141 10.0308 12.5468 9.97635 12.4943 9.909C11.5785 8.73825 9.5625 5.99998 9.5625 4.55548C9.5625 3.66038 9.91807 2.80194 10.551 2.169C11.1839 1.53606 12.0424 1.18048 12.9375 1.18048Z" stroke="#8D929A" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M12.9375 4.83746C12.7822 4.83746 12.6562 4.71155 12.6562 4.55621C12.6562 4.40089 12.7822 4.27496 12.9375 4.27496" stroke="#8D929A" strokeWidth="1.125" />
-                                <path d="M12.9375 4.83746C13.0928 4.83746 13.2188 4.71155 13.2188 4.55621C13.2188 4.40089 13.0928 4.27496 12.9375 4.27496" stroke="#8D929A" strokeWidth="1.125" />
-                            </svg> Service Suggestions
 
-                        </Link>
-                    </li>
                     <li>
-                        <Link href="/admin/get-in-touch"
-                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium  hover:text-[#0367F7] ${pathname === "/admin/get-in-touch" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
+                        <Link href="/admin/inquiry"
+                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#0367F7] ${pathname === "/admin/inquiry" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
                         >
-                            <svg className="inline align-middle mr-[4px]" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g clipPath="pathname(#clip0_1263_493)">
-                                    <path d="M10.2217 17.4375H1.6875C1.38914 17.4375 1.10298 17.319 0.892005 17.108C0.681026 16.897 0.5625 16.6108 0.5625 16.3125V1.6875C0.5625 1.38914 0.681026 1.10298 0.892005 0.892005C1.10298 0.681026 1.38914 0.5625 1.6875 0.5625H16.3125C16.6108 0.5625 16.897 0.681026 17.108 0.892005C17.319 1.10298 17.4375 1.38914 17.4375 1.6875V10.2217C17.4374 10.5199 17.319 10.8059 17.1083 11.0168L11.0168 17.1083C10.8059 17.319 10.5199 17.4374 10.2217 17.4375Z" stroke="#8D929A" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M10.6875 17.3362V11.8125C10.6875 11.5142 10.806 11.2279 11.017 11.017C11.2279 10.806 11.5142 10.6875 11.8125 10.6875H17.3362" stroke="#8D929A" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M5.0625 5.0625H14.0625" stroke="#8D929A" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M5.0625 8.4375H9" stroke="#8D929A" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clipPath="pathname(#clip0_464_1678)">
+                                    <path d="M14.2732 10.8009H15.3276L15.6439 8.903H16.9091L15.9602 6.05619C15.6439 5.10726 15.2523 4.47463 14.3786 4.47463C13.5049 4.47463 13.1134 5.10726 12.7971 6.05619L12.6094 6.61853" stroke="#8D929A" strokeWidth="1.13" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M13.1113 2.57675C13.1113 2.74291 13.144 2.90744 13.2076 3.06094C13.2712 3.21445 13.3644 3.35393 13.4819 3.47142C13.5994 3.58891 13.7389 3.68211 13.8923 3.7457C14.0459 3.80928 14.2104 3.842 14.3766 3.842C14.5427 3.842 14.7072 3.80928 14.8607 3.7457C15.0143 3.68211 15.1537 3.58891 15.2712 3.47142C15.3887 3.35393 15.4819 3.21445 15.5455 3.06094C15.6091 2.90744 15.6418 2.74291 15.6418 2.57675C15.6418 2.4106 15.6091 2.24607 15.5455 2.09256C15.4819 1.93906 15.3887 1.79958 15.2712 1.68209C15.1537 1.5646 15.0143 1.4714 14.8607 1.40782C14.7072 1.34423 14.5427 1.3115 14.3766 1.3115C14.2104 1.3115 14.0459 1.34423 13.8923 1.40782C13.7389 1.4714 13.5994 1.5646 13.4819 1.68209C13.3644 1.79958 13.2712 1.93906 13.2076 2.09256C13.144 2.24607 13.1113 2.4106 13.1113 2.57675Z" stroke="#8D929A" strokeWidth="1.13" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M3.72773 10.8009H2.67336L2.35705 8.903H1.0918L2.04073 6.05619C2.35705 5.10726 2.74857 4.47463 3.6223 4.47463C4.49602 4.47463 4.88755 5.10726 5.20386 6.05619L5.39154 6.61853" stroke="#8D929A" strokeWidth="1.13" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M2.35742 2.57675C2.35742 2.74291 2.39015 2.90744 2.45374 3.06094C2.51731 3.21445 2.61051 3.35393 2.72801 3.47142C2.84549 3.58891 2.98497 3.68211 3.13848 3.7457C3.29198 3.80928 3.45652 3.842 3.62267 3.842C3.78883 3.842 3.95335 3.80928 4.10686 3.7457C4.26037 3.68211 4.39985 3.58891 4.51734 3.47142C4.63483 3.35393 4.72802 3.21445 4.79161 3.06094C4.85519 2.90744 4.88792 2.74291 4.88792 2.57675C4.88792 2.24119 4.75462 1.91937 4.51734 1.68209C4.28006 1.44481 3.95824 1.3115 3.62267 1.3115C3.28711 1.3115 2.96528 1.44481 2.72801 1.68209C2.49072 1.91937 2.35742 2.24119 2.35742 2.57675Z" stroke="#8D929A" strokeWidth="1.13" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M7.14648 4.63854C7.14648 5.13015 7.34177 5.60162 7.68939 5.94923C8.03698 6.29685 8.5085 6.49213 9.00005 6.49213C9.49167 6.49213 9.96311 6.29685 10.3108 5.94923C10.6584 5.60162 10.8536 5.13015 10.8536 4.63854C10.8536 4.14694 10.6584 3.67548 10.3108 3.32786C9.96311 2.98024 9.49167 2.78495 9.00005 2.78495C8.5085 2.78495 8.03698 2.98024 7.68939 3.32786C7.34177 3.67548 7.14648 4.14694 7.14648 4.63854Z" stroke="#8D929A" strokeWidth="1.13" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M12.2438 10.6638C12.2438 9.80343 11.902 8.97828 11.2936 8.36998C10.6853 7.7616 9.86018 7.41981 8.99981 7.41981C8.13944 7.41981 7.31435 7.7616 6.70599 8.36998C6.09763 8.97828 5.75586 9.80343 5.75586 10.6638V12.0542H7.14623L7.60944 16.6885H10.3902L10.8534 12.0542H12.2438V10.6638Z" stroke="#8D929A" strokeWidth="1.13" strokeLinecap="round" strokeLinejoin="round" />
                                 </g>
                                 <defs>
-                                    <clipPath id="clip0_1263_493">
+                                    <clipPath id="clip0_464_1678">
                                         <rect width="18" height="18" fill="white" />
                                     </clipPath>
                                 </defs>
-                            </svg>
-                            Get In Touch
+                            </svg> &nbsp; Enquiry
                         </Link>
                     </li>
-                    <li>
-                        <Link href="/admin/contact-us"
-                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium  hover:text-[#0367F7] ${pathname === "/admin/contact-us" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
 
-                        >
-                            <svg className="inline align-middle mr-[4px]" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g clipPath="pathname(#clip0_1263_493)">
-                                    <path d="M10.2217 17.4375H1.6875C1.38914 17.4375 1.10298 17.319 0.892005 17.108C0.681026 16.897 0.5625 16.6108 0.5625 16.3125V1.6875C0.5625 1.38914 0.681026 1.10298 0.892005 0.892005C1.10298 0.681026 1.38914 0.5625 1.6875 0.5625H16.3125C16.6108 0.5625 16.897 0.681026 17.108 0.892005C17.319 1.10298 17.4375 1.38914 17.4375 1.6875V10.2217C17.4374 10.5199 17.319 10.8059 17.1083 11.0168L11.0168 17.1083C10.8059 17.319 10.5199 17.4374 10.2217 17.4375Z" stroke="#8D929A" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M10.6875 17.3362V11.8125C10.6875 11.5142 10.806 11.2279 11.017 11.017C11.2279 10.806 11.5142 10.6875 11.8125 10.6875H17.3362" stroke="#8D929A" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M5.0625 5.0625H14.0625" stroke="#8D929A" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M5.0625 8.4375H9" stroke="#8D929A" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_1263_493">
-                                        <rect width="18" height="18" fill="white" />
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                            Contact us
-                        </Link>
-                    </li>
-                </ul>
-
-                <div className="py-4 md:py-5 lg:py-6"></div>
-                <h3 className="uppercase text-[#808080] px-[15px] text-sm font-semibold mb-2.5 lg:mb-3.5">Others</h3>
-                <ul className="space-y-3">
                     <li className="text-[#8D929A]">
                         <Link href="/admin/settings"
                             className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium  hover:text-[#0367F7] ${pathname === "/admin/settings" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
@@ -254,26 +152,7 @@ function SideBarAdmin() {
                             Profile Settings
                         </Link>
                     </li>
-                    <li className="text-[#8D929A]">
-                        <Link href="/admin/help-center"
-                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium  hover:text-[#0367F7] ${pathname === "/admin/help-center" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
-                        >
-                            <svg className="inline align-middle mr-[4px]" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g clipPath="pathname(#clip0_22_118)">
-                                    <path d="M16.9414 14.0625H9.06641L4.56641 17.4375V14.0625H2.31641C2.01804 14.0625 1.73189 13.944 1.52091 13.733C1.30993 13.522 1.19141 13.2358 1.19141 12.9375V1.6875C1.19141 1.38914 1.30993 1.10298 1.52091 0.892005C1.73189 0.681026 2.01804 0.5625 2.31641 0.5625H16.9414C17.2398 0.5625 17.526 0.681026 17.7369 0.892005C17.9479 1.10298 18.0664 1.38914 18.0664 1.6875V12.9375C18.0664 13.2358 17.9479 13.522 17.7369 13.733C17.526 13.944 17.2398 14.0625 16.9414 14.0625Z" stroke="currentColor" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M7.94141 5.06256C7.94149 4.65008 8.05495 4.24556 8.26938 3.8932C8.48388 3.54085 8.79101 3.25423 9.15738 3.06467C9.52368 2.87511 9.93513 2.78989 10.3466 2.81835C10.7581 2.8468 11.1539 2.98782 11.4906 3.226C11.8274 3.46417 12.0922 3.79034 12.2561 4.16885C12.42 4.54736 12.4767 4.96365 12.42 5.37221C12.3633 5.78077 12.1955 6.1659 11.9347 6.48548C11.6739 6.80506 11.3303 7.04681 10.9414 7.18431C10.7221 7.26184 10.5322 7.40546 10.3979 7.59543C10.2636 7.78533 10.1914 8.0122 10.1914 8.24485V8.4376" stroke="currentColor" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M10.1914 11.25C10.0361 11.25 9.91016 11.1241 9.91016 10.9688C9.91016 10.8134 10.0361 10.6875 10.1914 10.6875" stroke="currentColor" strokeWidth="1.125" />
-                                    <path d="M10.1914 11.25C10.3467 11.25 10.4727 11.1241 10.4727 10.9688C10.4727 10.8134 10.3467 10.6875 10.1914 10.6875" stroke="currentColor" strokeWidth="1.125" />
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_22_118">
-                                        <rect width="18" height="18" fill="white" transform="translate(0.628906)" />
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                            Help Center
-                        </Link>
-                    </li>
+
 
                     <li>
                         <button onClick={handleclick} className="px-[15px] flex flex-wrap items-center py-[7px]  rounded-full text-base tracking-[-0.03em] font-medium text-[#FF1B1B] hover:text-[#0367F7]">
@@ -286,6 +165,7 @@ function SideBarAdmin() {
                             Logout
                         </button>
                     </li>
+
                 </ul>
             </div>
         </div>

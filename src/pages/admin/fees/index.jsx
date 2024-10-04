@@ -1,35 +1,51 @@
 import Details from "@/pages/api/admin/Details";
 import Header from "../Component/Header";
-
 // import Nodata from "../Component/Nodata";
 import LoadingData from "../Component/Loading";
-
 import SideBarAdmin from "../Component/SideBar";
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import Modal from "../Component/Modal";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
+import NoData from "../Component/NoData";
+import Delete from "./Delete";
 function Index() {
     const [isOpen, setIsOpen] = useState(false);
     const [listing, setLisitng] = useState([])
     const [Loading, setLoading] = useState(false)
     const [imagePreview, setImagePreview] = useState(null);
     const [formdata, setFormdata] = useState({
-        name: '',
-        text: '',
-        photo: '',
-        id: "",
+        "grade": "",
+        "first": null,
+        "second": null,
+        "third": null,
+        "fourth": null,
+        "total": null,
     });
+
+    useEffect(() => {
+        const total =
+            Number(formdata.first) +
+            Number(formdata.second) +
+            Number(formdata.third) +
+            Number(formdata.fourth);
+        setFormdata((prevData) => ({
+            ...prevData,
+            total: total, 
+        }));
+    }, [formdata.first, formdata.second, formdata.third, formdata.fourth]);
+
     const handleClose = () => {
         setIsOpen(false);
     };
 
-   
+    console.log("listing", listing)
+
+
     const handlesenddata = (item) => {
         setIsOpen(true);
         setFormdata({
-            name: item.name || '',
+            grade: item.name || '',
             text: item.text || '',
             photo: item.photo || '',
             id: item?._id
@@ -38,13 +54,13 @@ function Index() {
         setImagePreview(item.photo);
     };
 
-    const principledata = () => {
+    const getfeesdata = () => {
         setLoading(true);
         const main = new Details();
-        main.getdirector()
+        main.getfees()
             .then((r) => {
                 setLoading(false);
-                setLisitng(r?.data?.director);
+                setLisitng(r?.data?.fees);
             })
             .catch((err) => {
                 setLoading(false);
@@ -54,7 +70,7 @@ function Index() {
     };
 
     useEffect(() => {
-        principledata();
+        getfeesdata();
     }, []);
 
 
@@ -67,26 +83,17 @@ function Index() {
             [name]: value
         });
     };
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = () => setImagePreview(reader.result);
-            reader.readAsDataURL(file);
-            setFormdata({ ...formdata, photo: file });
-        }
-    };
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         const main = new Details();
         try {
-            const res = await main.editdirector(formdata);
+            const res = await main.feesAdd(formdata);
             if (res?.data) {
                 toast.success(res.data.message);
                 handleClose();
+        getfeesdata();
             } else {
                 toast.error(res.message);
             }
@@ -102,13 +109,16 @@ function Index() {
             <SideBarAdmin />
             {/* right sidebar  */}
             <div className="w-full lg:w-[calc(100%-304px)]">
-                <Header title={"Manage Director"} />
+                <Header title={"Manage Fees structure"} />
                 {/* Overview */}
                 <div className="px-4 py-2 lg:px-10 lg:py-2.5">
                     {/*  */}
                     <div className="bg-white rounded-[20px] mb-[30px]">
                         <div className="py-3 py-4 lg:py-[23px] px-4 md:px-6 lg:px-10 flex flex-wrap justify-between items-center border-b border-black  border-opacity-10">
-                            <h3 className=" text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">Director  </h3>
+                            <h3 className=" text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">Fees  </h3>
+                            <button onClick={() => setIsOpen(true)} className="text-white bg-[#0367F7] hover:bg-white hover:text-[#0367F7] text-sm font-normal tracking-[-0.03em] py-2 px-3 xl:px-3.5 border border-[#0367F7] rounded-md outline-none focus:outline-none ease-linear transition-all duration-150">
+                                Add New Fees
+                            </button>
                         </div>
                         <div className="overflow-x-auto">
                             {Loading ? (
@@ -116,7 +126,7 @@ function Index() {
                             ) : (
                                 listing?.length < 0 ? (
                                     // <Nodata />
-                                    <>No Data</>
+                                    <NoData />
                                 ) : (
                                     <table className="min-w-full">
                                         <thead>
@@ -125,13 +135,22 @@ function Index() {
                                                     S. No.
                                                 </th>
                                                 <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
-                                                    Image
+                                                    Class
                                                 </th>
                                                 <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
-                                                    Name
+                                                    I
                                                 </th>
                                                 <th className="px-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
-                                                    Description
+                                                    II
+                                                </th>
+                                                <th className="pr-4 md:pr-6 lg:pr-10 pl-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em] text-center">
+                                                    III
+                                                </th>
+                                                <th className="pr-4 md:pr-6 lg:pr-10 pl-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em] text-center">
+                                                    IV
+                                                </th>
+                                                <th className="pr-4 md:pr-6 lg:pr-10 pl-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em] text-center">
+                                                    Total Fees
                                                 </th>
                                                 <th className="pr-4 md:pr-6 lg:pr-10 pl-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em] text-center">
                                                     Action
@@ -145,13 +164,25 @@ function Index() {
                                                         {index + 1}
                                                     </td>
                                                     <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                        <Image width={200} height={200} src={item?.photo} alt={item?.name} />
+                                                        {item?.grade}
                                                     </td>
                                                     <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                        {item?.name}
+                                                        {item?.first
+                                                        }
                                                     </td>
                                                     <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                        {item?.text}
+                                                        {item?.second}
+                                                    </td>
+                                                    <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
+                                                        {item?.third}
+                                                    </td>
+                                                    <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
+                                                        {item?.fourth
+                                                        }
+                                                    </td>
+                                                    <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
+                                                        {item?.total
+                                                        }
                                                     </td>
                                                     <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] text-center tracking-[-0.03em] space-x-2">
                                                         <div className="flex space-x-2 justify-center">
@@ -170,6 +201,8 @@ function Index() {
                                                                     />
                                                                 </svg>
                                                             </button>
+
+                                                         <Delete item={item?.uuid}/>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -187,35 +220,19 @@ function Index() {
             <Modal isOpen={isOpen} onClose={handleClose}>
                 <div className="relative bg-white w-full rounded-[30px] lg:rounded-[40px] h-auto m-auto">
                     <div className="border-b border-black border-opacity-10 pt-6 pb-5 px-6 lg:pt-8 lg:pb-6 lg:px-10">
-                        <h2 className="text-xl lg:text-2xl  text-[#212121] tracking-[-0.04em] font-semibold mb-0">Edit Director </h2>
+                        <h2 className="text-xl lg:text-2xl  text-[#212121] tracking-[-0.04em] font-semibold mb-0">Fees  </h2>
                     </div>
                     <div className="py-6 lg:py-8 ">
                         <form>
                             <div className=' max-h-full overflow-y-auto customscroll px-6 lg:px-10 '>
-                                <div className="mb-3 lg:mb-[25px]">
-                                    <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">Upload Image</label>
-                                    <input
-                                        type="file"
-                                        name="photo"
-                                        onChange={(e) => handleImageChange(e)}
-                                        className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
-                                    />
-                                </div>
-                                <div className="mb-3 lg:mb-[25px]">
-                                    <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">Upload Image</label>
-                                    <img
-                                        src={imagePreview ? imagePreview : formdata?.photo}
-                                        alt={formdata?.name}
-                                        className="w-48 h-48 object-cover rounded-md"
 
-                                    />
-                                </div>
+
 
                                 <div className="mb-3 lg:mb-[25px]">
-                                    <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">name</label>
+                                    <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">grade</label>
                                     <input
-                                        name="name"
-                                        value={formdata?.name}
+                                        name="grade"
+                                        value={formdata?.grade}
                                         onChange={handleChange}
                                         type="text"
                                         className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
@@ -225,27 +242,81 @@ function Index() {
 
 
                                 </div>
-
                                 <div className="mb-3 lg:mb-[25px]">
-                                    <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">Desciption</label>
-                                    <textarea
-                                        name="text"
-                                        value={formdata?.text}
+                                    <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">first</label>
+                                    <input
+                                        name="first"
+                                        value={formdata?.first}
                                         onChange={handleChange}
-                                        rows={5}
-                                        cols={5}
-                                        className="w-full font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
-                                    >
-                                    </textarea>
+                                        type="text"
+                                        className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
+
+                                    />
                                     {/* <p message={errors?.name} className="!text-red-600" /> */}
+
+
                                 </div>
+                                <div className="mb-3 lg:mb-[25px]">
+                                    <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">second</label>
+                                    <input
+                                        name="second"
+                                        value={formdata?.second}
+                                        onChange={handleChange}
+                                        type="text"
+                                        className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
+
+                                    />
+                                    {/* <p message={errors?.name} className="!text-red-600" /> */}
+
+
+                                </div>
+                                <div className="mb-3 lg:mb-[25px]">
+                                    <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">third</label>
+                                    <input
+                                        name="third"
+                                        value={formdata?.third}
+                                        onChange={handleChange}
+                                        type="text"
+                                        className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
+
+                                    />
+                                    {/* <p message={errors?.name} className="!text-red-600" /> */}
+
+
+                                </div>
+                                <div className="mb-3 lg:mb-[25px]">
+                                    <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">fourth</label>
+                                    <input
+                                        name="fourth"
+                                        value={formdata?.fourth}
+                                        onChange={handleChange}
+                                        type="text"
+                                        className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
+
+                                    />
+                                    {/* <p message={errors?.name} className="!text-red-600" /> */}
+
+
+                                </div>
+                                <div className="mb-3 lg:mb-[25px]">
+                                    <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">total</label>
+                                    <input
+                                        name="total"
+                                        value={formdata?.total}
+                                        onChange={handleChange}
+                                        type="text"
+                                        readonly
+                                        className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
+                                    />
+                                </div>
+
                             </div>
                             {/* Submit Button */}
                             <div className="flex justify-end pt-3 px-6 lg:px-10 ">
                                 <button type="submit"
                                     onClick={handleSubmit}
                                     className="w-full text-white bg-[#0367F7] hover:text-[#0367F7] hover:bg-white text-[17px] font-medium tracking-[-0.04em] h-11 lg:h-[54px] py-2.5 px-12 border border-[#0367F7] rounded-full outline-none focus:outline-none ease-linear transition-all duration-150">
-                                    {Loading ? "Processing.." : "Edit Director"}
+                                    {Loading ? "Processing.." : "fees"}
 
                                 </button>
                             </div>

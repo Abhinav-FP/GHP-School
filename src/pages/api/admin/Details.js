@@ -56,7 +56,14 @@ class Details extends Component {
   async getfees() {
     return Api.get("/fees/get");
   }
- 
+
+  async feesAdd(data) {
+    return Api.post("/fees/add" ,data);
+  }
+
+  async feedelete(data) {
+    return Api.post("/fees/delete" ,data);
+  }
   async careerget() {
     return Api.get("/career/vacancy/get");
   }
@@ -74,6 +81,18 @@ class Details extends Component {
   }
   async resultget() {
     return Api.get(`/result/get`);
+  }
+
+
+  async inquiryAdd(data) {
+    return Api.post("/inquiry/add" ,data);
+  }
+
+  async inquirydelete(id) {
+    return Api.post("/inquiry/delete" , id);
+  }
+  async inquiryget() {
+    return Api.get("/inquiry/get");
   }
  
   // /result/get/XII

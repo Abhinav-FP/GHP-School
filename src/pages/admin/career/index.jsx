@@ -7,6 +7,7 @@ import Modal from "../Component/Modal";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import Loading from "../Component/Loading";
+import NoData from "../Component/NoData";
 
 function Index() {
     const [isOpen, setIsOpen] = useState(false);
@@ -49,7 +50,7 @@ function Index() {
     }, []);
 
     const handleChange = (e) => {
-        const { name, value } = e.target; 
+        const { name, value } = e.target;
         setFormData((prevData) => ({
             ...prevData,
             [name]: value
@@ -82,7 +83,7 @@ function Index() {
             setLoading(false);
         }
     };
-const[deltedata, setDelete] =useState("");
+    const [deltedata, setDelete] = useState("");
     const handleopen = (item) => {
         setIsDeleteOpen(true);
         setDelete(item)
@@ -92,7 +93,7 @@ const[deltedata, setDelete] =useState("");
         e.preventDefault();
         setLoading(true);
         const main = new Details();
-        const response = main.careerdelete({uuid:deltedata});
+        const response = main.careerdelete({ uuid: deltedata });
         response
             .then((res) => {
                 if (res && res?.data && res?.data?.status) {
@@ -129,49 +130,48 @@ const[deltedata, setDelete] =useState("");
                                 </div>
                             </div>
                             <div className="overflow-x-auto">
-                                {loading? (
+                                {loading ? (
                                     <div className="text-center mt-4">
-                                        <Loading/>
-                                        </div> ) :  ( listing.length < 0 ? (
-                                    // <Nodata />
-                                    <>No Data</>
-                                ) : (
-                                    <table className="min-w-full">
-                                        <thead>
-                                            <tr>
-                                                <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">S. No.</th>
-                                                <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">Designation</th>
-                                                <th className="px-3 py-3 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">Qualification</th>
-                                                <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">Experience</th>
-                                                <th className="px-3 py-3 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">Description</th>
-                                                <th className="pr-4 md:pr-6 lg:pr-10 pl-3 py-3 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em] text-center">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {listing.map((item, index) => (
-                                                <tr key={item.id} className="bg-white border-t transition duration-300 ease-in-out hover:bg-gray-100">
-                                                    <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">{index + 1}</td>
-                                                    <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">{item.designation}</td>
-                                                    <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">{item.qualification}</td>
-                                                    <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">{item.experience}</td>
-                                                    <td className="px-3 py-4 text-[15px] font-medium text-[#46494D]">{item.description}</td>
-                                                    <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] text-center space-x-2">
-                                                        <button
-                                                                       onClick={() => handleopen(item?.uuid)}
-                                                            className="text-[#FF1B1B] h-[30px] w-[30px] bg-[#FF1B1B] bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center"
-                                                        >
-                                                            {/* SVG for delete icon */}
-                                                            <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M3 18C2.45 18 1.97933 17.8043 1.588 17.413C1.19667 17.0217 1.00067 16.5507 1 16V3H0V1H5V0H11V1H16V3H15V16C15 16.55 14.8043 17.021 14.413 17.413C14.0217 17.805 13.5507 18.0007 13 18H3ZM13 3H3V16H13V3ZM5 14H7V5H5V14ZM9 14H11V5H9V14Z" fill="#FF1B1B" />
-                                                            </svg>
-                                                        </button>
-                                                    </td>
+                                        <Loading />
+                                    </div>) : (listing.length < 0 ? (
+                                        <NoData />
+                                    ) : (
+                                        <table className="min-w-full">
+                                            <thead>
+                                                <tr>
+                                                    <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">S. No.</th>
+                                                    <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">Designation</th>
+                                                    <th className="px-3 py-3 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">Qualification</th>
+                                                    <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">Experience</th>
+                                                    <th className="px-3 py-3 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">Description</th>
+                                                    <th className="pr-4 md:pr-6 lg:pr-10 pl-3 py-3 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em] text-center">Action</th>
                                                 </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                ))
-                            }
+                                            </thead>
+                                            <tbody>
+                                                {listing.map((item, index) => (
+                                                    <tr key={item.id} className="bg-white border-t transition duration-300 ease-in-out hover:bg-gray-100">
+                                                        <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">{index + 1}</td>
+                                                        <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">{item.designation}</td>
+                                                        <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">{item.qualification}</td>
+                                                        <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">{item.experience}</td>
+                                                        <td className="px-3 py-4 text-[15px] font-medium text-[#46494D]">{item.description}</td>
+                                                        <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] text-center space-x-2">
+                                                            <button
+                                                                onClick={() => handleopen(item?.uuid)}
+                                                                className="text-[#FF1B1B] h-[30px] w-[30px] bg-[#FF1B1B] bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center"
+                                                            >
+                                                                {/* SVG for delete icon */}
+                                                                <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M3 18C2.45 18 1.97933 17.8043 1.588 17.413C1.19667 17.0217 1.00067 16.5507 1 16V3H0V1H5V0H11V1H16V3H15V16C15 16.55 14.8043 17.021 14.413 17.413C14.0217 17.805 13.5507 18.0007 13 18H3ZM13 3H3V16H13V3ZM5 14H7V5H5V14ZM9 14H11V5H9V14Z" fill="#FF1B1B" />
+                                                                </svg>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    ))
+                                }
                             </div>
                         </div>
                     </div>
@@ -180,18 +180,9 @@ const[deltedata, setDelete] =useState("");
             {isOpen && (
                 <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
                     <div className="relative bg-white w-full rounded-[30px] lg:rounded-[40px] m-auto">
-                        <button
-                            type="button"
-                            onClick={() => setIsOpen(false)}
-                            className="absolute top-5 right-6 text-gray-700 hover:text-gray-900"
-                        >
-                            {/* Close button SVG */}
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
+
                         <div className="border-b border-black border-opacity-10 pt-6 pb-5 px-6">
-                            <h2 className="text-xl lg:text-2xl text-[#212121] font-semibold">Add New Principle</h2>
+                            <h2 className="text-xl lg:text-2xl text-[#212121] font-semibold">Add New Vacancy</h2>
                         </div>
                         <form onSubmit={handleSubmit} className="p-6">
                             <div className="space-y-4">
@@ -202,7 +193,7 @@ const[deltedata, setDelete] =useState("");
                                         name="designation"
                                         value={formData.designation}
                                         onChange={handleChange}
-                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] focus:ring focus:ring-[#0367F7] focus:ring-opacity-50"
+                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
                                         required
                                     />
                                 </div>
@@ -213,7 +204,7 @@ const[deltedata, setDelete] =useState("");
                                         name="qualification"
                                         value={formData.qualification}
                                         onChange={handleChange}
-                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] focus:ring focus:ring-[#0367F7] focus:ring-opacity-50"
+                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
                                         required
                                     />
                                 </div>
@@ -224,7 +215,7 @@ const[deltedata, setDelete] =useState("");
                                         name="experience"
                                         value={formData.experience}
                                         onChange={handleChange}
-                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] focus:ring focus:ring-[#0367F7] focus:ring-opacity-50"
+                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
                                         required
                                     />
                                 </div>
@@ -234,7 +225,7 @@ const[deltedata, setDelete] =useState("");
                                         name="description"
                                         value={formData.description}
                                         onChange={handleChange}
-                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] focus:ring focus:ring-[#0367F7] focus:ring-opacity-50"
+                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
                                         rows="3"
                                         required
                                     />
@@ -242,7 +233,7 @@ const[deltedata, setDelete] =useState("");
                                 <div className="flex justify-end">
                                     <button
                                         type="submit"
-                                        className="text-white bg-[#0367F7] hover:bg-opacity-90 text-sm font-normal tracking-[-0.03em] py-2 px-4 border border-[#0367F7] rounded-md"
+                                        className="text-white button-animation text-sm font-normal tracking-[-0.03em] py-2 px-4 border-0 min-w-[100px] rounded-md"
                                     >
                                         {loading ? "Saving..." : "Save"}
                                     </button>
@@ -254,33 +245,8 @@ const[deltedata, setDelete] =useState("");
             )}
             {isDeleteOpen && (
 
-                <Modal isOpen={isDeleteOpen} onClose={handleDeleteClose}>
-                    <style>
-                        {`
-                          /* Corrected CSS for modal width */
-                          #modal .sm\\:max-w-2xl {
-                          margin: auto;
-                          box-shadow:none;
-                          max-width: 561px !important; /* Ensure !important is spelled correctly */
-                          }
-                      `}
-                    </style>
-                    <div className="relative bg-white w-full rounded-[30px] lg:rounded-[40px] h-auto m-auto">
-                        <button
-                            type="button"
-                            onClick={handleDeleteClose}
-                            className="absolute top-5 md:top-6 lg:top-9 right-6 lg:right-10 text-gray-700 hover:text-gray-900"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-6 w-6"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
+                <Modal isOpen={isDeleteOpen} onClose={handleDeleteClose} >
+                    <div className="relative bg-white w-full rounded-[30px] lg:rounded-[40px] m-auto">
 
                         <div className="border-b border-black border-opacity-10 pt-6 pb-5 px-6 lg:pt-8 lg:pb-6 lg:px-10">
                             <h2 className="text-xl lg:text-2xl text-[#212121] tracking-[-0.04em] font-semibold mb-0">
