@@ -26,6 +26,9 @@ class Details extends Component {
   async gethomebanner() {
     return Api.get("/home/banner/get");
   }
+  async addhomebanner(data) {
+    return Api.post("/home/banner/add",data);
+  }
 
   async getprinciple() {
     return Api.get("/about/principal/get");

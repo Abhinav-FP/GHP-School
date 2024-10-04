@@ -20,6 +20,18 @@ module.exports = {
         port: '',
         pathname: '/images/**',
       },
+      {
+        protocol: 'https', // Adding Imgur configuration
+        hostname: 'i.imgur.com',
+        port: '',
+        pathname: '/**', // Match all image paths
+      },
+      {
+        protocol: 'https', // Adding Imgur configuration
+        hostname: 'imgur.com',
+        port: '',
+        pathname: '/**', // Match all image paths
+      },
     ],
   },
 };
