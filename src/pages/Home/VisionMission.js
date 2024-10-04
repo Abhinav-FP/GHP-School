@@ -48,10 +48,12 @@ export default function VisionMission() {
               <>
                 <div className="w-full md:w-6/12 md:order-2">
 
-                  <Image
+                <Image
+                  blurDataURL={`${item.imgsrc}?q=1`} placeholder="blur"
                     src={item.imgsrc}
-                    alt={`School Image`}
+                    alt={item?.heading}
                     className="object-cover w-full"
+                    loading='lazy'
                   />
                 </div>
                 <div className="w-full md:order-1 md:w-6/12 px-[25px] py-[25px] lg:p-[40px]">
@@ -72,9 +74,11 @@ export default function VisionMission() {
               <>
                 <div className="w-full md:w-6/12 md:order-1">
                   <Image
+                  blurDataURL={`${item.imgsrc}?q=1`} placeholder="blur"
                     src={item.imgsrc}
-                    alt={`School Image`}
+                    alt={item?.heading}
                     className="object-cover w-full"
+                    loading='lazy'
                   />
                 </div>
                 <div className="w-full md:w-6/12 p-[30px] lg:p-[40px] md:order-1">
@@ -84,17 +88,13 @@ export default function VisionMission() {
                   <p className='text-[#666666] text-base font-medium gotham-font tracking-[-0.04em] mb-6 lg:mb-[32px]'>
                     {item?.text}
                   </p>
-
                   <Link href={item?.to} className="button-animation rounded px-8 lg:px-10 py-2.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]">
                     {item?.btnText}
                   </Link>
                 </div>
-
               </>
             )
-
             }
-
           </div>
         ))}
       </div>

@@ -1,6 +1,6 @@
-import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-import Details from '../api/admin/Details';
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import Details from "../api/admin/Details";
 import { GrNext } from "react-icons/gr";
 import { GrPrevious } from "react-icons/gr";
 import { IoMdClose } from "react-icons/io";
@@ -25,7 +25,7 @@ export default function Gallery() {
       .catch((err) => {
         setLoading(false);
         setLisitng([]);
-        console.log('error', err);
+        console.log("error", err);
       });
   };
 
@@ -44,7 +44,7 @@ export default function Gallery() {
       .catch((err) => {
         setLoading(false);
         setData([]);
-        console.log('error', err);
+        console.log("error", err);
       });
   };
 
@@ -61,7 +61,9 @@ export default function Gallery() {
   };
 
   const handlePrevious = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + data.length) % data.length); // Loop backward through images
+    setCurrentImageIndex(
+      (prevIndex) => (prevIndex - 1 + data.length) % data.length
+    ); // Loop backward through images
   };
 
   const closeModal = () => {
@@ -70,21 +72,38 @@ export default function Gallery() {
 
   return (
     <div className="bg-white pb-[40px] md:pb-[80px] lg:pb-[100px]">
-      <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto" id="activities">
+      <div
+        className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto"
+        id="activities"
+      >
         <h2 className="merriweather-font font-normal text-2xl md:text-3xl lg:text-4xl mb-2.5 text-[#1E1E1E] tracking-[-0.04em] text-center">
           Gallery
         </h2>
         <p className="max-w-[965px] text-center tracking-[-0.04em] mx-auto text-center text-[#666666] text-base font-medium mb-10 lg:mb-[50px]">
-          Explore our gallery to see the vibrant life and activities at BVBS School.
+          Explore our gallery to see the vibrant life and activities at BVBS
+          School.
         </p>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-5">
           {listing &&
             listing.map((item, index) => (
-              <div key={index} className="relative w-full overflow-hidden" onClick={() => handleImageClick(item?.caption)}>
-                <Image width={387} height={310} src={item?.url} alt={item?.caption} className="object-cover" />
+              <div
+                key={index}
+                className="relative w-full overflow-hidden"
+                onClick={() => handleImageClick(item?.caption)}
+              >
+                <Image
+                  blurDataURL={`${item?.url}?q=1`}
+                  placeholder="blur"
+                  width={387}
+                  height={310}
+                  src={item?.url}
+                  alt={item?.caption}
+                  className="object-cover"
+                  loading="lazy"
+                />
                 <div className="galleryBg absolute bottom-0 left-0 h-full w-full z-0"></div>
                 <h3 className="capitalize absolute bottom-4 left-6 right-6 text-white z-10 merriweather-font font-normal text-xl lg:text-2xl">
-                  {item?.caption.replace('-', ' ')}
+                  {item?.caption.replace("-", " ")}
                 </h3>
               </div>
             ))}
@@ -94,20 +113,32 @@ export default function Gallery() {
         {showModal && data.length > 0 && (
           <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
             <div className="relative w-full h-full flex justify-center items-center">
-              <button className="absolute top-4 right-4 text-white z-10" onClick={closeModal}>
+              <button
+                className="absolute top-4 right-4 text-white z-10"
+                onClick={closeModal}
+              >
                 <IoMdClose size={24} />
               </button>
-              <button className="absolute left-4 top-[50%] transform -translate-y-1/2 text-white z-10" onClick={handlePrevious}>
+              <button
+                className="absolute left-4 top-[50%] transform -translate-y-1/2 text-white z-10"
+                onClick={handlePrevious}
+              >
                 <GrPrevious size={24} />
               </button>
               <Image
+                blurDataURL={`${data[currentImageIndex]?.url}?q=1`}
+                placeholder="blur"
                 src={data[currentImageIndex]?.url}
                 alt={data[currentImageIndex]?.caption}
                 layout="fill"
                 objectFit="contain"
                 className="max-w-full max-h-full"
+                loading="lazy"
               />
-              <button className="absolute right-4 top-[50%] transform -translate-y-1/2 text-white z-10" onClick={handleNext}>
+              <button
+                className="absolute right-4 top-[50%] transform -translate-y-1/2 text-white z-10"
+                onClick={handleNext}
+              >
                 <GrNext size={20} />
               </button>
             </div>

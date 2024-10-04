@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 export default function Index() {
   const cartItemsRedux = useSelector((state) => state.cart.cartItems);
   console.log("cartItemsRedux",cartItemsRedux);
- 
       const cartItems = [
       {
         Image: "/Facilities/Gallery1.png",
@@ -61,7 +60,7 @@ export default function Index() {
                     <input type="email" className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
                   </div>
                   <div className="w-full">
-                    <button type="submit" class="bg-[#EE834E] lg:w-[253px] hover:bg-[#ECCD6E] rounded px-8 lg:px-12 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]" fdprocessedid="1gg5s">Pay Now</button>
+                    <button type="submit" className="bg-[#EE834E] lg:w-[253px] hover:bg-[#ECCD6E] rounded px-8 lg:px-12 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]" fdprocessedid="1gg5s">Pay Now</button>
                   </div>
                 </div>
               </div>
@@ -92,10 +91,13 @@ export default function Index() {
                           <div className='flex items-center '>
                             <div className='bg-[#E1E1E1] w-[70px] lg:w-[91px]'>
                               <Image
+                               blurDataURL={`${item.Image}?q=1`}
+                      placeholder="blur"
                                 width={91} height={86}
                                 src={item.Image}
                                 alt={item.Image}
                                 className="object-cover max-w-full"
+                                loading='lazy'
                               />
                             </div>
                             <div className='w-[calc(100%-71px)] lg:w-[calc(100%-91px)] max-w-[179px] pl-2.5 tracking-[-0.04em] text-[#1E1E1E] font-medium merriweather-font font-normal text-base md:text-lg lg:text-xl'>

@@ -21,7 +21,7 @@ function Vacancie() {
     return (
         <div className="bg-white pb-[50px] md:pb-[70px] lg:pb-[100px]">
             <div className='container sm:container md:container lg:max-w-[1232px] px-4 mx-auto'>
-                <h2 class="merriweather-font font-normal text-2xl md:text-3xl lg:text-4xl mb-2.5 text-[#1E1E1E] tracking-[-0.04em] text-center">Our Vacancies</h2>
+                <h2 className="merriweather-font font-normal text-2xl md:text-3xl lg:text-4xl mb-2.5 text-[#1E1E1E] tracking-[-0.04em] text-center">Our Vacancies</h2>
                 <p className='max-w-[965px] text-center tracking-[-0.04em] mx-auto text-center text-[#666666] text-base font-medium mb-6 lg:mb-10'>Established in July 1990, BVBS School has been a beacon of excellence in education for over three decades. Join our dedicated team and contribute to a legacy of inspiring young minds and fostering a love for learning.</p>
 
                 <div className="w-full space-y-3 lg:space-y-5">
@@ -38,7 +38,7 @@ function Vacancie() {
                                     </div>
                                 </div>
                                 <div className="w-full lg:w-3/12 px-3 lg:px-6 lg:text-right">
-                                <button type="submit" class="bg-[#EE834E] lg:min-w-[210px] text-center hover:bg-[#ECCD6E] rounded px-8 lg:px-12 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]" fdprocessedid="1gg5s">Submit</button>
+                                <button type="submit" className="bg-[#EE834E] lg:min-w-[210px] text-center hover:bg-[#ECCD6E] rounded px-8 lg:px-12 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]" fdprocessedid="1gg5s">Submit</button>
                                 </div>
                             </div>
                             

@@ -237,13 +237,13 @@ function ContactForm() {
                     type="radio"
                     name="belongs"
                     value="sc"
-                    class="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
+                    className="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
                     aria-labelledby="sc"
                     aria-describedby="sc"
                   />
                   <label
                     for="sc"
-                    class="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 "
+                    className="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 "
                   >
                     SC
                   </label>
@@ -257,13 +257,13 @@ function ContactForm() {
                     type="radio"
                     name="belongs"
                     value="st"
-                    class="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
+                    className="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
                     aria-labelledby="st"
                     aria-describedby="st"
                   />
                   <label
                     for="st"
-                    class="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 "
+                    className="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 "
                   >
                     ST
                   </label>
@@ -277,13 +277,13 @@ function ContactForm() {
                     type="radio"
                     name="belongs"
                     value="obc"
-                    class="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
+                    className="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
                     aria-labelledby="obc"
                     aria-describedby="obc"
                   />
                   <label
                     for="obc"
-                    class="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 "
+                    className="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 "
                   >
                     OBC
                   </label>
@@ -297,13 +297,13 @@ function ContactForm() {
                     type="radio"
                     name="belongs"
                     value="general"
-                    class="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
+                    className="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
                     aria-labelledby="general"
                     aria-describedby="general"
                   />
                   <label
                     for="general"
-                    class="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 "
+                    className="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 "
                   >
                     General
                   </label>
@@ -317,13 +317,13 @@ function ContactForm() {
                     type="radio"
                     name="belongs"
                     value="sbc"
-                    class="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
+                    className="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
                     aria-labelledby="sbc"
                     aria-describedby="sbc"
                   />
                   <label
                     for="sbc"
-                    class="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 "
+                    className="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 "
                   >
                     SBC
                   </label>
@@ -337,13 +337,13 @@ function ContactForm() {
                     type="radio"
                     name="belongs"
                     value="ews"
-                    class="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
+                    className="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
                     aria-labelledby="ews"
                     aria-describedby="ews"
                   />
                   <label
                     for="ews"
-                    class="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 "
+                    className="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 "
                   >
                     EWS
                   </label>
@@ -357,13 +357,13 @@ function ContactForm() {
                     type="radio"
                     name="belongs"
                     value="other"
-                    class="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
+                    className="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
                     aria-labelledby="other"
                     aria-describedby="other"
                   />
                   <label
                     for="other"
-                    class="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 "
+                    className="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 "
                   >
                     Other
                   </label>
@@ -385,13 +385,13 @@ function ContactForm() {
                       type="radio"
                       name="facility"
                       value="yes"
-                      class="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
+                      className="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
                       aria-labelledby="yes"
                       aria-describedby="yes"
                     />
                     <label
                       for="yes"
-                      class="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 tracking-[-0.04em] "
+                      className="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 tracking-[-0.04em] "
                     >
                       YES
                     </label>
@@ -407,13 +407,13 @@ function ContactForm() {
                       type="radio"
                       name="facility"
                       value="no"
-                      class="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
+                      className="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
                       aria-labelledby="no"
                       aria-describedby="no"
                     />
                     <label
                       for="no"
-                      class="cursor-pointer ml-2 text-base font-medium text-[#1E1E1E] opacity-80 tracking-[-0.04em]"
+                      className="cursor-pointer ml-2 text-base font-medium text-[#1E1E1E] opacity-80 tracking-[-0.04em]"
                     >
                       NO
                     </label>
@@ -432,13 +432,13 @@ function ContactForm() {
                     type="checkbox"
                     name=""
                     value="1"
-                    class="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
+                    className="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
                     aria-labelledby="1"
                     aria-describedby="1"
                   />
                   <label
                     for="1"
-                    class="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
+                    className="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
                   >
                     The above information is correct.
                   </label>
@@ -449,13 +449,13 @@ function ContactForm() {
                     type="checkbox"
                     name=""
                     value="2"
-                    class="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
+                    className="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
                     aria-labelledby="2"
                     aria-describedby="2"
                   />
                   <label
                     for="2"
-                    class="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
+                    className="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
                   >
                     I agree to abide by Rules and Regulations of the school and
                     the Education Department (Subject to any change that may be
@@ -468,13 +468,13 @@ function ContactForm() {
                     type="checkbox"
                     name=""
                     value="3"
-                    class="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
+                    className="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
                     aria-labelledby="3"
                     aria-describedby="3"
                   />
                   <label
                     for="3"
-                    class="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
+                    className="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
                   >
                     The date of birth entered above is correct and no request
                     for any change will be made.
@@ -486,13 +486,13 @@ function ContactForm() {
                     type="checkbox"
                     name=""
                     value="4"
-                    class="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
+                    className="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
                     aria-labelledby="4"
                     aria-describedby="4"
                   />
                   <label
                     for="4"
-                    class="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
+                    className="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
                   >
                     I have explained these rules and regulations to my
                     son/daughter and in case if he/she violates any rules and
@@ -509,13 +509,13 @@ function ContactForm() {
                     type="checkbox"
                     name=""
                     value="5"
-                    class="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
+                    className="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
                     aria-labelledby="5"
                     aria-describedby="5"
                   />
                   <label
                     for="5"
-                    class="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
+                    className="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
                   >
                     The School will not be held responsible for any accident,
                     injuries of loss to the student while at the school or at
@@ -528,13 +528,13 @@ function ContactForm() {
                     type="checkbox"
                     name=""
                     value="6"
-                    class="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
+                    className="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
                     aria-labelledby="6"
                     aria-describedby="6"
                   />
                   <label
                     for="6"
-                    class="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
+                    className="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
                   >
                     Admission granted to a student will be provisional until the
                     relevant documents are not submitted duely signed/counter

@@ -51,12 +51,15 @@ export default function Sports() {
                     key={index}
                   >
                     <Image
+                      blurDataURL={`${item?.bgImage}?q=1`}
+                      placeholder="blur"
                       src={item?.bgImage}
                       alt="Sports"
                       objectFit="cover"
                       className="object-cover w-full !h-full"
                       height={470}
                       width={692}
+                      loading="lazy"
                     />
                   </SwiperSlide>
                 ))}

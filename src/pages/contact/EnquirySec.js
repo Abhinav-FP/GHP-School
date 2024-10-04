@@ -6,134 +6,144 @@ import Details from "../api/admin/Details";
 import toast from "react-hot-toast";
 
 function EnquirySec() {
-    const recaptcha = useRef(null);
-    const [formdata, setFormdata] = useState({
-        name: "",
-        email: "",
-        contact: "",
-        message: "",
+  const recaptcha = useRef(null);
+  const [formdata, setFormdata] = useState({
+    name: "",
+    email: "",
+    contact: "",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false); // Loading state
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormdata({
+      ...formdata,
+      [name]: value,
     });
-    const [loading, setLoading] = useState(false); // Loading state
+  };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    const main = new Details();
+    try {
+      const res = await main.inquiryAdd(formdata);
+      if (res?.data) {
+        toast.success(res.data.message);
         setFormdata({
-            ...formdata,
-            [name]: value,
+          name: "",
+          email: "",
+          message: "",
+          contact: "",
         });
-    };
+      } else {
+        toast.error(res.message);
+      }
+    } catch (error) {
+      toast.error("An error occurred while submitting.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        const main = new Details();
-        try {
-            const res = await main.inquiryAdd(formdata);
-            if (res?.data) {
-                toast.success(res.data.message);
-                setFormdata({
-                    name: "",
-                    email: "",
-                    message :"",
-                    contact: "",
-                    
-                })
-
-            } else {
-                toast.error(res.message);
-            }
-        } catch (error) {
-            toast.error("An error occurred while submitting.");
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    return (
-        <div className="bg-white pb-[50px] md:pb-[70px] lg:pb-[100px]">
-            <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto">
-                <div className="flex flex-wrap items-center -mx-4 grid-cols-4">
-                    <div className="w-full lg:w-6/12 px-4 mb-6 lg:mb-0">
-                        <Image className="w-full" src={InquiryformBanner} alt="img" />
-                    </div>
-                    <div className="w-full lg:w-6/12 px-4">
-                        <div className="bg-[#ECE1C5]">
-                            <div className="px-4 lg:px-[30px] py-4 lg:py-[28px] border-b border-black border-opacity-10">
-                                <h2 className="merriweather-font font-normal text-2xl md:text-3xl lg:text-4xl mb-1 text-[#1E1E1E] tracking-[-0.04em]">
-                                    Make an inquiry
-                                </h2>
-                                <p className="text-black font-medium text-base tracking-[-0.04em] mb-0">
-                                    Explore partnership opportunities or space rental with BVBS School. Complete the enquiry form to connect with us and discuss your needs.
-                                </p>
-                            </div>
-                            <div className="px-4 lg:px-[30px] py-4 lg:py-[30px]">
-                                <div className="mb-4 lg:mb-6">
-                                    <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                                        Name
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        value={formdata.name}
-                                        onChange={handleChange}
-                                        className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
-                                    />
-                                </div>
-                                <div className="mb-4 lg:mb-6">
-                                    <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                                        Email
-                                    </label>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        value={formdata.email}
-                                        onChange={handleChange}
-                                        className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
-                                    />
-                                </div>
-                                <div className="mb-4 lg:mb-6">
-                                    <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                                        Contact no
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="contact"
-                                        value={formdata.contact}
-                                        onChange={handleChange}
-                                        className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
-                                    />
-                                </div>
-                                <div className="mb-4 lg:mb-6">
-                                    <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                                        Message
-                                    </label>
-                                    <textarea
-                                        name="message"
-                                        value={formdata.message}
-                                        onChange={handleChange}
-                                        className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-32 lg:h-[157px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
-                                    ></textarea>
-                                </div>
-                                <div className="flex flex-wrap -mx-4">
-                                    <div className="px-4 items-center w-full lg:w-7/12">
-                                        <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY} ref={recaptcha} />
-                                    </div>
-                                    <div className="px-4 items-center w-full lg:w-5/12 text-right">
-                                        <button
-                                            type="button"
-                                            onClick={handleSubmit}
-                                            className="button-animation rounded px-8 lg:px-12 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]"
-                                        >
-                                            {loading ? "Submitting..." : "Submit"}
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+  return (
+    <div className="bg-white pb-[50px] md:pb-[70px] lg:pb-[100px]">
+      <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto">
+        <div className="flex flex-wrap items-center -mx-4 grid-cols-4">
+          <div className="w-full lg:w-6/12 px-4 mb-6 lg:mb-0">
+            <Image
+              blurDataURL={`${InquiryformBanner}?q=1`}
+              placeholder="blur"
+              className="w-full"
+              src={InquiryformBanner}
+              alt="img"
+              loading="lazy"
+            />
+          </div>
+          <div className="w-full lg:w-6/12 px-4">
+            <div className="bg-[#ECE1C5]">
+              <div className="px-4 lg:px-[30px] py-4 lg:py-[28px] border-b border-black border-opacity-10">
+                <h2 className="merriweather-font font-normal text-2xl md:text-3xl lg:text-4xl mb-1 text-[#1E1E1E] tracking-[-0.04em]">
+                  Make an inquiry
+                </h2>
+                <p className="text-black font-medium text-base tracking-[-0.04em] mb-0">
+                  Explore partnership opportunities or space rental with BVBS
+                  School. Complete the enquiry form to connect with us and
+                  discuss your needs.
+                </p>
+              </div>
+              <div className="px-4 lg:px-[30px] py-4 lg:py-[30px]">
+                <div className="mb-4 lg:mb-6">
+                  <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formdata.name}
+                    onChange={handleChange}
+                    className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                  />
                 </div>
+                <div className="mb-4 lg:mb-6">
+                  <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formdata.email}
+                    onChange={handleChange}
+                    className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                  />
+                </div>
+                <div className="mb-4 lg:mb-6">
+                  <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
+                    Contact no
+                  </label>
+                  <input
+                    type="text"
+                    name="contact"
+                    value={formdata.contact}
+                    onChange={handleChange}
+                    className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                  />
+                </div>
+                <div className="mb-4 lg:mb-6">
+                  <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
+                    Message
+                  </label>
+                  <textarea
+                    name="message"
+                    value={formdata.message}
+                    onChange={handleChange}
+                    className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-32 lg:h-[157px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                  ></textarea>
+                </div>
+                <div className="flex flex-wrap -mx-4">
+                  <div className="px-4 items-center w-full lg:w-7/12">
+                    <ReCAPTCHA
+                      sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
+                      ref={recaptcha}
+                    />
+                  </div>
+                  <div className="px-4 items-center w-full lg:w-5/12 text-right">
+                    <button
+                      type="button"
+                      onClick={handleSubmit}
+                      className="button-animation rounded px-8 lg:px-12 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]"
+                    >
+                      {loading ? "Submitting..." : "Submit"}
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
 export default EnquirySec;
