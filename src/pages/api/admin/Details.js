@@ -42,6 +42,13 @@ class Details extends Component {
     return Api.post("/about/director/edit" ,data);
   }
 
+  async getGallery() {
+    return Api.get("/facilities/gallery/get");
+  }
+  async getGallerybyCategory(data) {
+    return Api.get(`/facilities/gallery/get/${data}`);
+  }
+
 
   async getfees() {
     return Api.get("/fees/get");

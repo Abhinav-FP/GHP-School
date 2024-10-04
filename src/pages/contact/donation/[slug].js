@@ -4,9 +4,12 @@ import Image from 'next/image';
 import ProductImg from '../../../../public/Contacts/TutionFees2x.png';
 import { useState } from 'react';
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import { addItem } from '@/redux/cartSlice';
 
 export default function Donation() {
-
+  const dispatch = useDispatch();
+  
   const[Qty, setQty] = useState(0);
   function Increment() {
     setQty(Qty + 1);
@@ -14,31 +17,41 @@ export default function Donation() {
   function decrement() {
     setQty(Qty - 1);
   } 
+  const handleAddItem = () => {
+    const newItem = {
+      item: "Sample Item",
+      quantity: Qty,
+      price: 100,
+      imgurl: "/Contacts/TutionFees2x.png",
+    };
+    dispatch(addItem(newItem));
+    console.log("Itms Added successfully")
+  };
 
   return (
     <Layout>
-      <nav aria-label="breadcrumb" class="w-full">
+      <nav aria-label="breadcrumb" className="w-full">
         <div className='mx-auto container sm:container md:container lg:max-w-[1232px] px-4'>
-          <ol class="flex w-full flex-wrap items-center py-6 lg:pt-12 lg:pb-8 ">
-            <li class="flex cursor-pointer items-center text-base md:text-lg lg:text-xl font-medium  antialiased text-[#7f7f7f]  transition-colors duration-300 hover:text-[#EE834E]">
+          <ol className="flex w-full flex-wrap items-center py-6 lg:pt-12 lg:pb-8 ">
+            <li className="flex cursor-pointer items-center text-base md:text-lg lg:text-xl font-medium  antialiased text-[#7f7f7f]  transition-colors duration-300 hover:text-[#EE834E]">
               <a href="#">
                 Home
               </a>
-              <span class="pointer-events-none mx-1 select-none  text-base md:text-lg lg:text-xl font-medium  antialiased text-[#7f7f7f]">
+              <span className="pointer-events-none mx-1 select-none  text-base md:text-lg lg:text-xl font-medium  antialiased text-[#7f7f7f]">
                 /
               </span>
             </li>
-            <li class="flex cursor-pointer items-center text-base md:text-lg lg:text-xl font-medium  antialiased text-[#7f7f7f] transition-colors duration-300 hover:text-[#EE834E]">
+            <li className="flex cursor-pointer items-center text-base md:text-lg lg:text-xl font-medium  antialiased text-[#7f7f7f] transition-colors duration-300 hover:text-[#EE834E]">
               <a href="#">
                 <span>Contact us</span>
               </a>
-              <span class="pointer-events-none mx-2 select-none text-base md:text-lg lg:text-xl font-medium  antialiased text-[#7f7f7f]">
+              <span className="pointer-events-none mx-2 select-none text-base md:text-lg lg:text-xl font-medium  antialiased text-[#7f7f7f]">
                 /
               </span>
             </li>
-            <li class="flex items-center text-base md:text-lg lg:text-xl font-medium  antialiased text-[#7f7f7f] transition-colors duration-300 hover:text-[#EE834E]">
+            <li className="flex items-center text-base md:text-lg lg:text-xl font-medium  antialiased text-[#7f7f7f] transition-colors duration-300 hover:text-[#EE834E]">
               <span
-                class="font-medium text-[#7f7f7f] transition-colors"
+                className="font-medium text-[#7f7f7f] transition-colors"
               >
                 Tuition Fees
               </span>
@@ -69,7 +82,7 @@ export default function Donation() {
                   <button className='text-[#EE834E] font-medium text-2xl tracking-[-0.04em]' onClick={Increment}>+</button>
                 </div>
                 <div className='w-full'>
-                  <button className='block w-full text-[#EE834E] hover:bg-[#EE834E] hover:text-white border border-[#EE834E] text-base lg:text-lg rounded px-4 py-3.5 text-center tracking-[-0.04em]'>Add to cart</button>
+                  <button className='block w-full text-[#EE834E] hover:bg-[#EE834E] hover:text-white border border-[#EE834E] text-base lg:text-lg rounded px-4 py-3.5 text-center tracking-[-0.04em]' onClick={handleAddItem}>Add to cart</button>
                 </div>
               </div>
               <div className='w-full mb-8 lg:mb-10'>

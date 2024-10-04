@@ -1,7 +1,7 @@
 import Details from "@/pages/api/admin/Details";
 import Header from "../Component/Header";
 
-import Nodata from "../Component/Nodata";
+// import Nodata from "../Component/Nodata";
 import LoadingData from "../Component/Loading";
 
 import SideBarAdmin from "../Component/SideBar";
@@ -115,7 +115,8 @@ function Index() {
                                 <LoadingData />
                             ) : (
                                 listing?.length < 0 ? (
-                                    <Nodata />
+                                    // <Nodata />
+                                    <>No Data</>
                                 ) : (
                                     <table className="min-w-full">
                                         <thead>

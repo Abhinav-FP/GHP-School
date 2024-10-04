@@ -27,7 +27,7 @@ export default function Header() {
                 {/* <!-- Current: "text-[#EE834E]" --> */}
                 <ul className="flex space-x-6 lg:space-x-8 xl:space-x-10">
                   <li className="group relative cursor-pointer">
-                    <Link href="/about" className={'text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] ' + (url === '/' ? 'text-[#EE834E]' : 'text-[#1E1E1E]')}>
+                    <Link href="/about" className={'text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] ' + (url === '/about' ? 'text-[#EE834E]' : 'text-[#1E1E1E]')}>
                       About
                       <MdOutlineKeyboardArrowDown className="inline" size={18} />
                     </Link>
@@ -65,7 +65,7 @@ export default function Header() {
                       Academics
                       <MdOutlineKeyboardArrowDown className="inline" size={18} />
                     </Link>
-                    <ul className="invisible min-w-[239px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0">
+                    <ul className="invisible min-w-[189px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0">
                       <li>
                         <Link href="/academics#calendar" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                           Calendar
@@ -89,7 +89,7 @@ export default function Header() {
                       Facilities
                       <MdOutlineKeyboardArrowDown className="inline" size={18} />
                     </Link>
-                    <ul className="invisible min-w-[239px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0">
+                    <ul className="invisible min-w-[189px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0">
                       <li>
                         <Link href="/facilities#houses" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                           Houses
@@ -119,7 +119,7 @@ export default function Header() {
                       Admissions
                       <MdOutlineKeyboardArrowDown className="inline" size={18} />
                     </Link>
-                    <ul className="invisible min-w-[249px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0">
+                    <ul className="invisible min-w-[189px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0">
                       <li>
                         <Link href="/admissions#form" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                         Admission Form 
@@ -143,7 +143,7 @@ export default function Header() {
                       Contact
                       <MdOutlineKeyboardArrowDown className="inline" size={18} />
                     </Link>
-                    <ul className="invisible min-w-[249px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white right-0">
+                    <ul className="invisible min-w-[180px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white -right-8">
                       <li>
                         <Link href="/contact" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
                         Get in touch 

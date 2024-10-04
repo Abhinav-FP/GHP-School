@@ -1,6 +1,6 @@
 import Details from "@/pages/api/admin/Details";
 import Header from "../Component/Header";
-import Nodata from "../Component/Nodata";
+// import Nodata from "../Component/Nodata";
 import SideBarAdmin from "../Component/SideBar";
 import React, { useState, useEffect } from "react";
 import Modal from "../Component/Modal";
@@ -49,7 +49,7 @@ function Index() {
     }, []);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value } = e.target; 
         setFormData((prevData) => ({
             ...prevData,
             [name]: value
@@ -133,7 +133,8 @@ const[deltedata, setDelete] =useState("");
                                     <div className="text-center mt-4">
                                         <Loading/>
                                         </div> ) :  ( listing.length < 0 ? (
-                                    <Nodata />
+                                    // <Nodata />
+                                    <>No Data</>
                                 ) : (
                                     <table className="min-w-full">
                                         <thead>

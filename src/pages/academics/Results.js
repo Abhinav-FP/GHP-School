@@ -5,7 +5,7 @@ const ProfileCard = ({ percentage, name, imagesrc }) => {
     return (
         <div className='text-center w-full sm:w-6/12 md:w-4/12 lg:w-auto px-4 lg:px-0 mb-5 lg:mb-0'>
             <Image className='max-w-full mx-auto rounded-full  block mb-6 md:mb-8 lg:mb-10' src={imagesrc} alt={name} width={210} height={210} />
-            <h3 className='text-[#EE834E] merriweather-font font-normal tracking-[-0.04em] text-center mb-1 text-lg md:text-xl lg:text-2xl'>{percentage}</h3>
+            <h3 className='text-[#EE834E] merriweather-font font-normal tracking-[-0.04em] text-center mb-1 text-lg md:text-xl lg:text-2xl'>{percentage}%</h3>
             <p className='text-[#1E1E1E] text-base font-medium uppercase tracking-[-0.04em]'>{name}</p>
         </div>
     );
@@ -80,7 +80,7 @@ export default function Results() {
 
         <div className='pb-[40px] md:pb-[80px] lg:pb-[100px]'>
             <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto" id="results">
-                <h2 className='merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-6 lg:mb-[36px] text-[#1E1E1E]  tracking-[-0.04em] text-center'>100% results</h2>
+                <h2 className='merriweather-font font-normal capitalize text-2xl md:text-3xl lg:text-4xl mb-6 lg:mb-[36px] text-[#1E1E1E]  tracking-[-0.04em] text-center'>100% results</h2>
                 <h3 className='tracking-[-0.04em] merriweather-font text-[#1E1E1E] text-lg md:text-xl lg:text-2xl mb-6 lg:mb-[36px] text-center'>Grade X</h3>
                 <div className="flex flex-wrap lg:grid lg:gap-8 text-center lg:grid-cols-5 ">
                     {result && result.map((item, index) => (

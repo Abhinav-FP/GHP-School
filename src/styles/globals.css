@@ -17,6 +17,23 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'Gotham';
+  src: url('../pages/fonts/Gotham-BookItalic.eot');
+  src: url('../pages/fonts/Gotham-BookItalic.eot?#iefix') format('embedded-opentype'),
+      url('../pages/fonts/Gotham-BookItalic.woff2') format('woff2'),
+      url('../pages/fonts/Gotham-BookItalic.woff') format('woff'),
+      url('../pages/fonts/Gotham-BookItalic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+body{
+  background-color: #ffff;
+}
+
+ 
+
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 @media (prefers-color-scheme: dark) {
@@ -30,6 +47,8 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: 'Gotham';
+  -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 @layer utilities {
@@ -159,4 +178,49 @@ html{
 [type='checkbox']:indeterminate:hover,[type='checkbox']:indeterminate:focus {
   border-color: transparent;
   background-color: currentColor;
+}
+
+
+@media (max-width:575px) {
+  .director-box { 
+    display: block;
+  }
+}
+
+/* Add this to your global CSS file or a specific CSS module */
+.custom-swiper-navigation .swiper-button-next,
+.custom-swiper-navigation .swiper-button-prev {
+  color: white; /* Change arrow color to white */
+}
+
+.custom-swiper-navigation .swiper-button-next::after,
+.custom-swiper-navigation .swiper-button-prev::after {
+  font-size: 20px; /* You can adjust the arrow size if needed */
+}
+
+.Gotham-reguler{
+  font-family: 'Gotham';
+  font-weight: 400;
+  font-style: italic;
+}
+.button-animation {  
+  background: #EE834E;
+  background-image: linear-gradient(to left, transparent, transparent 50%, #ECCD6E 50%, #ECCD6E); background-position: 100% 0;
+  background-size: 200% 100%;
+  transition: all 0.25s ease-in;
+}
+.button-animation:hover {
+  background-position: 0 0;
+  color: #333;
+}
+
+.button-animation-border {  
+  background: #fff;
+  background-image: linear-gradient(to left, transparent, transparent 50%, #ECCD6E 50%, #ECCD6E); background-position: 100% 0;
+  background-size: 200% 100%;
+  transition: all 0.25s ease-in;
+}
+.button-animation-border:hover {
+  background-position: 0 0;
+  color: #333;
 }
