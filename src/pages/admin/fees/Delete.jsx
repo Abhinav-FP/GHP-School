@@ -46,23 +46,7 @@ function Delete({ grade , getfeesdata}) {
         </button>
         {isOpen &&
             <Modal isOpen={isOpen} onClose={handleClose}>
-                <div className=" max-w-[200px] relative bg-white w-full rounded-[30px] lg:rounded-[40px] h-auto m-auto">
-                    <button
-                        type="button"
-                        onClick={handleClose}
-                        className="absolute top-5 md:top-6 lg:top-9 right-6 lg:right-10 text-gray-700 hover:text-gray-900"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-6 w-6"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-
+                <div className="  relative bg-white w-full rounded-[30px] lg:rounded-[40px] h-auto m-auto">
                     <div className="border-b border-black border-opacity-10 pt-6 pb-5 px-6 lg:pt-8 lg:pb-6 lg:px-10">
                         <h2 className="text-xl lg:text-2xl text-[#212121] tracking-[-0.04em] font-semibold mb-0">
                             Delete

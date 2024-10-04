@@ -119,8 +119,8 @@ function SideBarAdmin() {
                     </li>
 
                     <li>
-                        <Link href="/admin/enquiry"
-                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#0367F7] ${pathname === "/admin/enquiry" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
+                        <Link href="/admin/inquiry"
+                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#0367F7] ${pathname === "/admin/inquiry" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
                         >
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clipPath="pathname(#clip0_464_1678)">

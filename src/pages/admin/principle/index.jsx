@@ -191,31 +191,8 @@ function Index() {
         </div>
         {isOpen &&
             <Modal isOpen={isOpen} onClose={handleClose}>
-                <style>
-                    {`
-                                    /* Corrected CSS for modal width */
-                                    #modal .sm\\:max-w-2xl {
-                                    margin: auto;
-                                    box-shadow:none;
-                                    max-width: 561px !important; /* Ensure !important is spelled correctly */
-                                    }
-                                `}
-                </style>
                 <div className="relative bg-white w-full rounded-[30px] lg:rounded-[40px] h-auto m-auto">
-                    <button
-                        type="button"
-                        onClick={handleClose}
-                        className="absolute top-5 md:top-6 lg:top-9 right-6 lg:right-10 text-gray-700 hover:text-gray-900">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-6 w-6"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
+                 
                     <div className="border-b border-black border-opacity-10 pt-6 pb-5 px-6 lg:pt-8 lg:pb-6 lg:px-10">
                         <h2 className="text-xl lg:text-2xl  text-[#212121] tracking-[-0.04em] font-semibold mb-0">Edit  Principle </h2>
                     </div>
@@ -231,11 +208,12 @@ function Index() {
                                         className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
                                     />
                                 </div>
-                                <div className="mb-3 lg:mb-[25px]">
+                                <div className="mb-3 lg:mb-[15px]">
                                     <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">Upload Image</label>
                                     <img
                                         src={imagePreview ? imagePreview : formdata?.photo}
                                         alt={formdata?.name}
+                                        className="w-48 h-48 object-cover rounded-md"
                                     />
                                 </div>
 

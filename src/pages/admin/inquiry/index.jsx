@@ -79,7 +79,7 @@ function Index() {
                                     <tbody>
                                         {listing.map((item, index) => (
                                             <tr
-                                                key={item.id} // Use unique keys instead of index
+                                                key={index} // Use unique keys instead of index
                                                 className="bg-white border-t transition duration-300 ease-in-out hover:bg-gray-100"
                                             >
                                                 <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">
@@ -99,7 +99,7 @@ function Index() {
                                                 </td>
                                                 <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] text-center space-x-2">
                                                     <div className="flex space-x-2 justify-center">
-                                                        <DeleteEnquiry id={item?.id} getenquirydata={getEnquiryData} />
+                                                        <DeleteEnquiry id={item?._id} getenquirydata={getEnquiryData} />
                                                     </div>
                                                 </td>
                                             </tr>

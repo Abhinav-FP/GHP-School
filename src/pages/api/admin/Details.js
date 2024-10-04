@@ -85,8 +85,8 @@ class Details extends Component {
     return Api.post("/inquiry/add" ,data);
   }
 
-  async inquirydelete(data) {
-    return Api.post("/inquiry/delete" ,data);
+  async inquirydelete(id) {
+    return Api.post("/inquiry/delete" , id);
   }
   async inquiryget() {
     return Api.get("/inquiry/get");
