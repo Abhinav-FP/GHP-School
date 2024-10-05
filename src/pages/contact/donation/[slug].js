@@ -40,6 +40,7 @@ export default function Donation() {
       setIsAdded(false);
     }, 5000);
   };
+
   useEffect(() => {
     if (slug) {
       setLoading(true);

@@ -18,8 +18,8 @@ const cartSlice = createSlice({
       }
     },
     removeItem: (state, action) => {
-      const index = action.payload;
-      state.cartItems = state.cartItems.filter((_, i) => i !== index);
+      const id = action.payload; // We now expect the item's id to be passed as the payload
+      state.cartItems = state.cartItems.filter(item => item.id !== id);
     },
     clearCart: (state) => {
       state.cartItems = [];
@@ -29,3 +29,4 @@ const cartSlice = createSlice({
 
 export const { addItem, removeItem, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;
+

@@ -1,12 +1,14 @@
 import Layout from "@/layout/Layout";
 import React, { useState } from "react";
 import Image from "next/image";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { formatMultiPrice } from "@/hooks/ValueData";
+import { removeItem } from "@/redux/cartSlice";
 
 export default function Index() {
   const cartItemsRedux = useSelector((state) => state.cart.cartItems);
   console.log("cartItemsRedux", cartItemsRedux);
+  const dispatch = useDispatch();
   // const cartItems = [
   //   {
   //     Image: "/Facilities/Gallery1.png",
@@ -24,6 +26,9 @@ export default function Index() {
   const totalPrice = cartItemsRedux.reduce((sum, item) => {
     return sum + Number(item?.price * item?.quantity);
   }, 0);
+  const handleRemove = (id) => {
+    dispatch(removeItem(id)); 
+  };
 
   return (
     <Layout>
@@ -137,6 +142,7 @@ export default function Index() {
                               </div>
                               <div className="w-[calc(100%-71px)] lg:w-[calc(100%-91px)] max-w-[179px] pl-2.5 tracking-[-0.04em] text-[#1E1E1E] font-medium merriweather-font font-normal text-base md:text-lg lg:text-xl">
                                 {item.name}
+                                <button onClick={() => handleRemove(item.id)}>Remove</button>
                               </div>
                             </div>
                           </td>
