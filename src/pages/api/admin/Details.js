@@ -94,6 +94,20 @@ class Details extends Component {
   async inquiryget() {
     return Api.get("/inquiry/get");
   }
+
+  async donationAdd(data) {
+    return Api.post("/donation/add" ,data);
+  }
+
+  async donationdelete(data) {
+    return Api.post("/donation/delete" , data);
+  }
+  async donationgetwithId(data) {
+    return Api.get(`/donation/get/${data}`);
+  }
+  async donationget() {
+    return Api.get(`/donation/get/`);
+  }
  
   // /result/get/XII
    
