@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
 function Delete({ grade , getfeesdata}) {
+    console.log("grade",grade)
     const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -18,7 +19,7 @@ function Delete({ grade , getfeesdata}) {
         const response = main.feedelete({ grade: grade });
         response
             .then((res) => {
-                if (res && res?.data && res?.data?.status) {
+                if (res && res?.data ) {
                     toast.success(res.data.message);
                     setLoading(false);
                     handleClose();

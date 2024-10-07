@@ -8,59 +8,18 @@ import Modal from "../Component/Modal";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import NoData from "../Component/NoData";
-import Delete from "./Delete";
 function Index() {
     const [isOpen, setIsOpen] = useState(false);
     const [listing, setLisitng] = useState([])
+    console.log(listing)
     const [Loading, setLoading] = useState(false)
-    const [imagePreview, setImagePreview] = useState(null);
-    const [formdata, setFormdata] = useState({
-        "grade": "",
-        "first": null,
-        "second": null,
-        "third": null,
-        "fourth": null,
-        "total": null,
-    });
-
-    useEffect(() => {
-        const total =
-            Number(formdata.first) +
-            Number(formdata.second) +
-            Number(formdata.third) +
-            Number(formdata.fourth);
-        setFormdata((prevData) => ({
-            ...prevData,
-            total: total, 
-        }));
-    }, [formdata.first, formdata.second, formdata.third, formdata.fourth]);
-
-    const handleClose = () => {
-        setIsOpen(false);
-    };
-
-    console.log("listing", listing)
-
-
-    const handlesenddata = (item) => {
-        setIsOpen(true);
-        setFormdata({
-            grade: item.name || '',
-            text: item.text || '',
-            photo: item.photo || '',
-            id: item?._id
-
-        });
-        setImagePreview(item.photo);
-    };
-
-    const getfeesdata = () => {
+    const getPayment = () => {
         setLoading(true);
         const main = new Details();
-        main.getfees()
+        main.Sysllabas()
             .then((r) => {
                 setLoading(false);
-                setLisitng(r?.data?.fees);
+                setLisitng(r?.data?.syllabus);
             })
             .catch((err) => {
                 setLoading(false);
@@ -70,55 +29,23 @@ function Index() {
     };
 
     useEffect(() => {
-        getfeesdata();
+        getPayment();
     }, []);
-
-
-    const router = useRouter();
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormdata({
-            ...formdata,
-            [name]: value
-        });
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        const main = new Details();
-        try {
-            const res = await main.feesAdd(formdata);
-            if (res?.data) {
-                toast.success(res.data.message);
-                handleClose();
-              getfeesdata();
-            } else {
-                toast.error(res.message);
-            }
-        } catch (error) {
-            toast.error("An error occurred while updating.");
-        } finally {
-            setLoading(false);
-        }
-    };
+    
 
     return (<>
         <div className="md:flex flex-wrap  bg-[#F5F6FB] items-start">
             <SideBarAdmin />
             {/* right sidebar  */}
             <div className="w-full lg:w-[calc(100%-304px)]">
-                <Header title={"Manage Fees structure"} />
+                <Header title={"Syllabus"} />
                 {/* Overview */}
                 <div className="px-4 py-2 lg:px-10 lg:py-2.5">
                     {/*  */}
                     <div className="bg-white rounded-[20px] mb-[30px]">
                         <div className="py-3 py-4 lg:py-[23px] px-4 md:px-6 lg:px-10 flex flex-wrap justify-between items-center border-b border-black  border-opacity-10">
-                            <h3 className=" text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">Fees  </h3>
-                            <button onClick={() => setIsOpen(true)} className="text-white bg-[#0367F7] hover:bg-white hover:text-[#0367F7] text-sm font-normal tracking-[-0.03em] py-2 px-3 xl:px-3.5 border border-[#0367F7] rounded-md outline-none focus:outline-none ease-linear transition-all duration-150">
-                                Add New Fees
-                            </button>
+                            <h3 className=" text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">Syllabus  </h3>
+                           
                         </div>
                         <div className="overflow-x-auto">
                             {Loading ? (
@@ -135,25 +62,10 @@ function Index() {
                                                     S. No.
                                                 </th>
                                                 <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
-                                                    Class
+                                                    Class 
                                                 </th>
                                                 <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
-                                                    I
-                                                </th>
-                                                <th className="px-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
-                                                    II
-                                                </th>
-                                                <th className="pr-4 md:pr-6 lg:pr-10 pl-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em] text-center">
-                                                    III
-                                                </th>
-                                                <th className="pr-4 md:pr-6 lg:pr-10 pl-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em] text-center">
-                                                    IV
-                                                </th>
-                                                <th className="pr-4 md:pr-6 lg:pr-10 pl-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em] text-center">
-                                                    Total Fees
-                                                </th>
-                                                <th className="pr-4 md:pr-6 lg:pr-10 pl-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em] text-center">
-                                                    Action
+                                                Syllabus Link
                                                 </th>
                                             </tr>
                                         </thead>
@@ -164,47 +76,14 @@ function Index() {
                                                         {index + 1}
                                                     </td>
                                                     <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                        {item?.grade}
+                                                        {item?.text}
                                                     </td>
                                                     <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                        {item?.first
+                                                        {item?.link
                                                         }
                                                     </td>
-                                                    <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                        {item?.second}
-                                                    </td>
-                                                    <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                        {item?.third}
-                                                    </td>
-                                                    <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                        {item?.fourth
-                                                        }
-                                                    </td>
-                                                    <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                        {item?.total
-                                                        }
-                                                    </td>
-                                                    <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] text-center tracking-[-0.03em] space-x-2">
-                                                        <div className="flex space-x-2 justify-center">
-                                                            <button
-                                                                onClick={() => handlesenddata(item)}
-                                                                className="text-[#0367F7] h-[30px] w-[30px] bg-[#0367F7] bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center"
-                                                            >
-                                                                <svg className="inline" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path
-                                                                        d="M4 14.5349L8.413 14.5199L18.045 4.97988C18.423 4.60188 18.631 4.09988 18.631 3.56588C18.631 3.03188 18.423 2.52988 18.045 2.15188L16.459 0.565875C15.703 -0.190125 14.384 -0.186125 13.634 0.562875L4 10.1049V14.5349ZM15.045 1.97988L16.634 3.56288L15.037 5.14488L13.451 3.55988L15.045 1.97988ZM6 10.9389L12.03 4.96588L13.616 6.55188L7.587 12.5229L6 12.5279V10.9389Z"
-                                                                        fill="#0367F7"
-                                                                    />
-                                                                    <path
-                                                                        d="M2 18.5219H16C17.103 18.5219 18 17.6249 18 16.5219V7.85388L16 9.85388V16.5219H5.158C5.132 16.5219 5.105 16.5319 5.079 16.5319C5.046 16.5319 5.013 16.5229 4.979 16.5219H2V2.52188H8.847L10.847 0.521875H2C0.897 0.521875 0 1.41888 0 2.52188V16.5219C0 17.6249 0.897 18.5219 2 18.5219Z"
-                                                                        fill="#0367F7"
-                                                                    />
-                                                                </svg>
-                                                            </button>
-
-                                                         <Delete grade={item?.grade}/>
-                                                        </div>
-                                                    </td>
+                                                    
+                                                 
                                                 </tr>
                                             ))}
                                         </tbody>
