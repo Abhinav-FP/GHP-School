@@ -1,33 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import Details from '../api/admin/Details';
 
 export default function index() {
+    const [listing, setLisitng] = useState("");
+    const [Loading, setLoading] = useState(false);
+
+    const syllabus = () => {
+      setLoading(true);
+      const main = new Details();
+      main
+        .syllabusGet()
+        .then((r) => {
+          setLoading(false);
+          setLisitng(r?.data?.syllabus);
+        })
+        .catch((err) => {
+          setLoading(false);
+          setLisitng([]);
+          console.log("error", err);
+        });
+    };
   
-    const gradeItems = [
-        {
-            ClassGrade: 'RBSC Syllabus for VII Grade ',
-            link: 'PDFlink1' 
-        },   
-        {
-            ClassGrade: 'RBSC Syllabus for VIII Grade',
-            link: 'PDFlink2' 
-        },   
-        {
-            ClassGrade: 'RBSC Syllabus for IX Grade',
-            link: 'PDFlink3' 
-        },   
-        {
-            ClassGrade: 'RBSC Syllabus for X Grade',
-            link: 'PDFlink4' 
-        },  
-        {
-            ClassGrade: 'RBSC Syllabus for XI ARTS Grade',
-            link: 'PDFlink4' 
-        },  
-        {
-            ClassGrade: 'RBSC Syllabus for XI COM Grade',
-            link: 'PDFlink4' 
-        },      
-    ];
+    useEffect(() => {
+        syllabus();
+    }, []);
+    // const gradeItems = [
+    //     {
+    //         ClassGrade: 'RBSC Syllabus for VII Grade ',
+    //         link: 'PDFlink1' 
+    //     },   
+    //     {
+    //         ClassGrade: 'RBSC Syllabus for VIII Grade',
+    //         link: 'PDFlink2' 
+    //     },   
+    //     {
+    //         ClassGrade: 'RBSC Syllabus for IX Grade',
+    //         link: 'PDFlink3' 
+    //     },   
+    //     {
+    //         ClassGrade: 'RBSC Syllabus for X Grade',
+    //         link: 'PDFlink4' 
+    //     },  
+    //     {
+    //         ClassGrade: 'RBSC Syllabus for XI ARTS Grade',
+    //         link: 'PDFlink4' 
+    //     },  
+    //     {
+    //         ClassGrade: 'RBSC Syllabus for XI COM Grade',
+    //         link: 'PDFlink4' 
+    //     },      
+    // ];
    
     return (
         <>
@@ -44,18 +66,22 @@ export default function index() {
                             </tr>
                         </thead>
                         <tbody>
-                             {gradeItems && gradeItems?.map((item, index) => (
+                             {listing && listing?.map((item, index) => (
                                 <tr key={index}>
                                     <td className='text-[#666666] text-base px-3.5 py-5 tracking-[-0.04em] border border-black border-opacity-10'>
                                         {index + 1}
                                     </td>
-                                    <td className='text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10'>
-                                        {item?.ClassGrade}
+                                    <td className='text-[#666666] uppercase text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10'>
+                                        {item?.text}
                                     </td>
                                     <td className='text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10'> 
-                                        <a href={item?.link} className='text-[#EE834E] hover:text-[#ECCD6E] underline'>
+                                        <button 
+                                        onClick={() =>
+                                            (window.location.href = `${item?.link}`)
+                                          }
+                                        className='text-[#EE834E] hover:text-[#ECCD6E] underline'>
                                         Download PDF
-                                        </a> 
+                                        </button> 
                                     </td>
 
                                 </tr>

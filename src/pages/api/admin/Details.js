@@ -114,6 +114,10 @@ class Details extends Component {
   async vacancyGet() {
     return Api.get(`/career/vacancy/get`);
   }
+
+  async syllabusGet() {
+    return Api.get(`/academics/syllabus/get`);
+  }
  
   // /result/get/XII
    

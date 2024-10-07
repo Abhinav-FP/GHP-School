@@ -79,13 +79,19 @@ export default function JoinTeam() {
           resume: null,
           about: "",
         });
+        setFormLoading(false);
       } else {
         toast.error(res.message);
+        setFormLoading(false);
+
       }
     } catch (error) {
       toast.error("An error occurred while submitting.");
+      setFormLoading(false);
+
     } finally {
-      setLoading(false);
+      setFormLoading(false);
+
     }
   };
 
