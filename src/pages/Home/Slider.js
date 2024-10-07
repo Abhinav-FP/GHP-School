@@ -112,10 +112,10 @@ export default function Slider() {
                   className="flex flex-col text-white lg:w-[170px]"
                   key={index}
                 >
-                  <h3 className="text-lg md:text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
+                  <h3 className="uppercase text-lg md:text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
                     {item?.text1}
                   </h3>
-                  <p className="font-medium tracking-[-0.04em] text-base">
+                  <p className="uppercase font-medium tracking-[-0.04em] text-base">
                     {item?.text2}
                   </p>
                 </div>
