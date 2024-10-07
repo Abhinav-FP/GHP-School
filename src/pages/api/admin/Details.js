@@ -117,6 +117,10 @@ class Details extends Component {
   async AddCard(data) {
     return Api.post(`/payment/create` ,data);
   }
+
+  async PaymentSave(data) {
+    return Api.post(`/verify-payment` ,data);
+  }
  
   // /result/get/XII
    

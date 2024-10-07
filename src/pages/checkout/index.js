@@ -8,7 +8,6 @@ import Details from "../api/admin/Details";
 import { useRazorpay, RazorpayOrderOptions } from "react-razorpay";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
-
 export default function Index() {
   const router = useRouter();
   const { error, isLoading, Razorpay } = useRazorpay();
@@ -17,50 +16,39 @@ export default function Index() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
-  // Calculating total price from cart items
   const totalPrice = cartItemsRedux.reduce((sum, item) => {
     return sum + Number(item?.price * item?.quantity);
   }, 0);
 
-  // Remove item from cart
   const handleRemove = (id) => {
     dispatch(removeItem(id));
   };
+console.log("totalPrice",totalPrice)
 
   const CurrentDate = new Date();
 
   const handleSubmit = async () => {
     setLoading(true);
+    const main = new Details();
+    const record = new FormData();
+    record.append("amount", totalPrice);
+    record.append("currency", "INR");
+    record.append("receipt", "receipt#1");
     try {
-      // Prepare the data
-      const response = await fetch('https://ghp-school-backend.vercel.app/payment/create', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          amount: totalPrice, // Assuming totalPrice is the price in INR
-          currency: 'INR',
-          receipt: 'receipt#1', // Optional
-        }),
-      });
-
-      const data = await response.json();
-      if (data.success) {
+      const res = await main.AddCard(record);
+      if (res && res.data && res.data.orderId) {
         const options = {
           key: RAZOPAY_KEY,
-          amount: data.amount, // Use the amount returned from the server
-          currency: data.currency,
-          order_id: data.orderId, // Use the order ID returned from the server
+          amount: totalPrice * 100, 
+          currency: "INR",
           name: "Your Company Name",
           description: "Payment for services",
+          order_id: res.data.orderId,
           handler: function (response) {
-            console.log(response)
             toast.success("Payment Successful");
-            // Handle successful payment logic
-            savePaymentDetails(response.
-              razorpay_order_id
-              , response.razorpay_payment_id);
+            localStorage.setItem("response", JSON.stringify(response));
+            // Save payment details
+            savePaymentDetails(response.razorpay_order_id, response.razorpay_payment_id);
           },
           prefill: {
             name: "Customer Name",
@@ -75,46 +63,106 @@ export default function Index() {
           },
         };
 
-        // Open Razorpay payment window
         const rzp = new Razorpay(options);
         rzp.on("payment.failed", function (response) {
           toast.error("Payment Failed");
         });
         rzp.open();
       } else {
-        toast.error("Failed to create Razorpay order.");
+        toast.error(res.data.message || "Failed to create order");
       }
     } catch (error) {
-      console.error("Error creating order:", error);
-      toast.error("Error creating order.");
+      toast.error("Error creating order");
+      console.error("Order creation error:", error); // Log error for debugging
     } finally {
       setLoading(false);
     }
   };
 
+  // const handleSubmit = async () => {
+  //   setLoading(true);
+  //   try {
+  //     const response = await fetch('https://ghp-school-backend.vercel.app/payment/create', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         amount: totalPrice, 
+  //         currency: 'INR',
+  //         receipt: 'receipt#1',
+  //       }),
+  //     });
 
-  // Function to save payment details
-  const savePaymentDetails = (orderId, paymentId) => {
-    // Send the payment details back to your backend
-    fetch('http://localhost:8000/payment/verify-payment', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        order_id: orderId,
-        payment_id: paymentId,
-        amount: totalPrice,
-        currency: "INR",
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Payment saved:", data);
-      })
-      .catch((error) => {
-        console.error("Error saving payment:", error);
-      });
+  //     const data = await response.json();
+  //     if (data.success) {
+  //       const options = {
+  //         key: RAZOPAY_KEY,
+  //         amount: data.amount, 
+  //         currency: data.currency,
+  //         order_id: data.orderId,
+  //         name: "Your Company Name",
+  //         description: "Payment for services",
+  //         handler: function (response) {
+  //           console.log(response)
+  //           toast.success("Payment Successful");
+  //           savePaymentDetails(response.
+  //             razorpay_order_id
+  //             , response.razorpay_payment_id);
+  //         },
+  //         prefill: {
+  //           name: "Customer Name",
+  //           email: "customer@example.com",
+  //           contact: "1234567890",
+  //         },
+  //         notes: {
+  //           address: "Razorpay Corporate Office",
+  //         },
+  //         theme: {
+  //           color: "#F37254",
+  //         },
+  //       };
+  //       const rzp = new Razorpay(options);
+  //       rzp.on("payment.failed", function (response) {
+  //         toast.error("Payment Failed");
+  //       });
+  //       rzp.open();
+  //     } else {
+  //       toast.error("Failed to create Razorpay order.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error creating order:", error);
+  //     toast.error("Error creating order.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+
+
+  const savePaymentDetails = async (orderId, paymentId) => {
+    setLoading(true);
+    try {
+      const main = new Details();
+      const formdata = new FormData();
+      formdata.append("order_id", orderId)
+      formdata.append("payment_id", paymentId)
+      formdata.append("amount", totalPrice)
+      formdata.append("currency", "INR")
+      const response = await main.PaymentSave(formdata);
+      if (response?.data?.status) {
+        toast.success(response.data.message);
+        handleClose();
+        principleData();
+
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.data?.message || "An error occurred");
+    } finally {
+      setLoading(false);
+    }
   };
 
 
