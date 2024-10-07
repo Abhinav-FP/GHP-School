@@ -119,7 +119,14 @@ class Details extends Component {
     return Api.get(`/academics/syllabus/get`);
   }
   async syllabusAdd(data) {
-    return Api.post(`/academics/syllabus/add`,data);
+    return Api.post(`/academics/syllabus/add`,data);}
+    
+  async AddCard(data) {
+    return Api.post(`/payment/create` ,data);
+  }
+
+  async PaymentSave(data) {
+    return Api.post(`/verify-payment` ,data);
   }
  
   // /result/get/XII
