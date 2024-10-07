@@ -129,7 +129,7 @@ class Details extends Component {
   }
 
   async PaymentSave(data) {
-    return Api.post(`/verify-payment`, data);
+    return Api.post(`/payment/verify-payment`, data);
   }
 
 
