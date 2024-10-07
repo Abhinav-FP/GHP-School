@@ -18,7 +18,7 @@ class Details extends Component {
   }
   async deleteFaculty(data) {
     return Api.post("/about/faculty/delete", data);
-  }  
+  }
   async verify() {
     return Api.get("/user/verify");
   }
@@ -27,7 +27,7 @@ class Details extends Component {
     return Api.get("/home/banner/get");
   }
   async addhomebanner(data) {
-    return Api.post("/home/banner/add",data);
+    return Api.post("/home/banner/add", data);
   }
 
   async getprinciple() {
@@ -36,13 +36,23 @@ class Details extends Component {
 
   async addprinciple(data) {
     return Api.post("/about/principal/edit", data);
-  
+
+  }
+
+  async paymentget() {
+    return Api.get("/payment/paymentget" );
+
+  }
+
+  async Sysllabas() {
+    return Api.get("/academics/syllabus/get" );
+
   }
   async getdirector() {
     return Api.get("/about/director/get");
   }
   async editdirector(data) {
-    return Api.post("/about/director/edit" ,data);
+    return Api.post("/about/director/edit", data);
   }
 
   async getGallery() {
@@ -58,11 +68,11 @@ class Details extends Component {
   }
 
   async feesAdd(data) {
-    return Api.post("/fees/add" ,data);
+    return Api.post("/fees/add", data);
   }
 
   async feedelete(data) {
-    return Api.post("/fees/delete" ,data);
+    return Api.post("/fees/delete", data);
   }
   async careerget() {
     return Api.get("/career/vacancy/get");
@@ -77,7 +87,7 @@ class Details extends Component {
   async careerapply(data) {
     return Api.post("/career/apply", data);
   }
- 
+
 
   async Adminline() {
     return Api.get("/home/admission/get");
@@ -88,22 +98,22 @@ class Details extends Component {
 
 
   async inquiryAdd(data) {
-    return Api.post("/inquiry/add" ,data);
+    return Api.post("/inquiry/add", data);
   }
 
   async inquirydelete(id) {
-    return Api.post("/inquiry/delete" , id);
+    return Api.post("/inquiry/delete", id);
   }
   async inquiryget() {
     return Api.get("/inquiry/get");
   }
 
   async donationAdd(data) {
-    return Api.post("/donation/add" ,data);
+    return Api.post("/donation/add", data);
   }
 
   async donationdelete(data) {
-    return Api.post("/donation/delete" , data);
+    return Api.post("/donation/delete", data);
   }
   async donationgetwithId(data) {
     return Api.get(`/donation/get/${data}`);
@@ -122,15 +132,14 @@ class Details extends Component {
     return Api.post(`/academics/syllabus/add`,data);}
     
   async AddCard(data) {
-    return Api.post(`/payment/create` ,data);
+    return Api.post(`/payment/create`, data);
   }
 
   async PaymentSave(data) {
-    return Api.post(`/verify-payment` ,data);
+    return Api.post(`/verify-payment`, data);
   }
- 
-  // /result/get/XII
-   
+
+
   render() {
     return (
       <div>
