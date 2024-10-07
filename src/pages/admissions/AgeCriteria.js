@@ -29,7 +29,7 @@ export default function AgeCriteria() {
   ];
   return (
     <div className="bg-white pb-[40px] md:pb-[80px] lg:pb-[100px]" id="ageCriteria">
-      <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto">
+      <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto">
         <h2 className='merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-3 lg:mb-4 text-[#1E1E1E]  tracking-[-0.04em] text-center'>Age Criteria</h2>
         <p className='text-[#666666] font-medium text-base gotham-font text-center mb-1.5 tracking-[-0.04em] text-center mb-6 lg:mb-10'>The minimum age criteria for admission as per the Rajasthan Board (RBSE) typically are as follows:</p>
         <div className='overflow-x-auto'>

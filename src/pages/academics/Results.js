@@ -7,7 +7,7 @@ const ProfileCard = ({ percentage, name, imagesrc }) => {
       <Image
        blurDataURL={`${imagesrc}?q=1`}
                       placeholder="blur"
-        className="max-w-full mx-auto rounded-full  block mb-6 md:mb-8 lg:mb-10"
+        className="max-w-full mx-auto rounded-full h-[160px] w-[160px] lg:h-[210px] lg:w-[210px] object-cover object-top block mb-6 md:mb-8 lg:mb-10"
         src={imagesrc}
         alt={name}
         width={210}
@@ -91,7 +91,7 @@ export default function Results() {
   return (
     <div className="pb-[40px] md:pb-[80px] lg:pb-[100px]">
       <div
-        className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto"
+        className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto"
         id="results"
       >
         <h2 className="merriweather-font font-normal capitalize text-2xl md:text-3xl lg:text-4xl mb-6 lg:mb-[36px] text-[#1E1E1E]  tracking-[-0.04em] text-center">

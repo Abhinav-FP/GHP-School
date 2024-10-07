@@ -14,7 +14,7 @@ export default function Footer() {
   return (
     <>
       <div className="z-[1] relative bg-[#FCFBF4] py-[40px] md:py-[60px] lg:py-[70px] ">
-        <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto ">
+        <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto ">
           <div className="flex flex-wrap -mx-2">
             <div className="w-full lg:w-7/12 px-2 mb-6 lg:mb-0">
               <h3 className="pb-3 md:pb-4 lg:pb-5 border-b border-black border-opacity-10 text-xl lg:text-2xl merriweather-font font-medium lg:inline-block tracking-[-0.04em] mb-5">
@@ -126,7 +126,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="z-[1] relative bg-[#FCFBF4] border-t border-black border-opacity-10 py-5">
-        <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto">
+        <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto">
           <p className="text-[#1E1E1E] opacity-50 tracking-[-0.04em] font-medium text-center text-base">
             © Bal Vishwa Bharti School, 2024
           </p>

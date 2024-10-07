@@ -17,7 +17,7 @@ export default function Header() {
   return (
     <>
       <nav className="bg-white py-3 lg:py-3.5 border-b border-black border-opacity-10">
-        <div className="mx-auto container sm:container md:container lg:max-w-[1232px] px-4">
+        <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
           <div className="relative flex items-center justify-between">
             <div className="flex-shrink-0">
               <Link href="/"><Image className="max-w-full w-auto max-h-[70px] md:max-h-[70px] lg:max-h-[91px]" src={Logo} alt="BVBS School logo" /></Link>

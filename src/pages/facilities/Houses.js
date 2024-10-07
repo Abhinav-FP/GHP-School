@@ -35,7 +35,7 @@ export default function Houses() {
   return (
     <div className="bg-white py-[40px] md:py-[80px] lg:py-[100px]">
       <div
-        className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto"
+        className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto"
         id="houses"
       >
         <h1 className="capitalize merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-2 text-[#1E1E1E]  tracking-[-0.04em] mb-4 lg:mb-5 text-center ">

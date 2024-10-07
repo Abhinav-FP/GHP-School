@@ -33,7 +33,7 @@ export default function Index() {
   return (
     <Layout>
       <div className="w-full bg-white py-[50px] md:py-[70px] lg:py-[100px]">
-        <div className="mx-auto container sm:container md:container lg:max-w-[1232px] px-4">
+        <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
           <div className="flex flex-wrap -mx-4 md:-mx-6 lg:-mx-10">
             <div className="w-full lg:w-6/12 px-4 md:px-6 lg:px-10">
               <div className="bg-[#ECE1C5]">

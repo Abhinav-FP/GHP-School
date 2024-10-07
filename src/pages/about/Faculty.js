@@ -25,7 +25,7 @@ export default function Faculty() {
   }, []);
   return (
     <div className="bg-white pt-[40px] md:pt-[80px] lg:pt-[100px]" id="faculty">
-      <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto">
+      <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto">
         <h2 className='merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-3 lg:mb-4 text-[#1E1E1E]  tracking-[-0.04em] text-center'>Faculty</h2>
         <div className='overflow-x-auto'>
           <table className="border border-gray-200 w-full">

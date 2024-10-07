@@ -89,7 +89,7 @@ export default function Slider() {
                   priority="true"
                 />
                   <div className="absolute h-full flex items-center left-0 w-full top-1/2 -translate-y-1/2 sliderbg ">
-                    <div className="mx-auto container sm:container md:container lg:max-w-[1232px] px-4">
+                    <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
                       <h2 className="merriweather-font font-medium tracking-[-0.04em] text-center text-3xl  md:text-4xl lg:text-5xl mb-3">
                         {slide?.heading}
                       </h2>
@@ -104,7 +104,7 @@ export default function Slider() {
         </Swiper>
       </div>
       <div className="z-[1] relative bg-[#EE834E] py-[35px] md:py-[40px] lg:py-[62px]">
-        <div className="mx-auto container sm:container md:container lg:max-w-[1232px] px-4">
+        <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
           <div className="grid gap-5 lg:gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-5">
             {data &&
               data?.map((item, index) => (

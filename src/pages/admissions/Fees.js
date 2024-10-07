@@ -201,7 +201,7 @@ export default function Fees() {
 
     return (
         <div className='bg-white pb-[40px] md:pb-[80px] lg:pb-[100px]' id="fees">
-            <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto">
+            <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto">
                 <h2 className='merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-3 lg:mb-4 text-[#1E1E1E]  tracking-[-0.04em] text-center'>Fee Structure</h2>
                 <div className='overflow-x-auto mb-6 lg:mb-10'>
                 <table className="border border-gray-200 w-full">

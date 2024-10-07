@@ -49,7 +49,7 @@ function EnquirySec() {
 
   return (
     <div className="bg-white pb-[50px] md:pb-[70px] lg:pb-[100px]">
-      <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto">
+      <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto">
         <div className="flex flex-wrap items-center -mx-4 grid-cols-4">
           <div className="w-full lg:w-6/12 px-4 mb-6 lg:mb-0">
             <Image

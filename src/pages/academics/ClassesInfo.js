@@ -56,7 +56,7 @@ export default function ClassesInfo() {
   return (
     <>
       <div className="pb-[100px]">
-        <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto ">
+        <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto ">
           <ul>
             {faqItems &&
               faqItems.map((item, index) => (

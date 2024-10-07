@@ -62,7 +62,7 @@ export default function Donation() {
   return (
     <Layout>
       <nav aria-label="breadcrumb" className="w-full">
-        <div className="mx-auto container sm:container md:container lg:max-w-[1232px] px-4">
+        <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
           <ol className="flex w-full flex-wrap items-center py-6 lg:pt-12 lg:pb-8 ">
             <li className="flex cursor-pointer items-center text-base md:text-lg lg:text-xl font-medium  antialiased text-[#7f7f7f]  transition-colors duration-300 hover:text-[#EE834E]">
               <a href="#">Home</a>
@@ -87,7 +87,7 @@ export default function Donation() {
         </div>
       </nav>
       <div className="w-full bg-white pb-[50px] md:pb-[70px] lg:pb-[100px]">
-        <div className="mx-auto container sm:container md:container lg:max-w-[1232px] px-4">
+        <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
           <div className="flex flex-wrap -mx-5 items-center">
             <div className="w-full md:w-6/12 px-5">
               <div className="bg-[#f9f9f9] h-[580px] flex items-center justify-center">

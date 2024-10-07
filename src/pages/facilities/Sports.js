@@ -15,7 +15,7 @@ export default function Sports() {
 
   return (
     <div className="bg-white pb-[40px] md:pb-[80px] lg:pb-[100px]" id="sports">
-      <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto">
+      <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto">
         <div className="flex flex-wrap items-center bg-[#EE834E]">
           <div className="h-full w-full lg:w-5/12 text-white px-[40px] py-[50px]">
             <div className="">

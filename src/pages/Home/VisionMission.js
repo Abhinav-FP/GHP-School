@@ -40,7 +40,7 @@ export default function VisionMission() {
   ];
   return (
     <div className='z-[1] relative bg-white py-[50px] md:py-[70px] lg:py-[100px]'>
-      <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto ">
+      <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto ">
 
         {data && data.map((item, index) => (
           <div className="flex flex-wrap items-center bg-[#ECE1C5]" key={index}>

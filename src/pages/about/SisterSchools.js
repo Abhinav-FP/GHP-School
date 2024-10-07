@@ -21,7 +21,7 @@ export default function SisterSchools() {
   ];
   return (
     <div className="bg-white py-[50px] mt:py-[70px] lg:py-[100px]">
-      <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto">
+      <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto">
         <div
           className="bg-[#ECE1C5] pt-[40px] md:pt-[60px] lg:pt-[80px] pb-[24px] md:py-[44px] lg:pb-[40px] px-5 lg:px-10"
           id="sisterSchools"

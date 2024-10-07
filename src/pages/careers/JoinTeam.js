@@ -128,7 +128,7 @@ export default function JoinTeam() {
         className="bg-white py-[40px] md:py-[80px] lg:py-[100px]"
         id="career-form"
       >
-        <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto">
+        <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto">
           <h2 className="merriweather-font font-normal text-2xl md:text-3xl lg:text-4xl mb-2.5 text-[#1E1E1E] tracking-[-0.04em] text-center">
             Shape the future with us
           </h2>

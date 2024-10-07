@@ -6,7 +6,7 @@ export default function index() {
   return (
     <>
       <div className="bg-white py-[40px] md:py-[80px] lg:py-[100px]">
-        <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto ">
+        <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto ">
           <div className="border-t border-b border-black border-opacity-10 py-[45px]">
             <div className="flex flex-wrap -mx-[30px] items-center">
               <div className="w-full md:w-6/12 px-[30px] text-center border-r border-black border-opacity-10 py-[26px]">

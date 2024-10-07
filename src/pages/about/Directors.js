@@ -51,7 +51,7 @@ export default function Directors() {
       className="bg-white pb-[50px] md:pb-[70px] lg:pb-[100px]"
       id="directors"
     >
-      <div className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto">
+      <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto">
         <h2 className="merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-2 text-[#1E1E1E]  tracking-[-0.04em] mb-4 lg:mb-5 text-center ">
           Directors Desk
         </h2>

@@ -73,7 +73,7 @@ export default function Gallery() {
   return (
     <div className="bg-white pb-[40px] md:pb-[80px] lg:pb-[100px]">
       <div
-        className="container sm:container md:container lg:max-w-[1232px] px-4 mx-auto"
+        className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto"
         id="activities"
       >
         <h2 className="merriweather-font font-normal text-2xl md:text-3xl lg:text-4xl mb-2.5 text-[#1E1E1E] tracking-[-0.04em] text-center">
