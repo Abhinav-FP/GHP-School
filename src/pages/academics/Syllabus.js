@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Details from '../api/admin/Details';
 
-export default function index() {
+export default function Index() {
     const [listing, setLisitng] = useState("");
     const [Loading, setLoading] = useState(false);
 

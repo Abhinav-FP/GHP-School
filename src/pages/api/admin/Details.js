@@ -118,6 +118,9 @@ class Details extends Component {
   async syllabusGet() {
     return Api.get(`/academics/syllabus/get`);
   }
+  async syllabusAdd(data) {
+    return Api.post(`/academics/syllabus/add`,data);
+  }
  
   // /result/get/XII
    
