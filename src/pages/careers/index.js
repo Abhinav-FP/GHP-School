@@ -4,6 +4,7 @@ import CareerBg from "../../../public/Career/careerbg.jpg";
 import Image from "next/image";
 import JoinTeam from "./JoinTeam";
 import Vacancie from "./Vacancie";
+import FileUpload from "./FileUpload";
 
 export default function index() {
   return (
@@ -22,6 +23,7 @@ export default function index() {
       </div>
       <JoinTeam />
       {/* <Vacancie /> */}
+      {/* <FileUpload/> */}
     </Layout>
   );
 }

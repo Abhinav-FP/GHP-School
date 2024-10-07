@@ -74,6 +74,9 @@ class Details extends Component {
   async careerdelete(data) {
     return Api.post("/career/vacancy/delete", data);
   }
+  async careerapply(data) {
+    return Api.post("/career/apply", data);
+  }
  
 
   async Adminline() {

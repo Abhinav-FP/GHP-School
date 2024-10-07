@@ -4,10 +4,13 @@ import Image from "next/image";
 import ReCAPTCHA from "react-google-recaptcha";
 import Vacancie from "./Vacancie";
 import { useRouter } from "next/router";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function JoinTeam() {
   const [listing, setLisitng] = useState("");
   const [loading, setLoading] = useState(false);
+  const [formloading, setFormLoading] = useState(false); // Loading state
   const router = useRouter();
 
   const [formData, setFormData] = useState({
@@ -20,29 +23,70 @@ export default function JoinTeam() {
     resume: null,
     about: "",
   });
+  const handleUpload = async (event) => {
+    let file = event.target.files[0];
+    if (!file) {
+      alert("Please select a file to upload.");
+      return;
+    }
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "ghp-cloudinary");
+    try {
+      const response = await axios.post(
+        `https://api.cloudinary.com/v1_1/desw1fnsw/raw/upload`,
+        formData
+      );
+
+      setFormData((prevData) => ({
+        ...prevData,
+        resume: response.data.secure_url,
+      }));
+      alert("File uploaded successfully!");
+    } catch (error) {
+      console.error("Upload Error:", error);
+      alert("Error uploading file. Check console for details.");
+    } finally {
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: type === "file" ? files[0] : value,
+      [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-
-    // setFormData({
-    //   name: '',
-    //   surname: '',
-    //   email: '',
-    //   contactNo: '',
-    //   position: '',
-    //   experience: '',
-    //   resume: null,
-    //   about: '',
-    // });
+    setFormLoading(true);
+    if (formloading) {
+      return;
+    }
+    const main = new Details();
+    try {
+      const res = await main.careerapply(formData);
+      if ( res && res?.data) {
+        toast.success(res.data.message);
+        setFormData({
+          name: "",
+          surname: "",
+          email: "",
+          contactNo: "",
+          position: "",
+          experience: "",
+          resume: null,
+          about: "",
+        });
+      } else {
+        toast.error(res.message);
+      }
+    } catch (error) {
+      toast.error("An error occurred while submitting.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleClick = (id) => {
@@ -191,7 +235,7 @@ export default function JoinTeam() {
                   <input
                     type="file"
                     name="resume"
-                    onChange={handleChange}
+                    onChange={handleUpload}
                     className="bg-white border border-black border-opacity-10 px-3.5 py-2 w-full appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
                   />
                 </div>
@@ -217,7 +261,7 @@ export default function JoinTeam() {
                     type="submit"
                     className="bg-[#EE834E] lg:min-w-[253px] text-center hover:bg-[#ECCD6E] rounded px-8 lg:px-12 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]"
                   >
-                    Submit
+                    {formloading ? "Submitting..." : "Submit"}
                   </button>
                 </div>
               </div>
