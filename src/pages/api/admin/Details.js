@@ -114,6 +114,9 @@ class Details extends Component {
   async vacancyGet() {
     return Api.get(`/career/vacancy/get`);
   }
+  async AddCard(data) {
+    return Api.post(`/payment/create` ,data);
+  }
  
   // /result/get/XII
    
