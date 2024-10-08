@@ -89,7 +89,7 @@ export default function Results() {
     resultmanage();
   }, []);
   return (
-    <div className="pb-[40px] md:pb-[80px] lg:pb-[100px]">
+    <div className="pb-[40px] md:pb-[80px] lg:pb-[100px] bg-white">
       <div
         className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto"
         id="results"
