@@ -169,9 +169,7 @@ export default function Donation() {
                 <ul className="flex flex-wrap items-center space-x-3">
                   <li>
                     <Link
-                      href={`https://wa.me/?text=${encodeURIComponent(
-                        currentPageUrl
-                      )}`}
+                      href="/"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -192,9 +190,7 @@ export default function Donation() {
                   </li>
                   <li>
                     <Link
-                      href={`https://www.instagram.com/sharer.php?u=${encodeURIComponent(
-                        currentPageUrl
-                      )}`}
+                      href="/"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -215,11 +211,7 @@ export default function Donation() {
                   </li>
                   <li>
                     <Link
-                      href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-                        typeof window !== "undefined"
-                          ? window.location.href
-                          : ""
-                      )}`}
+                      href="/"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -240,9 +232,7 @@ export default function Donation() {
                   </li>
                   <li>
                     <Link
-                      href={`mailto:?subject=Check this page&body=${encodeURIComponent(
-                        window.location.href
-                      )}`}
+                      href="/"
                     >
                       <svg
                         width="16"

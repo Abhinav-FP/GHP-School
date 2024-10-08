@@ -8,6 +8,7 @@ import Details from "../api/admin/Details";
 import { useRazorpay, RazorpayOrderOptions } from "react-razorpay";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
+import axios from "axios";
 export default function Index() {
   const router = useRouter();
   const { error, isLoading, Razorpay } = useRazorpay();
@@ -19,6 +20,59 @@ export default function Index() {
   const totalPrice = cartItemsRedux.reduce((sum, item) => {
     return sum + Number(item?.price * item?.quantity);
   }, 0);
+  // Form state
+  const [formData, setFormData] = useState({
+    fullName: '',
+    contactNumber: '',
+    aadhaarCard: null,
+    panCard: null,
+    emailAddress: '',
+  });
+
+  const handleUpload = async (event) => {
+    console.log("event",event);
+    let name=event.target.name;
+    let file = event.target.files[0];
+    if (!file) {
+      alert("Please select a file to upload.");
+      return;
+    }
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "ghp-cloudinary");
+    try {
+      const response = await axios.post(
+        `https://api.cloudinary.com/v1_1/desw1fnsw/raw/upload`,
+        formData
+      );
+
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: response.data.secure_url,
+      }));
+      alert("File uploaded successfully!");
+    } catch (error) {
+      console.error("Upload Error:", error);
+      alert("Error uploading file. Check console for details.");
+    } finally {
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value, type, files } = e.target;
+
+    if (type === 'file') {
+      setFormData({
+        ...formData,
+        [name]: files[0], // for file inputs, we use files[0] to get the first selected file
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
+  };
 
   const handleRemove = (id) => {
     dispatch(removeItem(id));
@@ -165,7 +219,7 @@ console.log("totalPrice",totalPrice)
     }
   };
 
-
+console.log("formdata",formData)
   return (
     <Layout>
       <div className="w-full bg-white py-[50px] md:py-[70px] lg:py-[100px]">
@@ -179,62 +233,73 @@ console.log("totalPrice",totalPrice)
                   </h2>
                 </div>
                 <div className="px-4 lg:px-[40px] py-4 lg:py-[30px] ">
-                  <div className="mb-4 lg:mb-6">
-                    <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                      full Name<em className="text-[#EE834E]">*</em>{" "}
-                    </label>
-                    <input
-                      type="text"
-                      className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
-                    />
-                  </div>
-                  <div className="mb-4 lg:mb-6">
-                    <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                      Contact Number<em className="text-[#EE834E]">* </em>
-                    </label>
-                    <input
-                      type="text"
-                      className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
-                    />
-                  </div>
-                  <div className="mb-4 lg:mb-6">
-                    <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                      Adhaar Card<em className="text-[#EE834E]">*</em>{" "}
-                    </label>
-                    <input
-                      type="file"
-                      className="bg-white border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
-                    />
-                  </div>
-
-                  <div className="mb-4 lg:mb-6">
-                    <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                      Pan Card<em className="text-[#EE834E]">*</em>{" "}
-                    </label>
-                    <input
-                      type="file"
-                      className="bg-white border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
-                    />
-                  </div>
-                  <div className="mb-4 lg:mb-6">
-                    <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                      Email address<em className="text-[#EE834E]">*</em>{" "}
-                    </label>
-                    <input
-                      type="email"
-                      className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
-                    />
-                  </div>
-                  <div className="w-full">
-                    <button
-                      onClick={handleSubmit}
-                      type="submit"
-                      className="bg-[#EE834E] lg:w-[253px] hover:bg-[#ECCD6E] rounded px-8 lg:px-12 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]"
-                    >
-                      Pay Now
-                    </button>
-                  </div>
-                </div>
+        <div className="mb-4 lg:mb-6">
+          <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
+            full Name<em className="text-[#EE834E]">*</em>
+          </label>
+          <input
+            type="text"
+            name="fullName"
+            value={formData.fullName}
+            onChange={handleChange}
+            className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+          />
+        </div>
+        <div className="mb-4 lg:mb-6">
+          <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
+            Contact Number<em className="text-[#EE834E]">* </em>
+          </label>
+          <input
+            type="text"
+            name="contactNumber"
+            value={formData.contactNumber}
+            onChange={handleChange}
+            className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+          />
+        </div>
+        <div className="mb-4 lg:mb-6">
+          <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
+            Aadhaar Card<em className="text-[#EE834E]">*</em>
+          </label>
+          <input
+            type="file"
+            name="aadhaarCard"
+            onChange={handleUpload}
+            className="bg-white border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+          />
+        </div>
+        <div className="mb-4 lg:mb-6">
+          <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
+            Pan Card<em className="text-[#EE834E]">*</em>
+          </label>
+          <input
+            type="file"
+            name="panCard"
+            onChange={handleUpload}
+            className="bg-white border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+          />
+        </div>
+        <div className="mb-4 lg:mb-6">
+          <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
+            Email address<em className="text-[#EE834E]">*</em>
+          </label>
+          <input
+            type="email"
+            name="emailAddress"
+            value={formData.emailAddress}
+            onChange={handleChange}
+            className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+          />
+        </div>
+        <div className="w-full">
+          <button
+            onClick={handleSubmit}
+            className="bg-[#EE834E] lg:w-[253px] hover:bg-[#ECCD6E] rounded px-8 lg:px-12 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]"
+          >
+            Pay Now
+          </button>
+        </div>
+      </div>
               </div>
             </div>
             <div className="w-full lg:w-6/12 px-4 md:px-6 lg:px-10">
