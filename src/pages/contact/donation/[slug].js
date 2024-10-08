@@ -11,6 +11,7 @@ import { formatMultiPrice } from "@/hooks/ValueData";
 
 export default function Donation() {
   const router = useRouter();
+  const currentPageUrl = `https://yourdomain.com${router.asPath}`;
   const { slug } = router.query;
   console.log("slug", slug);
   const [listing, setLisitng] = useState("");
@@ -35,7 +36,7 @@ export default function Donation() {
       imgUrl: listing?.photo,
     };
     dispatch(addItem(newItem));
-    setIsAdded(true); 
+    setIsAdded(true);
     setTimeout(() => {
       setIsAdded(false);
     }, 5000);
@@ -161,7 +162,13 @@ export default function Donation() {
                 </div>
                 <ul className="flex flex-wrap items-center space-x-3">
                   <li>
-                    <Link href="/" className="">
+                    <Link
+                      href={`https://wa.me/?text=${encodeURIComponent(
+                        currentPageUrl
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <svg
                         width="16"
                         height="16"
@@ -178,7 +185,13 @@ export default function Donation() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/" className="">
+                    <Link
+                      href={`https://www.instagram.com/sharer.php?u=${encodeURIComponent(
+                        currentPageUrl
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <svg
                         width="16"
                         height="16"
@@ -195,7 +208,15 @@ export default function Donation() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/" className="">
+                    <Link
+                      href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                        typeof window !== "undefined"
+                          ? window.location.href
+                          : ""
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <svg
                         width="16"
                         height="16"
@@ -212,7 +233,11 @@ export default function Donation() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/" className="">
+                    <Link
+                      href={`mailto:?subject=Check this page&body=${encodeURIComponent(
+                        window.location.href
+                      )}`}
+                    >
                       <svg
                         width="16"
                         height="12"
