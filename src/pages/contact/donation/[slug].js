@@ -1,7 +1,6 @@
 import Layout from "@/layout/Layout";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import ProductImg from "../../../../public/Contacts/TutionFees2x.png";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { addItem } from "@/redux/cartSlice";
@@ -11,22 +10,22 @@ import { formatMultiPrice } from "@/hooks/ValueData";
 
 export default function Donation() {
   const router = useRouter();
-  const currentPageUrl = `https://yourdomain.com${router.asPath}`;
   const { slug } = router.query;
-  console.log("slug", slug);
+  const [currentPageUrl, setCurrentPageUrl] = useState("");
   const [listing, setLisitng] = useState("");
   const [Loading, setLoading] = useState(false);
-
+  const [Qty, setQty] = useState(0);
+  const [isAdded, setIsAdded] = useState(false);
   const dispatch = useDispatch();
 
-  const [Qty, setQty] = useState(0);
+  // Handle increment/decrement
   function Increment() {
     setQty(Qty + 1);
   }
   function decrement() {
     setQty(Qty - 1);
   }
-  const [isAdded, setIsAdded] = useState(false);
+
   const handleAddItem = () => {
     const newItem = {
       id: listing?._id,
@@ -59,6 +58,13 @@ export default function Donation() {
         });
     }
   }, [slug]);
+
+  // Set current page URL only on the client side
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setCurrentPageUrl(window.location.href);
+    }
+  }, [router.asPath]);
 
   return (
     <Layout>
