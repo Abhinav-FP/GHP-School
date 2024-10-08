@@ -20,7 +20,7 @@ class Details extends Component {
     return Api.post("/about/faculty/delete", data);
   }
   async verify() {
-    return Api.get("/user/verify");
+    return Api.get("/user/profile");
   }
 
   async gethomebanner() {
@@ -40,14 +40,25 @@ class Details extends Component {
   }
 
   async paymentget() {
-    return Api.get("/payment/paymentget" );
+    return Api.get("/payment/paymentget");
 
   }
 
   async Sysllabas() {
-    return Api.get("/academics/syllabus/get" );
+    return Api.get("/academics/syllabus/get");
 
   }
+
+  async SysllabasAdd(data) {
+    return Api.post("/academics/syllabus/add", data);
+
+  }
+
+  async SysllabasDelete(data) {
+    return Api.post("/academics/syllabus/delete", data);
+
+  }
+
   async getdirector() {
     return Api.get("/about/director/get");
   }
@@ -71,29 +82,34 @@ class Details extends Component {
     return Api.post("/fees/add", data);
   }
 
+  
+  async feesEdit(data) {
+    return Api.post("/fees/edit", data);
+  }
+
   async feedelete(data) {
     return Api.post("/fees/delete", data);
   }
-  async careerget() {
+  async vacancyget() {
     return Api.get("/career/vacancy/get");
   }
 
-  async careerpost(data) {
+  async vacancypost(data) {
     return Api.post("/career/vacancy/add", data);
   }
-  async careerdelete(data) {
+  async vacancydelete(data) {
     return Api.post("/career/vacancy/delete", data);
   }
-  async careerapply(data) {
+  async vacancyapply(data) {
     return Api.post("/career/apply", data);
   }
 
+  async careerget() {
+    return Api.get("/career/apply/get");
+  }
 
   async Adminline() {
     return Api.get("/home/admission/get");
-  }
-  async resultget() {
-    return Api.get(`/result/get`);
   }
 
 
@@ -136,14 +152,49 @@ class Details extends Component {
   }
 
   async PaymentSave(data) {
-    return Api.post(`/verify-payment`, data);
+    return Api.post(`/payment/verify-payment`, data);
   }
 
   async AdmissionFormAdd(data) {
     return Api.post(`/admissionform/add`, data);
   }
 
+  async ResultGet() {
+    return Api.get(`/result/get`);
+  }
 
+  async ResultAdd(data) {
+    return Api.post(`/result/add` ,data);
+  }
+  async ResultDelete(data) {
+    return Api.post(`/result/delete`, data);
+  }
+
+  async BannerGet() {
+    return Api.get(`/home/banner/get`);
+  }
+
+  async BannerDelete(data) {
+    return Api.post(`/home/banner/delete`, data);
+  }
+
+  
+
+  async admissionGet() {
+    return Api.get(`/home/admission/get`);
+  }
+
+  async admissionPost(data) {
+    return Api.post(`/home/admission/show`, data);
+  }
+  async admissionEdit(data) {
+    return Api.post(`/home/admission/text`, data);
+  }
+  async admissionForm() {
+    return Api.get(`/admissionform/get`,);
+  }
+
+  
   render() {
     return (
       <div>

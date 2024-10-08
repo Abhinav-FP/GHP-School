@@ -3,25 +3,16 @@ import React, { useState } from "react";
 import { usePathname } from "next/navigation";
 import Logo from "../../../../public/Header/Logo.png";
 import { useRouter } from 'next/router';
-
-function SideBarAdmin() {
+function PhoneSideBar({ sideOpen, toggleSidebar }) {
     const pathname = usePathname();
-
-    const handleclick = () => {
-        console.log("logout")
-    };
-    const [isOpen, SetIsopen] = useState(false);
-    const router = useRouter();
     const handleLogout = () => {
         localStorage.removeItem('token');
-
         router.push('/admin/login');
     };
 
-
-
+   
     return (<>
-        <div className={`z-50 w-[260px] md:w-[304px] fixed lg:relative left-0 top-0 bottom-0 overflow-y-auto  lg:block bg-white ${isOpen ? 'block' : 'hidden'}`} >
+        <div className={`w-[300px] fixed top-0 overflow-y-auto py-3   cursor-pointer items-center  z-50 bg-white top-0 bottom-0 md:block`} >
             <div className="px-4 py-4 md:px-6 md:py-6 lg:px-[28px] lg:py-8">
                 <div className='mb-5 md:mb-10 lg:mb-[53px] text-center'>
                     <img className="max-w-full block m-auto" src={"/Header/Logo.png"} alt='img' width="208" />
@@ -76,7 +67,7 @@ function SideBarAdmin() {
                             <svg className="inline align-middle mr-[4px]" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M11.4622 7.5V2.5H18.1289V7.5H11.4622ZM3.12891 10.8333V2.5H9.79557V10.8333H3.12891ZM11.4622 17.5V9.16667H18.1289V17.5H11.4622ZM3.12891 17.5V12.5H9.79557V17.5H3.12891Z" fill="currentColor" />
                             </svg>
-                            Faculty
+                            faculty
                         </Link>
                     </li>
                     <li>
@@ -288,7 +279,7 @@ function SideBarAdmin() {
                 </ul>
             </div>
         </div>
-
     </>);
-};
-export default SideBarAdmin;
+}
+
+export default PhoneSideBar;

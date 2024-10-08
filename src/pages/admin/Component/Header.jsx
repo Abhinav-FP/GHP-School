@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PhoneSideBar from "./PhonesideBar";
 
 function Header({ title }) {
   
@@ -76,6 +77,9 @@ function Header({ title }) {
       </div>
 
       {/* PhoneSideBar Component */}
+      <div className="block lg:hidden">
+                {sideOpen && <PhoneSideBar sideOpen={sideOpen} toggleSidebar={toggleSidebar} />}
+            </div>
     </>
   );
 }

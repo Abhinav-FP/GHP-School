@@ -13,7 +13,6 @@ function Index() {
     const [isOpen, setIsOpen] = useState(false);
     const [listing, setLisitng] = useState([])
     const [Loading, setLoading] = useState(false)
-    const [imagePreview, setImagePreview] = useState(null);
     const [formdata, setFormdata] = useState({
         "grade": "",
         "first": null,
@@ -22,7 +21,7 @@ function Index() {
         "fourth": null,
         "total": null,
     });
-
+    const [Id, setId] = useState("")
     useEffect(() => {
         const total =
             Number(formdata.first) +
@@ -31,7 +30,7 @@ function Index() {
             Number(formdata.fourth);
         setFormdata((prevData) => ({
             ...prevData,
-            total: total, 
+            total: total,
         }));
     }, [formdata.first, formdata.second, formdata.third, formdata.fourth]);
 
@@ -39,19 +38,22 @@ function Index() {
         setIsOpen(false);
     };
 
+    
     console.log("listing", listing)
 
 
     const handlesenddata = (item) => {
         setIsOpen(true);
         setFormdata({
-            grade: item.name || '',
-            text: item.text || '',
-            photo: item.photo || '',
-            id: item?._id
+            "grade": item?.grade || "",
+            "first": item?.first || " ",
+            "second": item?.second || "",
+            "third": item?.third || " ",
+            "fourth": item?.fourth || " ",
+            "total": item?.total || "",
 
         });
-        setImagePreview(item.photo);
+        setId(item?._id)
     };
 
     const getfeesdata = () => {
@@ -89,11 +91,27 @@ function Index() {
         setLoading(true);
         const main = new Details();
         try {
-            const res = await main.feesAdd(formdata);
+            let res;
+            if (Id) {
+                res = await main.feesEdit(formdata);
+            } else {
+                res = await main.feesAdd(formdata);
+            }
             if (res?.data) {
                 toast.success(res.data.message);
+                getfeesdata();
                 handleClose();
-              getfeesdata();
+                setFormdata(
+                    {
+                        "grade": "",
+                        "first": null,
+                        "second": null,
+                        "third": null,
+                        "fourth": null,
+                        "total": null,
+                    }
+                )
+                setId("")
             } else {
                 toast.error(res.message);
             }
@@ -103,6 +121,9 @@ function Index() {
             setLoading(false);
         }
     };
+
+
+
 
     return (<>
         <div className="md:flex flex-wrap  bg-[#F5F6FB] items-start">
@@ -202,7 +223,7 @@ function Index() {
                                                                 </svg>
                                                             </button>
 
-                                                         <Delete grade={item?.grade}/>
+                                                            <Delete grade={item?.grade} />
                                                         </div>
                                                     </td>
                                                 </tr>

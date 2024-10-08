@@ -7,19 +7,47 @@ import React, { useState, useEffect } from "react";
 import Modal from "../Component/Modal";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
-import moment from 'moment';
 import NoData from "../Component/NoData";
+import Delete from "./Delete";
 function Index() {
     const [isOpen, setIsOpen] = useState(false);
     const [listing, setLisitng] = useState([])
     const [Loading, setLoading] = useState(false)
-    const getPayment = () => {
+    const [imagePreview, setImagePreview] = useState(null);
+    const [formdata, setFormdata] = useState({
+        "item": "",
+        "image": null,
+        "Paragraph": null,
+        "third": null,
+        "fourth": null,
+        "total": null,
+    });
+
+
+
+    const handleClose = () => {
+        setIsOpen(false);
+    };
+
+
+
+    const handlesenddata = (item) => {
+        setIsOpen(true);
+        setFormdata({
+            text: item.text || '',
+            id: item?._id,
+            show: item?.show
+        });
+    };
+
+    const BannerGetData = () => {
         setLoading(true);
         const main = new Details();
-        main.paymentget()
+        main.BannerGet()
             .then((r) => {
+                console.log("r", r)
                 setLoading(false);
-                setLisitng(r?.data?.Payment);
+                setLisitng(r?.data?.banners);
             })
             .catch((err) => {
                 setLoading(false);
@@ -29,23 +57,55 @@ function Index() {
     };
 
     useEffect(() => {
-        getPayment();
+        BannerGetData();
     }, []);
 
+
+    const router = useRouter();
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormdata({
+            ...formdata,
+            [name]: value
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        const main = new Details();
+        try {
+            const res = await main.admissionPost(formdata);
+            if (res?.data) {
+                toast.success(res.data.message);
+                handleClose();
+                getfeesdata();
+            } else {
+                toast.error(res.message);
+            }
+        } catch (error) {
+            toast.error("An error occurred while updating.");
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (<>
         <div className="md:flex flex-wrap  bg-[#F5F6FB] items-start">
             <SideBarAdmin />
             {/* right sidebar  */}
             <div className="w-full lg:w-[calc(100%-304px)]">
-                <Header title={"Payment History"} />
+                <Header title={"Manage  Banner"} />
                 {/* Overview */}
                 <div className="px-4 py-2 lg:px-10 lg:py-2.5">
                     {/*  */}
                     <div className="bg-white rounded-[20px] mb-[30px]">
                         <div className="py-3 py-4 lg:py-[23px] px-4 md:px-6 lg:px-10 flex flex-wrap justify-between items-center border-b border-black  border-opacity-10">
-                            <h3 className=" text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">Payment  </h3>
-
+                            <h3 className=" text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">Banner  </h3>
+                            <button onClick={() => setIsOpen(true)} className="text-white bg-[#0367F7] hover:bg-white hover:text-[#0367F7] text-sm font-normal tracking-[-0.03em] py-2 px-3 xl:px-3.5 border border-[#0367F7] rounded-md outline-none focus:outline-none ease-linear transition-all duration-150">
+                                Add New Banner
+                            </button>
                         </div>
                         <div className="overflow-x-auto">
                             {Loading ? (
@@ -62,19 +122,16 @@ function Index() {
                                                     S. No.
                                                 </th>
                                                 <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
-                                                    Payment Date
+                                                    Banner Image
                                                 </th>
                                                 <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
-                                                    Payment ID
-                                                </th>
-                                                <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
-                                                    Order Id
+                                                    Heading
                                                 </th>
                                                 <th className="px-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
-                                                    Product Name
+                                                    Paragraph
                                                 </th>
                                                 <th className="pr-4 md:pr-6 lg:pr-10 pl-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em] text-center">
-                                                    Amount
+                                                    Action
                                                 </th>
                                             </tr>
                                         </thead>
@@ -85,24 +142,24 @@ function Index() {
                                                         {index + 1}
                                                     </td>
                                                     <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                        {
+                                                        <img
+                                                            src={item?.photo}
+                                                            alt={item?.heading}
+                                                            className="w-full h-auto object-cover rounded-md"
+                                                        />
 
-                                                            moment(item?.payment_date).format("MMM Do YY")
-                                                        }
                                                     </td>
                                                     <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                        {item?.payment_id}
-                                                    </td>
-                                                    <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                        {item?.order_id
+                                                        {item?.heading
                                                         }
                                                     </td>
                                                     <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                        {item?.name}
+                                                        {item?.text}
                                                     </td>
-                                                    <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                        {item?.amount
-                                                        }
+                                                    <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] text-center tracking-[-0.03em] space-x-2">
+                                                        <div className="flex space-x-2 justify-center">
+                                                            <Delete srNo={item?.srNo} BannerGetData={BannerGetData} />
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             ))}
@@ -133,7 +190,7 @@ function Index() {
                                         name="grade"
                                         value={formdata?.grade}
                                         onChange={handleChange}
-                                        type="text"
+                                        type="file"
                                         className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
 
                                     />
