@@ -3,8 +3,7 @@ import Modal from "../Component/Modal";
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
-function Delete({ id , getsyllabusdata}) {
-    console.log("grade",id)
+function Delete({ srNo, BannerGetData }) {
     const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -16,14 +15,14 @@ function Delete({ id , getsyllabusdata}) {
         e.preventDefault();
         setLoading(true);
         const main = new Details();
-        const response = main.SysllabasDelete({ id: id });
+        const response = main.BannerDelete({ srNo: srNo });
         response
             .then((res) => {
-                if (res && res?.data ) {
+                if (res && res?.data) {
                     toast.success(res.data.message);
                     setLoading(false);
                     handleClose();
-                    getsyllabusdata();
+                    BannerGetData();
                 } else {
                     toast.error(res.data.message);
                     setLoading(false);

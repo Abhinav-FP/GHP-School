@@ -40,20 +40,25 @@ class Details extends Component {
   }
 
   async paymentget() {
-    return Api.get("/payment/paymentget" );
+    return Api.get("/payment/paymentget");
 
   }
 
   async Sysllabas() {
-    return Api.get("/academics/syllabus/get" );
+    return Api.get("/academics/syllabus/get");
 
   }
 
   async SysllabasAdd(data) {
-    return Api.post("/academics/syllabus/add" ,data);
+    return Api.post("/academics/syllabus/add", data);
 
   }
- 
+
+  async SysllabasDelete(data) {
+    return Api.post("/academics/syllabus/delete", data);
+
+  }
+
   async getdirector() {
     return Api.get("/about/director/get");
   }
@@ -75,6 +80,11 @@ class Details extends Component {
 
   async feesAdd(data) {
     return Api.post("/fees/add", data);
+  }
+
+  
+  async feesEdit(data) {
+    return Api.post("/fees/edit", data);
   }
 
   async feedelete(data) {
@@ -100,9 +110,6 @@ class Details extends Component {
 
   async Adminline() {
     return Api.get("/home/admission/get");
-  }
-  async resultget() {
-    return Api.get(`/result/get`);
   }
 
 
@@ -144,7 +151,35 @@ class Details extends Component {
   async ResultGet() {
     return Api.get(`/result/get`);
   }
+  async ResultDelete(data) {
+    return Api.post(`/result/delete`, data);
+  }
 
+  async BannerGet() {
+    return Api.get(`/home/banner/get`);
+  }
+
+  async BannerDelete(data) {
+    return Api.post(`/home/banner/delete`, data);
+  }
+
+  
+
+  async admissionGet() {
+    return Api.get(`/home/admission/get`);
+  }
+
+  async admissionPost(data) {
+    return Api.post(`/home/admission/show`, data);
+  }
+  async admissionEdit(data) {
+    return Api.post(`/home/admission/text`, data);
+  }
+  async admissionForm() {
+    return Api.get(`/admissionform/get`,);
+  }
+
+  
   render() {
     return (
       <div>

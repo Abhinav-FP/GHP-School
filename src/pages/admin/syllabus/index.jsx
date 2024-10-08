@@ -14,30 +14,16 @@ function Index() {
     const [isOpen, setIsOpen] = useState(false);
     const [listing, setLisitng] = useState([])
     const [Loading, setLoading] = useState(false)
-    const [imagePreview, setImagePreview] = useState(null);
     const [formdata, setFormdata] = useState({
         "text": "",
         "link": "",
     });
 
-
     const handleClose = () => {
         setIsOpen(false);
     };
 
-
-
-    const handlesenddata = (item) => {
-        setIsOpen(true);
-        setFormdata({
-            text: item.text || '',
-            link: item.link || '',
-            id: item?._id
-
-        });
-    };
-
-    const getfeesdata = () => {
+    const getsyllabusdata = () => {
         setLoading(true);
         const main = new Details();
         main.Sysllabas()
@@ -55,7 +41,7 @@ function Index() {
     };
 
     useEffect(() => {
-        getfeesdata();
+        getsyllabusdata();
     }, []);
 
 
@@ -78,7 +64,7 @@ function Index() {
             if (res?.data) {
                 toast.success(res.data.message);
                 handleClose();
-                getfeesdata();
+                getsyllabusdata();
             } else {
                 toast.error(res.message);
             }
@@ -123,7 +109,7 @@ function Index() {
                                                     Class
                                                 </th>
                                                 <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
-                                                    Link
+                                                    Syllabus
                                                 </th>
                                                 <th className="pr-4 md:pr-6 lg:pr-10 pl-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em] text-center">
                                                     Action
@@ -141,15 +127,19 @@ function Index() {
                                                         }
                                                     </td>
                                                     <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                        <Link href={item?.link} target="_blank">
-                                                            {item?.link
-                                                            }
+                                                        <Link
+                                                            href={item?.link}
+                                                            target="_blank"
+                                                            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 ease-in-out"
+                                                        >
+                                                            Syllabus
                                                         </Link>
                                                     </td>
 
+
                                                     <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] text-center tracking-[-0.03em] space-x-2">
                                                         <div className="flex space-x-2 justify-center">
-                                                            <Delete id={item?._id} />
+                                                            <Delete id={item?._id} getsyllabusdata={getsyllabusdata} />
                                                         </div>
                                                     </td>
                                                 </tr>

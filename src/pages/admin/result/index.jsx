@@ -31,7 +31,7 @@ function Index() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
-    const vacancygetData = async () => {
+    const resultgetData = async () => {
         setLoading(true);
         try {
             const main = new Details();
@@ -47,7 +47,7 @@ function Index() {
     };
 
     useEffect(() => {
-        vacancygetData();
+        resultgetData();
     }, []);
 
     const handleChange = (e) => {
@@ -67,8 +67,7 @@ function Index() {
             if (response?.data?.status) {
                 toast.success(response.data.message);
                 handleClose();
-                principleData();
-
+                resultgetData();
             } else {
                 toast.error(response.data.message);
             }
@@ -94,14 +93,14 @@ function Index() {
         e.preventDefault();
         setLoading(true);
         const main = new Details();
-        const response = main.vacancydelete({ uuid: deltedata });
+        const response = main.ResultDelete({ id: deltedata });
         response
             .then((res) => {
                 if (res && res?.data && res?.data?.status) {
                     toast.success(res.data.message);
                     setLoading(false);
                     handleDeleteClose();
-                    principleData();
+                    resultgetData();
                 } else {
                     toast.error(res.data.message);
                     setLoading(false);
@@ -162,7 +161,7 @@ function Index() {
                                                         <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">{item.grade
                                                         }</td>
 
-                                                        <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">{item.stream
+                                                        <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] capitalize">{item.stream
                                                             ? (item?.stream) : ("N/A")}</td>
                                                         <td className="px-3 py-4 text-[15px] font-medium text-[#46494D]">
                                                             <img src={item?.photo} alt={item?.name} className="w-32  h-32 object-cover rounded-md " />
@@ -173,7 +172,7 @@ function Index() {
                                                         <td className="px-3 py-4 text-[15px] font-medium text-[#46494D]">{item.percentage}</td>
                                                         <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] text-center space-x-2">
                                                             <button
-                                                                onClick={() => handleopen(item?.uuid)}
+                                                                onClick={() => handleopen(item?._id)}
                                                                 className="text-[#FF1B1B] h-[30px] w-[30px] bg-[#FF1B1B] bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center"
                                                             >
                                                                 {/* SVG for delete icon */}

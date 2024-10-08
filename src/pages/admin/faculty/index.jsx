@@ -6,6 +6,9 @@ import AdminLayout from "@/layout/AdminLayout";
 import { RiDeleteBinLine } from "react-icons/ri";
 import toast from "react-hot-toast";
 import Details from "@/pages/api/admin/Details";
+import Header from "../Component/Header";
+import SideBarAdmin from "../Component/SideBar";
+import Faculty from "./faculty";
 
 export default function Index() {
   const [loading, setLoading] = useState(false);
@@ -49,7 +52,7 @@ export default function Index() {
 
   const DraggableRow = ({ item, index, moveRow }) => {
     const ref = React.useRef(null);
-    
+
     const [, drop] = useDrop({
       accept: ItemType,
       drop(draggedItem) {
@@ -57,29 +60,29 @@ export default function Index() {
         if (draggedItem.index !== index) {
           moveRow(draggedItem.index, index);
           draggedItem.index = index;
-           // Moving the task through api
-           const main = new Details();
-           const formData = new FormData();
-           formData.append("id", draggedItem._id);
-           formData.append("oldPosition", draggedItem.srNo);
-           formData.append("newPosition", index + 1);
-           const response = main.moveFaculty(formData);
-           response
-             .then((res) => {
-               if (res && res?.data && res?.data?.status) {
-                 toast.success(res.data.message);
-               } else {
-                 toast.error(res.data.message);
-               }
-             })
-             .catch((error) => {
-               toast.error(error?.response?.data?.message);
-               // console.log("error", error);
-             });
+          // Moving the task through api
+          const main = new Details();
+          const formData = new FormData();
+          formData.append("id", draggedItem._id);
+          formData.append("oldPosition", draggedItem.srNo);
+          formData.append("newPosition", index + 1);
+          const response = main.moveFaculty(formData);
+          response
+            .then((res) => {
+              if (res && res?.data && res?.data?.status) {
+                toast.success(res.data.message);
+              } else {
+                toast.error(res.data.message);
+              }
+            })
+            .catch((error) => {
+              toast.error(error?.response?.data?.message);
+              // console.log("error", error);
+            });
         }
       },
     });
-  
+
     const [{ isDragging }, drag] = useDrag({
       type: ItemType,
       item: { index, srNo: item.srNo, _id: item._id }, // Add srNo and _id to the item being dragged
@@ -87,9 +90,9 @@ export default function Index() {
         isDragging: monitor.isDragging(),
       }),
     });
-  
+
     drag(drop(ref)); // Combine drag and drop
-  
+
     return (
       <tr
         ref={ref}
@@ -120,8 +123,8 @@ export default function Index() {
       </tr>
     );
   };
-  
-  
+
+
 
   useEffect(() => {
     getTeachers();
@@ -143,73 +146,79 @@ export default function Index() {
   );
 
   return (
-    <AdminLayout>
-      <div className="container mx-auto mt-4">
-        <div className="flex gap-4 mb-4">
-          <h1>Faculty</h1>
-          <Link
-            href="/admin/add/faculty"
-            className="bg-[#EE834E] hover:bg-[#ECCD6E] rounded px-2 lg:px-4 py-1 text-white text-base font-normal tracking-[-0.04em]"
-          >
-            Add New Faculty
-          </Link>
-        </div>
-        {loading ? (
-          <div>Loading....</div>
-        ) : (
-          <DndProvider backend={HTML5Backend}>
-            <div className="overflow-x-auto">
-              <table className="border border-gray-200 w-full">
-                <thead>
-                  <tr className="bg-[#36C9B4] text-white">
-                    <th
-                      width="10%"
-                      className="text-white text-left text-sm px-1.5 lg:px-[40px] py-5 tracking-[-0.04em] capitalize font-medium"
-                    >
-                      Sr. No.
-                    </th>
-                    <th
-                      width="25%"
-                      className="text-white text-left text-sm px-1.5 lg:px-[40px] py-5 tracking-[-0.04em] uppercase font-medium"
-                    >
-                      Name of the teacher
-                    </th>
-                    <th
-                      width="30%"
-                      className="text-white text-left text-sm px-1.5 lg:px-[40px] py-5 tracking-[-0.04em] uppercase font-medium"
-                    >
-                      Subject
-                    </th>
-                    <th
-                      width="25%"
-                      className="text-white text-left text-sm px-1.5 lg:px-[40px] py-5 tracking-[-0.04em] uppercase font-medium"
-                    >
-                      Grade/Class
-                    </th>
-                    <th
-                      width="10%"
-                      className="text-white text-left text-sm px-1.5 lg:px-[40px] py-5 tracking-[-0.04em] uppercase font-medium"
-                    >
-                      Action
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {teachers &&
-                    teachers.map((item, index) => (
-                      <DraggableRow
-                        key={item._id}
-                        index={index}
-                        item={item}
-                        moveRow={moveRow}
-                      />
-                    ))}
-                </tbody>
-              </table>
+    <div className="md:flex flex-wrap  bg-[#F5F6FB] items-start">
+      <SideBarAdmin />
+      {/* right sidebar  */}
+      <div className="w-full lg:w-[calc(100%-304px)]">
+        <Header title={"Manage Faculty"} />
+        {/* Overview */}
+        <div className="px-4 py-2 lg:px-10 lg:py-2.5">
+          {/*  */}
+          <div className="bg-white rounded-[20px] mb-[30px]">
+            <div className="py-3 py-4 lg:py-[23px] px-4 md:px-6 lg:px-10 flex flex-wrap justify-between items-center border-b border-black  border-opacity-10">
+              <h3 className=" text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">Faculty</h3>
+              <Faculty />
             </div>
-          </DndProvider>
-        )}
+            <div className="overflow-x-auto">
+              {loading ? (
+                <div>Loading....</div>
+              ) : (
+                <DndProvider backend={HTML5Backend}>
+                  <div className="overflow-x-auto">
+                    <table className="border border-gray-200 w-full">
+                      <thead>
+                        <tr className="bg-[#36C9B4] text-white">
+                          <th
+                            width="10%"
+                            className="text-white text-left text-sm px-1.5 lg:px-[40px] py-5 tracking-[-0.04em] capitalize font-medium"
+                          >
+                            Sr. No.
+                          </th>
+                          <th
+                            width="25%"
+                            className="text-white text-left text-sm px-1.5 lg:px-[40px] py-5 tracking-[-0.04em] uppercase font-medium"
+                          >
+                            Name of the teacher
+                          </th>
+                          <th
+                            width="30%"
+                            className="text-white text-left text-sm px-1.5 lg:px-[40px] py-5 tracking-[-0.04em] uppercase font-medium"
+                          >
+                            Subject
+                          </th>
+                          <th
+                            width="25%"
+                            className="text-white text-left text-sm px-1.5 lg:px-[40px] py-5 tracking-[-0.04em] uppercase font-medium"
+                          >
+                            Grade/Class
+                          </th>
+                          <th
+                            width="10%"
+                            className="text-white text-left text-sm px-1.5 lg:px-[40px] py-5 tracking-[-0.04em] uppercase font-medium"
+                          >
+                            Action
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {teachers &&
+                          teachers.map((item, index) => (
+                            <DraggableRow
+                              key={item._id}
+                              index={index}
+                              item={item}
+                              moveRow={moveRow}
+                            />
+                          ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </DndProvider>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
-    </AdminLayout>
+    </div>
   );
 }
