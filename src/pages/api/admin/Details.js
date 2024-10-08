@@ -151,6 +151,10 @@ class Details extends Component {
   async ResultGet() {
     return Api.get(`/result/get`);
   }
+
+  async ResultAdd(data) {
+    return Api.post(`/result/add` ,data);
+  }
   async ResultDelete(data) {
     return Api.post(`/result/delete`, data);
   }

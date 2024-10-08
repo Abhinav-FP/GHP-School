@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import Modal from '../Component/Modal';
 
-export default function Faculty() {
+export default function Faculty({getTeachers}) {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -40,8 +40,9 @@ export default function Faculty() {
       .then((res) => {
         if (res && res?.data && res?.data?.status) {
           toast.success(res.data.message);
-          router.push("/admin");
+          handleClose();
           setLoading(false);
+          getTeachers();
         } else {
           toast.error(res.data.message);
           setLoading(false);
@@ -72,12 +73,13 @@ export default function Faculty() {
           <div className="relative bg-white w-full rounded-[30px] lg:rounded-[40px] h-auto m-auto">
 
             <div className="border-b border-black border-opacity-10 pt-6 pb-5 px-6 lg:pt-8 lg:pb-6 lg:px-10">
-              <h2 className="text-xl lg:text-2xl  text-[#212121] tracking-[-0.04em] font-semibold mb-0">Edit  Principle </h2>
+              <h2 className="text-xl lg:text-2xl  text-[#212121] tracking-[-0.04em] font-semibold mb-0">Add New Faculty </h2>
             </div>
             <div className="py-6 lg:py-8 ">
               <form onSubmit={handleSubmit}>
-                <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+              <div className=' max-h-full overflow-y-auto customscroll px-6 lg:px-10 '>
+              <div className="mb-3 lg:mb-[25px]">
+              <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">
                     Name
                   </label>
                   <input
@@ -85,12 +87,12 @@ export default function Faculty() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                     className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
                     placeholder="Enter your name"
                   />
                 </div>
-                <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="subjects">
+                <div className="mb-3 lg:mb-[25px]">
+                <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">
                     Subjects
                   </label>
                   <input
@@ -98,12 +100,12 @@ export default function Faculty() {
                     name="subjects"
                     value={formData.subjects}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
                     placeholder="Enter subjects"
                   />
                 </div>
-                <div className="mb-6">
-                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="grades">
+                <div className="mb-3 lg:mb-[25px]">
+                <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">
                     Grades
                   </label>
                   <input
@@ -111,10 +113,12 @@ export default function Faculty() {
                     name="grades"
                     value={formData.grades}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                     className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
                     placeholder="Enter grades"
                   />
                 </div>
+                </div>
+
                 <div className="flex justify-center">
                   <button
                     type="submit"

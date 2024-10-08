@@ -22,10 +22,12 @@ function Index() {
         setIsOpen(false);
     };
     const [formData, setFormData] = useState({
-        qualification: '',
-        experience: '',
-        description: '',
-        designation: ''
+        rollNo:"",
+        name:"",
+        photo:"",
+        grade:"",
+        stream:"",
+        percentage:"",
     });
     const [listing, setListing] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -58,12 +60,31 @@ function Index() {
         }));
     };
 
+    const uploadImage = async (imageFile) => {
+        const formData = new FormData();
+        formData.append('image', imageFile);
+        try {
+            const response = await axios.post('https://api.imgur.com/3/upload', formData, {
+                headers: {
+                    Authorization: 'Client-ID fa9cff918a9554a',
+                    'Content-Type': 'multipart/form-data',
+                },
+                withCredentials: false, 
+            });
+            return response.data.data.link; 
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            throw new Error('Image upload failed');
+        }
+    };
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         try {
+            const imageUrl = await uploadImage(formData.photo);
             const main = new Details();
-            const response = await main.vacancypost(formData);
+            const response = await main.ResultAdd(formData);
             if (response?.data?.status) {
                 toast.success(response.data.message);
                 handleClose();
@@ -112,6 +133,7 @@ function Index() {
                 setLoading(false);
             });
     };
+
 
     return (
         <>
@@ -202,46 +224,69 @@ function Index() {
                         <form onSubmit={handleSubmit} className="p-6">
                             <div className="space-y-4">
                                 <div>
-                                    <label className="block text-sm font-medium text-[#212121]">Designation</label>
+                                    <label className="block text-sm font-medium text-[#212121]">Grade</label>
                                     <input
                                         type="text"
-                                        name="designation"
-                                        value={formData.designation}
+                                        name="grade"
+                                        value={formData.grade}
                                         onChange={handleChange}
                                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
                                         required
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-medium text-[#212121]">Qualification</label>
+                                    <label className="block text-sm font-medium text-[#212121]">Stream</label>
                                     <input
                                         type="text"
-                                        name="qualification"
-                                        value={formData.qualification}
+                                        name="stream"
+                                        value={formData.stream}
                                         onChange={handleChange}
                                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
                                         required
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-medium text-[#212121]">Experience</label>
+                                    <label className="block text-sm font-medium text-[#212121]">Name</label>
                                     <input
                                         type="text"
-                                        name="experience"
-                                        value={formData.experience}
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
+                                        required
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium text-[#212121]">Roll No.</label>
+                                    <input
+                                        type="text"
+                                        name="rollNo"
+                                        value={formData.rollNo}
                                         onChange={handleChange}
                                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
                                         required
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-medium text-[#212121]">Description</label>
-                                    <textarea
-                                        name="description"
-                                        value={formData.description}
+                                    <label className="block text-sm font-medium text-[#212121]">Percentage</label>
+                                    <input
+                                        type="text"
+                                        name="percentage"
+                                        value={formData.percentage}
                                         onChange={handleChange}
                                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
-                                        rows="3"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-[#212121]">Image</label>
+                                    <input
+                                        type="file"
+                                        name="photo"
+                                        value={formData.photo}
+                                        onChange={handleChange}
+                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
                                         required
                                     />
                                 </div>

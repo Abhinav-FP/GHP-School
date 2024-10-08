@@ -97,21 +97,20 @@ export default function Index() {
       <tr
         ref={ref}
         style={{ opacity: isDragging ? 0.5 : 1 }}
-        className="border border-black border-opacity-10"
       >
-        <td className="text-[#666666] text-base px-1.5 lg:px-[40px] py-5 tracking-[-0.04em] border border-black border-opacity-10">
+       <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
           {index + 1}
         </td>
-        <td className="text-[#666666] text-base px-1.5 lg:px-[40px] py-5 tracking-[-0.04em] border border-black border-opacity-10">
+        <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
           {item?.name}
         </td>
-        <td className="text-[#666666] text-base px-1.5 lg:px-[40px] py-5 tracking-[-0.04em] border border-black border-opacity-10">
+        <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
           {item?.subjects}
         </td>
-        <td className="text-[#666666] text-base px-1.5 lg:px-[40px] py-5 tracking-[-0.04em] border border-black border-opacity-10">
+        <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
           {item?.grades}
         </td>
-        <td className="text-[#666666] text-base px-1.5 lg:px-[40px] py-5 tracking-[-0.04em] border border-black border-opacity-10">
+        <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
           <RiDeleteBinLine
             size={16}
             onClick={() => {
@@ -157,7 +156,7 @@ export default function Index() {
           <div className="bg-white rounded-[20px] mb-[30px]">
             <div className="py-3 py-4 lg:py-[23px] px-4 md:px-6 lg:px-10 flex flex-wrap justify-between items-center border-b border-black  border-opacity-10">
               <h3 className=" text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">Faculty</h3>
-              <Faculty />
+              <Faculty getTeachers={getTeachers}/>
             </div>
             <div className="overflow-x-auto">
               {loading ? (
@@ -165,37 +164,22 @@ export default function Index() {
               ) : (
                 <DndProvider backend={HTML5Backend}>
                   <div className="overflow-x-auto">
-                    <table className="border border-gray-200 w-full">
+                  <table className="min-w-full">
                       <thead>
-                        <tr className="bg-[#36C9B4] text-white">
-                          <th
-                            width="10%"
-                            className="text-white text-left text-sm px-1.5 lg:px-[40px] py-5 tracking-[-0.04em] capitalize font-medium"
-                          >
+                        <tr className="">
+                        <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
                             Sr. No.
                           </th>
-                          <th
-                            width="25%"
-                            className="text-white text-left text-sm px-1.5 lg:px-[40px] py-5 tracking-[-0.04em] uppercase font-medium"
-                          >
+                          <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
                             Name of the teacher
                           </th>
-                          <th
-                            width="30%"
-                            className="text-white text-left text-sm px-1.5 lg:px-[40px] py-5 tracking-[-0.04em] uppercase font-medium"
-                          >
+                          <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
                             Subject
                           </th>
-                          <th
-                            width="25%"
-                            className="text-white text-left text-sm px-1.5 lg:px-[40px] py-5 tracking-[-0.04em] uppercase font-medium"
-                          >
+                          <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
                             Grade/Class
                           </th>
-                          <th
-                            width="10%"
-                            className="text-white text-left text-sm px-1.5 lg:px-[40px] py-5 tracking-[-0.04em] uppercase font-medium"
-                          >
+                          <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
                             Action
                           </th>
                         </tr>
