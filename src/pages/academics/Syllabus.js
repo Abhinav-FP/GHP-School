@@ -53,7 +53,7 @@ export default function Index() {
    
     return (
         <>
-            <div className='pb-[100px]'>
+            <div className='pb-[100px] bg-white'>
                 <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto " id="syllabus">
                     <h2 className='merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-6 lg:mb-[36px] text-[#1E1E1E]  tracking-[-0.04em] text-center'>Syllabus</h2>
 

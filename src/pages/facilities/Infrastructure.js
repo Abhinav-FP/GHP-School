@@ -86,7 +86,7 @@ export default function Infrastructure() {
                       height={40}
                       loading="lazy"
                     />
-                    <h3 className=" text-xl lg:text-2xl merriweather-font tracking-[-0.04em] font-normal mb-3 lg:mb-[10px]">
+                    <h3 className="text-[#1E1E1E] text-xl lg:text-2xl merriweather-font tracking-[-0.04em] font-normal mb-3 lg:mb-[10px]">
                       {item?.title}
                     </h3>
                     <p className="text-sm lg:text-base tracking-[-0.04em] font-medium text-[#666666]">

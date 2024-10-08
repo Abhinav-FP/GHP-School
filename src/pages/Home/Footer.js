@@ -17,7 +17,7 @@ export default function Footer() {
         <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto ">
           <div className="flex flex-wrap -mx-2">
             <div className="w-full lg:w-7/12 px-2 mb-6 lg:mb-0">
-              <h3 className="pb-3 md:pb-4 lg:pb-5 border-b border-black border-opacity-10 text-xl lg:text-2xl merriweather-font font-medium lg:inline-block tracking-[-0.04em] mb-5">
+              <h3 className="text-[#1E1E1E] pb-3 md:pb-4 lg:pb-5 border-b border-black border-opacity-10 text-xl lg:text-2xl merriweather-font font-medium lg:inline-block tracking-[-0.04em] mb-5">
                 BAL VISHWA BHARTI PUBLIC SR SEC SCHOOL
               </h3>
               <div className="space-y-2.5">
@@ -49,7 +49,7 @@ export default function Footer() {
               </div>
             </div>
             <div className="w-full md:w-6/12 lg:w-2/12 px-2 mb-6 md:mb-0">
-              <h3 className="pb-3 md:pb-4 lg:pb-5 border-b border-black border-opacity-10 text-xl lg:text-2xl merriweather-font font-medium  tracking-[-0.04em] mb-5">
+              <h3 className="text-[#1E1E1E] pb-3 md:pb-4 lg:pb-5 border-b border-black border-opacity-10 text-xl lg:text-2xl merriweather-font font-medium  tracking-[-0.04em] mb-5">
                 Quick Links{" "}
               </h3>
               <div className="space-y-2.5">
@@ -97,7 +97,7 @@ export default function Footer() {
             </div>
             <div className="w-full md:w-6/12 lg:w-3/12 px-2 md:flex md:justify-end">
               <div>
-                <h3 className="pb-3 md:pb-4 lg:pb-5 border-b border-black border-opacity-10 text-xl lg:text-2xl merriweather-font font-medium  tracking-[-0.04em] mb-5 lg:inline-block">
+                <h3 className="text-[#1E1E1E] pb-3 md:pb-4 lg:pb-5 border-b border-black border-opacity-10 text-xl lg:text-2xl merriweather-font font-medium  tracking-[-0.04em] mb-5 lg:inline-block">
                   Follow us on{" "}
                 </h3>
                 <div className="space-y-2.5">
