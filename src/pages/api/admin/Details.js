@@ -139,6 +139,10 @@ class Details extends Component {
     return Api.post(`/verify-payment`, data);
   }
 
+  async AdmissionFormAdd(data) {
+    return Api.post(`/admissionform/add`, data);
+  }
+
 
   render() {
     return (

@@ -1,40 +1,140 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
+import Details from "../api/admin/Details";
 
 function ContactForm() {
   const [record, setRecord] = useState({
     class: "",
+    optional: "",
+    date: "",
+    aadhar: "",
+    scholar: "",
+    name: "",
+    dobWords: "",
     type: "",
-    selectedDate: "",
+    dob: "",
+    fatherName: "",
+    fatherOccupation: "",
+    fatherPhone: "",
+    motherName: "",
+    motherOccupation: "",
+    motherPhone: "",
+    guardianName: "",
+    guardianOccupation: "",
+    guardianPhone: "",
+    fatheremail: "",
+    email: "",
+    address: "",
+    school: "",
+    class_percentage: "",
+    sibling: "",
+    belongs: "",
+    facility: "",
   });
+  const [formloading, setFormLoading] = useState(false); // Loading state
+  const [checkboxes, setCheckboxes] = useState({
+    correctInfo: false,
+    agreeRules: false,
+    correctDOB: false,
+    explainedRules: false,
+    noResponsibility: false,
+    provisionalAdmission: false,
+  });
+
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    setCheckboxes((prevState) => ({
+      ...prevState,
+      [name]: checked,
+    }));
+  };
+
   const handleChange = (e) => {
     const value = e.target.value;
     const name = e.target.name;
+    console.log("name", name);
     setRecord((prevState) => ({ ...prevState, [name]: value }));
+    if (name === "dob") {
+      const options = { year: "numeric", month: "long", day: "numeric" };
+      const formattedDate = new Date(value).toLocaleDateString(
+        "en-US",
+        options
+      );
+      setRecord((prevState) => ({ ...prevState, dobWords: formattedDate }));
+      console.log(`Selected Date: ${formattedDate}`);
+    }
   };
 
-  console.log("record", record);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const allChecked = Object.values(checkboxes).every((value) => value);
+    if (!allChecked) {
+      alert("Please ensure all declarations are checked before submitting.");
+      return;
+    }
+    setFormLoading(true);
+    if (formloading) {
+      return;
+    }
+    const main = new Details();
+    try {
+      const res = await main.AdmissionFormAdd(record);
+      if ( res && res?.data) {
+        toast.success(res.data.message);
+        setRecord({
+          class: "",
+          optional: "",
+          date: "",
+          aadhar: "",
+          scholar: "",
+          name: "",
+          dobWords: "",
+          type: "",
+          dob: "",
+          fatherName: "",
+          fatherOccupation: "",
+          fatherPhone: "",
+          motherName: "",
+          motherOccupation: "",
+          motherPhone: "",
+          guardianName: "",
+          guardianOccupation: "",
+          guardianPhone: "",
+          fatheremail: "",
+          email: "",
+          address: "",
+          school: "",
+          class_percentage: "",
+          sibling: "",
+          belongs: "",
+          facility: "",
+        });
+        setFormLoading(false);
+      } else {
+        toast.error(res.message);
+        setFormLoading(false);
 
-  const handleDateChange = (event) => {
-    const date = event.target.value;
-    
-    // Correctly updating the selectedDate field in the state
-    setRecord((prevState) => ({ ...prevState, selectedDate: date }));
+      }
+    } catch (error) {
+      toast.error("An error occurred while submitting.");
+      setFormLoading(false);
 
-    // Convert to a human-readable format
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const formattedDate = new Date(date).toLocaleDateString('en-US', options);
-    console.log(`Selected Date: ${formattedDate}`);
+    } finally {
+      setFormLoading(false);
+    }
   };
   return (
     <div className="bg-white py-[50px] md:py-[70px] lg:py-[100px]">
-      <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto ">
+      <form
+        onSubmit={handleSubmit}
+        className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto "
+      >
         <h1 className="merriweather-font font-normal text-center text-2xl md:text-3xl lg:text-4xl mb-2.5 text-[#1E1E1E]  tracking-[-0.04em]">
           Apply Now
         </h1>
         <p className="text-center text-base text-[#1E1E1E]  tracking-[-0.04em] opacity-80 font-medium mb-5  lg:mb-[30px]">
           (Form no : E01)
         </p>
-
         <div className="border-t border-black border-opacity-10 pt-10 lg:pt-[50px]">
           <div className="flex flex-wrap -mx-2.5">
             <div className="w-full lg:w-8/12 px-2.5 mb-5">
@@ -62,40 +162,109 @@ function ContactForm() {
                 <option value="VIII">VIII</option>
                 <option value="IX">IX</option>
                 <option value="X">X</option>
-                <option value="XI">XI</option>
-                <option value="XII">XII</option>
+                <option value="XI arts">XI Arts</option>
+                <option value="XI commerce">XI Commerce</option>
+                <option value="XI science">XI Science</option>
+                <option value="XII arts">XII Arts</option>
+                <option value="XII commerce">XII Commerce</option>
+                <option value="XII science">XII Science</option>
               </select>
             </div>
-
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Optional Subject
               </label>
-              <input className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+              <select
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                name="optional"
+                value={record.optional}
+                onChange={handleChange}
+                id="optional"
+              >
+                <option value="" disabled>
+                  Select Subject
+                </option>
+                {record?.class === "XI arts" || record?.class === "XII arts" ? (
+                  <>
+                    <option value="history">History</option>
+                    <option value="political-science">Political Science</option>
+                    <option value="sociology/economics">
+                      Sociology /Economics
+                    </option>
+                    <option value="sanskrit-sahitya">Sanskrit Sahitya</option>
+                    <option value="hindi-sahitya">Hindi Sahitya</option>
+                    <option value="home-science">Home Science</option>
+                  </>
+                ) : record?.class === "XI commerce" ||
+                  record?.class === "XII commerce" ? (
+                  <>
+                    <option value="accountancy">Accountancy</option>
+                    <option value="business-study">Business Study</option>
+                    <option value="Economics/Computer-Science/Maths">
+                      Economics / Computer Science / Maths
+                    </option>
+                    <option value="hindi-typing">Hindi Typing</option>
+                    <option value="english-typing">English Typing</option>
+                  </>
+                ) : record?.class === "XI science" ||
+                  record?.class === "XII science" ? (
+                  <>
+                    <option value="physics">Physics</option>
+                    <option value="chemistry">Chemistry</option>
+                    <option value="Biology/Maths">Biology/Maths</option>
+                  </>
+                ) : null}
+              </select>
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Date of Admission{" "}
+                Date of Admission
               </label>
-              <input className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+              <input
+                type="date"
+                name="date"
+                value={record.date}
+                onChange={handleChange}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+              />
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Aadhar No.
               </label>
-              <input className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+              <input
+                type="text"
+                name="aadhar"
+                value={record.aadhar}
+                onChange={handleChange}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                required
+              />
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Scholar’s register no
               </label>
-              <input className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+              <input
+                type="number"
+                name="scholar"
+                value={record.scholar}
+                onChange={handleChange}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+              />
             </div>
             <div className="w-full lg:w-8/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Full Name{" "}
               </label>
-              <input className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+              <input
+                type="text"
+                name="name"
+                value={record.name}
+                onChange={handleChange}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                required
+              />
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
@@ -113,17 +282,18 @@ function ContactForm() {
                   Select Type
                 </option>
                 <option value="new">New Admission</option>
-                <option value="renwe">Renew after Class X for Grade XI</option>
+                <option value="renew">Renew after Class X for Grade XI</option>
               </select>
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Date of birth
+                Date of Birth
               </label>
               <input
                 type="date"
-                value={record.selectedDate}
-                onChange={handleDateChange}
+                name="dob"
+                value={record.dob}
+                onChange={handleChange}
                 className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
               />
             </div>
@@ -131,243 +301,229 @@ function ContactForm() {
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Date of birth (In Words)
               </label>
-              <input className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+              <input
+                type="text"
+                name="dobWords"
+                value={record?.dobWords}
+                onChange={handleChange}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+              />
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Father’s name
               </label>
-              <input className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+              <input
+                type="text"
+                name="fatherName"
+                value={record?.fatherName}
+                onChange={handleChange}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+              />
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Occupation{" "}
               </label>
-              <input className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+              <input
+                type="text"
+                name="fatherOccupation"
+                value={record?.fatherOccupation}
+                onChange={handleChange}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+              />
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Father’s Phone Number*{" "}
               </label>
-              <input className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+              <input
+                type="tel"
+                inputmode="numeric"
+                name="fatherPhone"
+                value={record?.fatherPhone}
+                onChange={handleChange}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+              />
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Mother’s name
               </label>
-              <input className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+              <input
+                type="text"
+                name="motherName"
+                value={record?.motherName}
+                onChange={handleChange}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+              />
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Occupation{" "}
               </label>
-              <input className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+              <input
+                type="text"
+                name="motherOccupation"
+                value={record?.motherOccupation}
+                onChange={handleChange}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+              />
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Mother’s Phone Number*{" "}
               </label>
-              <input className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+              <input
+                type="tel"
+                inputmode="numeric"
+                name="motherPhone"
+                value={record?.motherPhone}
+                onChange={handleChange}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+              />
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Guardian’s name
               </label>
-              <input className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+              <input
+                type="text"
+                name="guardianName"
+                value={record?.guardianName}
+                onChange={handleChange}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+              />
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Occupation{" "}
               </label>
-              <input className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+              <input
+                type="text"
+                name="guardianOccupation"
+                value={record?.guardianOccupation}
+                onChange={handleChange}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+              />
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Guardian’s Phone Number*
               </label>
-              <input className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+              <input
+                type="tel"
+                inputmode="numeric"
+                name="guardianPhone"
+                value={record?.guardianPhone}
+                onChange={handleChange}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+              />
             </div>
             <div className="w-full lg:w-12/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Father’s/Guardian’s Address
               </label>
-              <textarea className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"></textarea>
+              <textarea
+                type="text"
+                name="address"
+                value={record?.address}
+                onChange={handleChange}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+              ></textarea>
             </div>
             <div className="w-full lg:w-6/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Father’s/Mother’s Email*
               </label>
-              <input className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+              <input
+                type="email"
+                name="fatheremail"
+                value={record?.fatheremail}
+                onChange={handleChange}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                required
+              />
             </div>
             <div className="w-full lg:w-6/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Student’s Email
               </label>
-              <input className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+              <input
+                type="email"
+                name="email"
+                value={record?.email}
+                onChange={handleChange}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+              />
             </div>
             <div className="w-full lg:w-8/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Last School attended
               </label>
-              <input className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+              <input
+                type="text"
+                name="school"
+                value={record?.school}
+                onChange={handleChange}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+              />
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Class passed & Percentage
               </label>
-              <input className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+              <input
+                type="text"
+                name="class_percentage"
+                value={record?.class_percentage}
+                onChange={handleChange}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+              />
             </div>
             <div className="w-full lg:w-12/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Name of brother/sister studying in this school
               </label>
-              <input className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none" />
+              <input
+                type="text"
+                name="sibling"
+                value={record?.sibling}
+                onChange={handleChange}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+              />
             </div>
             <div className="w-full lg:w-12/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Candidate belongs to{" "}
               </label>
               <div className="flex flex-wrap space-x-3 lg:space-x-5">
-                <div
-                  className="border border-black p-3 lg:p-4 border-opacity-10 min-w-[154px]"
-                  for="sc"
-                >
-                  <input
-                    id="sc"
-                    type="radio"
-                    name="belongs"
-                    value="sc"
-                    className="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
-                    aria-labelledby="sc"
-                    aria-describedby="sc"
-                  />
-                  <label
-                    for="sc"
-                    className="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 "
-                  >
-                    SC
-                  </label>
-                </div>
-                <div
-                  className="border border-black p-3 lg:p-4 border-opacity-10 min-w-[154px]"
-                  for="st"
-                >
-                  <input
-                    id="st"
-                    type="radio"
-                    name="belongs"
-                    value="st"
-                    className="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
-                    aria-labelledby="st"
-                    aria-describedby="st"
-                  />
-                  <label
-                    for="st"
-                    className="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 "
-                  >
-                    ST
-                  </label>
-                </div>
-                <div
-                  className="border border-black p-3 lg:p-4 border-opacity-10 min-w-[154px]"
-                  for="obc"
-                >
-                  <input
-                    id="obc"
-                    type="radio"
-                    name="belongs"
-                    value="obc"
-                    className="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
-                    aria-labelledby="obc"
-                    aria-describedby="obc"
-                  />
-                  <label
-                    for="obc"
-                    className="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 "
-                  >
-                    OBC
-                  </label>
-                </div>
-                <div
-                  className="border border-black p-3 lg:p-4 border-opacity-10 min-w-[154px]"
-                  for="general"
-                >
-                  <input
-                    id="general"
-                    type="radio"
-                    name="belongs"
-                    value="general"
-                    className="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
-                    aria-labelledby="general"
-                    aria-describedby="general"
-                  />
-                  <label
-                    for="general"
-                    className="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 "
-                  >
-                    General
-                  </label>
-                </div>
-                <div
-                  className="border border-black p-3 lg:p-4 border-opacity-10 min-w-[154px]"
-                  for="sbc"
-                >
-                  <input
-                    id="sbc"
-                    type="radio"
-                    name="belongs"
-                    value="sbc"
-                    className="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
-                    aria-labelledby="sbc"
-                    aria-describedby="sbc"
-                  />
-                  <label
-                    for="sbc"
-                    className="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 "
-                  >
-                    SBC
-                  </label>
-                </div>
-                <div
-                  className="border border-black p-3 lg:p-4 border-opacity-10 min-w-[154px]"
-                  for="ews"
-                >
-                  <input
-                    id="ews"
-                    type="radio"
-                    name="belongs"
-                    value="ews"
-                    className="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
-                    aria-labelledby="ews"
-                    aria-describedby="ews"
-                  />
-                  <label
-                    for="ews"
-                    className="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 "
-                  >
-                    EWS
-                  </label>
-                </div>
-                <div
-                  className="border border-black p-3 lg:p-4 border-opacity-10 min-w-[154px]"
-                  for="other"
-                >
-                  <input
-                    id="other"
-                    type="radio"
-                    name="belongs"
-                    value="other"
-                    className="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
-                    aria-labelledby="other"
-                    aria-describedby="other"
-                  />
-                  <label
-                    for="other"
-                    className="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 "
-                  >
-                    Other
-                  </label>
-                </div>
+                {["sc", "st", "obc", "general", "sbc", "ews", "other"].map(
+                  (category) => (
+                    <div
+                      key={category}
+                      className="border border-black p-3 lg:p-4 border-opacity-10 min-w-[154px]"
+                    >
+                      <input
+                        id={category}
+                        type="radio"
+                        name="belongs"
+                        value={category}
+                        onChange={handleChange}
+                        checked={record.belongs === category}
+                        className="w-5 h-5 lg:w-6 lg:h-6 bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
+                        aria-labelledby={category}
+                        aria-describedby={category}
+                      />
+                      <label
+                        htmlFor={category}
+                        className="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 "
+                      >
+                        {category.toUpperCase()}
+                      </label>
+                    </div>
+                  )
+                )}
               </div>
             </div>
             <div className="w-full lg:w-12/12 px-2.5 mb-5">
@@ -376,43 +532,42 @@ function ContactForm() {
               </label>
               <div className="flex flex-wrap -mx-2.5">
                 <div className="w-6/12 px-2.5 mb-2 lg:mb-0">
-                  <div
-                    className="border border-black p-3 lg:p-4 border-opacity-10 min-w-[154px]"
-                    for="yes"
-                  >
+                  <div className="border border-black p-3 lg:p-4 border-opacity-10 min-w-[154px]">
                     <input
                       id="yes"
                       type="radio"
                       name="facility"
                       value="yes"
-                      className="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
+                      onChange={handleChange}
+                      checked={record.facility === "yes"}
+                      className="w-5 h-5 lg:w-6 lg:h-6 bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
                       aria-labelledby="yes"
                       aria-describedby="yes"
                     />
                     <label
-                      for="yes"
-                      className="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 tracking-[-0.04em] "
+                      htmlFor="yes"
+                      className="cursor-pointer ml-2 text-sm font-medium text-[#1E1E1E] opacity-80 tracking-[-0.04em]"
                     >
                       YES
                     </label>
                   </div>
                 </div>
+
                 <div className="w-6/12 px-2.5 mb-2 lg:mb-0">
-                  <div
-                    className="border border-black p-3 lg:p-4 border-opacity-10 min-w-[154px]"
-                    for="no"
-                  >
+                  <div className="border border-black p-3 lg:p-4 border-opacity-10 min-w-[154px]">
                     <input
                       id="no"
                       type="radio"
                       name="facility"
                       value="no"
-                      className="w-5 h-5 lg:w-6 lg:h-6  bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
+                      onChange={handleChange}
+                      checked={record.facility === "no"}
+                      className="w-5 h-5 lg:w-6 lg:h-6 bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
                       aria-labelledby="no"
                       aria-describedby="no"
                     />
                     <label
-                      for="no"
+                      htmlFor="no"
                       className="cursor-pointer ml-2 text-base font-medium text-[#1E1E1E] opacity-80 tracking-[-0.04em]"
                     >
                       NO
@@ -428,16 +583,15 @@ function ContactForm() {
               <ul className="space-y-2">
                 <li className="relative pl-5">
                   <input
-                    id=""
+                    id="correctInfo"
                     type="checkbox"
-                    name=""
-                    value="1"
+                    name="correctInfo"
+                    checked={checkboxes.correctInfo}
+                    onChange={handleCheckboxChange}
                     className="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
-                    aria-labelledby="1"
-                    aria-describedby="1"
                   />
                   <label
-                    for="1"
+                    htmlFor="correctInfo"
                     className="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
                   >
                     The above information is correct.
@@ -445,16 +599,15 @@ function ContactForm() {
                 </li>
                 <li className="relative pl-5">
                   <input
-                    id=""
+                    id="agreeRules"
                     type="checkbox"
-                    name=""
-                    value="2"
+                    name="agreeRules"
+                    checked={checkboxes.agreeRules}
+                    onChange={handleCheckboxChange}
                     className="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
-                    aria-labelledby="2"
-                    aria-describedby="2"
                   />
                   <label
-                    for="2"
+                    htmlFor="agreeRules"
                     className="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
                   >
                     I agree to abide by Rules and Regulations of the school and
@@ -464,16 +617,15 @@ function ContactForm() {
                 </li>
                 <li className="relative pl-5">
                   <input
-                    id=""
+                    id="correctDOB"
                     type="checkbox"
-                    name=""
-                    value="3"
+                    name="correctDOB"
+                    checked={checkboxes.correctDOB}
+                    onChange={handleCheckboxChange}
                     className="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
-                    aria-labelledby="3"
-                    aria-describedby="3"
                   />
                   <label
-                    for="3"
+                    htmlFor="correctDOB"
                     className="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
                   >
                     The date of birth entered above is correct and no request
@@ -482,16 +634,15 @@ function ContactForm() {
                 </li>
                 <li className="relative pl-5">
                   <input
-                    id=""
+                    id="explainedRules"
                     type="checkbox"
-                    name=""
-                    value="4"
+                    name="explainedRules"
+                    checked={checkboxes.explainedRules}
+                    onChange={handleCheckboxChange}
                     className="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
-                    aria-labelledby="4"
-                    aria-describedby="4"
                   />
                   <label
-                    for="4"
+                    htmlFor="explainedRules"
                     className="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
                   >
                     I have explained these rules and regulations to my
@@ -505,16 +656,15 @@ function ContactForm() {
                 </li>
                 <li className="relative pl-5">
                   <input
-                    id=""
+                    id="noResponsibility"
                     type="checkbox"
-                    name=""
-                    value="5"
+                    name="noResponsibility"
+                    checked={checkboxes.noResponsibility}
+                    onChange={handleCheckboxChange}
                     className="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
-                    aria-labelledby="5"
-                    aria-describedby="5"
                   />
                   <label
-                    for="5"
+                    htmlFor="noResponsibility"
                     className="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
                   >
                     The School will not be held responsible for any accident,
@@ -524,26 +674,24 @@ function ContactForm() {
                 </li>
                 <li className="relative pl-5">
                   <input
-                    id=""
+                    id="provisionalAdmission"
                     type="checkbox"
-                    name=""
-                    value="6"
+                    name="provisionalAdmission"
+                    checked={checkboxes.provisionalAdmission}
+                    onChange={handleCheckboxChange}
                     className="absolute left-0 top-1 w-[14px] h-[14px] bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-[#EE834E] checked:border-[#EE834E] cursor-pointer"
-                    aria-labelledby="6"
-                    aria-describedby="6"
                   />
                   <label
-                    for="6"
+                    htmlFor="provisionalAdmission"
                     className="cursor-pointer ml-1 text-base font-normal text-[#1E1E1E] opacity-80 tracking-[-0.04em] italic "
                   >
                     Admission granted to a student will be provisional until the
-                    relevant documents are not submitted duely signed/counter
+                    relevant documents are not submitted duly signed/counter
                     signed by the concerned authorities.
                   </label>
                 </li>
               </ul>
             </div>
-
             <div className="w-full lg:w-12/12 px-2.5 mb-10 md:mb-14 lg:mb-20">
               <p className="Gotham-reguler text-base lg:text-lg font-normal text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-0">
                 Submitting the form does not guarantee admission. The student
@@ -565,12 +713,12 @@ function ContactForm() {
                 type="submit"
                 className="bg-[#EE834E] hover:bg-[#ECCD6E] rounded px-8 lg:px-24 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]"
               >
-                Submit
+                {formloading ? "Submitting..." : "Submit"}
               </button>
             </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

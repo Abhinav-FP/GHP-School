@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Image from 'next/image';
+import Image from "next/image";
 import Logo from "../../../public/Header/Logo.png";
-import Link from 'next/link';  // Correct import for Link
+import Link from "next/link"; // Correct import for Link
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 export default function Header() {
   const router = useRouter(); // Initialize the router
@@ -20,155 +20,271 @@ export default function Header() {
         <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
           <div className="relative flex items-center justify-between">
             <div className="flex-shrink-0">
-              <Link href="/"><Image className="max-w-full w-auto max-h-[70px] md:max-h-[70px] lg:max-h-[91px]" src={Logo} alt="BVBS School logo" /></Link>
+              <Link href="/">
+                <Image
+                  className="max-w-full w-auto max-h-[70px] md:max-h-[165px] lg:max-h-[165px]"
+                  height={165}
+                  width={91}
+                  layout="fixed"
+                  src={Logo}
+                  alt="BVBS School logo"
+                />
+              </Link>
             </div>
             <div className="hidden lg:ml-6 lg:block">
-              <div> 
+              <div>
                 {/* <!-- Current: "text-[#EE834E]" --> */}
                 <ul className="flex space-x-6 lg:space-x-8 xl:space-x-10">
                   <li className="group relative cursor-pointer">
-                    <Link href="/about" className={'text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] ' + (url === '/about' ? 'text-[#EE834E]' : 'text-[#1E1E1E]')}>
+                    <Link
+                      href="/about"
+                      className={
+                        "text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] " +
+                        (url === "/about" ? "text-[#EE834E]" : "text-[#1E1E1E]")
+                      }
+                    >
                       About
-                      <MdOutlineKeyboardArrowDown className="inline" size={18} />
+                      <MdOutlineKeyboardArrowDown
+                        className="inline"
+                        size={18}
+                      />
                     </Link>
                     <ul className="invisible min-w-[249px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0 ">
                       <li>
-                        <Link href="/about#vision" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <Link
+                          href="/about#vision"
+                          className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
+                        >
                           Vision
                         </Link>
                       </li>
                       <li>
-                        <Link href="/about#mission" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <Link
+                          href="/about#mission"
+                          className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
+                        >
                           Mission
                         </Link>
                       </li>
                       <li>
-                        <Link href="/about#faculty" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <Link
+                          href="/about#faculty"
+                          className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
+                        >
                           Faculty
                         </Link>
                       </li>
                       <li>
-                        <Link href="/about#directors" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <Link
+                          href="/about#directors"
+                          className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
+                        >
                           Founder & Directors
                         </Link>
                       </li>
                       <li>
-                        <Link href="/about#sisterSchools" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <Link
+                          href="/about#sisterSchools"
+                          className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
+                        >
                           Sister Schools
                         </Link>
                       </li>
                     </ul>
                   </li>
                   <li className="group relative cursor-pointer">
-
-                    <Link href="/academics" className={'text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] ' + (url.startsWith('/academies') ? 'text-[#EE834E]' : 'text-[#1E1E1E]')}>
+                    <Link
+                      href="/academics"
+                      className={
+                        "text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] " +
+                        (url.startsWith("/academies")
+                          ? "text-[#EE834E]"
+                          : "text-[#1E1E1E]")
+                      }
+                    >
                       Academics
-                      <MdOutlineKeyboardArrowDown className="inline" size={18} />
+                      <MdOutlineKeyboardArrowDown
+                        className="inline"
+                        size={18}
+                      />
                     </Link>
                     <ul className="invisible min-w-[189px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0">
                       <li>
-                        <Link href="/academics#calendar" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <Link
+                          href="/academics#calendar"
+                          className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
+                        >
                           Calendar
                         </Link>
                       </li>
                       <li>
-                        <Link href="/academics#syllabus" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <Link
+                          href="/academics#syllabus"
+                          className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
+                        >
                           Syllabus & Board
                         </Link>
                       </li>
                       <li>
-                        <Link href="/academics#results" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <Link
+                          href="/academics#results"
+                          className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
+                        >
                           Results
                         </Link>
                       </li>
                     </ul>
-
                   </li>
                   <li className="group relative cursor-pointer">
-                    <Link href="/facilities" className={'text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] ' + (url === '/facilities' ? 'text-[#EE834E]' : 'text-[#1E1E1E]')}>
+                    <Link
+                      href="/facilities"
+                      className={
+                        "text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] " +
+                        (url === "/facilities"
+                          ? "text-[#EE834E]"
+                          : "text-[#1E1E1E]")
+                      }
+                    >
                       Facilities
-                      <MdOutlineKeyboardArrowDown className="inline" size={18} />
+                      <MdOutlineKeyboardArrowDown
+                        className="inline"
+                        size={18}
+                      />
                     </Link>
                     <ul className="invisible min-w-[189px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0">
                       <li>
-                        <Link href="/facilities#houses" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <Link
+                          href="/facilities#houses"
+                          className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
+                        >
                           Houses
                         </Link>
                       </li>
                       <li>
-                        <Link href="/facilities#infrastructure" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <Link
+                          href="/facilities#infrastructure"
+                          className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
+                        >
                           Infrastructure
                         </Link>
                       </li>
                       <li>
-                        <Link href="/facilities#sports" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <Link
+                          href="/facilities#sports"
+                          className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
+                        >
                           Sports
                         </Link>
                       </li>
                       <li>
-                        <Link href="/facilities#activities" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
+                        <Link
+                          href="/facilities#activities"
+                          className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
+                        >
                           Activities
                         </Link>
                       </li>
-                       
                     </ul>
-
                   </li>
                   <li className="group relative cursor-pointer">
-                    <Link href="/admissions" className={'text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] ' + (url.startsWith('/admissions') ? 'text-[#EE834E]' : 'text-[#1E1E1E]')}>
+                    <Link
+                      href="/admissions"
+                      className={
+                        "text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] " +
+                        (url.startsWith("/admissions")
+                          ? "text-[#EE834E]"
+                          : "text-[#1E1E1E]")
+                      }
+                    >
                       Admissions
-                      <MdOutlineKeyboardArrowDown className="inline" size={18} />
+                      <MdOutlineKeyboardArrowDown
+                        className="inline"
+                        size={18}
+                      />
                     </Link>
                     <ul className="invisible min-w-[189px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0">
                       <li>
-                        <Link href="/admissions#form" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
-                        Admission Form 
+                        <Link
+                          href="/admissions#form"
+                          className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
+                        >
+                          Admission Form
                         </Link>
                       </li>
                       <li>
-                        <Link href="/admissions#ageCriteria" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
-                        Age criteria 
+                        <Link
+                          href="/admissions#ageCriteria"
+                          className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
+                        >
+                          Age criteria
                         </Link>
                       </li>
                       <li>
-                        <Link href="/admissions#fees" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
-                        Fee Structure 
+                        <Link
+                          href="/admissions#fees"
+                          className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
+                        >
+                          Fee Structure
                         </Link>
-                      </li> 
+                      </li>
                     </ul>
-
                   </li>
                   <li className="group relative cursor-pointer">
-                    <Link href="/contact" className={'text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] ' + (url.startsWith('/contact') ? 'text-[#EE834E]' : 'text-[#1E1E1E]')}>
+                    <Link
+                      href="/contact"
+                      className={
+                        "text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] " +
+                        (url.startsWith("/contact")
+                          ? "text-[#EE834E]"
+                          : "text-[#1E1E1E]")
+                      }
+                    >
                       Contact
-                      <MdOutlineKeyboardArrowDown className="inline" size={18} />
+                      <MdOutlineKeyboardArrowDown
+                        className="inline"
+                        size={18}
+                      />
                     </Link>
                     <ul className="invisible min-w-[180px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white -right-8">
                       <li>
-                        <Link href="/contact#touch" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
-                        Get in touch 
+                        <Link
+                          href="/contact#touch"
+                          className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
+                        >
+                          Get in touch
                         </Link>
                       </li>
                       <li>
-                        <Link href="/contact#donate" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
-                        Make a donation                        
-                         </Link>
+                        <Link
+                          href="/contact#donate"
+                          className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
+                        >
+                          Make a donation
+                        </Link>
                       </li>
                       <li>
-                        <Link href="/careers" className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium">
-                        Careers
+                        <Link
+                          href="/careers"
+                          className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
+                        >
+                          Careers
                         </Link>
-                      </li> 
+                      </li>
                     </ul>
                   </li>
                 </ul>
-
               </div>
             </div>
 
             <div className="flex lg:hidden">
               {/* <!-- Mobile menu button --> */}
-              <button type="button" className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded={menuOpen} onClick={toggleMenu}>
+              <button
+                type="button"
+                className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                aria-controls="mobile-menu"
+                aria-expanded={menuOpen}
+                onClick={toggleMenu}
+              >
                 <span className="absolute -inset-0.5"></span>
                 <span className="sr-only">Open main menu</span>
                 {/* <!--
@@ -176,39 +292,87 @@ export default function Header() {
 
                     Menu open: "hidden", Menu closed: "block"
                 --> */}
-                <svg className={`${menuOpen ? 'hidden' : 'block'} h-6 w-6`} fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                <svg
+                  className={`${menuOpen ? "hidden" : "block"} h-6 w-6`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  />
                 </svg>
                 {/* <!--
                         Icon when menu is open.
 
                         Menu open: "block", Menu closed: "hidden"
                     --> */}
-                <svg className={`${menuOpen ? 'block' : 'hidden'} h-6 w-6`} fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  className={`${menuOpen ? "block" : "hidden"} h-6 w-6`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </button>
             </div>
-
           </div>
         </div>
 
         {/* <!-- mobile menu */}
-        <div className={`lg:hidden ${menuOpen ? 'block' : 'hidden'}`} id="mobile-menu">
+        <div
+          className={`lg:hidden ${menuOpen ? "block" : "hidden"}`}
+          id="mobile-menu"
+        >
           <div className="space-y-1 px-2 pb-3 pt-2">
             {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-            <Link href="/about" className="px-3 py-2 block text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]">About</Link>
-            <Link href="/academics" className={' px-3 py-2 block  text-base xl:text-lg tracking-[-0.04em] font-medium  hover:text-[#0367F7]  ' + (url.startsWith('/subscription') ? 'text-[#0367F7]' : '')}>Academics</Link>
-            <Link href="/facilities" className="px-3 py-2 block  text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]">Facilities</Link>
-            <Link href="/admissions" className="px-3 py-2 block text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]">Admissions</Link>
-            <Link href="/contact" className="px-3 py-2 block text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]">Contact</Link>
+            <Link
+              href="/about"
+              className="px-3 py-2 block text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]"
+            >
+              About
+            </Link>
+            <Link
+              href="/academics"
+              className={
+                " px-3 py-2 block  text-base xl:text-lg tracking-[-0.04em] font-medium  hover:text-[#0367F7]  " +
+                (url.startsWith("/subscription") ? "text-[#0367F7]" : "")
+              }
+            >
+              Academics
+            </Link>
+            <Link
+              href="/facilities"
+              className="px-3 py-2 block  text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]"
+            >
+              Facilities
+            </Link>
+            <Link
+              href="/admissions"
+              className="px-3 py-2 block text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]"
+            >
+              Admissions
+            </Link>
+            <Link
+              href="/contact"
+              className="px-3 py-2 block text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]"
+            >
+              Contact
+            </Link>
           </div>
-
         </div>
       </nav>
-
-
-
     </>
-  )
+  );
 }
