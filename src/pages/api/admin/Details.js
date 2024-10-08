@@ -20,7 +20,7 @@ class Details extends Component {
     return Api.post("/about/faculty/delete", data);
   }
   async verify() {
-    return Api.get("/user/verify");
+    return Api.get("/user/profile");
   }
 
   async gethomebanner() {
@@ -48,6 +48,12 @@ class Details extends Component {
     return Api.get("/academics/syllabus/get" );
 
   }
+
+  async SysllabasAdd(data) {
+    return Api.post("/academics/syllabus/add" ,data);
+
+  }
+ 
   async getdirector() {
     return Api.get("/about/director/get");
   }
@@ -74,20 +80,23 @@ class Details extends Component {
   async feedelete(data) {
     return Api.post("/fees/delete", data);
   }
-  async careerget() {
+  async vacancyget() {
     return Api.get("/career/vacancy/get");
   }
 
-  async careerpost(data) {
+  async vacancypost(data) {
     return Api.post("/career/vacancy/add", data);
   }
-  async careerdelete(data) {
+  async vacancydelete(data) {
     return Api.post("/career/vacancy/delete", data);
   }
-  async careerapply(data) {
+  async vacancyapply(data) {
     return Api.post("/career/apply", data);
   }
 
+  async careerget() {
+    return Api.get("/career/apply/get");
+  }
 
   async Adminline() {
     return Api.get("/home/admission/get");
@@ -132,6 +141,9 @@ class Details extends Component {
     return Api.post(`/payment/verify-payment`, data);
   }
 
+  async ResultGet() {
+    return Api.get(`/result/get`);
+  }
 
   render() {
     return (

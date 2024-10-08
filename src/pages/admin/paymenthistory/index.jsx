@@ -7,11 +7,11 @@ import React, { useState, useEffect } from "react";
 import Modal from "../Component/Modal";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
+import moment from 'moment';
 import NoData from "../Component/NoData";
 function Index() {
     const [isOpen, setIsOpen] = useState(false);
     const [listing, setLisitng] = useState([])
-    console.log(listing)
     const [Loading, setLoading] = useState(false)
     const getPayment = () => {
         setLoading(true);
@@ -19,7 +19,7 @@ function Index() {
         main.paymentget()
             .then((r) => {
                 setLoading(false);
-                setLisitng(r?.data?.payment);
+                setLisitng(r?.data?.Payment);
             })
             .catch((err) => {
                 setLoading(false);
@@ -31,7 +31,7 @@ function Index() {
     useEffect(() => {
         getPayment();
     }, []);
-    
+
 
     return (<>
         <div className="md:flex flex-wrap  bg-[#F5F6FB] items-start">
@@ -45,7 +45,7 @@ function Index() {
                     <div className="bg-white rounded-[20px] mb-[30px]">
                         <div className="py-3 py-4 lg:py-[23px] px-4 md:px-6 lg:px-10 flex flex-wrap justify-between items-center border-b border-black  border-opacity-10">
                             <h3 className=" text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">Payment  </h3>
-                           
+
                         </div>
                         <div className="overflow-x-auto">
                             {Loading ? (
@@ -62,13 +62,16 @@ function Index() {
                                                     S. No.
                                                 </th>
                                                 <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
-                                                    Payment ID  
+                                                    Payment Date
+                                                </th>
+                                                <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
+                                                    Payment ID
                                                 </th>
                                                 <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
                                                     Order Id
                                                 </th>
                                                 <th className="px-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
-                                                    Product Name 
+                                                    Product Name
                                                 </th>
                                                 <th className="pr-4 md:pr-6 lg:pr-10 pl-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em] text-center">
                                                     Amount
@@ -82,45 +85,24 @@ function Index() {
                                                         {index + 1}
                                                     </td>
                                                     <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
+                                                        {
+
+                                                            moment(item?.payment_date).format("MMM Do YY")
+                                                        }
+                                                    </td>
+                                                    <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
                                                         {item?.payment_id}
                                                     </td>
                                                     <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                        {item?.first
+                                                        {item?.order_id
                                                         }
                                                     </td>
                                                     <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                        {item?.second}
+                                                        {item?.name}
                                                     </td>
                                                     <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                        {item?.third}
-                                                    </td>
-                                                    <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                        {item?.fourth
+                                                        {item?.amount
                                                         }
-                                                    </td>
-                                                    <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                        {item?.total
-                                                        }
-                                                    </td>
-                                                    <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] text-center tracking-[-0.03em] space-x-2">
-                                                        <div className="flex space-x-2 justify-center">
-                                                            <button
-                                                                onClick={() => handlesenddata(item)}
-                                                                className="text-[#0367F7] h-[30px] w-[30px] bg-[#0367F7] bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center"
-                                                            >
-                                                                <svg className="inline" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path
-                                                                        d="M4 14.5349L8.413 14.5199L18.045 4.97988C18.423 4.60188 18.631 4.09988 18.631 3.56588C18.631 3.03188 18.423 2.52988 18.045 2.15188L16.459 0.565875C15.703 -0.190125 14.384 -0.186125 13.634 0.562875L4 10.1049V14.5349ZM15.045 1.97988L16.634 3.56288L15.037 5.14488L13.451 3.55988L15.045 1.97988ZM6 10.9389L12.03 4.96588L13.616 6.55188L7.587 12.5229L6 12.5279V10.9389Z"
-                                                                        fill="#0367F7"
-                                                                    />
-                                                                    <path
-                                                                        d="M2 18.5219H16C17.103 18.5219 18 17.6249 18 16.5219V7.85388L16 9.85388V16.5219H5.158C5.132 16.5219 5.105 16.5319 5.079 16.5319C5.046 16.5319 5.013 16.5229 4.979 16.5219H2V2.52188H8.847L10.847 0.521875H2C0.897 0.521875 0 1.41888 0 2.52188V16.5219C0 17.6249 0.897 18.5219 2 18.5219Z"
-                                                                        fill="#0367F7"
-                                                                    />
-                                                                </svg>
-                                                            </button>
-
-                                                        </div>
                                                     </td>
                                                 </tr>
                                             ))}
