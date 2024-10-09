@@ -95,7 +95,7 @@ function Index() {
         <div className="md:flex flex-wrap  bg-[#F5F6FB] items-start">
             <SideBarAdmin />
             {/* right sidebar  */}
-            <div className="w-full lg:w-[calc(100%-304px)]">
+            <div className="w-full lg:ml-[304px] lg:w-[calc(100%-304px)]">
                 <Header title={"Manage  Banner"} />
                 {/* Overview */}
                 <div className="px-4 py-2 lg:px-10 lg:py-2.5">
@@ -103,11 +103,11 @@ function Index() {
                     <div className="bg-white rounded-[20px] mb-[30px]">
                         <div className="py-3 py-4 lg:py-[23px] px-4 md:px-6 lg:px-10 flex flex-wrap justify-between items-center border-b border-black  border-opacity-10">
                             <h3 className=" text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">Banner  </h3>
-                            <button onClick={() => setIsOpen(true)} className="text-white bg-[#0367F7] hover:bg-white hover:text-[#0367F7] text-sm font-normal tracking-[-0.03em] py-2 px-3 xl:px-3.5 border border-[#0367F7] rounded-md outline-none focus:outline-none ease-linear transition-all duration-150">
+                            <button onClick={() => setIsOpen(true)} className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
                                 Add New Banner
-                            </button>
+                            </button>  
                         </div>
-                        <div className="overflow-x-auto">
+                        <div className="w-full p-6">
                             {Loading ? (
                                 <LoadingData />
                             ) : (
@@ -115,56 +115,31 @@ function Index() {
                                     // <Nodata />
                                     <NoData />
                                 ) : (
-                                    <table className="min-w-full">
-                                        <thead>
-                                            <tr>
-                                                <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
-                                                    S. No.
-                                                </th>
-                                                <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
-                                                    Banner Image
-                                                </th>
-                                                <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
-                                                    Heading
-                                                </th>
-                                                <th className="px-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
-                                                    Paragraph
-                                                </th>
-                                                <th className="pr-4 md:pr-6 lg:pr-10 pl-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em] text-center">
-                                                    Action
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                          <div className="flex flex-wrap -mx-2.5 ">
                                             {listing?.map((item, index) => (
-                                                <tr key={item.id} className="bg-white border-t transition duration-300 ease-in-out hover:bg-gray-100">
-                                                    <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                        {index + 1}
-                                                    </td>
-                                                    <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
+                                                <div key={item.id} className="flex flex-col justify-start w-full sm:w-6/12 lg:w-6/12 xl:w-3/12 px-2.5 mb-3 lg:mb-0">                                                    
+                                                    <div className="w-full bg-[#f9f9f9] mb-4 relative">
                                                         <img
                                                             src={item?.photo}
                                                             alt={item?.heading}
-                                                            className="w-full h-auto object-cover rounded-md"
+                                                            className="mx-auto rounded block w-full object-cover h-[207px]"
                                                         />
-
-                                                    </td>
-                                                    <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
+                                                         <div className="absolute top-0 right-0">
+                                                            <Delete className="!rounded-full" srNo={item?.srNo} BannerGetData={BannerGetData} />
+                                                        </div>
+                                                    </div>
+                                                   
+                                                    <h3 className="lg:min-h-[64px] merriweather-font font-normal tracking-[-0.04em] text-xl lg:text-[24px] text-[#1E1E1E] mb-2 lg:mb-2.5">
                                                         {item?.heading
                                                         }
-                                                    </td>
-                                                    <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
+                                                    </h3>
+                                                    <p className="text-[#666666] font-medium text-base gotham-font mb-1.5 tracking-[-0.04em] mb-5 md:mb-6 lg:mb-[30px]  min-h-[107px]">
                                                         {item?.text}
-                                                    </td>
-                                                    <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] text-center tracking-[-0.03em] space-x-2">
-                                                        <div className="flex space-x-2 justify-center">
-                                                            <Delete srNo={item?.srNo} BannerGetData={BannerGetData} />
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
+                                                    </p>
+                                                  
+                                                </div>
+                                            ))} 
+                                         </div>
                                 )
                             )}
                         </div>

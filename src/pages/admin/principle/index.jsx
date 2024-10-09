@@ -135,7 +135,7 @@ function Index() {
         <>
             <div className="md:flex flex-wrap bg-[#F5F6FB] listings-start">
                 <SideBarAdmin />
-                <div className="w-full lg:w-[calc(100%-304px)]">
+                <div className="w-full lg:ml-[304px] lg:w-[calc(100%-304px)]">
                     <Header title={"Manage Principle"} />
                     <div className="px-4 py-2 lg:px-10 lg:py-2.5">
                         <div className="bg-white rounded-[20px] mb-[30px]">

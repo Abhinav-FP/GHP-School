@@ -62,10 +62,10 @@ export default function Faculty({getTeachers}) {
 
   return (
     <>
-
+ 
       <button
         onClick={() => setIsOpen(true)}
-        className="text-white bg-[#0367F7] hover:bg-white hover:text-[#0367F7] text-sm font-normal tracking-[-0.03em] py-2 px-3 xl:px-3.5 border border-[#0367F7] rounded-md outline-none focus:outline-none ease-linear transition-all duration-150">
+        className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
         Add New Faculty
       </button>
       {isOpen &&
@@ -87,7 +87,7 @@ export default function Faculty({getTeachers}) {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                     className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
+                     className="w-full h-11 lg:h-[54px]  appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
                     placeholder="Enter your name"
                   />
                 </div>
@@ -100,7 +100,7 @@ export default function Faculty({getTeachers}) {
                     name="subjects"
                     value={formData.subjects}
                     onChange={handleChange}
-                    className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
+                    className="w-full h-11 lg:h-[54px]  appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
                     placeholder="Enter subjects"
                   />
                 </div>
@@ -113,19 +113,20 @@ export default function Faculty({getTeachers}) {
                     name="grades"
                     value={formData.grades}
                     onChange={handleChange}
-                     className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
+                     className="w-full h-11 lg:h-[54px]  appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
                     placeholder="Enter grades"
                   />
                 </div>
-                </div>
+               
 
-                <div className="flex justify-center">
+                <div className="flex justify-start">
                   <button
                     type="submit"
-                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-4 outline-none focus:outline-none ease-linear transition-all duration-150"
                   >
                     {loading ? "Submitting..." : "Submit"}
                   </button>
+                </div>
                 </div>
               </form>
             </div>
