@@ -160,6 +160,7 @@ export default function Index() {
       formdata.append("payment_id", paymentId);
       formdata.append("amount", totalPrice);
       formdata.append("currency", "INR");
+      formdata.append("type", "product");
       formdata.append("product_name", itemNames);
       formdata.append("payment_status", payment_status); // Include payment status
       const response = await main.PaymentSave(formdata);
