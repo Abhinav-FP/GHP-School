@@ -36,7 +36,7 @@ const requestOptions = {
 
 const d= await fetch("https://api.imgur.com/3/upload", requestOptions);
 
-console.log(d)
+console.log(d.data.link)
  
     // e.preventDefault();
     // if (selectedImage) {
