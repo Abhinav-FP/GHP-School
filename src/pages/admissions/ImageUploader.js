@@ -33,15 +33,19 @@ export default function ImageUploader() {
       body: formdata,
       redirect: "follow",
     };
-
-    const d = fetch("https://api.imgur.com/3/upload", requestOptions);
-    d.then((res) => {
-        console.log("res",res);
-        console.log("res?.data",res?.data)
-        console.log("res?.data?.link",res?.data?.link)
-    }).catch((error) => {
-        console.log("error",error);
-    });
+      try {
+        const d = fetch("https://api.imgur.com/3/upload", requestOptions);
+        const data = await d.json();
+        if (data.ok) {
+          console.log('Image uploaded successfully:', data);
+        } else {
+          console.error('Error uploading image:', data);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      } finally {
+        // setUploading(false); // Stop uploading
+      }
 
     // e.preventDefault();
     // if (selectedImage) {
