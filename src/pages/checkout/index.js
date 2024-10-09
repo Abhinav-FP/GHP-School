@@ -103,6 +103,7 @@ console.log("totalPrice",totalPrice)
             localStorage.setItem("response", JSON.stringify(response));
             // Save payment details
             savePaymentDetails(response.razorpay_order_id, response.razorpay_payment_id);
+            saveUserData(response.razorpay_payment_id, totalPrice)
           },
           prefill: {
             name: "Customer Name",
@@ -218,6 +219,18 @@ console.log("totalPrice",totalPrice)
       setLoading(false);
     }
   };
+
+  const saveUserData = async(paymentId, price) => {
+    const data = new FormData();
+    data.append("name", formData?.fullName);
+    data.append("number", formData?.contactNumber);
+    data.append("aadhar", formData?.aadhaarCard);
+    data.append("pan", formData?.panCard);
+    data.append("email", formData?.emailAddress);
+    data.append("amount", price);
+    data.append("payment_id", paymentId);
+    console.log("data",data);    
+  }
 
 console.log("formdata",formData)
   return (
