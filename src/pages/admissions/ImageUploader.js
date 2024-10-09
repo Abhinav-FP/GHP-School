@@ -1,7 +1,7 @@
-import axios from 'axios';
-import { useState } from 'react';
+import axios from "axios";
+import { useState } from "react";
 import { FiEdit } from "react-icons/fi";
-import FileUpload from '../api/FileUpload';
+import FileUpload from "../api/FileUpload";
 
 export default function ImageUploader() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -19,31 +19,36 @@ export default function ImageUploader() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const myHeaders = new Headers();
-myHeaders.append("Authorization", "Client-ID fa9cff918a9554a");
+    myHeaders.append("Authorization", "Client-ID fa9cff918a9554a");
 
-const formdata = new FormData();
-formdata.append("image", selectedImage, "GHJQTpX.jpeg");
-formdata.append("type", "image");
-formdata.append("title", "Simple upload");
-formdata.append("description", "This is a simple image upload in Imgur");
+    const formdata = new FormData();
+    formdata.append("image", selectedImage, "GHJQTpX.jpeg");
+    formdata.append("type", "image");
+    formdata.append("title", "Simple upload");
+    formdata.append("description", "This is a simple image upload in Imgur");
 
-const requestOptions = {
-  method: 'POST',
-  headers: myHeaders,
-  body: formdata,
-  redirect: 'follow'
-};
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: formdata,
+      redirect: "follow",
+    };
 
-const d= await fetch("https://api.imgur.com/3/upload", requestOptions);
+    const d = fetch("https://api.imgur.com/3/upload", requestOptions);
+    d.then((res) => {
+        console.log("res",res);
+        console.log("res?.data",res?.data)
+        console.log("res?.data?.link",res?.data?.link)
+    }).catch((error) => {
+        console.log("error",error);
+    });
 
-console.log(d && d?.data && d?.data?.link)
- 
     // e.preventDefault();
     // if (selectedImage) {
     //   setUploading(true); // Start uploading
     //   const formData = new FormData();
     //   formData.append('image', selectedImage);
-  
+
     //   try {
     //     const response = await  FileUpload.post('/',formData);
     //     const data = await response.json();
@@ -59,7 +64,6 @@ console.log(d && d?.data && d?.data?.link)
     //   }
     // }
   };
-  
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-md shadow-md">
@@ -77,17 +81,24 @@ console.log(d && d?.data && d?.data?.link)
             )}
             <label className="absolute top-1 right-1 p-1 bg-gray-200 rounded-full cursor-pointer hover:bg-gray-300">
               <FiEdit className="h-5 w-5 text-gray-600" />
-              <input type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleImageChange}
+              />
             </label>
           </div>
         </div>
 
         <button
           type="submit"
-          className={`mt-6 w-full py-2 bg-green-500 text-white rounded-md hover:bg-green-600 ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
+          className={`mt-6 w-full py-2 bg-green-500 text-white rounded-md hover:bg-green-600 ${
+            uploading ? "opacity-50 cursor-not-allowed" : ""
+          }`}
           disabled={uploading}
         >
-          {uploading ? 'Uploading...' : 'Upload Photo'}
+          {uploading ? "Uploading..." : "Upload Photo"}
         </button>
       </form>
     </div>
