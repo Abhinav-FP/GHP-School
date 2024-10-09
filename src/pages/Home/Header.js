@@ -22,7 +22,7 @@ export default function Header() {
             <div className="flex-shrink-0">
               <Link href="/">
                 <Image
-                  className="max-w-full w-auto "
+                  className="max-w-[165px] "
                   height={165}
                   width={165}
                   layout="fixed"

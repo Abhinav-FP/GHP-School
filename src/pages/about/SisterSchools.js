@@ -41,7 +41,7 @@ export default function SisterSchools() {
                       blurDataURL={`${item?.imgsrc}?q=1`}
                       placeholder="blur"
                       src={item?.imgsrc}
-                      className="max-w-full w-auto h-auto"
+                      className="max-w-[170px] h-auto"
                       width={233}
                       height={140}
                       alt="BVBS sister schools"

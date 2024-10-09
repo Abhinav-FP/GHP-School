@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import Details from "../api/admin/Details";
+import { useRazorpay, RazorpayOrderOptions } from "react-razorpay";
 
 function ContactForm() {
+  const { error, isLoading, Razorpay } = useRazorpay();
+  const RAZOPAY_KEY = process.env.NEXT_PUBLIC_RAZOPAY_KEY;
+  const [loading, setLoading] = useState(false);
   const [record, setRecord] = useState({
     class: "",
     optional: "",
@@ -40,6 +44,102 @@ function ContactForm() {
     noResponsibility: false,
     provisionalAdmission: false,
   });
+  const totalPrice = record.type === "new" ? 500 : 200;
+
+  const handlePaySubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    const main = new Details();
+    const formdata = new FormData();
+    formdata.append("amount", totalPrice);
+    formdata.append("currency", "INR");
+    formdata.append("receipt", "receipt#1");
+    try {
+      const res = await main.AddCard(formdata);
+      console.log()
+      if (res && res.data && res.data.orderId) {
+        const options = {
+          key: RAZOPAY_KEY,
+          amount: totalPrice,
+          currency: "INR",
+          name: "Your Company Name",
+          description: "Payment for services",
+          order_id: res.data.orderId,
+          handler: function (response) {
+            console.log("Payment successful response:", response);
+            toast.success("Payment Successful");
+            localStorage.setItem("response", JSON.stringify(response));
+            savePaymentDetails(response.razorpay_order_id, response.razorpay_payment_id, "success"); 
+         handleSubmit();
+          },
+          prefill: {
+            name: "Customer Name",
+            email: "customer@example.com",
+            contact: "1234567890",
+          },
+          notes: {
+            address: "Razorpay Corporate Office",
+          },
+          theme: {
+            color: "#F37254",
+          },
+        };
+
+        const rzp = new Razorpay(options);
+        rzp.on("payment.failed", function (response) {
+          console.log("Payment failed response:", response);
+          const error = response.error;
+          console.log("Error details:", error);
+          console.log("Metadata:", error?.metadata);
+          const orderId = error?.metadata?.order_id;
+          const paymentId = error?.metadata?.payment_id;
+          console.log("Order ID:", orderId, "Payment ID:", paymentId);
+          if (orderId && paymentId) {
+            savePaymentDetails(orderId, paymentId, "failed" ); 
+          } else {
+            console.error("Failed to retrieve Razorpay order or payment ID");
+          }
+        });
+        rzp.open();
+      } else {
+        toast.error(res.data.message || "Failed to create order");
+      }
+    } catch (error) {
+      toast.error("Error creating order");
+      console.error("Order creation error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+  const savePaymentDetails = async (orderId, paymentId, payment_status) => {
+    setLoading(true);
+    try {
+        const main = new Details();
+        const formdata = new FormData();
+        formdata.append("order_id", orderId);
+        formdata.append("payment_id", paymentId);
+        formdata.append("amount", totalPrice);
+        formdata.append("currency", "INR");
+        formdata.append("type", "admission");
+        formdata.append("product_name", record?.name);
+        formdata.append("payment_status", payment_status);
+        const response = await main.PaymentSave(formdata);
+        
+        if (response?.data?.status) {
+            toast.success(response.data.message);
+            handleSubmit();
+        } else {
+            toast.error(response.data.message);
+        }
+    } catch (error) {
+        console.error("Error in savePaymentDetails:", error); // Log the error
+        toast.error(error?.response?.data?.message || "An error occurred");
+    } finally {
+        setLoading(false);
+    }
+};
 
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
@@ -65,13 +165,12 @@ function ContactForm() {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     const allChecked = Object.values(checkboxes).every((value) => value);
-    if (!allChecked) {
-      alert("Please ensure all declarations are checked before submitting.");
-      return;
-    }
+    // if (!allChecked) {
+    //   alert("Please ensure all declarations are checked before submitting.");
+    //   return;
+    // }
     setFormLoading(true);
     if (formloading) {
       return;
@@ -79,7 +178,7 @@ function ContactForm() {
     const main = new Details();
     try {
       const res = await main.AdmissionFormAdd(record);
-      if ( res && res?.data) {
+      if (res && res?.data) {
         toast.success(res.data.message);
         setRecord({
           class: "",
@@ -123,10 +222,13 @@ function ContactForm() {
       setFormLoading(false);
     }
   };
+
+
+
   return (
     <div className="bg-white py-[50px] md:py-[70px] lg:py-[100px]">
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handlePaySubmit}
         className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto "
       >
         <h1 className="merriweather-font font-normal text-center text-2xl md:text-3xl lg:text-4xl mb-2.5 text-[#1E1E1E]  tracking-[-0.04em]">
@@ -713,7 +815,7 @@ function ContactForm() {
                 type="submit"
                 className="bg-[#EE834E] hover:bg-[#ECCD6E] rounded px-8 lg:px-24 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]"
               >
-                {formloading ? "Submitting..." : "Submit"}
+                {loading ? "Submitting..." : "Submit"}
               </button>
             </div>
           </div>
