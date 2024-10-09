@@ -110,14 +110,15 @@ export default function Index() {
         <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
           {item?.grades}
         </td>
-        <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-          <RiDeleteBinLine
-            size={16}
-            onClick={() => {
+        <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#ff0000] tracking-[-0.03em]">
+          <div 
+          onClick={() => {
               handleDelete(item?.srNo);
-            }}
-            className="cursor-pointer"
-          />
+            }} 
+            className="text-[#fff] h-[30px] w-[30px] bg-[#ff0000] bg-opacity-80 hover:bg-opacity-100 rounded inline-flex items-center justify-center cursor-pointer">
+            <RiDeleteBinLine 
+            size={16} />
+          </div>
         </td>
       </tr>
     );
@@ -148,7 +149,7 @@ export default function Index() {
     <div className="md:flex flex-wrap  bg-[#F5F6FB] items-start">
       <SideBarAdmin />
       {/* right sidebar  */}
-      <div className="w-full lg:w-[calc(100%-304px)]">
+      <div className="w-full lg:ml-[304px] lg:w-[calc(100%-304px)]">
         <Header title={"Manage Faculty"} />
         {/* Overview */}
         <div className="px-4 py-2 lg:px-10 lg:py-2.5">

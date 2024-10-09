@@ -21,16 +21,16 @@ function SideBarAdmin() {
 
 
     return (<>
-        <div className={`z-50 w-[260px] md:w-[304px] fixed lg:relative left-0 top-0 bottom-0 overflow-y-auto  lg:block bg-white ${isOpen ? 'block' : 'hidden'}`} >
+        <div className={`z-50 custom_scroll w-[260px] md:w-[304px] fixed  left-0 top-0 bottom-0 overflow-y-auto  lg:block bg-white ${isOpen ? 'block' : 'hidden'}`} >
             <div className="px-4 py-4 md:px-6 md:py-6 lg:px-[28px] lg:py-8">
                 <div className='mb-5 md:mb-10 lg:mb-[53px] text-center'>
-                    <img className="max-w-full block m-auto" src={"/Header/Logo.png"} alt='img' width="208" />
+                    <img className="max-w-full block m-auto" src={"/Header/Logo.png"} alt='img'  />
                 </div>
                 <h3 className="uppercase text-[#808080] px-[15px] text-sm font-semibold mb-2.5 lg:mb-3.5">Overview</h3>
                 <ul className="space-y-3">
                     <li>
                         <Link href="/admin"
-                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium hover:text-[#0367F7] ${pathname === "/admin" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
+                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium hover:text-[#EE834E] ${pathname === "/admin" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
                         >
                             <svg className="inline align-middle mr-[4px]" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M11.4622 7.5V2.5H18.1289V7.5H11.4622ZM3.12891 10.8333V2.5H9.79557V10.8333H3.12891ZM11.4622 17.5V9.16667H18.1289V17.5H11.4622ZM3.12891 17.5V12.5H9.79557V17.5H3.12891Z" fill="currentColor" />
@@ -40,7 +40,7 @@ function SideBarAdmin() {
                     </li>
                     <li>
                         <Link href="/admin/banner"
-                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium hover:text-[#0367F7] ${pathname === "/admin/banner" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
+                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium hover:text-[#EE834E] ${pathname === "/admin/banner" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
                         >
                             <svg className="inline align-middle mr-[4px]" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M11.4622 7.5V2.5H18.1289V7.5H11.4622ZM3.12891 10.8333V2.5H9.79557V10.8333H3.12891ZM11.4622 17.5V9.16667H18.1289V17.5H11.4622ZM3.12891 17.5V12.5H9.79557V17.5H3.12891Z" fill="currentColor" />
@@ -50,7 +50,7 @@ function SideBarAdmin() {
                     </li>
                     <li>
                         <Link href="/admin/admission"
-                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium hover:text-[#0367F7] ${pathname === "/admin/admission" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
+                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium hover:text-[#EE834E] ${pathname === "/admin/admission" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
                         >
                             <svg className="inline align-middle mr-[4px]" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M11.4622 7.5V2.5H18.1289V7.5H11.4622ZM3.12891 10.8333V2.5H9.79557V10.8333H3.12891ZM11.4622 17.5V9.16667H18.1289V17.5H11.4622ZM3.12891 17.5V12.5H9.79557V17.5H3.12891Z" fill="currentColor" />
@@ -60,7 +60,7 @@ function SideBarAdmin() {
                     </li>
                     <li>
                         <Link href="/admin/admissionform"
-                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium hover:text-[#0367F7] ${pathname === "/admin/admissionform" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
+                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium hover:text-[#EE834E] ${pathname === "/admin/admissionform" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
                         >
                             <svg className="inline align-middle mr-[4px]" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M11.4622 7.5V2.5H18.1289V7.5H11.4622ZM3.12891 10.8333V2.5H9.79557V10.8333H3.12891ZM11.4622 17.5V9.16667H18.1289V17.5H11.4622ZM3.12891 17.5V12.5H9.79557V17.5H3.12891Z" fill="currentColor" />
@@ -71,7 +71,7 @@ function SideBarAdmin() {
 
                     <li>
                         <Link href="/admin/faculty"
-                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium hover:text-[#0367F7] ${pathname === "/admin/faculty" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
+                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium hover:text-[#EE834E] ${pathname === "/admin/faculty" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
                         >
                             <svg className="inline align-middle mr-[4px]" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M11.4622 7.5V2.5H18.1289V7.5H11.4622ZM3.12891 10.8333V2.5H9.79557V10.8333H3.12891ZM11.4622 17.5V9.16667H18.1289V17.5H11.4622ZM3.12891 17.5V12.5H9.79557V17.5H3.12891Z" fill="currentColor" />
@@ -81,7 +81,7 @@ function SideBarAdmin() {
                     </li>
                     <li>
                         <Link href="/admin/principle"
-                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#0367F7] ${pathname === "/admin/principle" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
+                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#EE834E] ${pathname === "/admin/principle" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
                         >
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clipPath="pathname(#clip0_464_1678)">
@@ -103,7 +103,7 @@ function SideBarAdmin() {
 
                     <li>
                         <Link href="/admin/director"
-                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#0367F7] ${pathname === "/admin/director" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
+                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#EE834E] ${pathname === "/admin/director" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
                         >
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clipPath="pathname(#clip0_464_1678)">
@@ -124,7 +124,7 @@ function SideBarAdmin() {
                     </li>
                     <li>
                         <Link href="/admin/vacancy"
-                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#0367F7] ${pathname === "/admin/vacancy" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
+                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#EE834E] ${pathname === "/admin/vacancy" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
                         >
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clipPath="pathname(#clip0_464_1678)">
@@ -146,7 +146,7 @@ function SideBarAdmin() {
 
                     <li>
                         <Link href="/admin/career"
-                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#0367F7] ${pathname === "/admin/career" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
+                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#EE834E] ${pathname === "/admin/career" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
                         >
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clipPath="pathname(#clip0_464_1678)">
@@ -168,7 +168,7 @@ function SideBarAdmin() {
 
                     <li>
                         <Link href="/admin/fees"
-                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#0367F7] ${pathname === "/admin/fees" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
+                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#EE834E] ${pathname === "/admin/fees" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
                         >
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clipPath="pathname(#clip0_464_1678)">
@@ -189,7 +189,7 @@ function SideBarAdmin() {
                     </li>
                     <li>
                         <Link href="/admin/inquiry"
-                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#0367F7] ${pathname === "/admin/inquiry" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
+                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#EE834E] ${pathname === "/admin/inquiry" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
                         >
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clipPath="pathname(#clip0_464_1678)">
@@ -211,7 +211,7 @@ function SideBarAdmin() {
 
                     <li>
                         <Link href="/admin/result"
-                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#0367F7] ${pathname === "/admin/result" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
+                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#EE834E] ${pathname === "/admin/result" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
                         >
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clipPath="pathname(#clip0_464_1678)">
@@ -232,7 +232,7 @@ function SideBarAdmin() {
                     </li>
                     <li>
                         <Link href="/admin/syllabus"
-                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#0367F7] ${pathname === "/admin/syllabus" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
+                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#EE834E] ${pathname === "/admin/syllabus" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
                         >
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clipPath="pathname(#clip0_464_1678)">
@@ -254,7 +254,7 @@ function SideBarAdmin() {
 
                     <li>
                         <Link href="/admin/paymenthistory"
-                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#0367F7] ${pathname === "/admin/paymenthistory" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
+                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#EE834E] ${pathname === "/admin/paymenthistory" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
                         >
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clipPath="pathname(#clip0_464_1678)">
@@ -274,11 +274,11 @@ function SideBarAdmin() {
                         </Link>
                     </li>
                     <li>
-                        <button onClick={handleLogout} className="px-[15px] flex flex-wrap items-center py-[7px]  rounded-full text-base tracking-[-0.03em] font-medium text-[#FF1B1B] hover:text-[#0367F7]">
+                        <button onClick={handleLogout} className="px-[15px] flex flex-wrap items-center py-[7px]  rounded-full text-base tracking-[-0.03em] font-medium text-[#FF1B1B] hover:text-[#EE834E]">
                             <svg className="inline align-middle mr-[4px]" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M7.5 17.5H4.16667C3.72464 17.5 3.30072 17.3244 2.98816 17.0118C2.67559 16.6993 2.5 16.2754 2.5 15.8333V4.16667C2.5 3.72464 2.67559 3.30072 2.98816 2.98816C3.30072 2.67559 3.72464 2.5 4.16667 2.5H7.5" stroke="#FF1B1B" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M13.333 14.1663L17.4997 9.99967L13.333 5.83301" stroke="#FF1B1B" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M17.5 10H7.5" stroke="#FF1B1B" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M7.5 17.5H4.16667C3.72464 17.5 3.30072 17.3244 2.98816 17.0118C2.67559 16.6993 2.5 16.2754 2.5 15.8333V4.16667C2.5 3.72464 2.67559 3.30072 2.98816 2.98816C3.30072 2.67559 3.72464 2.5 4.16667 2.5H7.5" stroke="currentColor" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M13.333 14.1663L17.4997 9.99967L13.333 5.83301" stroke="currentColor" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M17.5 10H7.5" stroke="currentColor" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
 
                             Logout
