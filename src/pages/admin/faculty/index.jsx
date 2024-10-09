@@ -9,6 +9,7 @@ import Details from "@/pages/api/admin/Details";
 import Header from "../Component/Header";
 import SideBarAdmin from "../Component/SideBar";
 import Faculty from "./faculty";
+import Loading from "../Component/Loading";
 
 export default function Index() {
   const [loading, setLoading] = useState(false);
@@ -161,7 +162,7 @@ export default function Index() {
             </div>
             <div className="overflow-x-auto">
               {loading ? (
-                <div>Loading....</div>
+                <Loading/>
               ) : (
                 <DndProvider backend={HTML5Backend}>
                   <div className="overflow-x-auto">

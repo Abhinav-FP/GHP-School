@@ -67,11 +67,11 @@ function Header({ title }) {
           {/* Profile and Additional Actions */}
           <div className="flex justify-end items-center space-x-3">
             {/* Add more buttons or profile options here */}
-            <img
+            {/* <img
               src={"/Header/Logo.png"}
               alt="Profile"
               className="h-10 w-10 rounded-full object-cover lg:h-14 lg:w-14"
-            />
+            /> */}
           </div>
         </div>
       </div>

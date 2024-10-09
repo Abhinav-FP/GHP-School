@@ -22,12 +22,12 @@ function Index() {
         setIsOpen(false);
     };
     const [formData, setFormData] = useState({
-        rollNo:"",
-        name:"",
-        photo:"",
-        grade:"",
-        stream:"",
-        percentage:"",
+        rollNo: "",
+        name: "",
+        photo: "",
+        grade: "",
+        stream: "",
+        percentage: "",
     });
     const [listing, setListing] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -69,15 +69,15 @@ function Index() {
                     Authorization: 'Client-ID fa9cff918a9554a',
                     'Content-Type': 'multipart/form-data',
                 },
-                withCredentials: false, 
+                withCredentials: false,
             });
-            return response.data.data.link; 
+            return response.data.data.link;
         } catch (error) {
             console.error('Error uploading image:', error);
             throw new Error('Image upload failed');
         }
     };
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -219,31 +219,65 @@ function Index() {
                     <div className="relative bg-white w-full rounded-[30px] lg:rounded-[40px] m-auto">
 
                         <div className="border-b border-black border-opacity-10 pt-6 pb-5 px-6">
-                            <h2 className="text-xl lg:text-2xl text-[#212121] font-semibold">Add New Vacancy</h2>
+                            <h2 className="text-xl lg:text-2xl text-[#212121] font-semibold">Add New Result</h2>
                         </div>
                         <form onSubmit={handleSubmit} className="p-6">
                             <div className="space-y-4">
-                                <div>
-                                    <label className="block text-sm font-medium text-[#212121]">Grade</label>
+                            <div>
+                                    <label className="block text-sm font-medium text-[#212121]">Student Avatar</label>
                                     <input
-                                        type="text"
-                                        name="grade"
-                                        value={formData.grade}
+                                        type="file"
+                                        name="photo"
+                                        value={formData.photo}
                                         onChange={handleChange}
                                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
                                         required
                                     />
                                 </div>
                                 <div>
+                                    <label className="block text-sm font-medium text-[#212121]">Grade</label>
+                                    <select
+                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
+                                        name="grade"
+                                        value={formData.grade}
+                                        onChange={handleChange}
+                                        id="class"
+                                        required
+                                    >
+                                        <option value="" disabled>
+                                            Select Class
+                                        </option>
+                                        <option value="I">I</option>
+                                        <option value="II">II</option>
+                                        <option value="III">III</option>
+                                        <option value="IV">IV</option>
+                                        <option value="V">V</option>
+                                        <option value="VI">VI</option>
+                                        <option value="VII">VII</option>
+                                        <option value="VIII">VIII</option>
+                                        <option value="IX">IX</option>
+                                        <option value="X">X</option>
+                                        <option value="XI">XI</option>
+                                        <option value="XII">XII</option>
+                                    </select>
+                                </div>
+                                <div>
                                     <label className="block text-sm font-medium text-[#212121]">Stream</label>
-                                    <input
-                                        type="text"
+                                    <select
+                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
                                         name="stream"
                                         value={formData.stream}
                                         onChange={handleChange}
-                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
+                                        id="class"
                                         required
-                                    />
+                                    >
+                                        <option value="" disabled>
+                                            Select Stream
+                                        </option>
+                                        <option value="arts">Arts</option>
+                                        <option value="commerce">Commerce</option>
+                                        <option value="science">Science</option>
+                                    </select>
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-[#212121]">Name</label>
@@ -279,17 +313,7 @@ function Index() {
                                         required
                                     />
                                 </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-[#212121]">Image</label>
-                                    <input
-                                        type="file"
-                                        name="photo"
-                                        value={formData.photo}
-                                        onChange={handleChange}
-                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
-                                        required
-                                    />
-                                </div>
+                               
                                 <div className="flex justify-end">
                                     <button
                                         type="submit"

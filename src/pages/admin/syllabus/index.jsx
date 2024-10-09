@@ -167,14 +167,34 @@ function Index() {
 
                                 <div className="mb-3 lg:mb-[25px]">
                                     <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">class</label>
-                                    <input
+                                    <select
+                                        className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
                                         name="text"
                                         value={formdata?.text}
                                         onChange={handleChange}
-                                        type="text"
-                                        className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
-
-                                    />
+                                        id="text"
+                                        required
+                                    >
+                                        <option value="" disabled>
+                                            Select Class
+                                        </option>
+                                        <option value="I">I</option>
+                                        <option value="II">II</option>
+                                        <option value="III">III</option>
+                                        <option value="IV">IV</option>
+                                        <option value="V">V</option>
+                                        <option value="VI">VI</option>
+                                        <option value="VII">VII</option>
+                                        <option value="VIII">VIII</option>
+                                        <option value="IX">IX</option>
+                                        <option value="X">X</option>
+                                        <option value="XI arts">XI Arts</option>
+                                        <option value="XI commerce">XI Commerce</option>
+                                        <option value="XI science">XI Science</option>
+                                        <option value="XII arts">XII Arts</option>
+                                        <option value="XII commerce">XII Commerce</option>
+                                        <option value="XII science">XII Science</option>
+                                    </select>
                                     {/* <p message={errors?.name} className="!text-red-600" /> */}
 
 

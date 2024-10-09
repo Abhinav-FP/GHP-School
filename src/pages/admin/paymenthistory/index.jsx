@@ -107,12 +107,7 @@ function Index() {
                                                         {item?.amount
                                                         }
                                                     </td>
-                                                    <td
-                                                        className={`px-3 py-4 text-[15px] font-medium tracking-[-0.03em] ${item?.payment_status === 'success' ? 'text-green-500' : 'text-red-500'
-                                                            }`}
-                                                    >
-                                                        {item?.payment_status}
-                                                    </td>
+                                                  Adminl
 
 
                                                 </tr>
