@@ -1,8 +1,12 @@
+import axios from 'axios';
 import { useState } from 'react';
+import { FiEdit } from "react-icons/fi";
+import FileUpload from '../api/FileUpload';
 
 export default function ImageUploader() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  const [uploading, setUploading] = useState(false); // Track uploading state
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -12,36 +16,58 @@ export default function ImageUploader() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (selectedImage) {
-      // handle image upload logic here
-      console.log('Image uploaded:', selectedImage);
+      setUploading(true); // Start uploading
+      const formData = new FormData();
+      formData.append('image', selectedImage);
+  
+      try {
+        const response = await  FileUpload.post('/',formData);
+        const data = await response.json();
+        if (response.ok) {
+          console.log('Image uploaded successfully:', data);
+        } else {
+          console.error('Error uploading image:', data);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      } finally {
+        setUploading(false); // Stop uploading
+      }
     }
   };
+  
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-md shadow-md">
-      <h2 className="text-xl font-semibold text-gray-700 text-center">Upload Your Photo</h2>
       <form onSubmit={handleSubmit} className="mt-4">
-        <div className="flex flex-col items-center">
-          {imagePreview ? (
-            <img
-              src={imagePreview}
-              alt="Preview"
-              className="w-32 h-32 object-cover border border-gray-300 mb-4"
-            />
-          ) : (
-            <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center mb-4">
+        <div className="relative flex flex-col items-center">
+          <div className="relative w-32 h-40">
+            {imagePreview ? (
+              <img
+                src={imagePreview}
+                alt="Preview"
+                className="w-full h-full object-cover border border-gray-300 mb-4 rounded-md"
+              />
+            ) : (
               <span className="text-gray-500">No Image</span>
-            </div>
-          )}
-
-          <label className="cursor-pointer mt-2 inline-block px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
-            <span>Select Photo</span>
-            <input type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
-          </label>
+            )}
+            <label className="absolute top-1 right-1 p-1 bg-gray-200 rounded-full cursor-pointer hover:bg-gray-300">
+              <FiEdit className="h-5 w-5 text-gray-600" />
+              <input type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
+            </label>
+          </div>
         </div>
+
+        <button
+          type="submit"
+          className={`mt-6 w-full py-2 bg-green-500 text-white rounded-md hover:bg-green-600 ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
+          disabled={uploading}
+        >
+          {uploading ? 'Uploading...' : 'Upload Photo'}
+        </button>
       </form>
     </div>
   );

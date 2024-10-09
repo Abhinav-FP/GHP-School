@@ -13,7 +13,7 @@ export default function Apply() {
           </h1>
         </div>
       </div> 
-      {/* <ImageUploader/> */}
+      <ImageUploader/>
       <ContactForm />
     </Layout>
   )
