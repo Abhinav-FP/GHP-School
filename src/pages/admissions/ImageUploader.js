@@ -18,25 +18,46 @@ export default function ImageUploader() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (selectedImage) {
-      setUploading(true); // Start uploading
-      const formData = new FormData();
-      formData.append('image', selectedImage);
+    const myHeaders = new Headers();
+myHeaders.append("Authorization", "Client-ID fa9cff918a9554a");
+
+const formdata = new FormData();
+formdata.append("image", selectedImage, "GHJQTpX.jpeg");
+formdata.append("type", "image");
+formdata.append("title", "Simple upload");
+formdata.append("description", "This is a simple image upload in Imgur");
+
+const requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: formdata,
+  redirect: 'follow'
+};
+
+const d= await fetch("https://api.imgur.com/3/upload", requestOptions);
+
+console.log(d)
+ 
+    // e.preventDefault();
+    // if (selectedImage) {
+    //   setUploading(true); // Start uploading
+    //   const formData = new FormData();
+    //   formData.append('image', selectedImage);
   
-      try {
-        const response = await  FileUpload.post('/',formData);
-        const data = await response.json();
-        if (response.ok) {
-          console.log('Image uploaded successfully:', data);
-        } else {
-          console.error('Error uploading image:', data);
-        }
-      } catch (error) {
-        console.error('Error:', error);
-      } finally {
-        setUploading(false); // Stop uploading
-      }
-    }
+    //   try {
+    //     const response = await  FileUpload.post('/',formData);
+    //     const data = await response.json();
+    //     if (response.ok) {
+    //       console.log('Image uploaded successfully:', data);
+    //     } else {
+    //       console.error('Error uploading image:', data);
+    //     }
+    //   } catch (error) {
+    //     console.error('Error:', error);
+    //   } finally {
+    //     setUploading(false); // Stop uploading
+    //   }
+    // }
   };
   
 
