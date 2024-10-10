@@ -108,6 +108,8 @@ export default function Index() {
             console.log("Payment successful response:", response);
             toast.success("Payment Successful");
             localStorage.setItem("response", JSON.stringify(response));
+            // Save payment details
+            saveUserData(response.razorpay_payment_id, totalPrice)
             savePaymentDetails(response.razorpay_order_id, response.razorpay_payment_id, "success"); // Pass 'success'
           },
           prefill: {
@@ -176,8 +178,32 @@ export default function Index() {
     }
   };
 
+  const saveUserData = async(paymentId, price) => {
+    try {
+      const main = new Details();
+      const data = new FormData();
+      data.append("name", formData?.fullName);
+      data.append("number", formData?.contactNumber);
+      data.append("aadhar", formData?.aadhaarCard);
+      data.append("pan", formData?.panCard);
+      data.append("email", formData?.emailAddress);
+      data.append("amount", price);
+      data.append("payment_id", paymentId);
+      console.log("data",data);
+      const response = await main.donationUserAdd(data);
+      if (response?.data?.status) {
+        toast.success(response.data.message);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.data?.message || "An error occurred");
+    } finally {
+      setLoading(false);
+    }    
+  }
 
-  console.log("formdata", formData)
+console.log("formdata",formData)
   return (
     <Layout>
       <div className="w-full bg-white py-[50px] md:py-[70px] lg:py-[100px]">

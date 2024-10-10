@@ -53,7 +53,7 @@ export default function Slider() {
 
   return (
     <>
-      <div className="sticky top-0 lg:top-5 z-0">
+      <div className="sticky top-0 lg:top-5 z-[-1]">
         <Swiper
           spaceBetween={50}
           slidesPerView={1}

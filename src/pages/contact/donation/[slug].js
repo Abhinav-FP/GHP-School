@@ -14,7 +14,7 @@ export default function Donation() {
   const [currentPageUrl, setCurrentPageUrl] = useState("");
   const [listing, setLisitng] = useState("");
   const [Loading, setLoading] = useState(false);
-  const [Qty, setQty] = useState(0);
+  const [Qty, setQty] = useState(1);
   const [isAdded, setIsAdded] = useState(false);
   const dispatch = useDispatch();
 
@@ -23,6 +23,7 @@ export default function Donation() {
     setQty(Qty + 1);
   }
   function decrement() {
+    if(Qty<=1){return;}
     setQty(Qty - 1);
   }
 
@@ -168,11 +169,7 @@ export default function Donation() {
                 </div>
                 <ul className="flex flex-wrap items-center space-x-3">
                   <li>
-                    <Link
-                      href="/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <Link href="/" target="_blank" rel="noopener noreferrer">
                       <svg
                         width="16"
                         height="16"
@@ -189,11 +186,7 @@ export default function Donation() {
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      href="/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <Link href="/" target="_blank" rel="noopener noreferrer">
                       <svg
                         width="16"
                         height="16"
@@ -210,11 +203,7 @@ export default function Donation() {
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      href="/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <Link href="/" target="_blank" rel="noopener noreferrer">
                       <svg
                         width="16"
                         height="16"
@@ -231,9 +220,7 @@ export default function Donation() {
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      href="/"
-                    >
+                    <Link href="/">
                       <svg
                         width="16"
                         height="12"

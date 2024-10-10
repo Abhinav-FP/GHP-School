@@ -94,7 +94,7 @@ export default function ClassesInfo() {
                               <Image
                                 blurDataURL={`${bgImage}?q=1`}
                                 placeholder="blur"
-                                className="block mx-auto mb-6"
+                                className="block mx-auto mb-6 min-h-[233px] object-cover"
                                 src={bgImage}
                                 alt={`img-${imgIndex}`}
                                 width={347}
