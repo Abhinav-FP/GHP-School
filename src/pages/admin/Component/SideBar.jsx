@@ -16,6 +16,7 @@ import { FaDiscourse } from "react-icons/fa";
 import { MdOutlinePayment } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";
 import { GiKnightBanner } from "react-icons/gi";
+import { RiGalleryLine } from "react-icons/ri";
 
 function SideBarAdmin() {
     const pathname = usePathname();
@@ -158,6 +159,14 @@ function SideBarAdmin() {
                             <FaDiscourse size={24} className="inline align-middle mr-[4px]" />  &nbsp; Syllabus
                         </Link>
                     </li>
+                    <li>
+                        <Link href="/admin/gallery"
+                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#EE834E] ${pathname === "/admin/gallery" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
+                        >
+                            <RiGalleryLine size={24} className="inline align-middle mr-[4px]" />
+                            &nbsp; Gallery
+                        </Link>
+                    </li>
 
                     <li>
                         <Link href="/admin/paymenthistory"
@@ -167,6 +176,7 @@ function SideBarAdmin() {
                             &nbsp; Payment History
                         </Link>
                     </li>
+
                     <li>
                         <button onClick={handleLogout} className="px-[15px] flex flex-wrap items-center py-[7px]  rounded-full text-base tracking-[-0.03em] font-medium text-[#FF1B1B] hover:text-[#EE834E]">
                             <CiLogout size={24} className="inline align-middle mr-[4px]" />
