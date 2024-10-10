@@ -92,7 +92,7 @@ function ContactForm() {
       console.log("Image uploaded successfully:", data);
       if (data && data.data && data.data.link) {
         console.log("Uploaded Image URL:", data.data.link);
-        setRecord((prevState) => ({ ...prevState, dobWords: image.data.link }));
+        setRecord((prevState) => ({ ...prevState, image: data.data.link }));
       }
     } catch (error) {
       console.error("Error:", error);
