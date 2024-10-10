@@ -65,7 +65,7 @@ function EnquirySec() {
             <div className="bg-[#ECE1C5]">
               <div className="px-4 lg:px-[30px] py-4 lg:py-[28px] border-b border-black border-opacity-10">
                 <h2 className="merriweather-font font-normal text-2xl md:text-3xl lg:text-4xl mb-1 text-[#1E1E1E] tracking-[-0.04em]">
-                  Make an inquiry
+                  Make An Inquiry
                 </h2>
                 <p className="text-black font-medium text-base tracking-[-0.04em] mb-0">
                   Explore partnership opportunities or space rental with BVBS
