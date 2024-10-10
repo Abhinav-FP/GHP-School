@@ -1,12 +1,13 @@
 import Header from "../Component/Header";
 import SideBarAdmin from "../Component/SideBar";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { GrNext } from "react-icons/gr";
 import { GrPrevious } from "react-icons/gr";
 import { IoMdClose } from "react-icons/io";
 import Details from "@/pages/api/admin/Details";
 import careerbg from "../../../../public/Career/careerbg.jpg"
+import Modal from "../Component/Modal";
+import Image from "../Component/Image";
 
 
 function Index() {
@@ -15,7 +16,9 @@ function Index() {
     const [loading, setLoading] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
+    const [imagedataPreview, setImageDataPreview] = useState(null);
     // Fetch all gallery items
     const getGallery = () => {
         setLoading(true);
@@ -74,12 +77,107 @@ function Index() {
         setShowModal(false); // Close modal
     };
 
+    const [isOpen, setIsOpen] = useState(false);
+    const handleClose = () => {
+        setIsOpen(false);
+    };
+    const [formData, setFormData] = useState({
+        photo: "",
+        caption: "",
+    });
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value
+        }));
+    };
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setSelectedImage(file);
+            setImagePreview(URL.createObjectURL(file));
+            uploadImage(file); // Pass the file directly here
+        }
+    };
+
+    const uploadImage = async (file) => {
+        const myHeaders = new Headers();
+        myHeaders.append("Authorization", "Client-ID fa9cff918a9554a");
+
+        const formdata = new FormData();
+        formdata.append("image", file);
+        formdata.append("type", "image");
+        formdata.append("title", "Simple upload");
+        formdata.append("description", "This is a simple image upload in Imgur");
+
+        try {
+            const response = await fetch("https://api.imgur.com/3/upload", {
+                method: "POST",
+                headers: myHeaders,
+                body: formdata,
+                redirect: "follow",
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log('Image uploaded successfully:', data);
+            if (data?.data?.link) {
+                setImageDataPreview(data.data.link);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        const record = new FormData();
+        record.append("caption", formData.caption);
+        record.append("photo", imagePreview);
+        try {
+            const main = new Details();
+            const response = await main.ResultAdd(record);
+
+            if (response?.data?.status) {
+                toast.success(response.data.message);
+                handleClose();  // Close any modal or form after success
+                resultgetData();  // Refresh or fetch updated result data
+            } else {
+                toast.error(response.data.message);
+            }
+            setFormData({
+                qualification: '',
+                experience: '',
+                description: '',
+                designation: ''
+            });
+        } catch (error) {
+            toast.error(error?.response?.data?.message || "An error occurred");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
+
     return (<>
         <div className="md:flex flex-wrap bg-[#F5F6FB] listings-start">
             <SideBarAdmin />
             <div className="w-full lg:ml-[304px] lg:w-[calc(100%-304px)]">
                 <Header title={"Gallery"} />
                 <div className="px-4 py-2 lg:px-10 lg:py-2.5">
+
+                    <div className="bg-white rounded-[20px] mb-[30px]">
+                        <div className="py-3 py-4 lg:py-[23px] px-4 md:px-6 lg:px-10 flex flex-wrap justify-between items-center border-b border-black  border-opacity-10">
+                            <h3 className=" text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">Gallery  </h3>
+                            <button onClick={() => setIsOpen(true)} className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
+                                Add New Gallery
+                            </button>
+                        </div>
+                    </div>
                     <div className="bg-white rounded-[20px] mb-[30px]">
                         <div className="py-3 lg:py-[23px] px-4 md:px-6 lg:px-10 flex flex-wrap justify-between listings-center border-b border-black border-opacity-10">
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-5">
@@ -148,7 +246,59 @@ function Index() {
                     </div>
                 </div>
             </div>
+
+            {isOpen && (
+                <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+                    <div className="relative bg-white w-full rounded-[30px] lg:rounded-[40px] m-auto">
+
+                        <div className="border-b border-black border-opacity-10 pt-6 pb-5 px-6">
+                            <h2 className="text-xl lg:text-2xl text-[#212121] font-semibold">Add New Gallery</h2>
+                        </div>
+                        <form onSubmit={handleSubmit} className="p-6">
+                            <div className="space-y-4">
+                                <div>
+                                    <label className="block text-sm font-medium text-[#212121]"> Avatar</label>
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={handleImageChange}
+                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-[#212121]">Show Avatar</label>
+                                    {imagePreview && <img src={imagePreview} alt="Preview" className="mt-2 w-48 h-48 object-cover text-center" />}
+
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-[#212121]">Caption</label>
+                                    <input
+                                        type="text"
+                                        name="caption"
+                                        value={formData.caption}
+                                        onChange={handleChange}
+                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
+                                        required
+                                    />
+                                </div>
+
+                                <div className="flex justify-end">
+                                    <button
+                                        type="submit"
+                                        className="text-white button-animation text-sm font-normal tracking-[-0.03em] py-2 px-4 border-0 min-w-[100px] rounded-md"
+                                    >
+                                        {loading ? "Saving..." : "Save"}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </Modal>
+            )}
         </div>
+
+
     </>);
 }
 

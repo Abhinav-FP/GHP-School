@@ -49,13 +49,13 @@ function Index() {
 
     const router = useRouter();
 
-    const sportsGetData = async () => {
+    const sisterschoolsGetData = async () => {
         setLoading(true);
         try {
             const main = new Details();
-            const response = await main.sportsGet();
+            const response = await main.sisterschoolsGet();
             console.log("response", response)
-            setListing(response?.data.sport || []);
+            setListing(response?.data.data || []);
         } catch (err) {
             console.error("Error fetching data:", err);
             setListing([]);
@@ -65,7 +65,7 @@ function Index() {
     };
 
     useEffect(() => {
-        sportsGetData();
+        sisterschoolsGetData();
     }, []);
 
     const uploadImage = async (file) => {
@@ -105,11 +105,11 @@ function Index() {
         record.append("image", imagePreview);
         try {
             const main = new Details();
-            const response = await main.sportsAdd(record);
+            const response = await main.sisterschoolsAdd(record);
             if (response?.data?.status) {
                 toast.success(response.data.message);
+                sisterschoolsGetData();
                 handleClose();
-                sportsGetData();
             } else {
                 toast.error(response.data.message);
             }
@@ -134,7 +134,7 @@ function Index() {
         e.preventDefault();
         setLoading(true);
         const main = new Details();
-        const response = main.sportsDelete({ id: deltedata });
+        const response = main.sisterschoolsDelete({ id: deltedata });
         response
             .then((res) => {
                 if (res && res?.data && res?.data?.status) {
@@ -160,14 +160,14 @@ function Index() {
             <div className="md:flex flex-wrap bg-[#F5F6FB] items-start">
                 <SideBarAdmin />
                 <div className="w-full lg:ml-[304px] lg:w-[calc(100%-304px)]">
-                    <Header title={"Manage Sports"} />
+                    <Header title={"Sister School"} />
                     <div className="px-4 py-2 lg:px-10 lg:py-2.5">
                         <div className="bg-white rounded-[20px] mb-[30px]">
                             <div className="py-3 lg:py-[23px] px-4 md:px-6 lg:px-10 flex flex-wrap justify-between items-center border-b border-black border-opacity-10">
-                                <h3 className="text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">Sports</h3>
+                                <h3 className="text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">Sister School</h3>
                                 <div className="flex items-center space-x-2">
-                                    <button onClick={() => setIsOpen(true)} className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
-                                        Add Sports
+                                <button onClick={() => setIsOpen(true)} className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
+                                        Add Sister School
                                     </button>
                                 </div>
                             </div>
@@ -217,12 +217,12 @@ function Index() {
                     <div className="relative bg-white w-full rounded-[30px] lg:rounded-[40px] m-auto">
 
                         <div className="border-b border-black border-opacity-10 pt-6 pb-5 px-6">
-                            <h2 className="text-xl lg:text-2xl text-[#212121] font-semibold">Add New Result</h2>
+                            <h2 className="text-xl lg:text-2xl text-[#212121] font-semibold">Add Sister School</h2>
                         </div>
                         <form onSubmit={handleSubmit} className="p-6">
                             <div className="space-y-4">
                                 <div>
-                                    <label className="block text-sm font-medium text-[#212121]">Student Avatar</label>
+                                    <label className="block text-sm font-medium text-[#212121]">Sister School Image</label>
                                     <input
                                         type="file"
                                         accept="image/*"
@@ -232,7 +232,7 @@ function Index() {
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-medium text-[#212121]">Show Avatar</label>
+                                    <label className="block text-sm font-medium text-[#212121]">Show Image</label>
                                     {imagePreview && <img src={imagePreview} alt="Preview" className="mt-2 w-48 h-48 object-cover text-center" />}
 
                                 </div>

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { usePathname } from "next/navigation";
-import Logo from "../../../../public/Header/Logo.png";
 import { useRouter } from 'next/router';
 import { AiOutlineProduct } from "react-icons/ai";
 import { CiSliderHorizontal } from "react-icons/ci";
@@ -18,6 +17,7 @@ import { CiLogout } from "react-icons/ci";
 import { GiKnightBanner } from "react-icons/gi";
 import { RiGalleryLine } from "react-icons/ri";
 import { MdOutlineSportsKabaddi } from "react-icons/md";
+import { FaSchool } from "react-icons/fa6";
 
 function SideBarAdmin() {
     const pathname = usePathname();
@@ -72,9 +72,8 @@ function SideBarAdmin() {
                         <Link href="/admin/admission"
                             className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium hover:text-[#EE834E] ${pathname === "/admin/admission" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
                         >
-
                             <CiSliderHorizontal size={24} className="inline align-middle mr-[4px]" />
-                            Admission Slider
+                            Slider
                         </Link>
                     </li>
                     <li>
@@ -177,7 +176,15 @@ function SideBarAdmin() {
                             &nbsp; Sports
                         </Link>
                     </li>
-                    
+                    <li>
+                        <Link href="/admin/sisterschool"
+                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#EE834E] ${pathname === "/admin/sisterschool" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
+                        >
+                            <FaSchool size={24} className="inline align-middle mr-[4px]" />
+                            &nbsp; Sister School
+                        </Link>
+                    </li>
+
                     <li>
                         <Link href="/admin/paymenthistory"
                             className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#EE834E] ${pathname === "/admin/paymenthistory" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
