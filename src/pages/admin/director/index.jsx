@@ -237,9 +237,9 @@ function Index() {
                                 <div className="mb-3 lg:mb-[25px]">
                                     <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">Upload Image</label>
                                     <input
-                                        type="file"
-                                        name="photo"
-                                        onChange={(e) => handleImageChange(e)}
+                                       type="file"
+                                       accept="image/*"
+                                       onChange={handleImageChange}
                                         className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
                                     />
                                 </div>

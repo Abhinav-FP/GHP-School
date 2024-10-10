@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import NoData from "../Component/NoData";
 import Link from "next/link";
+import School from "./school";
 
 function Index() {
     const [isOpen, setIsOpen] = useState(false);
@@ -103,37 +104,37 @@ function Index() {
             <div className="md:flex flex-wrap bg-[#F5F6FB] listings-start">
                 <SideBarAdmin />
                 <div className="w-full lg:ml-[304px] lg:w-[calc(100%-304px)]">
-                    <Header title={"Manage Admission Slider"} />
+                    <Header title={"Manage  Slider"} />
                     <div className="px-4 py-2 lg:px-10 lg:py-2.5">
                         <div className="bg-white rounded-[20px] mb-[30px]">
                             <div className="py-3 py-4 lg:py-[23px] px-4 md:px-6 lg:px-10 flex flex-wrap justify-between listings-center border-b border-black border-opacity-10">
-                                <h3 className="text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]"> Admission Slider</h3>
+                                <h3 className="text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">Admission  Slider</h3>
                             </div>
 
                             {listing?.show === true && (
-        <div className='z-[1] relative px-6 overflow-hidden md:px-8 lg:px-10 py-5 bg-[#EE834E]'>
-          <div className="marquee flex items-center md:px-8 lg:px-10 text-white text-2xl lg:text-[32px] merriweather-font tracking-[-0.04em]">
-              {[1, 2, 3].map((item, index) => (
-                <span className='pr-4' key={index}>
-                  <svg
-                    className='inline'
-                    width="28"
-                    height="28"
-                    viewBox="0 0 28 28"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M14 0L17.7813 10.2187L28 14L17.7813 17.7813L14 28L10.2187 17.7813L0 14L10.2187 10.2187L14 0Z"
-                      fill="white"
-                    />
-                  </svg>
-                  {listing?.text} – Apply Now!
-                </span>
-              ))}
-          </div>
-        </div>
-      )}
+                                <div className='z-[1] relative px-6 overflow-hidden md:px-8 lg:px-10 py-5 bg-[#EE834E]'>
+                                    <div className="marquee flex items-center md:px-8 lg:px-10 text-white text-2xl lg:text-[32px] merriweather-font tracking-[-0.04em]">
+                                        {[1, 2, 3].map((item, index) => (
+                                            <span className='pr-4' key={index}>
+                                                <svg
+                                                    className='inline'
+                                                    width="28"
+                                                    height="28"
+                                                    viewBox="0 0 28 28"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path
+                                                        d="M14 0L17.7813 10.2187L28 14L17.7813 17.7813L14 28L10.2187 17.7813L0 14L10.2187 10.2187L14 0Z"
+                                                        fill="white"
+                                                    />
+                                                </svg>
+                                                {listing?.text} – Apply Now!
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
                             <div className="overflow-x-auto">
                                 {Loading ? (
                                     <LoadingData />
@@ -164,7 +165,7 @@ function Index() {
                                                         <div className="flex space-x-2 justify-center">
                                                             <button
                                                                 onClick={() => handleopen(listing)}
-                                                                 className="text-[#0367F7] h-[30px] w-[30px] bg-[#0367F7] bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center"
+                                                                className="text-[#0367F7] h-[30px] w-[30px] bg-[#0367F7] bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center"
                                                             >
                                                                 <svg className="inline" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                     <path d="M4 14.5349L8.413 14.5199L18.045 4.97988C18.423 4.60188 18.631 4.09988 18.631 3.56588C18.631 3.03188 18.423 2.52988 18.045 2.15188L16.459 0.565875C15.703 -0.190125 14.384 -0.186125 13.634 0.562875L4 10.1049V14.5349ZM15.045 1.97988L16.634 3.56288L15.037 5.14488L13.451 3.55988L15.045 1.97988ZM6 10.9389L12.03 4.96588L13.616 6.55188L7.587 12.5229L6 12.5279V10.9389Z" fill="#0367F7" />
@@ -181,6 +182,8 @@ function Index() {
                             </div>
                         </div>
                     </div>
+
+                    <School/>
                 </div>
             </div>
             {isOpen && (

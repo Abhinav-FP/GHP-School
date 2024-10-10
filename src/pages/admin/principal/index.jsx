@@ -175,7 +175,7 @@ function Index() {
                                                 <tr className="bg-white border-t transition duration-300 ease-in-out hover:bg-gray-100">
                                                     <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">{1}</td>
                                                     <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                    <Image width={200} height={200} src={listing?.photo} alt={listing?.name} />
+                                                        <Image width={200} height={200} src={listing?.photo} alt={listing?.name} />
                                                     </td>
                                                     <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">{listing.name}</td>
                                                     <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">{listing.text}</td>
@@ -231,7 +231,9 @@ function Index() {
                                     </div>
                                     <div className="mb-3 lg:mb-[25px]">
                                         <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">Image:</label>
-                                        <input type="file" onChange={handleImageChange} className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none" />
+                                        <input type="file"
+                                            accept="image/*"
+                                            onChange={handleImageChange} className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none" />
                                         {imagePreview && <img src={imagePreview} alt="Preview" className="mt-2 w-48 h-48 object-cover text-center" />}
                                     </div>
                                     <div className="flex justify-end pt-3 px-6 lg:px-10 ">

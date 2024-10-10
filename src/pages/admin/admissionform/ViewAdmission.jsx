@@ -13,111 +13,120 @@ function ViewAdmission({ item }) {
         <>
             <button
                 onClick={() => setIsOpen(true)}
-                className="text-[#0367F7] h-[40px] w-[120px] bg-[#0367F7] bg-opacity-10 hover:bg-opacity-30 hover:text-white transition-all duration-300 ease-in-out rounded-md inline-flex items-center justify-center font-semibold text-sm"
+                className="w-[100px] button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150"
             >
                 View
             </button>
 
             {isOpen && (
                 <Modal isOpen={isOpen} onClose={handleClose}>
-                    <div className="relative bg-white w-full rounded-[30px] lg:rounded-[40px] h-auto m-auto">
-                        <div className="border-b border-black border-opacity-10 pt-6 pb-5 px-6 lg:pt-8 lg:pb-6 lg:px-10">
-                            <h2 className="text-xl lg:text-2xl text-[#212121] tracking-[-0.04em] font-semibold mb-0">
+                    {/* Inline CSS in JSX */}
+                    <style>
+                            {`
+                                        /* Corrected CSS for modal width */
+                                        #modal .modal-dialog {
+                                        max-width: 800px !important; /* Ensure !important is spelled correctly */
+                                        }
+                                    `}
+                        </style>
+                    <div className="relative bg-white w-full rounded-[30px] lg:rounded-[40px] h-auto m-auto" style={{ maxWidth: '1000px' }}>
+                        <div className="border-b border-black border-opacity-10 pt-6 pb-5 px-6 lg:pt-6 lg:pb-6 ">
+                            <h2 className="merriweather-font font-normal  text-xl md:text-2xl  mb-0 text-[#1E1E1E]  tracking-[-0.04em]  ">
                                 View Admission
                             </h2>
                         </div>
                         <div className="flex flex-wrap justify-center">
-                            <div className="p-6">
-                                <h2 className="text-xl font-bold text-[#000000] capitalize">{item.name}</h2>
-                                <p className="text-sm text-gray-500">DOB: {item.dobWords}</p>
+                            <div className="p-6 w-full">
+                                <h2 className="merriweather-font font-normal  text-lg md:text-xl  mb-0 text-[#1E1E1E]  tracking-[-0.04em] ">{item.name}</h2>
+                                <p className="text-sm tracking-[-0.04em] text-[#666666]">DOB: {item.dobWords}</p>
 
                                 <table className="min-w-full table-auto mt-4">
                                     <thead>
-                                        <tr className="bg-gray-200">
-                                            <th className="p-2 text-left">Field</th>
-                                            <th className="p-2 text-left">Details</th>
+                                        <tr className="bg-[#36C9B4] text-white">
+                                            <th width="25%" className="text-white text-left text-sm px-3 lg:px-5 py-2 tracking-[-0.04em] capitalize font-medium">Field</th>
+                                            <th width="75%"  className="text-white text-left text-sm px-3 lg:px-5 py-2 tracking-[-0.04em] capitalize font-medium">Details</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-200">
                                         <tr>
-                                            <td className="p-2 font-medium text-gray-700">Address:</td>
-                                            <td className="p-2">{item.address}</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">Address:</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">{item.address}</td>
                                         </tr>
                                         <tr>
-                                            <td className="p-2 font-medium text-gray-700">Email:</td>
-                                            <td className="p-2">{item.email}</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">Email:</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">{item.email}</td>
                                         </tr>
                                         <tr>
-                                            <td className="p-2 font-medium text-gray-700">Aadhar:</td>
-                                            <td className="p-2">{item.aadhar}</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">Aadhar:</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">{item.aadhar}</td>
                                         </tr>
                                         <tr>
-                                            <td className="p-2 font-medium text-gray-700">Cast:</td>
-                                            <td className="p-2">{item.belongs}</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">Cast:</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">{item.belongs}</td>
                                         </tr>
                                     </tbody>
                                 </table>
 
-                                <h3 className="text-lg font-semibold mt-4">Family Details:</h3>
+                                <h3 className="merriweather-font font-normal  text-lg md:text-xl  mb-0 text-[#1E1E1E]  tracking-[-0.04em] mt-6">Family Details:</h3>
                                 <table className="min-w-full table-auto mt-2">
                                     <thead>
-                                        <tr className="bg-gray-200">
-                                            <th className="p-2 text-left">Relation</th>
-                                            <th className="p-2 text-left">Details</th>
+                                        <tr className="bg-[#36C9B4] text-white">
+                                            <th width="25%"  className="text-white text-left text-sm px-3 lg:px-5 py-2 tracking-[-0.04em] capitalize font-medium">Relation</th>
+                                            <th width="75%"  className="text-white text-left text-sm px-3 lg:px-5 py-2 tracking-[-0.04em] capitalize font-medium">Details</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-200">
                                         <tr>
-                                            <td className="p-2 font-medium text-gray-700">Father:</td>
-                                            <td className="p-2">{item.fatherName} (Phone: {item.fatherPhone}, Occupation: {item.fatherOccupation}, Email: {item?.fatheremail})</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">Father:</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">{item.fatherName} (Phone: {item.fatherPhone}, Occupation: {item.fatherOccupation}, Email: {item?.fatheremail})</td>
                                         </tr>
                                         <tr>
-                                            <td className="p-2 font-medium text-gray-700">Mother:</td>
-                                            <td className="p-2">{item.motherName} (Phone: {item.motherPhone}, Occupation: {item.motherOccupation})</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">Mother:</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">{item.motherName} (Phone: {item.motherPhone}, Occupation: {item.motherOccupation})</td>
                                         </tr>
                                         <tr>
-                                            <td className="p-2 font-medium text-gray-700">Guardian:</td>
-                                            <td className="p-2">{item.guardianName} (Phone: {item.guardianPhone}, Occupation: {item.guardianOccupation})</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">Guardian:</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">{item.guardianName} (Phone: {item.guardianPhone}, Occupation: {item.guardianOccupation})</td>
                                         </tr>
                                     </tbody>
                                 </table>
 
-                                <h3 className="text-lg font-semibold mt-4">Admission Details:</h3>
+                                <h3 className="merriweather-font font-normal  text-lg md:text-xl  mb-0 text-[#1E1E1E]  tracking-[-0.04em] mt-6">Admission Details:</h3>
                                 <table className="min-w-full table-auto mt-2">
                                     <thead>
-                                        <tr className="bg-gray-200">
-                                            <th className="p-2 text-left">Detail</th>
-                                            <th className="p-2 text-left">Info</th>
+                                        <tr className="bg-[#36C9B4] text-white">
+                                            <th width="25%"  className="text-white text-left text-sm px-3 lg:px-5 py-2 tracking-[-0.04em] capitalize font-medium">Detail</th>
+                                            <th width="75%"  className="text-white text-left text-sm px-3 lg:px-5 py-2 tracking-[-0.04em] capitalize font-medium">Info</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-200">
                                         <tr>
-                                            <td className="p-2 font-medium text-gray-700">Class:</td>
-                                            <td className="p-2">{item.class} (Percentage: {item.class_percentage})</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">Class:</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">{item.class} (Percentage: {item.class_percentage})</td>
                                         </tr>
                                         <tr>
-                                            <td className="p-2 font-medium text-gray-700">Facility:</td>
-                                            <td className="p-2">{item.facility}</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">Facility:</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">{item.facility}</td>
                                         </tr>
                                         <tr>
-                                            <td className="p-2 font-medium text-gray-700">Optional:</td>
-                                            <td className="p-2">{item.optional}</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">Optional:</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">{item.optional}</td>
                                         </tr>
                                         <tr>
-                                            <td className="p-2 font-medium text-gray-700">Scholar:</td>
-                                            <td className="p-2">{item.scholar}</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">Scholar:</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">{item.scholar}</td>
                                         </tr>
                                         <tr>
-                                            <td className="p-2 font-medium text-gray-700">School:</td>
-                                            <td className="p-2">{item.school}</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">School:</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">{item.school}</td>
                                         </tr>
                                         <tr>
-                                            <td className="p-2 font-medium text-gray-700">Sibling:</td>
-                                            <td className="p-2">{item.sibling}</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">Sibling:</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">{item.sibling}</td>
                                         </tr>
                                         <tr>
-                                            <td className="p-2 font-medium text-gray-700">Type:</td>
-                                            <td className="p-2">{item.type}</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">Type:</td>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">{item.type}</td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -180,7 +180,10 @@ class Details extends Component {
   async BannerDelete(data) {
     return Api.post(`/home/banner/delete`, data);
   }
-
+  
+  async  galleryAdd(data) {
+    return Api.post(`/facilities/gallery/add`, data);
+  }
   
 
   async admissionGet() {
@@ -208,6 +211,33 @@ class Details extends Component {
   async donationdelete(data) {
     return Api.post(`/donation/delete`,data);
   }
+  async sportsAdd(data) {
+    return Api.post(`/facilities/sports/Add`,data);
+  }
+  async sportsDelete(data) {
+    return Api.post(`/facilities/sports/delete`,  data);
+  }
+
+  async sportsGet() {
+    return Api.get(`/facilities/sports/get`);
+  }
+  async BannerAdd(data) {
+    return Api.post(`/home/banner/add` , data);
+  }
+
+
+  async sisterschoolsAdd(data) {
+    return Api.post(`/about/sisterschool/add`,data);
+  }
+  async sisterschoolsDelete(data) {
+    return Api.post(`/about/sisterschool/delete`,  data);
+  }
+
+  async sisterschoolsGet() {
+    return Api.get(`/about/sisterschool/get`);
+  }
+  
+
   render() {
     return (
       <div>
