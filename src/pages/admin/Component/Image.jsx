@@ -10,7 +10,7 @@ export default function Image({alt, src, classes}) {
         <img
           className={`card-img-top img-fluid mr-2 ${classes}`}
           onError={imageLoader}
-          src={imageSRC || dataimage}
+          src={imageSRC }
           alt={alt}
         />
     )
