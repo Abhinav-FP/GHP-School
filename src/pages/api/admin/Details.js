@@ -73,7 +73,6 @@ class Details extends Component {
     return Api.get(`/facilities/gallery/get/${data}`);
   }
 
-
   async getfees() {
     return Api.get("/fees/get");
   }
@@ -126,6 +125,10 @@ class Details extends Component {
 
   async donationAdd(data) {
     return Api.post("/donation/add", data);
+  }
+
+  async donationUserAdd(data) {
+    return Api.post("/donation/user/add", data);
   }
 
   async donationdelete(data) {

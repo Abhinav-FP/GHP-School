@@ -14,12 +14,18 @@ export default function Index() {
   const { error, isLoading, Razorpay } = useRazorpay();
   const RAZOPAY_KEY = process.env.NEXT_PUBLIC_RAZOPAY_KEY;
   const cartItemsRedux = useSelector((state) => state.cart.cartItems);
+  console.log("cartItemsRedux",cartItemsRedux)
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
   const totalPrice = cartItemsRedux.reduce((sum, item) => {
     return sum + Number(item?.price * item?.quantity);
   }, 0);
+
+  const itemNames = cartItemsRedux.map(item => item.name);
+
+  console.log(itemNames);
+
   // Form state
   const [formData, setFormData] = useState({
     fullName: '',
@@ -30,8 +36,8 @@ export default function Index() {
   });
 
   const handleUpload = async (event) => {
-    console.log("event",event);
-    let name=event.target.name;
+    console.log("event", event);
+    let name = event.target.name;
     let file = event.target.files[0];
     if (!file) {
       alert("Please select a file to upload.");
@@ -77,7 +83,7 @@ export default function Index() {
   const handleRemove = (id) => {
     dispatch(removeItem(id));
   };
-console.log("totalPrice",totalPrice)
+  console.log("totalPrice", totalPrice)
 
   const CurrentDate = new Date();
 
@@ -93,16 +99,18 @@ console.log("totalPrice",totalPrice)
       if (res && res.data && res.data.orderId) {
         const options = {
           key: RAZOPAY_KEY,
-          amount: totalPrice * 100, 
+          amount: totalPrice,
           currency: "INR",
           name: "Your Company Name",
           description: "Payment for services",
           order_id: res.data.orderId,
           handler: function (response) {
+            console.log("Payment successful response:", response);
             toast.success("Payment Successful");
             localStorage.setItem("response", JSON.stringify(response));
             // Save payment details
-            savePaymentDetails(response.razorpay_order_id, response.razorpay_payment_id);
+            saveUserData(response.razorpay_payment_id, totalPrice)
+            savePaymentDetails(response.razorpay_order_id, response.razorpay_payment_id, "success"); // Pass 'success'
           },
           prefill: {
             name: "Customer Name",
@@ -119,7 +127,18 @@ console.log("totalPrice",totalPrice)
 
         const rzp = new Razorpay(options);
         rzp.on("payment.failed", function (response) {
-          toast.error("Payment Failed");
+          console.log("Payment failed response:", response);
+          const error = response.error;
+          console.log("Error details:", error);
+          console.log("Metadata:", error?.metadata);
+          const orderId = error?.metadata?.order_id;
+          const paymentId = error?.metadata?.payment_id;
+          console.log("Order ID:", orderId, "Payment ID:", paymentId);
+          if (orderId && paymentId) {
+            savePaymentDetails(orderId, paymentId, "failed"); // Pass 'failed'
+          } else {
+            console.error("Failed to retrieve Razorpay order or payment ID");
+          }
         });
         rzp.open();
       } else {
@@ -127,88 +146,28 @@ console.log("totalPrice",totalPrice)
       }
     } catch (error) {
       toast.error("Error creating order");
-      console.error("Order creation error:", error); // Log error for debugging
+      console.error("Order creation error:", error);
     } finally {
       setLoading(false);
     }
   };
 
-  // const handleSubmit = async () => {
-  //   setLoading(true);
-  //   try {
-  //     const response = await fetch('https://ghp-school-backend.vercel.app/payment/create', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         amount: totalPrice, 
-  //         currency: 'INR',
-  //         receipt: 'receipt#1',
-  //       }),
-  //     });
 
-  //     const data = await response.json();
-  //     if (data.success) {
-  //       const options = {
-  //         key: RAZOPAY_KEY,
-  //         amount: data.amount, 
-  //         currency: data.currency,
-  //         order_id: data.orderId,
-  //         name: "Your Company Name",
-  //         description: "Payment for services",
-  //         handler: function (response) {
-  //           console.log(response)
-  //           toast.success("Payment Successful");
-  //           savePaymentDetails(response.
-  //             razorpay_order_id
-  //             , response.razorpay_payment_id);
-  //         },
-  //         prefill: {
-  //           name: "Customer Name",
-  //           email: "customer@example.com",
-  //           contact: "1234567890",
-  //         },
-  //         notes: {
-  //           address: "Razorpay Corporate Office",
-  //         },
-  //         theme: {
-  //           color: "#F37254",
-  //         },
-  //       };
-  //       const rzp = new Razorpay(options);
-  //       rzp.on("payment.failed", function (response) {
-  //         toast.error("Payment Failed");
-  //       });
-  //       rzp.open();
-  //     } else {
-  //       toast.error("Failed to create Razorpay order.");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error creating order:", error);
-  //     toast.error("Error creating order.");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-
-
-  const savePaymentDetails = async (orderId, paymentId) => {
+  const savePaymentDetails = async (orderId, paymentId, payment_status) => {
     setLoading(true);
     try {
       const main = new Details();
       const formdata = new FormData();
-      formdata.append("order_id", orderId)
-      formdata.append("payment_id", paymentId)
-      formdata.append("amount", totalPrice)
-      formdata.append("currency", "INR")
+      formdata.append("order_id", orderId);
+      formdata.append("payment_id", paymentId);
+      formdata.append("amount", totalPrice);
+      formdata.append("currency", "INR");
+      formdata.append("type", "product");
+      formdata.append("product_name", itemNames);
+      formdata.append("payment_status", payment_status); // Include payment status
       const response = await main.PaymentSave(formdata);
       if (response?.data?.status) {
         toast.success(response.data.message);
-        handleClose();
-        principleData();
-
       } else {
         toast.error(response.data.message);
       }
@@ -218,6 +177,31 @@ console.log("totalPrice",totalPrice)
       setLoading(false);
     }
   };
+
+  const saveUserData = async(paymentId, price) => {
+    try {
+      const main = new Details();
+      const data = new FormData();
+      data.append("name", formData?.fullName);
+      data.append("number", formData?.contactNumber);
+      data.append("aadhar", formData?.aadhaarCard);
+      data.append("pan", formData?.panCard);
+      data.append("email", formData?.emailAddress);
+      data.append("amount", price);
+      data.append("payment_id", paymentId);
+      console.log("data",data);
+      const response = await main.donationUserAdd(data);
+      if (response?.data?.status) {
+        toast.success(response.data.message);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.data?.message || "An error occurred");
+    } finally {
+      setLoading(false);
+    }    
+  }
 
 console.log("formdata",formData)
   return (
@@ -233,73 +217,73 @@ console.log("formdata",formData)
                   </h2>
                 </div>
                 <div className="px-4 lg:px-[40px] py-4 lg:py-[30px] ">
-        <div className="mb-4 lg:mb-6">
-          <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-            full Name<em className="text-[#EE834E]">*</em>
-          </label>
-          <input
-            type="text"
-            name="fullName"
-            value={formData.fullName}
-            onChange={handleChange}
-            className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
-          />
-        </div>
-        <div className="mb-4 lg:mb-6">
-          <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-            Contact Number<em className="text-[#EE834E]">* </em>
-          </label>
-          <input
-            type="text"
-            name="contactNumber"
-            value={formData.contactNumber}
-            onChange={handleChange}
-            className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
-          />
-        </div>
-        <div className="mb-4 lg:mb-6">
-          <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-            Aadhaar Card<em className="text-[#EE834E]">*</em>
-          </label>
-          <input
-            type="file"
-            name="aadhaarCard"
-            onChange={handleUpload}
-            className="bg-white border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
-          />
-        </div>
-        <div className="mb-4 lg:mb-6">
-          <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-            Pan Card<em className="text-[#EE834E]">*</em>
-          </label>
-          <input
-            type="file"
-            name="panCard"
-            onChange={handleUpload}
-            className="bg-white border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
-          />
-        </div>
-        <div className="mb-4 lg:mb-6">
-          <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-            Email address<em className="text-[#EE834E]">*</em>
-          </label>
-          <input
-            type="email"
-            name="emailAddress"
-            value={formData.emailAddress}
-            onChange={handleChange}
-            className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
-          />
-        </div>
-        <div className="w-full">
-          <button
-            onClick={handleSubmit}
-            className="bg-[#EE834E] lg:w-[253px] hover:bg-[#ECCD6E] rounded px-8 lg:px-12 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]"
-          >
-            Pay Now
-          </button>
-        </div>
-      </div>
+                  <div className="mb-4 lg:mb-6">
+                    <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
+                      full Name<em className="text-[#EE834E]">*</em>
+                    </label>
+                    <input
+                      type="text"
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleChange}
+                      className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                    />
+                  </div>
+                  <div className="mb-4 lg:mb-6">
+                    <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
+                      Contact Number<em className="text-[#EE834E]">* </em>
+                    </label>
+                    <input
+                      type="text"
+                      name="contactNumber"
+                      value={formData.contactNumber}
+                      onChange={handleChange}
+                      className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                    />
+                  </div>
+                  <div className="mb-4 lg:mb-6">
+                    <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
+                      Aadhaar Card<em className="text-[#EE834E]">*</em>
+                    </label>
+                    <input
+                      type="file"
+                      name="aadhaarCard"
+                      onChange={handleUpload}
+                      className="bg-white border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                    />
+                  </div>
+                  <div className="mb-4 lg:mb-6">
+                    <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
+                      Pan Card<em className="text-[#EE834E]">*</em>
+                    </label>
+                    <input
+                      type="file"
+                      name="panCard"
+                      onChange={handleUpload}
+                      className="bg-white border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                    />
+                  </div>
+                  <div className="mb-4 lg:mb-6">
+                    <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
+                      Email address<em className="text-[#EE834E]">*</em>
+                    </label>
+                    <input
+                      type="email"
+                      name="emailAddress"
+                      value={formData.emailAddress}
+                      onChange={handleChange}
+                      className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                    />
+                  </div>
+                  <div className="w-full">
+                    <button
+                      onClick={handleSubmit}
+                      className="bg-[#EE834E] lg:w-[253px] hover:bg-[#ECCD6E] rounded px-8 lg:px-12 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]"
+                    >
+                      Pay Now
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="w-full lg:w-6/12 px-4 md:px-6 lg:px-10">

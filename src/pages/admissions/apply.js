@@ -1,6 +1,7 @@
 import Layout from '@/layout/Layout'
 import React from 'react'
 import ContactForm from './ContactForm'
+import ImageUploader from './ImageUploader'
 
 export default function Apply() {
   return (
@@ -12,6 +13,7 @@ export default function Apply() {
           </h1>
         </div>
       </div> 
+      <ImageUploader/>
       <ContactForm />
     </Layout>
   )

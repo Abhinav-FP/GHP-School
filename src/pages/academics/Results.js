@@ -74,7 +74,7 @@ export default function Results() {
   const resultmanage = async () => {
     setLoading(true);
     const main = new Details();
-    const response = main.resultget();
+    const response = main.ResultGet();
     try {
       const res = await response;
       SetResult(res?.data?.data);
