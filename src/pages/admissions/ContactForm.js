@@ -132,6 +132,8 @@ function ContactForm() {
               response.razorpay_payment_id,
               "success"
             );
+            router.push(`successform/${response.razorpay_payment_id}`)
+
             handleSubmit();
           },
           prefill: {
@@ -158,6 +160,8 @@ function ContactForm() {
           console.log("Order ID:", orderId, "Payment ID:", paymentId);
           if (orderId && paymentId) {
             savePaymentDetails(orderId, paymentId, "failed");
+            // router.push(`cancel/${response.razorpay_payment_id}`)
+
           } else {
             console.error("Failed to retrieve Razorpay order or payment ID");
           }
