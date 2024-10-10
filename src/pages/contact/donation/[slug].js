@@ -52,8 +52,6 @@ export default function Donation() {
     }
     setQty(Qty - 1);
   }
-  const currentUrl = window.location.href;
-  console.log("curenturl",currentUrl);
 
   const handleAddItem = () => {
     const newItem = {
@@ -87,13 +85,6 @@ export default function Donation() {
         });
     }
   }, [slug]);
-
-  // Set current page URL only on the client side
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setCurrentPageUrl(window.location.href);
-    }
-  }, [router.asPath]);
 
   return (
     <Layout>
