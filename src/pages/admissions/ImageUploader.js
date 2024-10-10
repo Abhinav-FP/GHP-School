@@ -36,17 +36,11 @@ export default function ImageUploader() {
   
     try {
       const response = await fetch("https://api.imgur.com/3/upload", requestOptions);
-  
-      // Ensure that response is successful
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-  
-      // Parse the response data
       const data = await response.json();
       console.log('Image uploaded successfully:', data);
-  
-      // Access the data object for the image link
       if (data && data.data && data.data.link) {
         console.log('Uploaded Image URL:', data.data.link);
       }

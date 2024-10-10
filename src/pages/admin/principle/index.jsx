@@ -12,7 +12,17 @@ import NoData from "../Component/NoData";
 
 function Index() {
     const [isOpen, setIsOpen] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
+    const [uploading, setUploading] = useState(false); // Track uploading state
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setSelectedImage(file);
+            setImagePreview(URL.createObjectURL(file));
+        }
+    };
     const [listing, setListing] = useState([]);
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
@@ -68,38 +78,37 @@ function Index() {
         });
     };
 
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagePreview(reader.result);
-            };
-            reader.readAsDataURL(file);
-            setFormData({
-                ...formData,
-                photo: file,
-            });
-        }
-    };
 
-    const uploadImage = async (imageFile) => {
-        const formData = new FormData();
-        formData.append('image', imageFile);
+
+    const uploadImage = async (e) => {
+        e.preventDefault();
+        const myHeaders = new Headers();
+        myHeaders.append("Authorization", "Client-ID fa9cff918a9554a");
+        const formdata = new FormData();
+        formdata.append("image", selectedImage, "GHJQTpX.jpeg");
+        formdata.append("type", "image");
+        formdata.append("title", "Simple upload");
+        formdata.append("description", "This is a simple image upload in Imgur");
+
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: formdata,
+            redirect: "follow",
+        };
 
         try {
-            const response = await axios.post('https://api.imgur.com/3/upload', formData, {
-                headers: {
-                    Authorization: 'Client-ID fa9cff918a9554a',
-                    'Content-Type': 'multipart/form-data',
-                },
-                withCredentials: false, // Change to true if you need to send cookies
-            });
-
-            return response.data.data.link; // Return the uploaded image URL
+            const response = await fetch("https://api.imgur.com/3/upload", requestOptions);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log('Image uploaded successfully:', data);
+            if (data && data.data && data.data.link) {
+                console.log('Uploaded Image URL:', data.data.link);
+            }
         } catch (error) {
-            console.error('Error uploading image:', error);
-            throw new Error('Image upload failed');
+            console.error('Error:', error);
         }
     };
 
