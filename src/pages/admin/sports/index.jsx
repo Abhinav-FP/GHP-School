@@ -233,7 +233,7 @@ function Index() {
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-[#212121]">Show Avatar</label>
-                                    {imagePreview && <img src={imagePreview} alt="Preview" className="mt-2 w-48 h-48 object-cover text-center" />}
+                                    {imagePreview && <Image src={imagePreview} alt="Preview" className="mt-2 w-48 h-48 object-cover text-center" />}
 
                                 </div>
                                 <div className="flex justify-end">

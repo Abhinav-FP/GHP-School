@@ -237,7 +237,13 @@ class Details extends Component {
     return Api.get(`/about/sisterschool/get`);
   }
   
-
+  async comingsoonEdit(data) {
+    return Api.post(`/about/comingsoon/edit`,data);
+  }
+  
+  async comingsoonsGet() {
+    return Api.get(`/about/comingsoon/get`);
+  }
   render() {
     return (
       <div>
