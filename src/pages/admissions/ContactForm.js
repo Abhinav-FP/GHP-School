@@ -35,9 +35,9 @@ function ContactForm() {
     sibling: "",
     belongs: "",
     facility: "",
-    image:"",
+    image: "",
   });
-  console.log("record",record);
+  console.log("record", record);
   const [formloading, setFormLoading] = useState(false); // Loading state
   const [checkboxes, setCheckboxes] = useState({
     correctInfo: false,
@@ -101,6 +101,11 @@ function ContactForm() {
 
   const handlePaySubmit = async (e) => {
     e.preventDefault();
+    const allChecked = Object.values(checkboxes).every((value) => value);
+    if (!allChecked) {
+      alert("Please ensure all declarations are checked before submitting.");
+      return;
+    }
     setLoading(true);
     const main = new Details();
     const formdata = new FormData();
@@ -222,11 +227,6 @@ function ContactForm() {
   };
 
   const handleSubmit = async () => {
-    const allChecked = Object.values(checkboxes).every((value) => value);
-    // if (!allChecked) {
-    //   alert("Please ensure all declarations are checked before submitting.");
-    //   return;
-    // }
     setFormLoading(true);
     if (formloading) {
       return;
@@ -263,7 +263,7 @@ function ContactForm() {
           sibling: "",
           belongs: "",
           facility: "",
-          image:"",
+          image: "",
         });
         setFormLoading(false);
       } else {
