@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Details from "../api/admin/Details";
 const ProfileCard = ({ percentage, name, imagesrc }) => {
   return (
-    <div className="text-center w-full sm:w-6/12 md:w-4/12 lg:w-auto px-4 lg:px-0 mb-5 lg:mb-0">
+    <div className="text-center list px-4 mb-5 xl:mb-0">
       <Image
        blurDataURL={`${imagesrc}?q=1`}
                       placeholder="blur"
@@ -100,7 +100,7 @@ export default function Results() {
         <h3 className="tracking-[-0.04em] merriweather-font text-[#1E1E1E] text-lg md:text-xl lg:text-2xl mb-6 lg:mb-[36px] text-center">
           Grade X
         </h3>
-        <div className="flex flex-wrap lg:grid lg:gap-8 text-center lg:grid-cols-5 ">
+        <div className="flex flex-wrap result-box text-center justify-center  ">
           {result &&
             result
               .filter((item) => item.grade === "X")
@@ -150,7 +150,7 @@ export default function Results() {
             </button>
           </div>
           {/* {XIIdata && XIIdata[selected] && ( */}
-          <div className="flex flex-wrap lg:grid lg:gap-8 text-center lg:grid-cols-5">
+          <div className="flex flex-wrap result-box text-center justify-center  ">
             {result &&
               result
                 .filter(
