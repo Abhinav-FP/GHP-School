@@ -14,15 +14,7 @@ function Index() {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
-    const [uploading, setUploading] = useState(false); // Track uploading state
-
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setSelectedImage(file);
-            setImagePreview(URL.createObjectURL(file));
-        }
-    };
+    const [imagedataPreview, setImageDataPreview] = useState(null);
     const [listing, setListing] = useState([]);
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
@@ -31,6 +23,47 @@ function Index() {
         photo: '',
         type: "principle"
     });
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setSelectedImage(file);
+            setImagePreview(URL.createObjectURL(file));
+            uploadImage(file); // Pass the file directly here
+        }
+    };
+
+
+    const uploadImage = async (file) => {
+        const myHeaders = new Headers();
+        myHeaders.append("Authorization", "Client-ID fa9cff918a9554a");
+
+        const formdata = new FormData();
+        formdata.append("image", file);
+        formdata.append("type", "image");
+        formdata.append("title", "Simple upload");
+        formdata.append("description", "This is a simple image upload in Imgur");
+
+        try {
+            const response = await fetch("https://api.imgur.com/3/upload", {
+                method: "POST",
+                headers: myHeaders,
+                body: formdata,
+                redirect: "follow",
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log('Image uploaded successfully:', data);
+            if (data?.data?.link) {
+                setImageDataPreview(data.data.link);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+
     console.log("listing", listing)
     console.log("formData", formData)
     const router = useRouter();
@@ -43,7 +76,7 @@ function Index() {
             photo: item.photo || '',
             type: "principle"
         });
-        setImagePreview(item.photo); // Set the image preview
+        setImagePreview(item.photo);
     };
 
     const fetchPrincipleData = () => {
@@ -64,9 +97,16 @@ function Index() {
         fetchPrincipleData();
     }, []);
 
-
     const handleClose = () => {
         setIsOpen(false);
+        setFormData({
+            name: '',
+            text: '',
+            photo: '',
+            type: "principle"
+        });
+        setImagePreview(null);
+        setSelectedImage(null);
     };
 
 
@@ -78,53 +118,16 @@ function Index() {
         });
     };
 
-
-
-    const uploadImage = async (e) => {
-        e.preventDefault();
-        const myHeaders = new Headers();
-        myHeaders.append("Authorization", "Client-ID fa9cff918a9554a");
-        const formdata = new FormData();
-        formdata.append("image", selectedImage, "GHJQTpX.jpeg");
-        formdata.append("type", "image");
-        formdata.append("title", "Simple upload");
-        formdata.append("description", "This is a simple image upload in Imgur");
-
-        const requestOptions = {
-            method: "POST",
-            headers: myHeaders,
-            body: formdata,
-            redirect: "follow",
-        };
-
-        try {
-            const response = await fetch("https://api.imgur.com/3/upload", requestOptions);
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            const data = await response.json();
-            console.log('Image uploaded successfully:', data);
-            if (data && data.data && data.data.link) {
-                console.log('Uploaded Image URL:', data.data.link);
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    };
-
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);
 
+        setLoading(true);
         try {
-            const imageUrl = await uploadImage(formData.photo);
             const main = new Details();
             const data = new FormData();
             data.append("name", formData.name);
             data.append("text", formData.text);
-            data.append("photo", imageUrl);
+            data.append("photo", imagedataPreview);
             const res = await main.addprinciple(data);
             if (res?.data?.status) {
                 toast.success(res.data.message);
