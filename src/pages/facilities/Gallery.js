@@ -139,6 +139,7 @@ export default function Gallery() {
                 className="absolute right-4 top-[50%] transform -translate-y-1/2 text-white z-10"
                 onClick={handleNext}
               >
+                
                 <GrNext size={20} />
               </button>
             </div>

@@ -7,6 +7,7 @@ import Modal from "../Component/Modal";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import NoData from "../Component/NoData";
+import Link from "next/link";
 
 function Index() {
     const [isOpen, setIsOpen] = useState(false);
@@ -102,12 +103,37 @@ function Index() {
             <div className="md:flex flex-wrap bg-[#F5F6FB] listings-start">
                 <SideBarAdmin />
                 <div className="w-full lg:ml-[304px] lg:w-[calc(100%-304px)]">
-                    <Header title={"Manage Admission"} />
+                    <Header title={"Manage Admission Slider"} />
                     <div className="px-4 py-2 lg:px-10 lg:py-2.5">
                         <div className="bg-white rounded-[20px] mb-[30px]">
                             <div className="py-3 py-4 lg:py-[23px] px-4 md:px-6 lg:px-10 flex flex-wrap justify-between listings-center border-b border-black border-opacity-10">
-                                <h3 className="text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">Admission</h3>
+                                <h3 className="text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]"> Admission Slider</h3>
                             </div>
+
+                            {listing?.show === true && (
+        <div className='z-[1] relative px-6 overflow-hidden md:px-8 lg:px-10 py-5 bg-[#EE834E]'>
+          <div className="marquee flex items-center md:px-8 lg:px-10 text-white text-2xl lg:text-[32px] merriweather-font tracking-[-0.04em]">
+              {[1, 2, 3].map((item, index) => (
+                <span className='pr-4' key={index}>
+                  <svg
+                    className='inline'
+                    width="28"
+                    height="28"
+                    viewBox="0 0 28 28"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14 0L17.7813 10.2187L28 14L17.7813 17.7813L14 28L10.2187 17.7813L0 14L10.2187 10.2187L14 0Z"
+                      fill="white"
+                    />
+                  </svg>
+                  {listing?.text} – Apply Now!
+                </span>
+              ))}
+          </div>
+        </div>
+      )}
                             <div className="overflow-x-auto">
                                 {Loading ? (
                                     <LoadingData />

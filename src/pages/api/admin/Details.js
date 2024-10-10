@@ -197,7 +197,17 @@ class Details extends Component {
     return Api.get(`/admissionform/get`,);
   }
 
+  async donationget() {
+    return Api.get(`/donation/get`,);
+  }
   
+  async donationadd(data) {
+    return Api.post(`/donation/add`,data);
+  }
+
+  async donationdelete(data) {
+    return Api.post(`/donation/delete`,data);
+  }
   render() {
     return (
       <div>
