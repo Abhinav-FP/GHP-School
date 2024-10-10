@@ -30,9 +30,9 @@ const TermsAndConditions = () => {
             2. Donations and Payments
           </h2>
           <p className="text-gray-600 mb-2">
-            <strong>Donations:</strong> All payments made through this website
+            <strong>Donations:</strong> {`All payments made through this website
             under the "Donations" section are considered voluntary contributions
-            to support BVBS’s educational programs.
+            to support BVBS’s educational programs.`}
           </p>
           <p className="text-gray-600">
             <strong>Admission Form Payments:</strong> Payments made for
@@ -50,11 +50,11 @@ const TermsAndConditions = () => {
             3. Usage of Funds
           </h2>
           <p className="text-gray-600 mb-2">
-            <strong>Donations:</strong> Funds received as donations are
+            <strong>Donations:</strong> {`Funds received as donations are
             allocated towards BVBS's primary activities, including educational
             resources, student welfare programs, and facility maintenance.
             Detailed information on fund allocation can be made available upon
-            request.
+            request.`}
           </p>
           <p className="text-gray-600">
             <strong>Admission Form Fees:</strong> Admission form fees are used
