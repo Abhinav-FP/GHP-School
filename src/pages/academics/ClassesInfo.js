@@ -8,7 +8,7 @@ export default function ClassesInfo() {
 
   const faqItems = [
     {
-      title: "1. Pre Primary ( Nursery, LKG, UKG )",
+      title: "1. Pre Primary (Nursery, LKG, UKG)",
       Subtitle: "Learners Aged: 6 - 11 years",
       content:
         "Learning is truly fun and exhilarating at Bal Vishwa Bharti School. We provide numerous opportunities for our young minds, aged 3 to 6, to explore, discover, and innovate. Our uniquely designed curriculum fosters a healthy, safe, and stimulating environment for each child's holistic development. Our enthusiastic learners acquire and develop a wide range of skills across all domains - physical and motor, language, cognitive, social, and emotional - enriching their imaginative, intellectual, and aesthetic abilities while enhancing their innate capabilities.",
@@ -19,7 +19,7 @@ export default function ClassesInfo() {
       ],
     },
     {
-      title: "2. Primary ( Grade I - Grade V ) ",
+      title: "2. Primary (Grade I - Grade V) ",
       Subtitle: "Learners Aged: 6 - 11 years",
       content: `At BVBS, we believe that knowledge is actively constructed by the student, not passively absorbed from textbooks. In our primary classes, 'hands-on' learning is essential for developing lifelong competencies. Following the RBSE curriculum, we design activities that cater to children's interests—communication, inquiry, construction, and artistic expression. Aligned with our philosophy, "Let learning be a joy and teaching a pleasure," we enrich education through field trips, experiments, hobbies, and life skills, aiming to develop each child's potential and prepare them for a rapidly evolving world.`,
       bgImages: [
@@ -29,7 +29,7 @@ export default function ClassesInfo() {
       ],
     },
     {
-      title: "3. Secondary ( Grade VI - Grade X )  ",
+      title: "3. Secondary (Grade VI - Grade X)  ",
       Subtitle: "Learners Aged: 6 - 11 years",
       content: `At BVBS, we focus on shaping students during their Secondary School years, a crucial period of intellectual and emotional growth. Following the RBSE curriculum, our 'graded learning' and 'project work' approaches cater to each student's strengths and interests, while educational excursions and co-curricular activities enhance the learning experience. Leadership and teamwork are emphasised through the Student Council. The holistic programme encourages critical thinking and includes Socially Useful Productive Work (SUPW) and community service, alongside career guidance through the Mindler platform.`,
       bgImages: [
@@ -39,7 +39,7 @@ export default function ClassesInfo() {
       ],
     },
     {
-      title: "4. Senior Secondary ( Grade XI - Grade XII )  ",
+      title: "4. Senior Secondary (Grade XI - Grade XII)  ",
       Subtitle: "Learners Aged: 6 - 11 years",
       content: `At Bal Vishwa Bharti School, our Senior Secondary section goes beyond academics by offering a diverse range of co-curricular and extra-curricular activities that play a crucial role in shaping our students into well-rounded, confident individuals. Students can engage in a variety of pursuits, including sports, arts, dance, and debate, which not only foster creativity and self-expression but also promote teamwork, leadership, and time management skills. Additionally, our school encourages participation in cultural events, science fairs, and inter-school competitions, enabling students to gain exposure to diverse experiences and build their confidence.`,
       bgImages: [
@@ -55,7 +55,7 @@ export default function ClassesInfo() {
   };
   return (
     <>
-      <div className="pb-[100px] bg-white">
+      <div className="pb-[100px] bg-white" id="education">
         <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto ">
           <ul>
             {faqItems &&
