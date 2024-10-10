@@ -20,54 +20,41 @@ export default function ImageUploader() {
     e.preventDefault();
     const myHeaders = new Headers();
     myHeaders.append("Authorization", "Client-ID fa9cff918a9554a");
-
+  
     const formdata = new FormData();
     formdata.append("image", selectedImage, "GHJQTpX.jpeg");
     formdata.append("type", "image");
     formdata.append("title", "Simple upload");
     formdata.append("description", "This is a simple image upload in Imgur");
-
+  
     const requestOptions = {
       method: "POST",
       headers: myHeaders,
       body: formdata,
       redirect: "follow",
     };
-      try {
-        const d = fetch("https://api.imgur.com/3/upload", requestOptions);
-        const data = await d.json();
-        if (data.ok) {
-          console.log('Image uploaded successfully:', data);
-        } else {
-          console.error('Error uploading image:', data);
-        }
-      } catch (error) {
-        console.error('Error:', error);
-      } finally {
-        // setUploading(false); // Stop uploading
+  
+    try {
+      const response = await fetch("https://api.imgur.com/3/upload", requestOptions);
+  
+      // Ensure that response is successful
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
-
-    // e.preventDefault();
-    // if (selectedImage) {
-    //   setUploading(true); // Start uploading
-    //   const formData = new FormData();
-    //   formData.append('image', selectedImage);
-
-    //   try {
-    //     const response = await  FileUpload.post('/',formData);
-    //     const data = await response.json();
-    //     if (response.ok) {
-    //       console.log('Image uploaded successfully:', data);
-    //     } else {
-    //       console.error('Error uploading image:', data);
-    //     }
-    //   } catch (error) {
-    //     console.error('Error:', error);
-    //   } finally {
-    //     setUploading(false); // Stop uploading
-    //   }
-    // }
+  
+      // Parse the response data
+      const data = await response.json();
+      console.log('Image uploaded successfully:', data);
+  
+      // Access the data object for the image link
+      if (data && data.data && data.data.link) {
+        console.log('Uploaded Image URL:', data.data.link);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
+  
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-md shadow-md">
