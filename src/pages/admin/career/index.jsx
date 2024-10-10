@@ -96,8 +96,7 @@ function Index() {
                                                             <Link
                                                             href={item?.resume}
                                                             target="_blank"
-                                                            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 ease-in-out"
-                                                        >
+                                                            className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
                                                             Resume
                                                         </Link>
                                                         </td>

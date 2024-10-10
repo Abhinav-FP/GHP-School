@@ -208,6 +208,22 @@ class Details extends Component {
   async donationdelete(data) {
     return Api.post(`/donation/delete`,data);
   }
+  async sportsAdd(data) {
+    return Api.post(`/facilities/sports/Add`,data);
+  }
+  async sportsDelete(data) {
+    return Api.post(`/facilities/sports/delete`,  data);
+  }
+
+  async sportsGet() {
+    return Api.get(`/facilities/sports/get`);
+  }
+  async BannerAdd(data) {
+    return Api.post(`/home/banner/add` , data);
+  }
+
+  
+
   render() {
     return (
       <div>

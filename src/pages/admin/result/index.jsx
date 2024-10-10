@@ -12,15 +12,11 @@ import NoData from "../Component/NoData";
 function Index() {
     const [isOpen, setIsOpen] = useState(false);
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
+    const [imagedataPreview, setImageDataPreview] = useState(null);
 
-    const handleDeleteClose = () => {
-        setIsDeleteOpen(false);
-    };
-
-
-    const handleClose = () => {
-        setIsOpen(false);
-    };
+    console.log("imagePreview",imagePreview, selectedImage, imagedataPreview )
     const [formData, setFormData] = useState({
         rollNo: "",
         name: "",
@@ -31,6 +27,15 @@ function Index() {
     });
     const [listing, setListing] = useState([]);
     const [loading, setLoading] = useState(false);
+    const handleDeleteClose = () => {
+        setIsDeleteOpen(false);
+    };
+
+
+    const handleClose = () => {
+        setIsOpen(false);
+    };
+
     const router = useRouter();
 
     const resultgetData = async () => {
@@ -59,36 +64,64 @@ function Index() {
             [name]: value
         }));
     };
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setSelectedImage(file);
+            setImagePreview(URL.createObjectURL(file));
+            uploadImage(file); // Pass the file directly here
+        }
+    };
 
-    const uploadImage = async (imageFile) => {
-        const formData = new FormData();
-        formData.append('image', imageFile);
+    const uploadImage = async (file) => {
+        const myHeaders = new Headers();
+        myHeaders.append("Authorization", "Client-ID fa9cff918a9554a");
+
+        const formdata = new FormData();
+        formdata.append("image", file);
+        formdata.append("type", "image");
+        formdata.append("title", "Simple upload");
+        formdata.append("description", "This is a simple image upload in Imgur");
+
         try {
-            const response = await axios.post('https://api.imgur.com/3/upload', formData, {
-                headers: {
-                    Authorization: 'Client-ID fa9cff918a9554a',
-                    'Content-Type': 'multipart/form-data',
-                },
-                withCredentials: false,
+            const response = await fetch("https://api.imgur.com/3/upload", {
+                method: "POST",
+                headers: myHeaders,
+                body: formdata,
+                redirect: "follow",
             });
-            return response.data.data.link;
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log('Image uploaded successfully:', data);
+            if (data?.data?.link) {
+                setImageDataPreview(data.data.link);
+            }
         } catch (error) {
-            console.error('Error uploading image:', error);
-            throw new Error('Image upload failed');
+            console.error('Error:', error);
         }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+        const record = new FormData();
+        record.append("rollNo", formData.rollNo);
+        record.append("name", formData.name);
+        record.append("photo", imagePreview);
+        record.append("grade", formData.grade);
+        record.append("stream", formData.stream);
+        record.append("percentage", formData.percentage);
+
         try {
-            const imageUrl = await uploadImage(formData.photo);
             const main = new Details();
-            const response = await main.ResultAdd(formData);
+            const response = await main.ResultAdd(record);
+
             if (response?.data?.status) {
                 toast.success(response.data.message);
-                handleClose();
-                resultgetData();
+                handleClose();  // Close any modal or form after success
+                resultgetData();  // Refresh or fetch updated result data
             } else {
                 toast.error(response.data.message);
             }
@@ -99,16 +132,21 @@ function Index() {
                 designation: ''
             });
         } catch (error) {
-            toast.error(error?.response?.data?.data?.message || "An error occurred");
+            toast.error(error?.response?.data?.message || "An error occurred");
         } finally {
             setLoading(false);
         }
     };
+
     const [deltedata, setDelete] = useState("");
     const handleopen = (item) => {
         setIsDeleteOpen(true);
         setDelete(item)
     };
+
+
+
+
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -146,7 +184,7 @@ function Index() {
                             <div className="py-3 lg:py-[23px] px-4 md:px-6 lg:px-10 flex flex-wrap justify-between items-center border-b border-black border-opacity-10">
                                 <h3 className="text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">Result</h3>
                                 <div className="flex items-center space-x-2">
-                                    <button onClick={() => setIsOpen(true)} className="text-white bg-[#0367F7] hover:bg-white hover:text-[#0367F7] text-sm font-normal tracking-[-0.03em] py-2 px-3 xl:px-3.5 border border-[#0367F7] rounded-md outline-none focus:outline-none ease-linear transition-all duration-150">
+                                    <button onClick={() => setIsOpen(true)}   className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
                                         Add New Result
                                     </button>
                                 </div>
@@ -223,16 +261,20 @@ function Index() {
                         </div>
                         <form onSubmit={handleSubmit} className="p-6">
                             <div className="space-y-4">
-                            <div>
+                                <div>
                                     <label className="block text-sm font-medium text-[#212121]">Student Avatar</label>
                                     <input
                                         type="file"
-                                        name="photo"
-                                        value={formData.photo}
-                                        onChange={handleChange}
+                                        accept="image/*"
+                                        onChange={handleImageChange}
                                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
                                         required
                                     />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-[#212121]">Show Avatar</label>
+                                    {imagePreview && <img src={imagePreview} alt="Preview" className="mt-2 w-48 h-48 object-cover text-center" />}
+
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-[#212121]">Grade</label>
@@ -313,7 +355,7 @@ function Index() {
                                         required
                                     />
                                 </div>
-                               
+
                                 <div className="flex justify-end">
                                     <button
                                         type="submit"

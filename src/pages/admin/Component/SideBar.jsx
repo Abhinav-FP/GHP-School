@@ -17,6 +17,7 @@ import { MdOutlinePayment } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";
 import { GiKnightBanner } from "react-icons/gi";
 import { RiGalleryLine } from "react-icons/ri";
+import { MdOutlineSportsKabaddi } from "react-icons/md";
 
 function SideBarAdmin() {
     const pathname = usePathname();
@@ -168,6 +169,15 @@ function SideBarAdmin() {
                         </Link>
                     </li>
 
+                    <li>
+                        <Link href="/admin/sports"
+                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#EE834E] ${pathname === "/admin/sports" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
+                        >
+                            <MdOutlineSportsKabaddi size={24} className="inline align-middle mr-[4px]" />
+                            &nbsp; Sports
+                        </Link>
+                    </li>
+                    
                     <li>
                         <Link href="/admin/paymenthistory"
                             className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#EE834E] ${pathname === "/admin/paymenthistory" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}

@@ -125,7 +125,7 @@ function Index() {
                                 <h3 className="text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">Vacancy</h3>
                                 <div className="flex items-center space-x-2">
                                     <button onClick={() => setIsOpen(true)} 
-                                    className="text-white bg-[#0367F7] hover:bg-white hover:text-[#0367F7] text-sm font-normal tracking-[-0.03em] py-2 px-3 xl:px-3.5 border border-[#0367F7] rounded-md outline-none focus:outline-none ease-linear transition-all duration-150">
+                                    className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
                                         Add New Vacancy
                                     </button>
                                 </div>

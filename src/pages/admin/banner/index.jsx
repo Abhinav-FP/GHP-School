@@ -13,11 +13,13 @@ function Index() {
     const [isOpen, setIsOpen] = useState(false);
     const [listing, setLisitng] = useState([])
     const [Loading, setLoading] = useState(false)
+    const [selectedImage, setSelectedImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
+    const [imagedataPreview, setImageDataPreview] = useState(null);
     const [formdata, setFormdata] = useState({
-        "photo" : "",
-        "heading" : "",
-        "paragraph" :""
+        "photo": "",
+        "heading": "",
+        "paragraph": ""
     });
     const handleClose = () => {
         setIsOpen(false);
@@ -54,12 +56,56 @@ function Index() {
         });
     };
 
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setSelectedImage(file);
+            setImagePreview(URL.createObjectURL(file));
+            uploadImage(file); // Pass the file directly here
+        }
+    };
+
+
+    const uploadImage = async (file) => {
+        const myHeaders = new Headers();
+        myHeaders.append("Authorization", "Client-ID fa9cff918a9554a");
+
+        const formdata = new FormData();
+        formdata.append("image", file);
+        formdata.append("type", "image");
+        formdata.append("title", "Simple upload");
+        formdata.append("description", "This is a simple image upload in Imgur");
+
+        try {
+            const response = await fetch("https://api.imgur.com/3/upload", {
+                method: "POST",
+                headers: myHeaders,
+                body: formdata,
+                redirect: "follow",
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log('Image uploaded successfully:', data);
+            if (data?.data?.link) {
+                setImageDataPreview(data.data.link);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+        const record = new FormData();
+        record.append('heading', formdata?.heading);
+        record.append('email', formdata?.paragraph);
+        record.append('photo', imagePreview);
         const main = new Details();
         try {
-            const res = await main.admissionPost(formdata);
+            const res = await main.BannerAdd(record);
             if (res?.data) {
                 toast.success(res.data.message);
                 handleClose();
@@ -73,6 +119,7 @@ function Index() {
             setLoading(false);
         }
     };
+
 
     return (<>
         <div className="md:flex flex-wrap  bg-[#F5F6FB] items-start">
@@ -142,12 +189,11 @@ function Index() {
                                 <div className="mb-3 lg:mb-[25px]">
                                     <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">Banner Image</label>
                                     <input
-                                        name="photo"
-                                        value={formdata?.photo}
-                                        onChange={handleChange}
                                         type="file"
-                                        className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
-
+                                        accept="image/*"
+                                        onChange={handleImageChange}
+                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
+                                        required
                                     />
                                     {/* <p message={errors?.name} className="!text-red-600" /> */}
 
@@ -189,7 +235,7 @@ function Index() {
                             <div className="flex justify-end pt-3 px-6 lg:px-10 ">
                                 <button type="submit"
                                     onClick={handleSubmit}
-                                    className="w-full text-white bg-[#0367F7] hover:text-[#0367F7] hover:bg-white text-[17px] font-medium tracking-[-0.04em] h-11 lg:h-[54px] py-2.5 px-12 border border-[#0367F7] rounded-full outline-none focus:outline-none ease-linear transition-all duration-150">
+                                    className="w-full text-white button-animation hover:button-animation hover:bg-white text-[17px] font-medium tracking-[-0.04em] h-11 lg:h-[54px] py-2.5 px-12 border border-button-animation rounded-full outline-none focus:outline-none ease-linear transition-all duration-150">
                                     {Loading ? "Processing.." : "Banner"}
 
                                 </button>
