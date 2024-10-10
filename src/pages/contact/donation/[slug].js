@@ -19,13 +19,20 @@ export default function Donation() {
   const [isAdded, setIsAdded] = useState(false);
   const dispatch = useDispatch();
 
+  const [isClient, setIsClient] = useState(false);
+
+  // This effect will only run on the client side
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const handleShare = async () => {
-    if (navigator.share) {
+    if (isClient && navigator.share) {
       try {
         await navigator.share({
-          title: document.title, // The title of the page or content
-          text: 'Check out this page!', // Optional message
-          url: window.location.href, // The current URL to be shared
+          title: document.title,
+          text: 'Check out this page!',
+          url: window.location.href,
         });
         console.log('Content shared successfully');
       } catch (error) {
