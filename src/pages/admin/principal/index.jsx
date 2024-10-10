@@ -175,7 +175,7 @@ function Index() {
                                                 <tr className="bg-white border-t transition duration-300 ease-in-out hover:bg-gray-100">
                                                     <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">{1}</td>
                                                     <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                        <Image width={200} height={200} src={listing.photo} alt={listing.name} />
+                                                    <Image width={200} height={200} src={listing?.photo} alt={listing?.name} />
                                                     </td>
                                                     <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">{listing.name}</td>
                                                     <td className="px-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">{listing.text}</td>
