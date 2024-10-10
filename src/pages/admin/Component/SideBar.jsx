@@ -94,11 +94,11 @@ function SideBarAdmin() {
                         </Link>
                     </li>
                     <li>
-                        <Link href="/admin/principle"
-                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#EE834E] ${pathname === "/admin/principle" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
+                        <Link href="/admin/principal"
+                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#EE834E] ${pathname === "/admin/principal" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
                         >
                             <CiUser size={24} className="inline align-middle mr-[4px]" />
-                            &nbsp; Manage Principle
+                            &nbsp; Manage Principal
                         </Link>
                     </li>
 

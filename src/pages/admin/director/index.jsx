@@ -14,15 +14,58 @@ function Index() {
     const [isOpen, setIsOpen] = useState(false);
     const [listing, setLisitng] = useState([])
     const [Loading, setLoading] = useState(false)
-    const [imagePreview, setImagePreview] = useState(null);
     const [formdata, setFormdata] = useState({
         name: '',
         text: '',
         photo: '',
         id: "",
     });
+
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
+    const [imagedataPreview, setImageDataPreview] = useState(null);
     const handleClose = () => {
         setIsOpen(false);
+    };
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setSelectedImage(file);
+            setImagePreview(URL.createObjectURL(file));
+            uploadImage(file); // Pass the file directly here
+        }
+    };
+
+
+    const uploadImage = async (file) => {
+        const myHeaders = new Headers();
+        myHeaders.append("Authorization", "Client-ID fa9cff918a9554a");
+
+        const formdata = new FormData();
+        formdata.append("image", file);
+        formdata.append("type", "image");
+        formdata.append("title", "Simple upload");
+        formdata.append("description", "This is a simple image upload in Imgur");
+
+        try {
+            const response = await fetch("https://api.imgur.com/3/upload", {
+                method: "POST",
+                headers: myHeaders,
+                body: formdata,
+                redirect: "follow",
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log('Image uploaded successfully:', data);
+            if (data?.data?.link) {
+                setImageDataPreview(data.data.link);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
 
    
@@ -38,7 +81,7 @@ function Index() {
         setImagePreview(item.photo);
     };
 
-    const principledata = () => {
+    const fetchdirectorData = () => {
         setLoading(true);
         const main = new Details();
         main.getdirector()
@@ -54,7 +97,7 @@ function Index() {
     };
 
     useEffect(() => {
-        principledata();
+        fetchdirectorData();
     }, []);
 
 
@@ -67,31 +110,30 @@ function Index() {
             [name]: value
         });
     };
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = () => setImagePreview(reader.result);
-            reader.readAsDataURL(file);
-            setFormdata({ ...formdata, photo: file });
-        }
-    };
 
+
+   
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         setLoading(true);
-        const main = new Details();
         try {
-            const res = await main.editdirector(formdata);
-            if (res?.data) {
+            const main = new Details();
+            const data = new FormData();
+            data.append("name", formdata.name);
+            data.append("text", formdata.text);
+            data.append("photo", imagedataPreview);
+            const res = await main.editdirector(data);
+            if (res?.data?.status) {
                 toast.success(res.data.message);
                 handleClose();
+                fetchdirectorData(); // Refresh data
             } else {
-                toast.error(res.message);
+                toast.error(res.data.message);
             }
         } catch (error) {
-            toast.error("An error occurred while updating.");
+            toast.error(error.message || 'An error occurred');
         } finally {
             setLoading(false);
         }
