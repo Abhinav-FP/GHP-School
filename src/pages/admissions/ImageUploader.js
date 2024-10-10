@@ -8,21 +8,21 @@ export default function ImageUploader() {
   const [imagePreview, setImagePreview] = useState(null);
   const [uploading, setUploading] = useState(false); // Track uploading state
 
-  const handleImageChange = (e) => {
+  const handleImageChange = async(e) => {
     const file = e.target.files[0];
     if (file) {
       setSelectedImage(file);
       setImagePreview(URL.createObjectURL(file));
     }
+   await uploadImage(file);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const uploadImage = async (file) => {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", "Client-ID fa9cff918a9554a");
   
     const formdata = new FormData();
-    formdata.append("image", selectedImage, "GHJQTpX.jpeg");
+    formdata.append("image", file, "GHJQTpX.jpeg");
     formdata.append("type", "image");
     formdata.append("title", "Simple upload");
     formdata.append("description", "This is a simple image upload in Imgur");
@@ -52,7 +52,7 @@ export default function ImageUploader() {
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-md shadow-md">
-      <form onSubmit={handleSubmit} className="mt-4">
+      <form className="mt-4">
         <div className="relative flex flex-col items-center">
           <div className="relative w-32 h-40">
             {imagePreview ? (
@@ -76,7 +76,7 @@ export default function ImageUploader() {
           </div>
         </div>
 
-        <button
+        {/* <button
           type="submit"
           className={`mt-6 w-full py-2 bg-green-500 text-white rounded-md hover:bg-green-600 ${
             uploading ? "opacity-50 cursor-not-allowed" : ""
@@ -84,7 +84,7 @@ export default function ImageUploader() {
           disabled={uploading}
         >
           {uploading ? "Uploading..." : "Upload Photo"}
-        </button>
+        </button> */}
       </form>
     </div>
   );
