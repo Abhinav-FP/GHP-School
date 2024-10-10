@@ -32,7 +32,6 @@ body{
   background-color: #ffff;
 }
 
-
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 @media (prefers-color-scheme: dark) {
@@ -108,8 +107,8 @@ html{
   vertical-align: middle;
   background-origin: border-box;
   -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  user-select: none;
   flex-shrink: 0;
   height: 1rem;
   width: 1rem;
@@ -176,6 +175,31 @@ html{
 [type='checkbox']:indeterminate:hover,[type='checkbox']:indeterminate:focus {
   border-color: transparent;
   background-color: currentColor;
+}
+.result-box .list {width: 100%;padding: 0 15px;}
+@media (min-width:400px){
+  .result-box .list {
+    width: 50%;
+    padding: 0 15px;
+}
+}
+@media (min-width:576px){
+  .result-box .list {
+    width: 33.33%;
+    padding: 0 15px;
+}
+}
+@media (min-width:768px){
+  .result-box .list {
+    width: 33.33%;
+    padding: 0 15px;
+}
+}
+@media (min-width:1200px){
+  .result-box .list {
+    width: 20%;
+    padding: 0 15px;
+}
 }
 
 

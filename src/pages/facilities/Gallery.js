@@ -83,12 +83,12 @@ export default function Gallery() {
           Explore our gallery to see the vibrant life and activities at BVBS
           School.
         </p>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
           {listing &&
             listing.map((item, index) => (
               <div
                 key={index}
-                className="relative w-full overflow-hidden"
+                className="relative w-full overflow-hidden h-full"
                 onClick={() => handleImageClick(item?.caption)}
               >
                 <Image
@@ -98,7 +98,7 @@ export default function Gallery() {
                   height={310}
                   src={item?.url}
                   alt={item?.caption}
-                  className="object-cover"
+                  className="object-cover w-full h-full"
                   loading="lazy"
                 />
                 <div className="galleryBg absolute bottom-0 left-0 h-full w-full z-0"></div>

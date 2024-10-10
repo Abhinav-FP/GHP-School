@@ -21,28 +21,28 @@ export default function Footer() {
                 BAL VISHWA BHARTI PUBLIC SR SEC SCHOOL
               </h3>
               <div className="space-y-2.5">
-                <p className="relative pl-6 text-[#1E1E1E] opacity-80 tracking-[-0.04em] text-base font-medium gotham-font">
-                  <IoCallOutline className="absolute left-0 top-1/2 -translate-y-1/2" />
-                  <a href="tel:01412282790">01412282790</a>/{" "}
-                  <a href="tel:01412282298">01412282298</a>/{" "}
+                <p className="relative pl-6 text-[#1E1E1E] opacity-90 tracking-[-0.04em] text-base font-medium gotham-font">
+                  <IoCallOutline className="absolute left-0 top-1" />
+                  <a href="tel:01412282790">01412282790</a><span>/</span>{" "}
+                  <a href="tel:01412282298">01412282298</a><span>/</span>{" "}
                   <a href="tel:+919001869684">90018-69684</a>
                 </p>
-                <p className="relative pl-6 text-[#1E1E1E] opacity-80 tracking-[-0.04em] text-base font-medium gotham-font">
-                  <CiMail className="absolute left-0 top-1/2 -translate-y-1/2" />
+                <p className="relative pl-6 text-[#1E1E1E] opacity-90 tracking-[-0.04em] text-base font-medium gotham-font">
+                  <CiMail className="absolute left-0 top-1" />
                   <a href="mailto:bvbpschool74@gmail.com">
                     bvbpschool74@gmail.com
                   </a>
-                  /{" "}
+                  <span className="hidden md:inline">/</span> <br className="md:hidden"></br>{" "}
                   <a href="mailto:bvbschool74@gmail.com">
                     bvbschool74@gmail.com
                   </a>
                 </p>
-                <p className="relative pl-6 text-[#1E1E1E] opacity-80 tracking-[-0.04em] text-base font-medium gotham-font">
+                <p className="relative pl-6 text-[#1E1E1E] opacity-90 tracking-[-0.04em] text-base font-medium gotham-font">
                   <a
                     target="_blank"
                     href="https://www.google.com/maps/dir//D,+74,+Ghiya+Marg,+Sindhi+Colony,+Bani+Park,+Jaipur,+Rajasthan+302032+@26.931568,75.791982/@27.7436422,76.5794786,7z/data=!4m7!4m6!1m1!4e2!1m2!1m1!1s0x396db3efafa594ef:0x2da3b3ab79a793f4!3e0"
                   >
-                    <CiLocationOn className="absolute left-0 top-1/2 -translate-y-1/2" />{" "}
+                    <CiLocationOn className="absolute left-0 top-1" />{" "}
                     D-74, Ghiya Marg, Bani Park, Jaipur, Rajasthan 302016
                   </a>
                 </p>
@@ -53,7 +53,7 @@ export default function Footer() {
                 Quick Links{" "}
               </h3>
               <div className="space-y-2.5">
-                <p className="relative pl-6 text-[#1E1E1E] opacity-80 tracking-[-0.04em] text-base font-medium gotham-font">
+                <p className="relative pl-6 text-[#1E1E1E] opacity-90 tracking-[-0.04em] text-base font-medium gotham-font">
                   <Link
                     href="/careers"
                     className="text-[#1E1E1E] hover:text-[#EE834E]"
@@ -75,7 +75,7 @@ export default function Footer() {
                     Careers
                   </Link>
                 </p>
-                <p className="relative pl-6 text-[#1E1E1E] opacity-80 tracking-[-0.04em] text-base font-medium gotham-font">
+                <p className="relative pl-6 text-[#1E1E1E] opacity-90 tracking-[-0.04em] text-base font-medium gotham-font">
                   <Link
                     href="/contact#donate"
                     className="text-[#1E1E1E] hover:text-[#EE834E]"
@@ -84,7 +84,7 @@ export default function Footer() {
                     Sponsor/ Donations
                   </Link>
                 </p>
-                <p className="relative pl-6 text-[#1E1E1E] opacity-80 tracking-[-0.04em] text-base font-medium gotham-font">
+                <p className="relative pl-6 text-[#1E1E1E] opacity-90 tracking-[-0.04em] text-base font-medium gotham-font">
                   <Link
                     href="/facilities#infrastructure"
                     className="text-[#1E1E1E] hover:text-[#EE834E]"
@@ -101,19 +101,19 @@ export default function Footer() {
                   Follow us on{" "}
                 </h3>
                 <div className="space-y-2.5">
-                  <p className="relative pl-6 text-[#1E1E1E] opacity-80 tracking-[-0.04em] text-base font-medium gotham-font">
+                  <p className="relative pl-6 text-[#1E1E1E] opacity-90 tracking-[-0.04em] text-base font-medium gotham-font">
                     <a href="https://www.facebook.com/profile.php?id=61557061876412" target="blank" className="text-[#1E1E1E] hover:text-[#EE834E]">
                       <FaFacebook className="absolute left-0 top-1/2 -translate-y-1/2" />{" "}
                       Bal Vishwa Bharti
                     </a>
                   </p>
-                  <p className="relative pl-6 text-[#1E1E1E] opacity-80 tracking-[-0.04em] text-base font-medium gotham-font">
+                  <p className="relative pl-6 text-[#1E1E1E] opacity-90 tracking-[-0.04em] text-base font-medium gotham-font">
                     <a href="https://www.instagram.com/bvbschool?igsh=ZTR5ZWl3bmdjYThv" target="blank" className="text-[#1E1E1E] hover:text-[#EE834E]">
                       <IoLogoInstagram className="absolute left-0 top-1/2 -translate-y-1/2" />{" "}
                       @bvbschool
                     </a>
                   </p>
-                  <p className="relative pl-6 text-[#1E1E1E] opacity-80 tracking-[-0.04em] text-base font-medium gotham-font">
+                  <p className="relative pl-6 text-[#1E1E1E] opacity-90 tracking-[-0.04em] text-base font-medium gotham-font">
                     <a href="https://www.youtube.com/@bvbschool-t9z" target="blank" className="text-[#1E1E1E] hover:text-[#EE834E]">
                       <AiOutlineYoutube className="absolute left-0 top-1/2 -translate-y-1/2" />
                       @bvbschool-t9z
