@@ -34,7 +34,9 @@ export default function ImageUploader() {
       redirect: "follow",
     };
       try {
-        const d = fetch("https://api.imgur.com/3/upload", requestOptions);
+        const d = await fetch("https://api.imgur.com/3/upload", requestOptions);
+        console.log("d",d);
+        console.log("d?.data",d?.data);
         const data = await d.json();
         if (data.ok) {
           console.log('Image uploaded successfully:', data);
@@ -46,27 +48,6 @@ export default function ImageUploader() {
       } finally {
         // setUploading(false); // Stop uploading
       }
-
-    // e.preventDefault();
-    // if (selectedImage) {
-    //   setUploading(true); // Start uploading
-    //   const formData = new FormData();
-    //   formData.append('image', selectedImage);
-
-    //   try {
-    //     const response = await  FileUpload.post('/',formData);
-    //     const data = await response.json();
-    //     if (response.ok) {
-    //       console.log('Image uploaded successfully:', data);
-    //     } else {
-    //       console.error('Error uploading image:', data);
-    //     }
-    //   } catch (error) {
-    //     console.error('Error:', error);
-    //   } finally {
-    //     setUploading(false); // Stop uploading
-    //   }
-    // }
   };
 
   return (
