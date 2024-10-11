@@ -23,7 +23,7 @@ export default function Header() {
               <Link href="/">
                 <Image
                   className="max-w-[165px] "
-                  height={165}
+                  height={91}
                   width={165}
                   layout="fixed"
                   src={Logo}

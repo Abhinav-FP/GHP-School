@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import Details from "@/pages/api/admin/Details";
 import { formatMultiPrice } from "@/hooks/ValueData";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { FaShareAlt } from "react-icons/fa";
 
 export default function Donation() {
   const router = useRouter();
@@ -31,14 +32,14 @@ export default function Donation() {
       try {
         await navigator.share({
           title: document.title,
-          text: 'Check out this page!',
+          text: "Check out this page!",
           url: window.location.href,
         });
       } catch (error) {
-        console.error('Error sharing content:', error);
+        console.error("Error sharing content:", error);
       }
     } else {
-      alert('Web Share API is not supported in your browser.');
+      alert("Web Share API is not supported in your browser.");
     }
   };
 
@@ -182,10 +183,14 @@ export default function Donation() {
                 </Link>
               </div>
               <div className="w-full flex flex-wrap items-center">
-                <div className="flex gap-2 mr-1.5 cursor-pointer items-center text-[#666666] text-sm font-medium  tracking-[-0.04em]"
-                 onClick={()=>{handleShare()}}>
-                  Share 
-                  <FaLongArrowAltRight/>
+                <div
+                  className="flex gap-2 mr-1.5 cursor-pointer items-center text-[#666666] text-sm font-medium  tracking-[-0.04em]"
+                  onClick={() => {
+                    handleShare();
+                  }}
+                >
+                  Share
+                  <FaShareAlt/>
                 </div>
                 {/* <ul className="flex flex-wrap items-center space-x-3">
                   <li>
