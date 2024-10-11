@@ -83,9 +83,9 @@ export default function Gallery() {
         </p>
 
        { loading ? <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
-            {[...Array(6)].map((_, index) => (
+            {/* {[...Array(6)].map((_, index) => (
                 <div className="bg-gray-100 animate-pulse p-6 w-full h-[280px]"></div>
-            ))}
+            ))} */}
         </div>
         :
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
