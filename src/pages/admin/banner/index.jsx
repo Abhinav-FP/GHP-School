@@ -101,8 +101,8 @@ function Index() {
         setLoading(true);
         const record = new FormData();
         record.append('heading', formdata?.heading);
-        record.append('email', formdata?.paragraph);
-        record.append('photo', imagePreview);
+        record.append('text', formdata?.paragraph);
+        record.append('photo', imagedataPreview);
         const main = new Details();
         try {
             const res = await main.BannerAdd(record);
