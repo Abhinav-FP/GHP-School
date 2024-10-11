@@ -121,34 +121,36 @@ function Index() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        // const url = await uploadImage(selectedImage);
-        console.log("selectedImage",selectedImage);
+        const url = await uploadImage(selectedImage);
+        console.log("url",url);
         const record = new FormData();
         record.append("url", "url");
         record.append("size", selectedImage.size);
         record.append("name", selectedImage.name);
         record.append("caption", selectedFolder);
         record.append("title", title);
-        record.append("description", description);
+        record.append("description", description); 
         try {
             const main = new Details();
-            const response = await main.GalleryAdd(record);
+            const response = await main.GalleryAdd({
+                url: "url",
+                size: selectedImage.size,
+                name: selectedImage.name,
+                caption: selectedFolder,
+                title: title,
+                description: description
+            });
             if (response?.data?.status) {
                 // toast.success(response.data.message);
                 alert(response.data.message)
                 handleClose(); 
-                resultgetData(); 
             } else {
                 // toast.error(response.data.message);
                 alert(response.data.message);
             }
-            setFormData({
-                qualification: '',
-                experience: '',
-                description: '',
-                designation: ''
-            }); 
+            
         } catch (error) {
+            console.log("error", error); 
             alert(error?.response?.data?.message || "An error occurred");
             // toast.error(error?.response?.data?.message || "An error occurred");
         } finally {
