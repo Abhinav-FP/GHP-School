@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import NoData from "../Component/NoData";
 import Delete from "./Delete";
+import AdminLayout from "@/layout/AdminLayout";
 function Index() {
     const [isOpen, setIsOpen] = useState(false);
     const [listing, setLisitng] = useState([])
@@ -20,12 +21,12 @@ function Index() {
         "photo": "",
         "heading": "",
         "paragraph": "",
-        text:"",
+        text: "",
     });
     const handleClose = () => {
         setIsOpen(false);
     };
-    console.log("formData",formdata);
+    console.log("formData", formdata);
 
     const BannerGetData = () => {
         setLoading(true);
@@ -124,128 +125,131 @@ function Index() {
 
 
     return (<>
-        <div className="md:flex flex-wrap  bg-[#F5F6FB] items-start">
-            <SideBarAdmin />
-            {/* right sidebar  */}
-            <div className="w-full lg:ml-[304px] lg:w-[calc(100%-304px)]">
-                <Header title={"Manage  Banner"} />
-                {/* Overview */}
-                <div className="px-4 py-2 lg:px-10 lg:py-2.5">
-                    {/*  */}
-                    <div className="bg-white rounded-[20px] mb-[30px]">
-                        <div className="py-3 py-4 lg:py-[23px] px-4 md:px-6 lg:px-10 flex flex-wrap justify-between items-center border-b border-black  border-opacity-10">
-                            <h3 className=" text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">Banner  </h3>
-                            <button onClick={() => setIsOpen(true)} className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
-                                Add New Banner
-                            </button>
-                        </div>
-                        <div className="w-full p-6">
-                            {Loading ? (
-                                <LoadingData />
-                            ) : (
-                                listing?.length < 0 ? (
-                                    // <Nodata />
-                                    <NoData />
+        <AdminLayout>
+
+            <div className="md:flex flex-wrap  bg-[#F5F6FB] items-start">
+                <SideBarAdmin />
+                {/* right sidebar  */}
+                <div className="w-full lg:ml-[304px] lg:w-[calc(100%-304px)]">
+                    <Header title={"Manage  Banner"} />
+                    {/* Overview */}
+                    <div className="px-4 py-2 lg:px-10 lg:py-2.5">
+                        {/*  */}
+                        <div className="bg-white rounded-[20px] mb-[30px]">
+                            <div className="py-3 py-4 lg:py-[23px] px-4 md:px-6 lg:px-10 flex flex-wrap justify-between items-center border-b border-black  border-opacity-10">
+                                <h3 className=" text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">Banner  </h3>
+                                <button onClick={() => setIsOpen(true)} className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
+                                    Add New Banner
+                                </button>
+                            </div>
+                            <div className="w-full p-6">
+                                {Loading ? (
+                                    <LoadingData />
                                 ) : (
-                                    <div className="flex flex-wrap -mx-2.5 ">
-                                        {listing?.map((item, index) => (
-                                            <div key={item.id} className="flex flex-col justify-start w-full sm:w-6/12 lg:w-6/12 xl:w-3/12 px-2.5 mb-3 lg:mb-0">
-                                                <div className="w-full bg-[#f9f9f9] mb-4 relative">
-                                                    <img
-                                                        src={item?.photo}
-                                                        alt={item?.heading}
-                                                        className="mx-auto rounded block w-full object-cover h-[207px]"
-                                                    />
-                                                    <div className="absolute top-0 right-0">
-                                                        <Delete className="!rounded-full" srNo={item?.srNo} BannerGetData={BannerGetData} />
+                                    listing?.length < 0 ? (
+                                        // <Nodata />
+                                        <NoData />
+                                    ) : (
+                                        <div className="flex flex-wrap -mx-2.5 ">
+                                            {listing?.map((item, index) => (
+                                                <div key={item.id} className="flex flex-col justify-start w-full sm:w-6/12 lg:w-6/12 xl:w-3/12 px-2.5 mb-3 lg:mb-0">
+                                                    <div className="w-full bg-[#f9f9f9] mb-4 relative">
+                                                        <img
+                                                            src={item?.photo}
+                                                            alt={item?.heading}
+                                                            className="mx-auto rounded block w-full object-cover h-[207px]"
+                                                        />
+                                                        <div className="absolute top-0 right-0">
+                                                            <Delete className="!rounded-full" srNo={item?.srNo} BannerGetData={BannerGetData} />
+                                                        </div>
                                                     </div>
+
+                                                    <h3 className="lg:min-h-[64px] merriweather-font font-normal tracking-[-0.04em] text-xl lg:text-[24px] text-[#1E1E1E] mb-2 lg:mb-2.5">
+                                                        {item?.heading
+                                                        }
+                                                    </h3>
+                                                    <p className="text-[#666666] font-medium text-base gotham-font mb-1.5 tracking-[-0.04em] mb-5 md:mb-6 lg:mb-[30px]  min-h-[107px]">
+                                                        {item?.text}
+                                                    </p>
+
                                                 </div>
-
-                                                <h3 className="lg:min-h-[64px] merriweather-font font-normal tracking-[-0.04em] text-xl lg:text-[24px] text-[#1E1E1E] mb-2 lg:mb-2.5">
-                                                    {item?.heading
-                                                    }
-                                                </h3>
-                                                <p className="text-[#666666] font-medium text-base gotham-font mb-1.5 tracking-[-0.04em] mb-5 md:mb-6 lg:mb-[30px]  min-h-[107px]">
-                                                    {item?.text}
-                                                </p>
-
-                                            </div>
-                                        ))}
-                                    </div>
-                                )
-                            )}
+                                            ))}
+                                        </div>
+                                    )
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        {isOpen &&
-            <Modal isOpen={isOpen} onClose={handleClose}>
-                <div className="relative bg-white w-full rounded-[30px] lg:rounded-[40px] h-auto m-auto">
-                    <div className="border-b border-black border-opacity-10 pt-6 pb-5 px-6 lg:pt-8 lg:pb-6 lg:px-10">
-                        <h2 className="text-xl lg:text-2xl  text-[#212121] tracking-[-0.04em] font-semibold mb-0">Banner  </h2>
+            {isOpen &&
+                <Modal isOpen={isOpen} onClose={handleClose}>
+                    <div className="relative bg-white w-full rounded-[30px] lg:rounded-[40px] h-auto m-auto">
+                        <div className="border-b border-black border-opacity-10 pt-6 pb-5 px-6 lg:pt-8 lg:pb-6 lg:px-10">
+                            <h2 className="text-xl lg:text-2xl  text-[#212121] tracking-[-0.04em] font-semibold mb-0">Banner  </h2>
+                        </div>
+                        <div className="py-6 lg:py-8 ">
+                            <form>
+                                <div className=' max-h-full overflow-y-auto customscroll px-6 lg:px-10 '>
+                                    <div className="mb-3 lg:mb-[25px]">
+                                        <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">Banner Image</label>
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            onChange={handleImageChange}
+                                            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
+                                            required
+                                        />
+                                        {/* <p message={errors?.name} className="!text-red-600" /> */}
+
+
+                                    </div>
+                                    <div className="mb-3 lg:mb-[25px]">
+                                        <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">Banner Heading</label>
+                                        <input
+                                            name="heading"
+                                            value={formdata?.heading}
+                                            onChange={handleChange}
+                                            type="text"
+                                            className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
+
+                                        />
+                                        {/* <p message={errors?.name} className="!text-red-600" /> */}
+
+
+                                    </div>
+                                    <div className="mb-3 lg:mb-[25px]">
+                                        <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">Banner paragraph</label>
+                                        <textarea
+                                            rows={4}
+                                            cols={4}
+                                            name="text"
+                                            value={formdata?.text}
+                                            onChange={handleChange}
+                                            type="text"
+                                            className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
+
+                                        />
+                                        {/* <p message={errors?.name} className="!text-red-600" /> */}
+
+
+                                    </div>
+
+                                </div>
+                                {/* Submit Button */}
+                                <div className="flex justify-end pt-3 px-6 lg:px-10 ">
+                                    <button type="submit"
+                                        onClick={handleSubmit}
+                                        className="w-full text-white button-animation hover:button-animation hover:bg-white text-[17px] font-medium tracking-[-0.04em] h-11 lg:h-[54px] py-2.5 px-12 border border-button-animation rounded-full outline-none focus:outline-none ease-linear transition-all duration-150">
+                                        {Loading ? "Processing.." : "Banner"}
+
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div className="py-6 lg:py-8 ">
-                        <form>
-                            <div className=' max-h-full overflow-y-auto customscroll px-6 lg:px-10 '>
-                                <div className="mb-3 lg:mb-[25px]">
-                                    <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">Banner Image</label>
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        onChange={handleImageChange}
-                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
-                                        required
-                                    />
-                                    {/* <p message={errors?.name} className="!text-red-600" /> */}
-
-
-                                </div>
-                                <div className="mb-3 lg:mb-[25px]">
-                                    <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">Banner Heading</label>
-                                    <input
-                                        name="heading"
-                                        value={formdata?.heading}
-                                        onChange={handleChange}
-                                        type="text"
-                                        className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
-
-                                    />
-                                    {/* <p message={errors?.name} className="!text-red-600" /> */}
-
-
-                                </div>
-                                <div className="mb-3 lg:mb-[25px]">
-                                    <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">Banner paragraph</label>
-                                    <textarea
-                                        rows={4}
-                                        cols={4}
-                                        name="text"
-                                        value={formdata?.text}
-                                        onChange={handleChange}
-                                        type="text"
-                                        className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
-
-                                    />
-                                    {/* <p message={errors?.name} className="!text-red-600" /> */}
-
-
-                                </div>
-
-                            </div>
-                            {/* Submit Button */}
-                            <div className="flex justify-end pt-3 px-6 lg:px-10 ">
-                                <button type="submit"
-                                    onClick={handleSubmit}
-                                    className="w-full text-white button-animation hover:button-animation hover:bg-white text-[17px] font-medium tracking-[-0.04em] h-11 lg:h-[54px] py-2.5 px-12 border border-button-animation rounded-full outline-none focus:outline-none ease-linear transition-all duration-150">
-                                    {Loading ? "Processing.." : "Banner"}
-
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </Modal>}
+                </Modal>}
+        </AdminLayout>
     </>);
 }
 

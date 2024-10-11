@@ -6,7 +6,6 @@ import toast from "react-hot-toast";
 function Delete({ srNo, BannerGetData }) {
     const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
-
     const handleClose = () => {
         setIsOpen(false);
     };

@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import Loading from "../Component/Loading";
 import NoData from "../Component/NoData";
 import Image from "next/image";
+import AdminLayout from "@/layout/AdminLayout";
 
 function Index() {
     const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +17,6 @@ function Index() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [imagedataPreview, setImageDataPreview] = useState(null);
-    console.log("imagePreview", imagePreview, selectedImage, imagedataPreview)
     const [formData, setFormData] = useState({
         rollNo: "",
         name: "",
@@ -54,7 +54,6 @@ function Index() {
         try {
             const main = new Details();
             const response = await main.sportsGet();
-            console.log("response", response)
             setListing(response?.data.sport || []);
         } catch (err) {
             console.error("Error fetching data:", err);
@@ -89,7 +88,6 @@ function Index() {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
             const data = await response.json();
-            console.log('Image uploaded successfully:', data);
             if (data?.data?.link) {
                 setImageDataPreview(data.data.link);
             }
@@ -157,6 +155,7 @@ function Index() {
 
     return (
         <>
+        <AdminLayout>
             <div className="md:flex flex-wrap bg-[#F5F6FB] items-start">
                 <SideBarAdmin />
                 <div className="w-full lg:ml-[304px] lg:w-[calc(100%-304px)]">
@@ -233,7 +232,7 @@ function Index() {
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-[#212121]">Show Avatar</label>
-                                    {imagePreview && <img src={imagePreview} alt="Preview" className="mt-2 w-48 h-48 object-cover text-center" />}
+                                    {imagePreview && <Image src={imagePreview} alt="Preview" className="mt-2 w-48 h-48 object-cover text-center" />}
 
                                 </div>
                                 <div className="flex justify-end">
@@ -284,6 +283,7 @@ function Index() {
                     </div>
                 </Modal>
             )}
+        </AdminLayout>
         </>
     );
 }

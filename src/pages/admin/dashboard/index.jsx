@@ -7,7 +7,7 @@ function Index() {
             <SideBarAdmin />
             {/* right sidebar  */}
             <div className="w-full lg:ml-[304px] lg:w-[calc(100%-304px)]">
-                <Header />
+                <Header title={"Dashboard"}/>
                 {/* Overview */}
                 <div className="px-4 py-2 lg:px-10 lg:py-2.5">
                     <div className="flex mb-4 justify-between items-center">

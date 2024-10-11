@@ -34,7 +34,6 @@ export default function Donation() {
           text: 'Check out this page!',
           url: window.location.href,
         });
-        console.log('Content shared successfully');
       } catch (error) {
         console.error('Error sharing content:', error);
       }

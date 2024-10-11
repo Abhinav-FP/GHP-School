@@ -8,6 +8,7 @@ import Details from "@/pages/api/admin/Details";
 import careerbg from "../../../../public/Career/careerbg.jpg"
 import Modal from "../Component/Modal";
 import Image from "../Component/Image";
+import AdminLayout from "@/layout/AdminLayout";
 
 
 function Index() {
@@ -161,6 +162,7 @@ function Index() {
     
 
     return (<>
+    <AdminLayout>
         <div className="md:flex flex-wrap bg-[#F5F6FB] listings-start">
             <SideBarAdmin />
             <div className="w-full lg:ml-[304px] lg:w-[calc(100%-304px)]">
@@ -302,6 +304,7 @@ function Index() {
             </Modal>
             )}
         </div>
+    </AdminLayout>
 
 
     </>);

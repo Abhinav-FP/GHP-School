@@ -4,10 +4,8 @@ import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
 function Delete({ grade , getfeesdata}) {
-    console.log("grade",grade)
     const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
-
     const handleClose = () => {
         setIsOpen(false);
     };

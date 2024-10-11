@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import moment from 'moment';
 import NoData from "../Component/NoData";
+import AdminLayout from "@/layout/AdminLayout";
 function Index() {
     const [isOpen, setIsOpen] = useState(false);
     const [listing, setLisitng] = useState([])
@@ -35,6 +36,7 @@ function Index() {
 
 
     return (<>
+    <AdminLayout>
         <div className="md:flex flex-wrap  bg-[#F5F6FB] items-start">
             <SideBarAdmin />
             {/* right sidebar  */}
@@ -107,9 +109,6 @@ function Index() {
                                                         {item?.amount
                                                         }
                                                     </td>
-                                                  Adminl
-
-
                                                 </tr>
                                             ))}
                                         </tbody>
@@ -121,6 +120,7 @@ function Index() {
                 </div>
             </div>
         </div>
+    </AdminLayout>
 
     </>);
 }

@@ -3,8 +3,7 @@ import Modal from "../Component/Modal";
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
-function Delete({ grade , getfeesdata}) {
-    console.log("grade",grade)
+function AdmissionDelete({ Id , getfeesdata}) {
     const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -80,4 +79,4 @@ function Delete({ grade , getfeesdata}) {
     </>);
 }
 
-export default Delete;
+export default AdmissionDelete;

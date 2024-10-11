@@ -40,9 +40,7 @@ export default function ImageUploader() {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
-      console.log('Image uploaded successfully:', data);
       if (data && data.data && data.data.link) {
-        console.log('Uploaded Image URL:', data.data.link);
       }
     } catch (error) {
       console.error('Error:', error);
