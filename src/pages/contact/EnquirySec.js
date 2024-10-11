@@ -103,7 +103,9 @@ function EnquirySec() {
                     Contact no
                   </label>
                   <input
-                    type="text"
+                    type="number"
+                    min={1}
+                    max={10}
                     name="contact"
                     value={formdata.contact}
                     onChange={handleChange}

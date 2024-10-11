@@ -220,13 +220,13 @@ export default function Fees() {
                     <tbody>
                         {Fees && Fees?.map((item, index) => (
                             <tr key={index}>
-                                <td className="text-[#666666] text-base px-3.5 py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{index + 1}</td>
-                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.grade}</td>
-                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.first}</td>
-                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.second}</td>
-                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.third}</td>
-                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.fourth}</td>
-                                <td className="text-[#EE834E] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium">{item?.total}</td>
+                                <td className="text-[#666666] text-base px-3.5 py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium text-center">{index + 1}</td>
+                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium text-center">{item?.grade}</td>
+                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium text-center">{item?.first}</td>
+                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium text-center">{item?.second}</td>
+                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium text-center">{item?.third}</td>
+                                <td className="text-[#666666] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium text-center">{item?.fourth}</td>
+                                <td className="text-[#EE834E] text-base px-3.5 lg:px-[30px] py-5 tracking-[-0.04em] border border-black border-opacity-10 font-medium text-center">{item?.total}</td>
                             </tr>
                         ))}
                     </tbody>
