@@ -15,7 +15,7 @@ export default function Slider() {
       .gethomebanner()
       .then((r) => {
         setLoading(false);
-        setLisitng([...r?.data?.banners, r?.data?.banners]);
+        setLisitng([...r?.data?.banners, ...r?.data?.banners, ...r?.data?.banners]);
       })
       .catch((err) => {
         setLoading(false);
