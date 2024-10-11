@@ -124,6 +124,7 @@ function Index() {
             data.append("name", formdata.name);
             data.append("text", formdata.text);
             data.append("photo", imagedataPreview);
+            data.append("id", formdata.id);
             const res = await main.editdirector(data);
             if (res?.data?.status) {
                 toast.success(res.data.message);

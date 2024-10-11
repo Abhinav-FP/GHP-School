@@ -183,7 +183,7 @@ function Index() {
                         </div>
                     </div>
 
-                    <School/>
+                    {/* <School/> */}
                 </div>
             </div>
             {isOpen && (
