@@ -31,25 +31,26 @@ export default function Slider() {
   const data = [
     {
       text1: "520 students",
-      text2: ["from Nursery to ", <br />, "Grade XII"], 
+      text2: ["from Nursery to ", <br key="1" />, "Grade XII"],
     },
     {
       text1: "100% Results",
-      text2: ["achieved in Grade", <br />, " X and XII, RBSE 2024"],  
+      text2: ["achieved in Grade", <br key="2" />, " X and XII, RBSE 2024"],
     },
     {
       text1: "800",
-      text2: ["people Assembly", <br />, "Hall Capacity"],   
+      text2: ["people Assembly", <br key="3" />, "Hall Capacity"],
     },
     {
       text1: "25:1",
-      text2: ["student-teacher", <br />, "ratio",]
+      text2: ["student-teacher", <br key="4" />, "ratio"],
     },
     {
       text1: "35+",
-      text2: ["years", <br />, "in Education"],
-    }
+      text2: ["years", <br key="5" />, "in Education"],
+    },
   ];
+  
 
   return (
     <>
