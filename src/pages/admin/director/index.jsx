@@ -10,6 +10,7 @@ import Image from "next/image";
 import Modal from "../Component/Modal";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
+import AdminLayout from "@/layout/AdminLayout";
 function Index() {
     const [isOpen, setIsOpen] = useState(false);
     const [listing, setLisitng] = useState([])
@@ -141,6 +142,8 @@ function Index() {
     };
 
     return (<>
+    <AdminLayout>
+
         <div className="md:flex flex-wrap  bg-[#F5F6FB] items-start">
             <SideBarAdmin />
             {/* right sidebar  */}
@@ -296,6 +299,7 @@ function Index() {
                     </div>
                 </div>
             </Modal>}
+    </AdminLayout>
     </>);
 }
 

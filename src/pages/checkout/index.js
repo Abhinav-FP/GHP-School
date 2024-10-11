@@ -14,7 +14,6 @@ export default function Index() {
   const { error, isLoading, Razorpay } = useRazorpay();
   const RAZOPAY_KEY = process.env.NEXT_PUBLIC_RAZOPAY_KEY;
   const cartItemsRedux = useSelector((state) => state.cart.cartItems);
-  console.log("cartItemsRedux",cartItemsRedux)
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
@@ -24,7 +23,6 @@ export default function Index() {
 
   const itemNames = cartItemsRedux.map(item => item.name);
 
-  console.log(itemNames);
 
   // Form state
   const [formData, setFormData] = useState({
@@ -36,7 +34,7 @@ export default function Index() {
   });
 
   const handleUpload = async (event) => {
-    console.log("event", event);
+    ("event", event);
     let name = event.target.name;
     let file = event.target.files[0];
     if (!file) {
@@ -83,7 +81,6 @@ export default function Index() {
   const handleRemove = (id) => {
     dispatch(removeItem(id));
   };
-  console.log("totalPrice", totalPrice)
 
   const CurrentDate = new Date();
 
@@ -105,10 +102,8 @@ export default function Index() {
           description: "Payment for services",
           order_id: res.data.orderId,
           handler: function (response) {
-            console.log("Payment successful response:", response);
             toast.success("Payment Successful");
             localStorage.setItem("response", JSON.stringify(response));
-            // Save payment details
             saveUserData(response.razorpay_payment_id, totalPrice)
             savePaymentDetails(response.razorpay_order_id, response.razorpay_payment_id, "success"); // Pass 'success'
             router.push(`success/${response.razorpay_payment_id}`)
@@ -128,13 +123,9 @@ export default function Index() {
 
         const rzp = new Razorpay(options);
         rzp.on("payment.failed", function (response) {
-          console.log("Payment failed response:", response);
           const error = response.error;
-          console.log("Error details:", error);
-          console.log("Metadata:", error?.metadata);
           const orderId = error?.metadata?.order_id;
           const paymentId = error?.metadata?.payment_id;
-          console.log("Order ID:", orderId, "Payment ID:", paymentId);
           if (orderId && paymentId) {
             savePaymentDetails(orderId, paymentId, "failed");
             // router.push(`cancel/${paymentId}`)
@@ -192,7 +183,6 @@ export default function Index() {
       data.append("email", formData?.emailAddress);
       data.append("amount", price);
       data.append("payment_id", paymentId);
-      console.log("data",data);
       const response = await main.donationUserAdd(data);
       if (response?.data?.status) {
         toast.success(response.data.message);
@@ -206,7 +196,6 @@ export default function Index() {
     }    
   }
 
-console.log("formdata",formData)
   return (
     <Layout>
       <div className="w-full bg-white py-[50px] md:py-[70px] lg:py-[100px]">

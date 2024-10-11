@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { usePathname } from "next/navigation";
 import Logo from "../../../../public/Header/Logo.png";
 import { useRouter } from 'next/router';
+import { IoIosArrowRoundBack } from "react-icons/io";
+
 function PhoneSideBar({ sideOpen, toggleSidebar }) {
     const pathname = usePathname();
     const handleLogout = () => {
@@ -10,14 +12,16 @@ function PhoneSideBar({ sideOpen, toggleSidebar }) {
         router.push('/admin/login');
     };
 
-   
+
     return (<>
         <div className={`w-[300px] fixed top-0 overflow-y-auto py-3   cursor-pointer items-center  z-50 bg-white top-0 bottom-0 md:block`} >
             <div className="px-4 py-4 md:px-6 md:py-6 lg:px-[28px] lg:py-8">
                 <div className='mb-5 md:mb-10 lg:mb-[53px] text-center'>
                     <img className="max-w-full block m-auto" src={"/Header/Logo.png"} alt='img' width="208" />
                 </div>
-                <h3 className="uppercase text-[#808080] px-[15px] text-sm font-semibold mb-2.5 lg:mb-3.5">Overview</h3>
+                <div onClick={toggleSidebar} className="px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium hover:text-[#0367F7]">
+                    <IoIosArrowRoundBack size={48} />
+                </div>
                 <ul className="space-y-3">
                     <li>
                         <Link href="/admin"

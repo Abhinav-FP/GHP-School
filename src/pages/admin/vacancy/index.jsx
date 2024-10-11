@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import Loading from "../Component/Loading";
 import NoData from "../Component/NoData";
+import AdminLayout from "@/layout/AdminLayout";
 
 function Index() {
     const [isOpen, setIsOpen] = useState(false);
@@ -115,6 +116,7 @@ function Index() {
 
     return (
         <>
+        <AdminLayout>
             <div className="md:flex flex-wrap bg-[#F5F6FB] items-start">
                 <SideBarAdmin />
                 <div className="w-full lg:ml-[304px] lg:w-[calc(100%-304px)]">
@@ -279,6 +281,7 @@ function Index() {
                     </div>
                 </Modal>
             )}
+        </AdminLayout>
         </>
     );
 }

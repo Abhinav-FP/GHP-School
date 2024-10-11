@@ -147,6 +147,7 @@ export default function Index() {
   );
 
   return (
+    <AdminLayout>
     <div className="md:flex flex-wrap  bg-[#F5F6FB] items-start">
       <SideBarAdmin />
       {/* right sidebar  */}
@@ -206,5 +207,6 @@ export default function Index() {
         </div>
       </div>
     </div>
+    </AdminLayout>
   );
 }

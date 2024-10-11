@@ -252,6 +252,11 @@ class Details extends Component {
   async comingsoonsGet() {
     return Api.get(`/about/comingsoon/get`);
   }
+
+  
+  async comingsoonshow(data) {
+    return Api.post(`/about/comingsoon/show`,data);
+  }
   render() {
     return (
       <div>

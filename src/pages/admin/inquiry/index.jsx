@@ -5,6 +5,7 @@ import SideBarAdmin from "../Component/SideBar";
 import React, { useState, useEffect } from "react";
 import Modal from "../Component/Modal";
 import DeleteEnquiry from "./DeleteEnquiry";
+import AdminLayout from "@/layout/AdminLayout";
 // import NoData from "../Component/NoData"; // Uncomment if you want to use this
 
 function Index() {
@@ -33,6 +34,7 @@ function Index() {
     }, []);
 
     return (
+        <AdminLayout>
         <div className="md:flex flex-wrap bg-[#F5F6FB] items-start">
             <SideBarAdmin />
             {/* Main Content */}
@@ -112,6 +114,7 @@ function Index() {
                 </div>
             </div>
         </div>
+        </AdminLayout>
     );
 }
 

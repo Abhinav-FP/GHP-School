@@ -19,7 +19,6 @@ export default function AdminLayout({ children, title, subhead }) {
         } else {
         }
       }).catch((error) => {
-        console.log("error", error);
         localStorage && localStorage.removeItem("token");
         router.push("/admin/login");
         toast.error("Please log in first.");
@@ -38,21 +37,11 @@ export default function AdminLayout({ children, title, subhead }) {
     return () => controller.abort();
   }, []);
   return (
-    <div className='flex  max-h-screen overflow-auto'>
-      <div className='bg-[#f0f0f0]   text-gray-500 w-full' >
-        <SideBarAdmin />
-      
-      <div className='p-12 content lg:ml-[300px] lg:w-[calc(100%-300px)]   overflow-auto'>
-        <div className='pb-10 bborder-b-4'>
-          <h2 className='font-bold text-2xl mb-2 text-black'>{title || 'Hello, Admin'}</h2>
-          <p className='text-gray-300 text-lg'>{subhead || "Login mangement for school website"}</p>
-        </div>
+    <>
         {children}
-      </div>
-      </div>
 
-
-    </div>
+    </>
+     
   );
 }
 

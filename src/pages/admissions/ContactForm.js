@@ -37,7 +37,6 @@ function ContactForm() {
     facility: "",
     image: "",
   });
-  console.log("record", record);
   const [formloading, setFormLoading] = useState(false); // Loading state
   const [checkboxes, setCheckboxes] = useState({
     correctInfo: false,
@@ -89,9 +88,7 @@ function ContactForm() {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
-      console.log("Image uploaded successfully:", data);
       if (data && data.data && data.data.link) {
-        console.log("Uploaded Image URL:", data.data.link);
         setRecord((prevState) => ({ ...prevState, image: data.data.link }));
       }
     } catch (error) {
@@ -114,7 +111,6 @@ function ContactForm() {
     formdata.append("receipt", "receipt#1");
     try {
       const res = await main.AddCard(formdata);
-      console.log();
       if (res && res.data && res.data.orderId) {
         const options = {
           key: RAZOPAY_KEY,
@@ -124,7 +120,6 @@ function ContactForm() {
           description: "Payment for services",
           order_id: res.data.orderId,
           handler: function (response) {
-            console.log("Payment successful response:", response);
             toast.success("Payment Successful");
             localStorage.setItem("response", JSON.stringify(response));
             savePaymentDetails(
@@ -151,13 +146,9 @@ function ContactForm() {
 
         const rzp = new Razorpay(options);
         rzp.on("payment.failed", function (response) {
-          console.log("Payment failed response:", response);
           const error = response.error;
-          console.log("Error details:", error);
-          console.log("Metadata:", error?.metadata);
           const orderId = error?.metadata?.order_id;
           const paymentId = error?.metadata?.payment_id;
-          console.log("Order ID:", orderId, "Payment ID:", paymentId);
           if (orderId && paymentId) {
             savePaymentDetails(orderId, paymentId, "failed");
             // router.push(`cancel/${response.razorpay_payment_id}`)
@@ -217,7 +208,6 @@ function ContactForm() {
   const handleChange = (e) => {
     const value = e.target.value;
     const name = e.target.name;
-    console.log("name", name);
     setRecord((prevState) => ({ ...prevState, [name]: value }));
     if (name === "dob") {
       const options = { year: "numeric", month: "long", day: "numeric" };
@@ -226,7 +216,6 @@ function ContactForm() {
         options
       );
       setRecord((prevState) => ({ ...prevState, dobWords: formattedDate }));
-      console.log(`Selected Date: ${formattedDate}`);
     }
   };
 

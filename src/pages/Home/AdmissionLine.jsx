@@ -14,7 +14,6 @@ function AdmissionLine() {
       .then((r) => {
         setLoading(false);
         const data = r?.data?.data;
-        console.log(data)
         setListing(data);
       })
       .catch((err) => {
