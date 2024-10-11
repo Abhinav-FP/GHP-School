@@ -15,7 +15,7 @@ export default function Slider() {
       .gethomebanner()
       .then((r) => {
         setLoading(false);
-        setLisitng([...r?.data?.banners, ...r?.data?.banners, ...r?.data?.banners]);
+        setLisitng([...r?.data?.banners, ...r?.data?.banners, ...r?.data?.banners,...r?.data?.banners, ...r?.data?.banners, ...r?.data?.banners]);
       })
       .catch((err) => {
         setLoading(false);
@@ -58,7 +58,7 @@ export default function Slider() {
           spaceBetween={50}
           slidesPerView={1}
           // pagination={{ clickable: true }}
-          loop={true}
+          // loop={true}
           autoplay={{
             delay: 2000,
             disableOnInteraction: false,
