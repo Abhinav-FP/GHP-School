@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import Details from "../api/admin/Details";
 import { useRazorpay, RazorpayOrderOptions } from "react-razorpay";
 import { FiEdit } from "react-icons/fi";
+import Router from "next/router";
 
 function ContactForm() {
   const { error, isLoading, Razorpay } = useRazorpay();
@@ -113,10 +114,10 @@ function ContactForm() {
       alert("Please ensure all declarations are checked before submitting.");
       return;
     }
-    if(record?.image==""){
-      toast.error("Please upload a valid image!");
-      return;
-    }
+    // if(record?.image==""){
+    //   toast.error("Please upload a valid image!");
+    //   return;
+    // }
     setLoading(true);
     const main = new Details();
     const formdata = new FormData();
@@ -129,7 +130,7 @@ function ContactForm() {
       if (res && res.data && res.data.orderId) {
         const options = {
           key: RAZOPAY_KEY,
-          amount: totalPrice,
+          amount: totalPrice *100,
           currency: "INR",
           name: "Your Company Name",
           description: "Payment for services",
@@ -143,7 +144,7 @@ function ContactForm() {
               response.razorpay_payment_id,
               "success"
             );
-            router.push(`successform/${response.razorpay_payment_id}`);
+            Router.push(`successform/${response.razorpay_payment_id}`);
 
             handleSubmit();
           },
