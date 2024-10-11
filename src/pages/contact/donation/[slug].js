@@ -7,6 +7,7 @@ import { addItem } from "@/redux/cartSlice";
 import { useRouter } from "next/router";
 import Details from "@/pages/api/admin/Details";
 import { formatMultiPrice } from "@/hooks/ValueData";
+import { FaLongArrowAltRight } from "react-icons/fa";
 
 export default function Donation() {
   const router = useRouter();
@@ -18,12 +19,37 @@ export default function Donation() {
   const [isAdded, setIsAdded] = useState(false);
   const dispatch = useDispatch();
 
-  // Handle increment/decrement
+  const [isClient, setIsClient] = useState(false);
+
+  // This effect will only run on the client side
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const handleShare = async () => {
+    if (isClient && navigator.share) {
+      try {
+        await navigator.share({
+          title: document.title,
+          text: 'Check out this page!',
+          url: window.location.href,
+        });
+        console.log('Content shared successfully');
+      } catch (error) {
+        console.error('Error sharing content:', error);
+      }
+    } else {
+      alert('Web Share API is not supported in your browser.');
+    }
+  };
+
   function Increment() {
     setQty(Qty + 1);
   }
   function decrement() {
-    if(Qty<=1){return;}
+    if (Qty <= 1) {
+      return;
+    }
     setQty(Qty - 1);
   }
 
@@ -59,13 +85,6 @@ export default function Donation() {
         });
     }
   }, [slug]);
-
-  // Set current page URL only on the client side
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setCurrentPageUrl(window.location.href);
-    }
-  }, [router.asPath]);
 
   return (
     <Layout>
@@ -164,10 +183,12 @@ export default function Donation() {
                 </Link>
               </div>
               <div className="w-full flex flex-wrap items-center">
-                <div className="mr-1.5 text-[#666666] text-sm font-medium  tracking-[-0.04em]">
-                  Share :
+                <div className="flex gap-2 mr-1.5 cursor-pointer items-center text-[#666666] text-sm font-medium  tracking-[-0.04em]"
+                 onClick={()=>{handleShare()}}>
+                  Share 
+                  <FaLongArrowAltRight/>
                 </div>
-                <ul className="flex flex-wrap items-center space-x-3">
+                {/* <ul className="flex flex-wrap items-center space-x-3">
                   <li>
                     <Link href="/" target="_blank" rel="noopener noreferrer">
                       <svg
@@ -236,7 +257,7 @@ export default function Donation() {
                       </svg>
                     </Link>
                   </li>
-                </ul>
+                </ul> */}
               </div>
             </div>
           </div>

@@ -66,7 +66,7 @@ export default function JoinTeam() {
     }
     const main = new Details();
     try {
-      const res = await main.careerapply(formData);
+      const res = await main.vacancyapply(formData);
       if ( res && res?.data) {
         toast.success(res.data.message);
         setFormData({
@@ -86,6 +86,7 @@ export default function JoinTeam() {
 
       }
     } catch (error) {
+      console.log(error);
       toast.error("An error occurred while submitting.");
       setFormLoading(false);
 

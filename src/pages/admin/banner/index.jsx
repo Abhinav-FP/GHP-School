@@ -19,11 +19,13 @@ function Index() {
     const [formdata, setFormdata] = useState({
         "photo": "",
         "heading": "",
-        "paragraph": ""
+        "paragraph": "",
+        text:"",
     });
     const handleClose = () => {
         setIsOpen(false);
     };
+    console.log("formData",formdata);
 
     const BannerGetData = () => {
         setLoading(true);
@@ -101,8 +103,8 @@ function Index() {
         setLoading(true);
         const record = new FormData();
         record.append('heading', formdata?.heading);
-        record.append('email', formdata?.paragraph);
-        record.append('photo', imagePreview);
+        record.append('text', formdata?.text);
+        record.append('photo', imagedataPreview);
         const main = new Details();
         try {
             const res = await main.BannerAdd(record);

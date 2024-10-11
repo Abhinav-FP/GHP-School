@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import Details from "../api/admin/Details";
 import { useRazorpay, RazorpayOrderOptions } from "react-razorpay";
+import { FiEdit } from "react-icons/fi";
 
 function ContactForm() {
   const { error, isLoading, Razorpay } = useRazorpay();
@@ -34,7 +35,9 @@ function ContactForm() {
     sibling: "",
     belongs: "",
     facility: "",
+    image: "",
   });
+  console.log("record", record);
   const [formloading, setFormLoading] = useState(false); // Loading state
   const [checkboxes, setCheckboxes] = useState({
     correctInfo: false,
@@ -46,8 +49,63 @@ function ContactForm() {
   });
   const totalPrice = record.type === "new" ? 500 : 200;
 
+  // Image uploader logic here
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+  const [uploading, setUploading] = useState(false); // Track uploading state
+
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setSelectedImage(file);
+      setImagePreview(URL.createObjectURL(file));
+      await uploadImage(file);
+    }
+  };
+
+  const uploadImage = async (file) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", "Client-ID fa9cff918a9554a");
+
+    const formdata = new FormData();
+    formdata.append("image", file, "GHJQTpX.jpeg");
+    formdata.append("type", "image");
+    formdata.append("title", "Simple upload");
+    formdata.append("description", "This is a simple image upload in Imgur");
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: formdata,
+      redirect: "follow",
+    };
+
+    try {
+      const response = await fetch(
+        "https://api.imgur.com/3/upload",
+        requestOptions
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log("Image uploaded successfully:", data);
+      if (data && data.data && data.data.link) {
+        console.log("Uploaded Image URL:", data.data.link);
+        setRecord((prevState) => ({ ...prevState, image: data.data.link }));
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   const handlePaySubmit = async (e) => {
     e.preventDefault();
+    const allChecked = Object.values(checkboxes).every((value) => value);
+    if (!allChecked) {
+      alert("Please ensure all declarations are checked before submitting.");
+      return;
+    }
     setLoading(true);
     const main = new Details();
     const formdata = new FormData();
@@ -56,7 +114,7 @@ function ContactForm() {
     formdata.append("receipt", "receipt#1");
     try {
       const res = await main.AddCard(formdata);
-      console.log()
+      console.log();
       if (res && res.data && res.data.orderId) {
         const options = {
           key: RAZOPAY_KEY,
@@ -69,8 +127,14 @@ function ContactForm() {
             console.log("Payment successful response:", response);
             toast.success("Payment Successful");
             localStorage.setItem("response", JSON.stringify(response));
-            savePaymentDetails(response.razorpay_order_id, response.razorpay_payment_id, "success"); 
-         handleSubmit();
+            savePaymentDetails(
+              response.razorpay_order_id,
+              response.razorpay_payment_id,
+              "success"
+            );
+            router.push(`successform/${response.razorpay_payment_id}`)
+
+            handleSubmit();
           },
           prefill: {
             name: "Customer Name",
@@ -95,7 +159,9 @@ function ContactForm() {
           const paymentId = error?.metadata?.payment_id;
           console.log("Order ID:", orderId, "Payment ID:", paymentId);
           if (orderId && paymentId) {
-            savePaymentDetails(orderId, paymentId, "failed" ); 
+            savePaymentDetails(orderId, paymentId, "failed");
+            // router.push(`cancel/${response.razorpay_payment_id}`)
+
           } else {
             console.error("Failed to retrieve Razorpay order or payment ID");
           }
@@ -112,34 +178,33 @@ function ContactForm() {
     }
   };
 
-
   const savePaymentDetails = async (orderId, paymentId, payment_status) => {
     setLoading(true);
     try {
-        const main = new Details();
-        const formdata = new FormData();
-        formdata.append("order_id", orderId);
-        formdata.append("payment_id", paymentId);
-        formdata.append("amount", totalPrice);
-        formdata.append("currency", "INR");
-        formdata.append("type", "admission");
-        formdata.append("product_name", record?.name);
-        formdata.append("payment_status", payment_status);
-        const response = await main.PaymentSave(formdata);
-        
-        if (response?.data?.status) {
-            toast.success(response.data.message);
-            handleSubmit();
-        } else {
-            toast.error(response.data.message);
-        }
+      const main = new Details();
+      const formdata = new FormData();
+      formdata.append("order_id", orderId);
+      formdata.append("payment_id", paymentId);
+      formdata.append("amount", totalPrice);
+      formdata.append("currency", "INR");
+      formdata.append("type", "admission");
+      formdata.append("product_name", record?.name);
+      formdata.append("payment_status", payment_status);
+      const response = await main.PaymentSave(formdata);
+
+      if (response?.data?.status) {
+        toast.success(response.data.message);
+        handleSubmit();
+      } else {
+        toast.error(response.data.message);
+      }
     } catch (error) {
-        console.error("Error in savePaymentDetails:", error); // Log the error
-        toast.error(error?.response?.data?.message || "An error occurred");
+      console.error("Error in savePaymentDetails:", error); // Log the error
+      toast.error(error?.response?.data?.message || "An error occurred");
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
-};
+  };
 
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
@@ -166,11 +231,6 @@ function ContactForm() {
   };
 
   const handleSubmit = async () => {
-    const allChecked = Object.values(checkboxes).every((value) => value);
-    // if (!allChecked) {
-    //   alert("Please ensure all declarations are checked before submitting.");
-    //   return;
-    // }
     setFormLoading(true);
     if (formloading) {
       return;
@@ -207,23 +267,20 @@ function ContactForm() {
           sibling: "",
           belongs: "",
           facility: "",
+          image: "",
         });
         setFormLoading(false);
       } else {
         toast.error(res.message);
         setFormLoading(false);
-
       }
     } catch (error) {
       toast.error("An error occurred while submitting.");
       setFormLoading(false);
-
     } finally {
       setFormLoading(false);
     }
   };
-
-
 
   return (
     <div className="bg-white py-[50px] md:py-[70px] lg:py-[100px]">
@@ -231,12 +288,42 @@ function ContactForm() {
         onSubmit={handlePaySubmit}
         className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto "
       >
-        <h1 className="merriweather-font font-normal text-center text-2xl md:text-3xl lg:text-4xl mb-2.5 text-[#1E1E1E]  tracking-[-0.04em]">
-          Apply Now
-        </h1>
-        <p className="text-center text-base text-[#1E1E1E]  tracking-[-0.04em] opacity-80 font-medium mb-5  lg:mb-[30px]">
-          (Form no : E01)
-        </p>
+        <div className="flex justify-between items-center">
+          <div></div>
+          <div className="flex flex-col">
+            <h1 className="merriweather-font font-normal text-center text-2xl md:text-3xl lg:text-4xl mb-2.5 text-[#1E1E1E]  tracking-[-0.04em]">
+              Apply Now
+            </h1>
+            <p className="text-center text-base text-[#1E1E1E]  tracking-[-0.04em] opacity-80 font-medium mb-5  lg:mb-[30px]">
+              (Form no : E01)
+            </p>
+          </div>
+          {/* Image Uploader */}
+          <div className="relative flex flex-col items-center">
+            <div className="relative w-40 h-40">
+              {imagePreview ? (
+                <img
+                  src={imagePreview}
+                  alt="Preview"
+                  className="w-full h-full object-cover border border-gray-300 mb-4 rounded-md"
+                />
+              ) : (
+                <span className="block w-40 h-40 object-cover border border-gray-300 mb-4 rounded-md text-black">
+                  No Image
+                </span>
+              )}
+              <label className="absolute top-1 right-1 p-1 bg-gray-200 rounded-full cursor-pointer hover:bg-gray-300">
+                <FiEdit className="h-5 w-5 text-gray-600" />
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleImageChange}
+                />
+              </label>
+            </div>
+          </div>
+        </div>
         <div className="border-t border-black border-opacity-10 pt-10 lg:pt-[50px]">
           <div className="flex flex-wrap -mx-2.5">
             <div className="w-full lg:w-8/12 px-2.5 mb-5">

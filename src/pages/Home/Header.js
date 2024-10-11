@@ -119,10 +119,26 @@ export default function Header() {
                       </li>
                       <li>
                         <Link
+                          href="/academics#board"
+                          className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
+                        >
+                          RBSE Board
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/academics#education"
+                          className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
+                        >
+                          Education Stages
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
                           href="/academics#syllabus"
                           className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
                         >
-                          Syllabus & Board
+                          Syllabus
                         </Link>
                       </li>
                       <li>

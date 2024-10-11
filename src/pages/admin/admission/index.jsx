@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import NoData from "../Component/NoData";
 import Link from "next/link";
-import School from "./school";
+import School from "./ComingSchool";
 
 function Index() {
     const [isOpen, setIsOpen] = useState(false);
@@ -183,7 +183,7 @@ function Index() {
                         </div>
                     </div>
 
-                    <School/>
+                    {/* <School/> */}
                 </div>
             </div>
             {isOpen && (

@@ -19,8 +19,8 @@ export default function Gallery() {
     main
       .getGallery()
       .then((r) => {
-        setLoading(false);
         setLisitng(r?.data?.data);
+        setLoading(false);
       })
       .catch((err) => {
         setLoading(false);
@@ -31,7 +31,6 @@ export default function Gallery() {
 
   // Fetch images by category
   const getGallerybyCategory = (name) => {
-    setLoading(true);
     const main = new Details();
     main
       .getGallerybyCategory(name)
@@ -42,7 +41,6 @@ export default function Gallery() {
         setCurrentImageIndex(0); // Reset image index to 0
       })
       .catch((err) => {
-        setLoading(false);
         setData([]);
         console.log("error", err);
       });
@@ -83,6 +81,13 @@ export default function Gallery() {
           Explore our gallery to see the vibrant life and activities at BVBS
           School.
         </p>
+
+       { loading ? <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+            {/* {[...Array(6)].map((_, index) => (
+                <div className="bg-gray-100 animate-pulse p-6 w-full h-[280px]"></div>
+            ))} */}
+        </div>
+        :
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
           {listing &&
             listing.map((item, index) => (
@@ -107,7 +112,7 @@ export default function Gallery() {
                 </h3>
               </div>
             ))}
-        </div>
+        </div>}
 
         {/* Modal */}
         {showModal && data.length > 0 && (

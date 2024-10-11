@@ -5,6 +5,7 @@ import Image from "next/image";
 export default function Directors() {
   const [listing, setLisitng] = useState("");
   const [Loading, setLoading] = useState(false);
+  const [count,setCount]=useState(0);
   const director = () => {
     setLoading(true);
     const main = new Details();
@@ -18,6 +19,11 @@ export default function Directors() {
         setLoading(false);
         setLisitng([]);
         console.log("error", err);
+        setCount(count+1);
+        if(count<=2)
+          {
+            principle();
+          }
       });
   };
 

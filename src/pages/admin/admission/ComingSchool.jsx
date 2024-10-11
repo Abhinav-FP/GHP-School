@@ -10,7 +10,7 @@ import NoData from "../Component/NoData";
 import Link from "next/link";
 import Image from "next/image";
 
-function School() {
+function ComingSchool() {
     const [isOpen, setIsOpen] = useState(false);
     const [listing, setLisitng] = useState([]);
     const [Loading, setLoading] = useState(false);
@@ -195,4 +195,4 @@ console.log("r?.data?.data", listing)
     );
 }
 
-export default School;
+export default ComingSchool;

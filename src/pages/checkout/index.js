@@ -111,6 +111,7 @@ export default function Index() {
             // Save payment details
             saveUserData(response.razorpay_payment_id, totalPrice)
             savePaymentDetails(response.razorpay_order_id, response.razorpay_payment_id, "success"); // Pass 'success'
+            router.push(`success/${response.razorpay_payment_id}`)
           },
           prefill: {
             name: "Customer Name",
@@ -135,7 +136,9 @@ export default function Index() {
           const paymentId = error?.metadata?.payment_id;
           console.log("Order ID:", orderId, "Payment ID:", paymentId);
           if (orderId && paymentId) {
-            savePaymentDetails(orderId, paymentId, "failed"); // Pass 'failed'
+            savePaymentDetails(orderId, paymentId, "failed");
+            // router.push(`cancel/${paymentId}`)
+             // Pass 'failed'
           } else {
             console.error("Failed to retrieve Razorpay order or payment ID");
           }

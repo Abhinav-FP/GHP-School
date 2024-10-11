@@ -177,22 +177,24 @@ function Index() {
                                         <option value="" disabled>
                                             Select Class
                                         </option>
-                                        <option value="I">I</option>
-                                        <option value="II">II</option>
-                                        <option value="III">III</option>
-                                        <option value="IV">IV</option>
-                                        <option value="V">V</option>
-                                        <option value="VI">VI</option>
-                                        <option value="VII">VII</option>
-                                        <option value="VIII">VIII</option>
-                                        <option value="IX">IX</option>
-                                        <option value="X">X</option>
-                                        <option value="XI arts">XI Arts</option>
-                                        <option value="XI commerce">XI Commerce</option>
-                                        <option value="XI science">XI Science</option>
-                                        <option value="XII arts">XII Arts</option>
-                                        <option value="XII commerce">XII Commerce</option>
-                                        <option value="XII science">XII Science</option>
+                                        <option value="LKG">LKG</option>
+                                        <option value="UKG">UKG</option>
+                                        <option value="class I">I</option>
+                                        <option value="class II">II</option>
+                                        <option value="class III">III</option>
+                                        <option value="class IV">IV</option>
+                                        <option value="class V">V</option>
+                                        <option value="class VI">VI</option>
+                                        <option value="class VII">VII</option>
+                                        <option value="class VIII">VIII</option>
+                                        <option value="class IX">IX</option>
+                                        <option value="class X">X</option>
+                                        <option value="class XI arts">XI Arts</option>
+                                        <option value="class XI commerce">XI Commerce</option>
+                                        <option value="class XI science">XI Science</option>
+                                        <option value="class XII arts">XII Arts</option>
+                                        <option value="class XII commerce">XII Commerce</option>
+                                        <option value="class XII science">XII Science</option>
                                     </select>
                                     {/* <p message={errors?.name} className="!text-red-600" /> */}
 

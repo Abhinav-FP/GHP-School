@@ -19,49 +19,43 @@ function Index() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [imagedataPreview, setImageDataPreview] = useState(null);
-    // Fetch all gallery items
+    const [folders, setFolders] = useState(['annual Day', 'assembly', "seminars", 'activities', "festivals", 'recognition-and-awards', 'school-rooms', 'special-days', 'summer-camp' ]);
+    const [selectedFolder, setSelectedFolder] = useState(null);
+
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    
     const getGallery = () => {
         setLoading(true);
         const main = new Details();
         main
-            .getGallery()
+            .admingallery()
             .then((r) => {
                 setLoading(false);
-                setLisitng(r?.data?.data);
+                setLisitng(r?.data?.data); // Changed `setLisitng` to `setListing`
+                // if (r && r.data && r.data.data) {
+                //     let arr = [];
+                //     r.data.data.forEach((item) => {
+                //         arr.push(item.title);
+                //         console.log(item.title);
+                //     });
+                //     console.log("folders", arr);
+                //     setFolders(arr || []);
+                // } 
             })
             .catch((err) => {
                 setLoading(false);
-                setLisitng([]);
+                setLisitng([]); // Changed `setLisitng` to `setListing`
                 console.log("error", err);
             });
     };
-
-    // Fetch images by category
-    const getGallerybyCategory = (name) => {
-        setLoading(true);
-        const main = new Details();
-        main
-            .getGallerybyCategory(name)
-            .then((r) => {
-                setLoading(false);
-                setData(r?.data?.data); // Save fetched images in `data`
-                setShowModal(true); // Only show modal after data is fetched
-                setCurrentImageIndex(0); // Reset image index to 0
-            })
-            .catch((err) => {
-                setLoading(false);
-                setData([]);
-                console.log("error", err);
-            });
-    };
+    
+   
 
     useEffect(() => {
         getGallery(); // Fetch all gallery items on mount
     }, []);
-
-    const handleImageClick = (name) => {
-        getGallerybyCategory(name); // Fetch images by category when clicked
-    };
+ 
 
     const handleNext = () => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % data.length); // Loop forward through images
@@ -81,17 +75,7 @@ function Index() {
     const handleClose = () => {
         setIsOpen(false);
     };
-    const [formData, setFormData] = useState({
-        photo: "",
-        caption: "",
-    });
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value
-        }));
-    };
+    
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -104,27 +88,30 @@ function Index() {
     const uploadImage = async (file) => {
         const myHeaders = new Headers();
         myHeaders.append("Authorization", "Client-ID fa9cff918a9554a");
-
         const formdata = new FormData();
         formdata.append("image", file);
         formdata.append("type", "image");
-        formdata.append("title", "Simple upload");
-        formdata.append("description", "This is a simple image upload in Imgur");
-
+        formdata.append("caption", selectedFolder);
+        formdata.append("title", file.name);
+        formdata.append("description", description);
         try {
             const response = await fetch("https://api.imgur.com/3/upload", {
                 method: "POST",
                 headers: myHeaders,
                 body: formdata,
                 redirect: "follow",
-            });
+            }); 
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
-            }
+            } 
             const data = await response.json();
-            console.log('Image uploaded successfully:', data);
             if (data?.data?.link) {
-                setImageDataPreview(data.data.link);
+                console.log("Image uploaded successfully uplaed")
+                return data.data.link
+            } else { 
+                return "DUMMY LINK"
+                // alert("Failed to upload image.")
+                // return false
             }
         } catch (error) {
             console.error('Error:', error);
@@ -134,34 +121,44 @@ function Index() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+        // const url = await uploadImage(selectedImage);
+        console.log("selectedImage",selectedImage);
         const record = new FormData();
-        record.append("caption", formData.caption);
-        record.append("photo", imagePreview);
+        record.append("url", "url");
+        record.append("size", selectedImage.size);
+        record.append("name", selectedImage.name);
+        record.append("caption", selectedFolder);
+        record.append("title", title);
+        record.append("description", description);
         try {
             const main = new Details();
-            const response = await main.ResultAdd(record);
-
+            const response = await main.GalleryAdd(record);
             if (response?.data?.status) {
-                toast.success(response.data.message);
-                handleClose();  // Close any modal or form after success
-                resultgetData();  // Refresh or fetch updated result data
+                // toast.success(response.data.message);
+                alert(response.data.message)
+                handleClose(); 
+                resultgetData(); 
             } else {
-                toast.error(response.data.message);
+                // toast.error(response.data.message);
+                alert(response.data.message);
             }
             setFormData({
                 qualification: '',
                 experience: '',
                 description: '',
                 designation: ''
-            });
+            }); 
         } catch (error) {
-            toast.error(error?.response?.data?.message || "An error occurred");
+            alert(error?.response?.data?.message || "An error occurred");
+            // toast.error(error?.response?.data?.message || "An error occurred");
         } finally {
             setLoading(false);
         }
     };
 
 
+
+    
 
     return (<>
         <div className="md:flex flex-wrap bg-[#F5F6FB] listings-start">
@@ -189,18 +186,18 @@ function Index() {
                                             onClick={() => handleImageClick(item?.caption)}
                                         >
                                             <Image
-                                                blurDataURL={`${item?.url}?q=1`}
+                                                blurDataURL={`${item?.images[0] || careerbg}?q=1`}
                                                 placeholder="blur"
                                                 width={387}
                                                 height={310}
-                                                src={item?.url ? item?.url : careerbg}
-                                                alt={item?.caption}
+                                                src={item?.images[0] || careerbg}
+                                                alt={item?.title}
                                                 className="object-cover"
                                                 loading="lazy"
                                             />
                                             <div className="galleryBg absolute bottom-0 left-0 h-full w-full z-0"></div>
                                             <h3 className="capitalize absolute bottom-4 left-6 right-6 text-white z-10 merriweather-font font-normal text-xl lg:text-2xl">
-                                                {item?.caption.replace("-", " ")}
+                                                {item?.title ? item?.title.replace("-", " ") : ""}
                                             </h3>
                                         </div>
                                     ))}
@@ -249,52 +246,60 @@ function Index() {
 
             {isOpen && (
                 <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-                    <div className="relative bg-white w-full rounded-[30px] lg:rounded-[40px] m-auto">
+                <div className="relative bg-white w-full rounded-[40px] lg:rounded-[50px] m-auto">
 
-                        <div className="border-b border-black border-opacity-10 pt-6 pb-5 px-6">
-                            <h2 className="text-xl lg:text-2xl text-[#212121] font-semibold">Add New Gallery</h2>
-                        </div>
-                        <form onSubmit={handleSubmit} className="p-6">
-                            <div className="space-y-4">
-                                <div>
-                                    <label className="block text-sm font-medium text-[#212121]"> Avatar</label>
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        onChange={handleImageChange}
-                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
-                                        required
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-[#212121]">Show Avatar</label>
-                                    {imagePreview && <img src={imagePreview} alt="Preview" className="mt-2 w-48 h-48 object-cover text-center" />}
-
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-[#212121]">Caption</label>
-                                    <input
-                                        type="text"
-                                        name="caption"
-                                        value={formData.caption}
-                                        onChange={handleChange}
-                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
-                                        required
-                                    />
-                                </div>
-
-                                <div className="flex justify-end">
-                                    <button
-                                        type="submit"
-                                        className="text-white button-animation text-sm font-normal tracking-[-0.03em] py-2 px-4 border-0 min-w-[100px] rounded-md"
-                                    >
-                                        {loading ? "Saving..." : "Save"}
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                    <div className="  pt-6 pb-5 px-6">
+                        <h2 className="text-lg lg:text-xl text-[#212121] font-semibold">Add New Gallery</h2>
                     </div>
-                </Modal>
+                    <div className="p-6">
+                        <div className="space-y-4">
+
+                            {selectedImage ? 
+                            <div className="relative">
+                                <button onClick={()=>setSelectedImage(false)} className="bg-red-500 px-3 text-[10px] text-white uppercase rounded-lg absolute top-2 right-2 py-2" >Remove</button>
+                                <img src={URL.createObjectURL(selectedImage)} className="min-h-[230px] w-full block rounded-xl mb-4" />
+                            </div>
+                            :
+                            <div class="flex items-center justify-center w-full">
+                                <label class="flex flex-col rounded-lg border-4 border-dashed w-full h-60 p-10 group text-center">
+                                    <div class="h-full w-full text-center flex flex-col items-center justify-center items-center  ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-blue-400 group-hover:text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                        </svg> 
+                                        <div class="flex flex-auto max-h-48 w-2/5 mx-auto -mt-10">
+                                        <img class="has-mask h-36 object-center" src="https://img.freepik.com/free-vector/image-upload-concept-landing-page_52683-27130.jpg?size=338&ext=jpg" alt="freepik image" />
+                                        </div>
+                                        <p class="pointer-none text-gray-500 "><span class="text-sm">Drag and drop</span> files here <br /> or <a href="" id="" class="text-blue-600 hover:underline">select a file</a> from your computer</p>
+                                    </div>
+                                    <input onChange={handleImageChange}  accept="image/*"  type="file" class="hidden" />
+                                </label>
+                            </div>}
+                           
+                            <div>
+                                <select onChange={(e)=>setSelectedFolder(e.target.value)} className="mt-1 block w-full p-4  bg-gray-100 rounded-md shadow-sm  focus:border-[#0367F7] outline-0">
+                                    <option value='' >Select Gallery Folder</option>
+                                    {folders && folders.map((f,i)=>{
+                                        return <>
+                                         <option className="uppercase" value={f} key={`folder-${i}`}>{f.replaceAll("-", ' ')}</option>
+                                         </>
+                                    })}
+                                </select>
+                            </div>
+                            <div>
+                                <input type="text" placeholder="Title" name="title"  onChange={(e)=>setTitle(e.target.value)} className="mt-1 block w-full bg-gray-100 rounded-md shadow-sm p-4 focus:border-[#0367F7] outline-0"  />
+                            </div>
+                            <div> 
+                                <textarea type="text" placeholder="Description" name="description"  onChange={(e)=>setDescription(e.target.value)} className="mt-1 block w-full bg-gray-100 rounded-md shadow-sm p-4 focus:border-[#0367F7] outline-0" />
+                            </div>
+                            <div className="flex justify-center">
+                                <button onClick={handleSubmit} className="text-white button-animation text-sm font-normal rounded-xl w-full tracking-[-0.03em] p-3 border-0 min-w-[100px] rounded-md" >
+                                    {loading ? "Saving..." : "Save"}
+                                </button>
+                            </div>
+                        </div>
+                        </div>
+                </div>
+            </Modal>
             )}
         </div>
 
