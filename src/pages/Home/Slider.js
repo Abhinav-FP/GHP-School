@@ -31,24 +31,24 @@ export default function Slider() {
   const data = [
     {
       text1: "520 students",
-      text2: "from Nursery to Grade XII",
+      text2: ["from Nursery to ", <br />, "Grade XII"], 
     },
     {
       text1: "100% Results",
-      text2: "achieved in Grade X and XII, RBSE 2024",
+      text2: ["achieved in Grade", <br />, " X and XII, RBSE 2024"],  
     },
     {
       text1: "800",
-      text2: "people Assembly Hall Capacity",
+      text2: ["people Assembly", <br />, "Hall Capacity"],   
     },
     {
       text1: "25:1",
-      text2: "student-teacher ratio",
+      text2: ["student-teacher", <br />, "ratio",]
     },
     {
       text1: "35+",
-      text2: "years in Education",
-    },
+      text2: ["years", <br />, "in Education"],
+    }
   ];
 
   return (
@@ -105,17 +105,17 @@ export default function Slider() {
       </div>
       <div className="z-[1] relative bg-[#EE834E] py-[35px] md:py-[40px] lg:py-[62px]">
         <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
-          <div className="grid gap-5 lg:gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-5">
+          <div className="grid gap-5 lg:gap-5 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-5 lg:flex flex-wrap justify-between ">
             {data &&
               data?.map((item, index) => (
                 <div
-                  className="flex flex-col text-white lg:w-[170px]"
+                  className="flex flex-col text-white lg:min-w-[100px]"
                   key={index}
                 >
-                  <h3 className="uppercase text-lg md:text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
+                  <h3 className="uppercase text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
                     {item?.text1}
                   </h3>
-                  <p className="uppercase font-medium tracking-[-0.04em] text-base">
+                  <p className="uppercase font-medium tracking-[-0.04em] text-sm md:text-base">
                     {item?.text2}
                   </p>
                 </div>

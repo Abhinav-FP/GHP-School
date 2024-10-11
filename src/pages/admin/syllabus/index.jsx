@@ -165,7 +165,7 @@ function Index() {
 
 
                                 <div className="mb-3 lg:mb-[25px]">
-                                    <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">class</label>
+                                    <label className="capitalize font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">class</label>
                                     <select
                                         className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
                                         name="text"
@@ -201,7 +201,7 @@ function Index() {
 
                                 </div>
                                 <div className="mb-3 lg:mb-[25px]">
-                                    <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">link</label>
+                                    <label className="capitalize font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">link</label>
                                     <input
                                         name="link"
                                         value={formdata?.link}
@@ -218,8 +218,8 @@ function Index() {
                             <div className="flex justify-end pt-3 px-6 lg:px-10 ">
                                 <button type="submit"
                                     onClick={handleSubmit}
-                                    className="w-full text-white button-animation hover:button-animation hover:bg-white text-[17px] font-medium tracking-[-0.04em] h-11 lg:h-[54px] py-2.5 px-12 border border-button-animation rounded-full outline-none focus:outline-none ease-linear transition-all duration-150">
-                                    {Loading ? "Processing.." : "syllabus"}
+                                    className="capitalize w-full text-white button-animation hover:button-animation hover:bg-white text-[17px] font-medium tracking-[-0.04em] h-11 lg:h-[54px] py-2.5 px-12 border border-button-animation rounded-full outline-none focus:outline-none ease-linear transition-all duration-150">
+                                    {Loading ? "Processing.." : "Add Syllabus"}
 
                                 </button>
                             </div>

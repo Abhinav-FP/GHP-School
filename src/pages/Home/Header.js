@@ -39,7 +39,7 @@ export default function Header() {
                     <Link
                       href="/about"
                       className={
-                        "text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] " +
+                        "capitalize text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] " +
                         (url === "/about" ? "text-[#EE834E]" : "text-[#1E1E1E]")
                       }
                     >
@@ -49,7 +49,7 @@ export default function Header() {
                         size={18}
                       />
                     </Link>
-                    <ul className="invisible min-w-[249px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0 ">
+                    <ul className="capitalize invisible min-w-[249px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0 ">
                       <li>
                         <Link
                           href="/about#vision"
@@ -96,7 +96,7 @@ export default function Header() {
                     <Link
                       href="/academics"
                       className={
-                        "text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] " +
+                        "capitalize text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] " +
                         (url.startsWith("/academies")
                           ? "text-[#EE834E]"
                           : "text-[#1E1E1E]")
@@ -108,7 +108,7 @@ export default function Header() {
                         size={18}
                       />
                     </Link>
-                    <ul className="invisible min-w-[189px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0">
+                    <ul className="capitalize invisible min-w-[189px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0">
                       <li>
                         <Link
                           href="/academics#calendar"
@@ -155,7 +155,7 @@ export default function Header() {
                     <Link
                       href="/facilities"
                       className={
-                        "text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] " +
+                        "capitalize text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] " +
                         (url === "/facilities"
                           ? "text-[#EE834E]"
                           : "text-[#1E1E1E]")
@@ -167,7 +167,7 @@ export default function Header() {
                         size={18}
                       />
                     </Link>
-                    <ul className="invisible min-w-[189px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0">
+                    <ul className="capitalize invisible min-w-[189px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0">
                       <li>
                         <Link
                           href="/facilities#houses"
@@ -206,7 +206,7 @@ export default function Header() {
                     <Link
                       href="/admissions"
                       className={
-                        "text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] " +
+                        "capitalize text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] " +
                         (url.startsWith("/admissions")
                           ? "text-[#EE834E]"
                           : "text-[#1E1E1E]")
@@ -218,7 +218,7 @@ export default function Header() {
                         size={18}
                       />
                     </Link>
-                    <ul className="invisible min-w-[189px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0">
+                    <ul className="capitalize invisible min-w-[189px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white left-0">
                       <li>
                         <Link
                           href="/admissions#form"
@@ -249,7 +249,7 @@ export default function Header() {
                     <Link
                       href="/contact"
                       className={
-                        "text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] " +
+                        "capitalize text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] " +
                         (url.startsWith("/contact")
                           ? "text-[#EE834E]"
                           : "text-[#1E1E1E]")
@@ -261,7 +261,7 @@ export default function Header() {
                         size={18}
                       />
                     </Link>
-                    <ul className="invisible min-w-[180px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white -right-8">
+                    <ul className="capitalize invisible min-w-[180px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white -right-8">
                       <li>
                         <Link
                           href="/contact#touch"
@@ -355,14 +355,14 @@ export default function Header() {
             {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
             <Link
               href="/about"
-              className="px-3 py-2 block text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]"
+              className="capitalize px-3 py-2 block text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]"
             >
               About
             </Link>
             <Link
               href="/academics"
               className={
-                " px-3 py-2 block  text-base xl:text-lg tracking-[-0.04em] font-medium  hover:text-[#0367F7]  " +
+                "capitalize px-3 py-2 block  text-base xl:text-lg tracking-[-0.04em] font-medium  hover:text-[#0367F7]  " +
                 (url.startsWith("/subscription") ? "text-[#0367F7]" : "")
               }
             >
@@ -370,19 +370,19 @@ export default function Header() {
             </Link>
             <Link
               href="/facilities"
-              className="px-3 py-2 block  text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]"
+              className="capitalize px-3 py-2 block  text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]"
             >
               Facilities
             </Link>
             <Link
               href="/admissions"
-              className="px-3 py-2 block text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]"
+              className="capitalize px-3 py-2 block text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]"
             >
               Admissions
             </Link>
             <Link
               href="/contact"
-              className="px-3 py-2 block text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]"
+              className="capitalize px-3 py-2 block text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]"
             >
               Contact
             </Link>

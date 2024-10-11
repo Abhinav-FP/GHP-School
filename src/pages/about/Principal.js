@@ -45,8 +45,8 @@ export default function Principal() {
               className="max-w-full block mx-auto mb-3 md:mb-0"
               alt={listing?.name}
               src={listing?.photo}
-              height={400}
-              width={307}
+              height={407}
+              width={500}
               loading="lazy"
             />
           </div>

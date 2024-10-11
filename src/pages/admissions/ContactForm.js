@@ -56,12 +56,19 @@ function ContactForm() {
 
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
+    
     if (file) {
+      const fileSizeInMB = file.size / (1024 * 1024);
+      if (fileSizeInMB > 2) {
+        alert("File size exceeds 2 MB. Please upload a smaller image."); 
+        return; 
+      }
       setSelectedImage(file);
       setImagePreview(URL.createObjectURL(file));
       await uploadImage(file);
     }
   };
+  
 
   const uploadImage = async (file) => {
     const myHeaders = new Headers();
@@ -106,6 +113,10 @@ function ContactForm() {
       alert("Please ensure all declarations are checked before submitting.");
       return;
     }
+    if(record?.image==""){
+      toast.error("Please upload a valid image!");
+      return;
+    }
     setLoading(true);
     const main = new Details();
     const formdata = new FormData();
@@ -132,7 +143,7 @@ function ContactForm() {
               response.razorpay_payment_id,
               "success"
             );
-            router.push(`successform/${response.razorpay_payment_id}`)
+            router.push(`successform/${response.razorpay_payment_id}`);
 
             handleSubmit();
           },
@@ -161,7 +172,6 @@ function ContactForm() {
           if (orderId && paymentId) {
             savePaymentDetails(orderId, paymentId, "failed");
             // router.push(`cancel/${response.razorpay_payment_id}`)
-
           } else {
             console.error("Failed to retrieve Razorpay order or payment ID");
           }
@@ -288,7 +298,7 @@ function ContactForm() {
         onSubmit={handlePaySubmit}
         className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto "
       >
-        <div className="flex justify-between items-center">
+        <div className="sm:flex justify-between items-center mb-2">
           <div></div>
           <div className="flex flex-col">
             <h1 className="merriweather-font font-normal text-center text-2xl md:text-3xl lg:text-4xl mb-2.5 text-[#1E1E1E]  tracking-[-0.04em]">
@@ -308,8 +318,8 @@ function ContactForm() {
                   className="w-full h-full object-cover border border-gray-300 mb-4 rounded-md"
                 />
               ) : (
-                <span className="block w-40 h-40 object-cover border border-gray-300 mb-4 rounded-md text-black">
-                  No Image
+                <span className="px-4 py-8 block w-40 h-40 object-cover border border-gray-300 mb-4 rounded-md text-black">
+                  Please upload <br/>an image here
                 </span>
               )}
               <label className="absolute top-1 right-1 p-1 bg-gray-200 rounded-full cursor-pointer hover:bg-gray-300">
@@ -527,11 +537,18 @@ function ContactForm() {
                 Father’s Phone Number*{" "}
               </label>
               <input
-                type="tel"
-                inputmode="numeric"
+                type="text"
                 name="fatherPhone"
                 value={record?.fatherPhone}
-                onChange={handleChange}
+                onChange={(e) => {
+                  if (
+                    e.target.value.length <= 10 &&
+                    /^[0-9]*$/.test(e.target.value)
+                  ) {
+                    handleChange(e);
+                  }
+                }}
+                maxLength="10"
                 className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
               />
             </div>
@@ -564,11 +581,18 @@ function ContactForm() {
                 Mother’s Phone Number*{" "}
               </label>
               <input
-                type="tel"
-                inputmode="numeric"
+                type="text"
                 name="motherPhone"
                 value={record?.motherPhone}
-                onChange={handleChange}
+                onChange={(e) => {
+                  if (
+                    e.target.value.length <= 10 &&
+                    /^[0-9]*$/.test(e.target.value)
+                  ) {
+                    handleChange(e);
+                  }
+                }}
+                maxLength="10"
                 className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
               />
             </div>
@@ -601,11 +625,18 @@ function ContactForm() {
                 Guardian’s Phone Number*
               </label>
               <input
-                type="tel"
-                inputmode="numeric"
+                type="text"
                 name="guardianPhone"
                 value={record?.guardianPhone}
-                onChange={handleChange}
+                onChange={(e) => {
+                  if (
+                    e.target.value.length <= 10 &&
+                    /^[0-9]*$/.test(e.target.value)
+                  ) {
+                    handleChange(e);
+                  }
+                }}
+                maxLength="10"
                 className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
               />
             </div>
@@ -686,7 +717,7 @@ function ContactForm() {
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Candidate belongs to{" "}
               </label>
-              <div className="flex flex-wrap space-x-3 lg:space-x-5">
+              <div className="flex flex-wrap space-x-3 lg:space-x-3">
                 {["sc", "st", "obc", "general", "sbc", "ews", "other"].map(
                   (category) => (
                     <div

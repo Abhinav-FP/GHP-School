@@ -8,15 +8,15 @@ export default function AgeCriteria() {
     },
     {
       Grade: "LKG",
-      Age: "3+ years",
+      Age: "4+ years",
     },
     {
       Grade: "UKG",
-      Age: "3+ years",
+      Age: "5+ years",
     },
     {
       Grade: "Class 1",
-      Age: "3+ years",
+      Age: "6+ years",
     },
     {
       Grade: "Class 2 to 10",

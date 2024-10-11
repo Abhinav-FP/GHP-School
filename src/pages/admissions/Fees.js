@@ -203,7 +203,7 @@ export default function Fees() {
         <div className='bg-white pb-[40px] md:pb-[80px] lg:pb-[100px]' id="fees">
             <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto">
                 <h2 className='merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-3 lg:mb-4 text-[#1E1E1E]  tracking-[-0.04em] text-center'>Fee Structure</h2>
-                <div className='overflow-x-auto mb-6 lg:mb-10'>
+                <div className='overflow-x-auto mb-6 lg:mb-8'>
                 <table className="border border-gray-200 w-full">
                     <thead>
                         <tr className="bg-[#36C9B4] text-white">
@@ -232,7 +232,7 @@ export default function Fees() {
                     </tbody>
                 </table>                
                 </div>
-                <h2 className="tracking-[-0.04em] merriweather-font text-xl lg:text-2xl mb-2 md:mb-2.5 capitalize text-[#EE834E]">Please note :</h2>
+                <h2 className="tracking-[-0.04em] merriweather-font text-xl lg:text-2xl mb-2 md:mb-1 capitalize text-[#EE834E]">Please note :</h2>
                 <ol className="list-decimal font-normal Gotham-reguler list-inside text-[#666666] text-sm lg:text-base tracking-[-0.04em] italic">
                     <li>Registration fee Rs. 500/- only for new admission.</li>
                     <li>Renewal fee Rs. 200/- for students of X class passed from this school.</li>

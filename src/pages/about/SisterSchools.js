@@ -1,21 +1,27 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function SisterSchools() {
   const images = [
     {
+      link:"https://www.gsmsschool.com/",
       imgsrc: "/About/School1.png",
     },
     {
+      link:"https://www.pehschool.com/",
       imgsrc: "/About/School2.png",
     },
     {
+      link:"https://www.gsbbpreschool.com/",
       imgsrc: "/About/School3.png",
     },
     {
+      link:"https://gsisschool.com/",
       imgsrc: "/About/School4.png",
     },
     {
+      link:"https://cscollege.co.in/",
       imgsrc: "/About/School5.png",
     },
   ];
@@ -34,7 +40,7 @@ export default function SisterSchools() {
                   key={index}
                   className="w-full sm-w-6/12 lg:w-4/12 px-2 lg:px-5 mb-4 lg:mb-10"
                 >
-                  <div className="bg-white flex items-center justify-center">
+                  <a target="blank" href={item?.link} className="bg-white flex items-center justify-center">
                     <Image
                       blurDataURL={`${item?.imgsrc}?q=1`}
                       placeholder="blur"
@@ -45,7 +51,7 @@ export default function SisterSchools() {
                       alt="BVBS sister schools"
                       loading="lazy"
                     />
-                  </div>
+                  </a>
                 </div>
               ))}
           </div>
