@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 import NoData from "../Component/NoData";
 import Link from "next/link";
 
-function School() {
+function ComingSchool() {
     const [isOpen, setIsOpen] = useState(false);
     const [listing, setLisitng] = useState([]);
     const [Loading, setLoading] = useState(false);
@@ -217,4 +217,4 @@ function School() {
     );
 }
 
-export default School;
+export default ComingSchool;

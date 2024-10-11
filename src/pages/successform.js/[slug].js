@@ -17,9 +17,9 @@ export default function Success() {
             Thank You for Your Application!
           </h2>
           <p className="max-w-[708px] mx-auto text-[#666666] text-base font-medium gotham-font tracking-[-0.04em] mb-4 lg:mb-[28px]">
-            Your application has been successfully received.We appreciate your
+            {`Your application has been successfully received.We appreciate your
             interest in our school and thank you for choosing us for your
-            child's education.
+            child's education.`}
           </p>
           <a
             href=""
