@@ -121,10 +121,10 @@ function Index() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        const url = await uploadImage(selectedImage);
+        // const url = await uploadImage(selectedImage);
         console.log("selectedImage",selectedImage);
         const record = new FormData();
-        record.append("url", url);
+        record.append("url", "url");
         record.append("size", selectedImage.size);
         record.append("name", selectedImage.name);
         record.append("caption", selectedFolder);
