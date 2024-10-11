@@ -1,5 +1,6 @@
 import { Component } from "react";
 import Api from "./Api";
+
 class Details extends Component {
   async signup(data) {
     return Api.post("/user/signup", data);
@@ -9,6 +10,9 @@ class Details extends Component {
   }
   async getFaculty() {
     return Api.get("/about/faculty/get");
+  }
+  async GalleryAdd(data) {
+    return Api.post("/facilities/gallery/add", data);
   }
   async addFaculty(data) {
     return Api.post("/about/faculty/add", data);
@@ -68,6 +72,10 @@ class Details extends Component {
 
   async getGallery() {
     return Api.get("/facilities/gallery/get");
+  }
+
+  async admingallery() {
+    return Api.get("/facilities/admingallery");
   }
   async getGallerybyCategory(data) {
     return Api.get(`/facilities/gallery/get/${data}`);
