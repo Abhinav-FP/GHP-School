@@ -82,9 +82,10 @@ function Index() {
                                                     <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">Name</th>
                                                     <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">Email</th>
                                                     <th className="px-3 py-3 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">Position</th>
-                                                    <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">resume</th>
                                                     <th className="px-3 py-3 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">About</th>
-                                                    <th className="pr-4 md:pr-6 lg:pr-10 pl-3 py-3 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em] text-center">experience</th>
+                                                    <th className="pr-4 md:pr-6 lg:pr-10 pl-3 py-3 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">experience</th>
+                                                    <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">resume</th>
+
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -94,6 +95,9 @@ function Index() {
                                                         <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">{item.name} {item?.surname}</td>
                                                         <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">{item.email}</td>
                                                         <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">{item.position}</td>
+                                                      
+                                                        <td className="px-3 py-4 text-[15px] font-medium text-[#46494D]">{item.about}</td>
+                                                        <td className="px-3 py-4 text-[15px] font-medium text-[#46494D]">{item.experience}</td>
                                                         <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">
                                                             <Link
                                                             href={item?.resume}
@@ -102,8 +106,6 @@ function Index() {
                                                             Resume
                                                         </Link>
                                                         </td>
-                                                        <td className="px-3 py-4 text-[15px] font-medium text-[#46494D]">{item.about}</td>
-                                                        <td className="px-3 py-4 text-[15px] font-medium text-[#46494D]">{item.experience}</td>
                                                     </tr>
                                                 ))}
                                             </tbody>

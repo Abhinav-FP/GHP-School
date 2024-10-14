@@ -31,7 +31,7 @@ export default function Login() {
         if (res && res?.data && res?.data?.status) {
           toast.success(res.data.message);
           localStorage && localStorage.setItem("token", res?.data?.token);
-          router.push("/admin");
+          router.push("/admin/banner");
           setLoading(false);
         } else {
           toast.error(res.data.message);

@@ -61,7 +61,16 @@ body {
 
 .marquee span { 
   white-space: nowrap; 
-  /* Adds space between the loops */
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+}
+
+input[type=number] {
+    -moz-appearance:textfield; 
 }
 
 @keyframes marquee {

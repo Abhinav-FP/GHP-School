@@ -248,11 +248,8 @@ function Index() {
                         <div className="py-6 lg:py-8 ">
                             <form>
                                 <div className=' max-h-full overflow-y-auto customscroll px-6 lg:px-10 '>
-
-
-
                                     <div className="mb-3 lg:mb-[25px]">
-                                        <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">grade</label>
+                                        <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">Grade</label>
                                         <input
                                             name="grade"
                                             value={formdata?.grade}
@@ -266,12 +263,12 @@ function Index() {
 
                                     </div>
                                     <div className="mb-3 lg:mb-[25px]">
-                                        <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">first</label>
+                                        <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">First</label>
                                         <input
                                             name="first"
                                             value={formdata?.first}
                                             onChange={handleChange}
-                                            type="text"
+                                            type="number"
                                             className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
 
                                         />
@@ -280,12 +277,12 @@ function Index() {
 
                                     </div>
                                     <div className="mb-3 lg:mb-[25px]">
-                                        <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">second</label>
+                                        <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">Second</label>
                                         <input
                                             name="second"
                                             value={formdata?.second}
                                             onChange={handleChange}
-                                            type="text"
+                                            type="number"
                                             className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
 
                                         />
@@ -294,12 +291,12 @@ function Index() {
 
                                     </div>
                                     <div className="mb-3 lg:mb-[25px]">
-                                        <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">third</label>
+                                        <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">Third</label>
                                         <input
                                             name="third"
                                             value={formdata?.third}
                                             onChange={handleChange}
-                                            type="text"
+                                            type="number"
                                             className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
 
                                         />
@@ -308,12 +305,12 @@ function Index() {
 
                                     </div>
                                     <div className="mb-3 lg:mb-[25px]">
-                                        <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">fourth</label>
+                                        <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">Fourth</label>
                                         <input
                                             name="fourth"
                                             value={formdata?.fourth}
                                             onChange={handleChange}
-                                            type="text"
+                                            type="number"
                                             className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
 
                                         />
@@ -322,12 +319,12 @@ function Index() {
 
                                     </div>
                                     <div className="mb-3 lg:mb-[25px]">
-                                        <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">total</label>
+                                        <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">Total</label>
                                         <input
                                             name="total"
                                             value={formdata?.total}
                                             onChange={handleChange}
-                                            type="text"
+                                            type="number"
                                             readonly
                                             className="w-full h-11 lg:h-[54px] font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
                                         />
@@ -339,7 +336,7 @@ function Index() {
                                     <button type="submit"
                                         onClick={handleSubmit}
                                         className="w-full text-white button-animation hover:button-animation hover:bg-white text-[17px] font-medium tracking-[-0.04em] h-11 lg:h-[54px] py-2.5 px-12 border border-button-animation rounded-full outline-none focus:outline-none ease-linear transition-all duration-150">
-                                        {Loading ? "Processing.." : "fees"}
+                                        {Loading ? "Processing.." : "Fees"}
 
                                     </button>
                                 </div>

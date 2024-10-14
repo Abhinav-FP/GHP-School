@@ -271,7 +271,7 @@ function ComingSchool() {
                                             />
                                         </div>
                                         <div className="mb-3 lg:mb-[25px]">
-                                            <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">Text1</label>
+                                            <label className="font-medium text-sm lg:text-base tracking-[-0.03em] block text-[#8D929A] mb-1 lg:mb-2">Text2</label>
                                             <input
                                                 name="text2"
                                                 value={formdata?.text2}
@@ -284,7 +284,7 @@ function ComingSchool() {
                                     <div className="px-6 lg:px-10 mb-3 lg:mb-8">
                                         <button
                                             type="submit"
-                                            className="h-11 lg:h-12 w-full bg-[#0367F7] text-white text-base font-medium rounded-lg hover:bg-opacity-90"
+                                            className="w-full text-white button-animation hover:button-animation hover:bg-white text-[17px] font-medium tracking-[-0.04em] h-11 lg:h-[54px] py-2.5 px-12 border border-button-animation rounded-full outline-none focus:outline-none ease-linear transition-all duration-150"
                                         >
                                             {Loading ? "Loading.." : "Submit"}
                                         </button>

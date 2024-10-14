@@ -23,7 +23,7 @@ function PhoneSideBar({ sideOpen, toggleSidebar }) {
                     <IoIosArrowRoundBack size={48} />
                 </div>
                 <ul className="space-y-3">
-                    <li>
+                    {/* <li>
                         <Link href="/admin"
                             className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium hover:text-[#0367F7] ${pathname === "/admin" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
                         >
@@ -32,7 +32,7 @@ function PhoneSideBar({ sideOpen, toggleSidebar }) {
                             </svg>
                             Dashboard
                         </Link>
-                    </li>
+                    </li> */}
                     <li>
                         <Link href="/admin/banner"
                             className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium hover:text-[#0367F7] ${pathname === "/admin/banner" ? 'bg-[#0367F7] bg-opacity-10 text-[#0367F7]' : 'text-[#8D929A] '}`}
@@ -179,7 +179,7 @@ function PhoneSideBar({ sideOpen, toggleSidebar }) {
                                         <rect width="18" height="18" fill="white" />
                                     </clipPath>
                                 </defs>
-                            </svg> &nbsp; Manage Fees structure
+                            </svg> &nbsp;  Fees 
                         </Link>
                     </li>
                     <li>

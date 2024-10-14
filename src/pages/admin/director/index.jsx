@@ -290,7 +290,7 @@ function Index() {
                             <div className="flex justify-end pt-3 px-6 lg:px-10 ">
                                 <button type="submit"
                                     onClick={handleSubmit}
-                                    className="w-full text-white bg-[#0367F7] hover:text-[#0367F7] hover:bg-white text-[17px] font-medium tracking-[-0.04em] h-11 lg:h-[54px] py-2.5 px-12 border border-[#0367F7] rounded-full outline-none focus:outline-none ease-linear transition-all duration-150">
+                                    className="w-full text-white button-animation hover:button-animation hover:bg-white text-[17px] font-medium tracking-[-0.04em] h-11 lg:h-[54px] py-2.5 px-12 border border-button-animation rounded-full outline-none focus:outline-none ease-linear transition-all duration-150">
                                     {Loading ? "Processing.." : "Edit Director"}
 
                                 </button>
