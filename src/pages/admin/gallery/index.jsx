@@ -139,9 +139,10 @@ function Index() {
         record.append("caption", selectedFolder);
         record.append("title", title);
         record.append("description", description); 
+        console.log("record",record);
         try {
             const main = new Details();
-            const response = await main.GalleryAdd({record});
+            const response = await main.GalleryAdd(record);
             if (response?.data?.status) {
                 // toast.success(response.data.message);
                 alert(response.data.message)
