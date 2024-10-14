@@ -257,7 +257,7 @@ export default function JoinTeam() {
                     className="bg-white border border-black border-opacity-10 px-3.5 py-2 w-full appearance-none h-11 lg:h-[139px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
                   ></textarea>
                 </div>
-                <div className="w-full md:w-6/12 px-2.5 mb-4 lg:mb-0">
+                <div className="w-full md:w-6/12 px-2.5 mb-4 lg:mb-0 g-recaptcha">
                   <ReCAPTCHA
                     sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
                     ref={recaptcha}
