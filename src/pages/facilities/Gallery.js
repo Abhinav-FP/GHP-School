@@ -49,6 +49,7 @@ export default function Gallery() {
   useEffect(() => {
     getGallery(); // Fetch all gallery items on mount
   }, []);
+  console.log("listing",listing);
 
   const handleImageClick = (name) => {
     getGallerybyCategory(name); // Fetch images by category when clicked

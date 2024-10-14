@@ -20,7 +20,7 @@ export default function index() {
             <Houses/>
             <Infrastructure/>
             <Sports/>
-            {/* <Gallery/> */}
+            <Gallery/>
         </Layout>
     )
 }
