@@ -22,6 +22,7 @@ function Index() {
     const [imagedataPreview, setImageDataPreview] = useState(null);
     const [folders, setFolders] = useState(['annual Day', 'assembly', "seminars", 'activities', "festivals", 'recognition-and-awards', 'school-rooms', 'special-days', 'summer-camp' ]);
     const [selectedFolder, setSelectedFolder] = useState(null);
+    const[url,setUrl]=useState("");
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -89,28 +90,35 @@ function Index() {
     const uploadImage = async (file) => {
         const myHeaders = new Headers();
         myHeaders.append("Authorization", "Client-ID fa9cff918a9554a");
+    
         const formdata = new FormData();
-        formdata.append("image", file);
+        formdata.append("image", file, "GHJQTpX.jpeg");
         formdata.append("type", "image");
-        formdata.append("caption", selectedFolder);
-        formdata.append("title", file.name);
-        formdata.append("description", description);
+        formdata.append("title", "Simple upload");
+        formdata.append("description", "This is a simple image upload in Imgur");
+    
+        const requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: formdata,
+          redirect: "follow",
+        };
         try {
-            const response = await fetch("https://api.imgur.com/3/upload", {
-                method: "POST",
-                headers: myHeaders,
-                body: formdata,
-                redirect: "follow",
-            }); 
+            const response = await fetch(
+              "https://api.imgur.com/3/upload",
+              requestOptions
+            ); 
+            console.log("response",response);
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             } 
             const data = await response.json();
+            console.log("data",data);
             if (data?.data?.link) {
-                console.log("Image uploaded successfully uplaed")
-                return data.data.link
+                console.log("Image uploaded successfully!")
+                setUrl(data.data.link)
             } else { 
-                return "DUMMY LINK"
+                setUrl("DUMMY LINK");
                 // alert("Failed to upload image.")
                 // return false
             }
@@ -122,10 +130,10 @@ function Index() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        const url = await uploadImage(selectedImage);
-        console.log("url",url);
+        // const url = await uploadImage(selectedImage);
+        // console.log("url",url);
         const record = new FormData();
-        record.append("url", "url");
+        record.append("url", url);
         record.append("size", selectedImage.size);
         record.append("name", selectedImage.name);
         record.append("caption", selectedFolder);
@@ -133,14 +141,7 @@ function Index() {
         record.append("description", description); 
         try {
             const main = new Details();
-            const response = await main.GalleryAdd({
-                url: "url",
-                size: selectedImage.size,
-                name: selectedImage.name,
-                caption: selectedFolder,
-                title: title,
-                description: description
-            });
+            const response = await main.GalleryAdd({record});
             if (response?.data?.status) {
                 // toast.success(response.data.message);
                 alert(response.data.message)
@@ -149,7 +150,6 @@ function Index() {
                 // toast.error(response.data.message);
                 alert(response.data.message);
             }
-            
         } catch (error) {
             console.log("error", error); 
             alert(error?.response?.data?.message || "An error occurred");
@@ -273,7 +273,7 @@ function Index() {
                                         <div class="flex flex-auto max-h-48 w-2/5 mx-auto -mt-10">
                                         <img class="has-mask h-36 object-center" src="https://img.freepik.com/free-vector/image-upload-concept-landing-page_52683-27130.jpg?size=338&ext=jpg" alt="freepik image" />
                                         </div>
-                                        <p class="pointer-none text-gray-500 "><span class="text-sm">Drag and drop</span> files here <br /> or <a href="" id="" class="text-blue-600 hover:underline">select a file</a> from your computer</p>
+                                        <p class="pointer-none text-gray-500 "><span class="text-sm">Drag and drop</span> files here <br /> or <span class="text-blue-600 hover:underline">select a file</span> from your computer</p>
                                     </div>
                                     <input onChange={handleImageChange}  accept="image/*"  type="file" class="hidden" />
                                 </label>
