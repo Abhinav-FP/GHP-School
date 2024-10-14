@@ -42,7 +42,7 @@ function SideBarAdmin() {
                     <img className="max-w-full block m-auto" src={"/Header/Logo.png"} alt='img' />
                 </div>
                 <ul className="space-y-3">
-                    <li>
+                    {/* <li>
                         <Link href="/admin"
                             className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium hover:text-[#EE834E] ${pathname === "/admin" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
                         >
@@ -51,7 +51,7 @@ function SideBarAdmin() {
                             </svg>
                             Dashboard
                         </Link>
-                    </li>
+                    </li> */}
                     <li>
                         <Link href="/admin/banner"
                             className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium hover:text-[#EE834E] ${pathname === "/admin/banner" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
@@ -132,7 +132,7 @@ function SideBarAdmin() {
                             className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#EE834E] ${pathname === "/admin/fees" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
                         >
                             <RiPriceTag2Line size={24} className="inline align-middle mr-[4px]" />
-                            &nbsp; Manage Fees structure
+                            &nbsp;  Fees 
                         </Link>
                     </li>
                     <li>
