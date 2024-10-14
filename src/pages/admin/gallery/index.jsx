@@ -229,7 +229,7 @@ const closeModal = () => {
     return <>
     <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-5">
         {images && images.map((m, i)=> {
-            return <img src={m.url} className="w-100 h-200"/>
+            return <img key={i} src={m.url} className="w-100 h-200"/>
         })}
     </div>
     <OPENMODAL />
