@@ -707,12 +707,12 @@ function ContactForm() {
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                 Candidate belongs to{" "}
               </label>
-              <div className="flex flex-wrap space-x-3 lg:space-x-3">
+              <div className="flex flex-wrap gap-1.5 lg:gap-3">
                 {["sc", "st", "obc", "general", "sbc", "ews", "other"].map(
                   (category) => (
                     <div
                       key={category}
-                      className="border border-black p-3 lg:p-4 border-opacity-10 min-w-[154px]"
+                      className="border border-black  p-3 lg:p-4 border-opacity-10 min-w-[120px] md:min-w-[154px]"
                     >
                       <input
                         id={category}
@@ -742,7 +742,7 @@ function ContactForm() {
               </label>
               <div className="flex flex-wrap -mx-2.5">
                 <div className="w-6/12 px-2.5 mb-2 lg:mb-0">
-                  <div className="border border-black p-3 lg:p-4 border-opacity-10 min-w-[154px]">
+                  <div className="border border-black p-3 lg:p-4 border-opacity-10 ">
                     <input
                       id="yes"
                       type="radio"
@@ -764,7 +764,7 @@ function ContactForm() {
                 </div>
 
                 <div className="w-6/12 px-2.5 mb-2 lg:mb-0">
-                  <div className="border border-black p-3 lg:p-4 border-opacity-10 min-w-[154px]">
+                  <div className="border border-black p-3 lg:p-4 border-opacity-10  ">
                     <input
                       id="no"
                       type="radio"
