@@ -266,7 +266,7 @@ export default function JoinTeam() {
                 <div className="w-full md:w-6/12 px-2.5 mb-4 lg:mb-0 lg:text-right">
                   <button
                     type="submit"
-                    className="bg-[#EE834E] lg:min-w-[253px] text-center hover:bg-[#ECCD6E] rounded px-8 lg:px-12 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]"
+                    className=" button-animation lg:min-w-[253px] text-center  rounded px-8 lg:px-12 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]"
                   >
                     {formloading ? "Submitting..." : "Submit"}
                   </button>
