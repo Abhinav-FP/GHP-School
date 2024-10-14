@@ -117,9 +117,9 @@ export default function Results() {
           <h3 className="tracking-[-0.04em] merriweather-font text-[#1E1E1E] text-lg md:text-xl lg:text-2xl mb-4 text-center">
             Grade XII
           </h3>
-          <div className="flex space-x-2 md:space-x-3 lg:space-x-4 mb-8 justify-center">
+          <div className="flex space-x-1 sm:space-x-2 md:space-x-3 lg:space-x-4 mb-8 justify-center">
             <button
-              className={`min-w-[104px] lg:min-w-[164px] px-4 py-2 border font-medium tracking-[-0.04em] rounded-xl text-base ${
+              className={`md:min-w-[104px] lg:min-w-[164px] px-4 py-2 border font-medium tracking-[-0.04em] rounded-lg md:rounded-xl text-sm sm:text-base ${
                 selected === "arts"
                   ? "bg-[#EE834E] border-[#EE834E] text-white"
                   : "border-[#9A9A9A] text-[#9A9A9A]"
@@ -129,7 +129,7 @@ export default function Results() {
               ARTS
             </button>
             <button
-              className={`min-w-[104px] lg:min-w-[164px] px-4 py-2 border font-medium tracking-[-0.04em] rounded-xl text-base ${
+              className={`md:min-w-[104px] lg:min-w-[164px] px-4 py-2 border font-medium tracking-[-0.04em] rounded-lg md:rounded-xl text-sm sm:text-base ${
                 selected === "commerce"
                   ? "bg-[#EE834E] border-[#EE834E] text-white"
                   : "border-[#9A9A9A] text-[#9A9A9A]"
@@ -139,7 +139,7 @@ export default function Results() {
               COMMERCE
             </button>
             <button
-              className={`min-w-[104px] lg:min-w-[164px] px-4 py-2 border font-medium tracking-[-0.04em] rounded-xl text-base ${
+              className={`md:min-w-[104px] lg:min-w-[164px] px-4 py-2 border font-medium tracking-[-0.04em] rounded-lg md:rounded-xl text-sm sm:text-base ${
                 selected === "science"
                   ? "bg-[#EE834E] border-[#EE834E] text-white"
                   : "border-[#9A9A9A] text-[#9A9A9A]"

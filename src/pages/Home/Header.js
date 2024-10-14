@@ -261,7 +261,7 @@ export default function Header() {
                         size={18}
                       />
                     </Link>
-                    <ul className="capitalize invisible min-w-[180px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white -right-8">
+                    <ul className="capitalize invisible min-w-[190px] absolute z-50 group-hover:visible flex w-full flex-col shadow-md bg-white -right-8">
                       <li>
                         <Link
                           href="/contact#touch"

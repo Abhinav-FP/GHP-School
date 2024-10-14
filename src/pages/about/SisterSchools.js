@@ -38,7 +38,7 @@ export default function SisterSchools() {
               images.map((item, index) => (
                 <div
                   key={index}
-                  className="w-full sm-w-6/12 lg:w-4/12 px-2 lg:px-5 mb-4 lg:mb-10"
+                  className="w-full sm:w-6/12 lg:w-4/12 px-2 lg:px-5 mb-4 lg:mb-10"
                 >
                   <a target="blank" href={item?.link} className="bg-white flex items-center justify-center">
                     <Image

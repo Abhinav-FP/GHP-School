@@ -55,7 +55,7 @@ export default function ClassesInfo() {
   };
   return (
     <>
-      <div className="pb-[100px] bg-white" id="education">
+      <div className="pb-[40px] md:pb-[80px] lg:pb-[90px]  bg-white" id="education">
         <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto ">
           <ul>
             {faqItems &&
@@ -66,13 +66,13 @@ export default function ClassesInfo() {
                 >
                   <button
                     onClick={() => handleToggle(index)}
-                    className="w-full flex justify-between items-center text-[#1E1E1E]  text-left  merriweather-font px-4 md:px-8 lg:px-12 py-4 lg:py-6 text-xl md:text-3xl lg:text-4xl font-normal focus:outline-none tracking-[-0.04em]"
+                    className="w-full relative flex justify-between items-start text-[#1E1E1E]  text-left  merriweather-font pl-4 md:pl-8 lg:pl-12 py-4 lg:py-6 pr-[40px] md:pr-[50px] lg:pr-[60px] text-xl md:text-3xl lg:text-4xl font-normal focus:outline-none tracking-[-0.04em]"
                   >
                     {item.title}
                     {activeIndex === index ? (
-                      <FaMinus className="text-[#1E1E1E]" size={18} />
+                      <FaMinus className="text-[#1E1E1E] absolute top-[23px] lg:top-[36px] right-[20px] md:right-[30px] lg:right-[40px]" size={18} />
                     ) : (
-                      <FaPlus className="text-[#1E1E1E]" size={18} />
+                      <FaPlus className="text-[#1E1E1E] absolute top-[23px] lg:top-[36px] right-[20px] md:right-[30px] lg:right-[40px]" size={18} />
                     )}
                   </button>
                   {activeIndex === index && (
@@ -109,8 +109,8 @@ export default function ClassesInfo() {
                 </li>
               ))}
           </ul>
-          <div className="mt-10">
-            <h4 className="text-[#EE834E] mb-2 lg:mb-3 merriweather-font font-normal tracking-[-0.04em] text-xl lg:text-2xl">
+          <div className="mt-6">
+            <h4 className="text-[#EE834E] mb-1 lg:mb-1.5 merriweather-font font-normal tracking-[-0.04em] text-xl lg:text-2xl">
               School Timings: Monday to Saturday
             </h4>
             <ul className="text-[#666666] gotham-font font-sm lg:font-base tracking-[-0.04em] font-medium  list-disc pl-5 space-y-1">

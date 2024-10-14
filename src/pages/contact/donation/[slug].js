@@ -161,11 +161,11 @@ export default function Donation() {
                 </div>
                 <div className="w-full">
                   <button
-                    className={`relative block w-full text-[#EE834E] border border-[#EE834E] text-base lg:text-lg rounded px-4 py-3.5 text-center tracking-[-0.04em] 
+                    className={`relative block w-full text-[#EE834E] border border-[#EE834E]  text-base lg:text-lg rounded px-4 py-3.5 text-center tracking-[-0.04em] 
     ${
       isAdded
-        ? "bg-[#EE834E] text-white"
-        : "hover:bg-[#EE834E] hover:text-white"
+        ? "button-animation text-white border-[#ECCD6E]"
+        : "button-animation-border hover:text-white   hover:border-[#ECCD6E]"
     } transition-all duration-500`}
                     onClick={handleAddItem}
                     disabled={isAdded}
@@ -177,7 +177,7 @@ export default function Donation() {
               <div className="w-full mb-8 lg:mb-10">
                 <Link
                   href="/checkout"
-                  className="block w-full text-white bg-[#EE834E] hover:text-white hover:bg-[#ECCD6E] border border-[#EE834E] hover:border-[#ECCD6E] text-base lg:text-lg rounded px-4 py-3.5 text-center tracking-[-0.04em]"
+                  className="block w-full text-white button-animation hover:text-white   border border-[#EE834E] hover:border-[#ECCD6E] text-base lg:text-lg rounded px-4 py-3.5 text-center tracking-[-0.04em]"
                 >
                   Continue to checkout
                 </Link>

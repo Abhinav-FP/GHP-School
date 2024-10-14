@@ -50,8 +50,8 @@ function EnquirySec() {
   return (
     <div className="bg-white pb-[50px] md:pb-[70px] lg:pb-[100px]">
       <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto">
-        <div className="flex flex-wrap items-center -mx-4 grid-cols-4">
-          <div className="w-full lg:w-6/12 px-4 mb-6 lg:mb-0">
+        <div className="flex flex-wrap  -mx-3 grid-cols-4">
+          <div className="w-full lg:w-6/12 px-3 mb-6 lg:mb-0">
             <Image
               blurDataURL={`${InquiryformBanner}?q=1`}
               placeholder="blur"
@@ -61,9 +61,9 @@ function EnquirySec() {
               loading="lazy"
             />
           </div>
-          <div className="w-full lg:w-6/12 px-4">
+          <div className="w-full lg:w-6/12 px-3">
             <div className="bg-[#ECE1C5]">
-              <div className="px-4 lg:px-[30px] py-4 lg:py-[28px] border-b border-black border-opacity-10">
+              <div className="px-4 lg:px-[30px] py-4 lg:py-[24px] border-b border-black border-opacity-10">
                 <h2 className="merriweather-font font-normal text-2xl md:text-3xl lg:text-4xl mb-1 text-[#1E1E1E] tracking-[-0.04em]">
                   Make An Inquiry
                 </h2>
@@ -73,8 +73,8 @@ function EnquirySec() {
                   discuss your needs.
                 </p>
               </div>
-              <div className="px-4 lg:px-[30px] py-4 lg:py-[30px]">
-                <div className="mb-4 lg:mb-6">
+              <div className="px-4 lg:px-[30px] py-4 lg:py-[24px]">
+                <div className="mb-4 lg:mb-5">
                   <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                     Name
                   </label>
@@ -86,7 +86,7 @@ function EnquirySec() {
                     className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
                   />
                 </div>
-                <div className="mb-4 lg:mb-6">
+                <div className="mb-4 lg:mb-5">
                   <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                     Email
                   </label>
@@ -98,7 +98,7 @@ function EnquirySec() {
                     className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
                   />
                 </div>
-                <div className="mb-4 lg:mb-6">
+                <div className="mb-4 lg:mb-5">
                   <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                     Contact no
                   </label>
@@ -112,7 +112,7 @@ function EnquirySec() {
                     className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
                   />
                 </div>
-                <div className="mb-4 lg:mb-6">
+                <div className="mb-4 lg:mb-5">
                   <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                     Message
                   </label>
@@ -124,13 +124,13 @@ function EnquirySec() {
                   ></textarea>
                 </div>
                 <div className="flex flex-wrap -mx-4">
-                  <div className="px-4 items-center w-full lg:w-7/12">
-                    <ReCAPTCHA
+                  <div className="px-4  items-center w-full lg:w-7/12">
+                    <ReCAPTCHA className="g-recaptcha"
                       sitekey={process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}
                       ref={recaptcha}
                     />
                   </div>
-                  <div className="px-4 items-center w-full lg:w-5/12 text-right">
+                  <div className="px-4 items-center w-full lg:w-5/12 lg:text-right">
                     <button
                       type="button"
                       onClick={handleSubmit}

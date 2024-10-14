@@ -30,6 +30,7 @@
 }
 body{
   background-color: #ffff;
+  overflow-x: hidden;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&display=swap');
@@ -177,6 +178,10 @@ html{
   background-color: currentColor;
 }
 .result-box .list {width: 100%;padding: 0 15px;}
+.g-recaptcha  iframe{
+  transform:scale(0.87);
+  transform-origin:0 0;
+}
 @media (min-width:400px){
   .result-box .list {
     width: 50%;
@@ -201,7 +206,12 @@ html{
     padding: 0 15px;
 }
 }
-
+@media (max-width:1200px){
+  .g-recaptcha  iframe{
+    transform:scale(0.77);
+    transform-origin:0 0;
+  }
+}
 
 @media (max-width:575px) {
   .director-box { 

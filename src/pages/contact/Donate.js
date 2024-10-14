@@ -97,7 +97,7 @@ function Donate() {
                 <div className="mt-auto">
                   <Link
                     href={`contact/donation/${item?.srNo}`}
-                    className="block text-[#EE834E] button-animation-border hover:text-white border border-[#EE834E] text-base lg:text-lg rounded px-4 py-3 text-center tracking-[-0.04em]"
+                    className="block text-[#EE834E] button-animation-border hover:text-white border border-[#EE834E] hover:border-[#ECCD6E]  text-base lg:text-lg rounded px-4 py-3 text-center tracking-[-0.04em]"
                   >
                     Sponsor Now
                   </Link>
