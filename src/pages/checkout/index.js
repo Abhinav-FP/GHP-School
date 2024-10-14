@@ -270,7 +270,7 @@ export default function Index() {
                   <div className="w-full">
                     <button
                       onClick={handleSubmit}
-                      className="bg-[#EE834E] lg:w-[253px] hover:bg-[#ECCD6E] rounded px-8 lg:px-12 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]"
+                      className="button-animation  lg:w-[253px]  rounded px-8 lg:px-12 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]"
                     >
                       Pay Now
                     </button>
