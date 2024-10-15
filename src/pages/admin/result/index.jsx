@@ -16,6 +16,7 @@ function Index() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [imagedataPreview, setImageDataPreview] = useState(null);
+    const [imageUploading, setImageUploading] = useState(false);
 
     const [formData, setFormData] = useState({
         rollNo: "",
@@ -65,6 +66,7 @@ function Index() {
     };
     const handleImageChange = (e) => {
         const file = e.target.files[0];
+        setImageUploading(true);
         if (file) {
             setSelectedImage(file);
             setImagePreview(URL.createObjectURL(file));
@@ -90,11 +92,13 @@ function Index() {
                 redirect: "follow",
             });
             if (!response.ok) {
+                setImageUploading(false);
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
             const data = await response.json();
             if (data?.data?.link) {
                 setImageDataPreview(data.data.link);
+                setImageUploading(false);
             }
         } catch (error) {
             console.error('Error:', error);
@@ -123,6 +127,8 @@ function Index() {
             } else {
                 toast.error(response.data.message);
             }
+            setImageDataPreview("");
+            setImagePreview("");
             setFormData({
                 qualification: '',
                 experience: '',
@@ -359,6 +365,7 @@ function Index() {
                                         <button
                                             type="submit"
                                             className="text-white button-animation text-sm font-normal tracking-[-0.03em] py-2 px-4 border-0 min-w-[100px] rounded-md"
+                                            disabled={imageUploading}
                                         >
                                             {loading ? "Saving..." : "Save"}
                                         </button>
