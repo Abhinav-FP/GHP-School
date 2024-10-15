@@ -25,6 +25,11 @@ function EnquirySec() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = recaptcha.current.getValue(); // Get the captcha token
+    if (!token) {
+      toast.error("Please complete the CAPTCHA.");
+      return; // Stop form submission if CAPTCHA is not completed
+    }
     setLoading(true);
     const main = new Details();
     try {
@@ -73,13 +78,14 @@ function EnquirySec() {
                   discuss your needs.
                 </p>
               </div>
-              <div className="px-4 lg:px-[30px] py-4 lg:py-[24px]">
+              <form onSubmit={handleSubmit} className="px-4 lg:px-[30px] py-4 lg:py-[24px]">
                 <div className="mb-4 lg:mb-5">
                   <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                     Name
                   </label>
                   <input
                     type="text"
+                    required
                     name="name"
                     value={formdata.name}
                     onChange={handleChange}
@@ -93,6 +99,7 @@ function EnquirySec() {
                   <input
                     type="email"
                     name="email"
+                    required
                     value={formdata.email}
                     onChange={handleChange}
                     className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
@@ -104,8 +111,7 @@ function EnquirySec() {
                   </label>
                   <input
                     type="number"
-                    min={1}
-                    max={10}
+                    required
                     name="contact"
                     value={formdata.contact}
                     onChange={handleChange}
@@ -118,6 +124,7 @@ function EnquirySec() {
                   </label>
                   <textarea
                     name="message"
+                    required
                     value={formdata.message}
                     onChange={handleChange}
                     className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-32 lg:h-[157px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
@@ -132,15 +139,14 @@ function EnquirySec() {
                   </div>
                   <div className="px-4 items-center w-full lg:w-5/12 lg:text-right">
                     <button
-                      type="button"
-                      onClick={handleSubmit}
+                      type="submit"
                       className="button-animation rounded px-8 lg:px-12 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]"
                     >
                       {loading ? "Submitting..." : "Submit"}
                     </button>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>

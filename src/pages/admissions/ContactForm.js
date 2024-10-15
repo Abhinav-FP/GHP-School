@@ -132,16 +132,17 @@ function ContactForm() {
           description: "Payment for services",
           order_id: res.data.orderId,
           handler: function (response) {
-            toast.success("Payment Successful");
-            localStorage.setItem("response", JSON.stringify(response));
-            savePaymentDetails(
-              response.razorpay_order_id,
-              response.razorpay_payment_id,
-              "success"
-            );
-            Router.push(`successform/${response.razorpay_payment_id}`);
-
-            handleSubmit();
+            if(response.razorpay_payment_id){
+              toast.success("Payment Successful");
+              localStorage.setItem("response", JSON.stringify(response));
+              handleSubmit();
+              savePaymentDetails(
+                response.razorpay_order_id,
+                response.razorpay_payment_id,
+                "success"
+              );
+        Router.push(`/successform/${response.razorpay_payment_id}`);
+            }
           },
           prefill: {
             name: "Customer Name",
@@ -163,7 +164,7 @@ function ContactForm() {
           const paymentId = error?.metadata?.payment_id;
           if (orderId && paymentId) {
             savePaymentDetails(orderId, paymentId, "failed");
-            // router.push(`cancel/${response.razorpay_payment_id}`)
+            Router.push(`/cancel/${response.razorpay_payment_id}`)
           } else {
             console.error("Failed to retrieve Razorpay order or payment ID");
           }
@@ -193,10 +194,8 @@ function ContactForm() {
       formdata.append("product_name", record?.name);
       formdata.append("payment_status", payment_status);
       const response = await main.PaymentSave(formdata);
-
       if (response?.data?.status) {
         toast.success(response.data.message);
-        handleSubmit();
       } else {
         toast.error(response.data.message);
       }
@@ -422,7 +421,7 @@ function ContactForm() {
                 Aadhar No.
               </label>
               <input
-                type="text"
+                type="number"
                 name="aadhar"
                 value={record.aadhar}
                 onChange={handleChange}

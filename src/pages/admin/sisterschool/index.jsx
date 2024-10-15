@@ -17,14 +17,7 @@ function Index() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [imagedataPreview, setImageDataPreview] = useState(null);
-    const [formData, setFormData] = useState({
-        rollNo: "",
-        name: "",
-        photo: "",
-        grade: "",
-        stream: "",
-        percentage: "",
-    });
+    const[link,setLink]=useState("")
     const [listing, setListing] = useState([]);
     const [loading, setLoading] = useState(false);
     const [deltedata, setDelete] = useState("");
@@ -39,6 +32,10 @@ function Index() {
             setImagePreview(URL.createObjectURL(file));
             uploadImage(file);
         }
+    };
+    const handleChange = (e) => {
+        const { value } = e.target;
+        setLink(value);
     };
     const handleDeleteClose = () => {
         setIsDeleteOpen(false);
@@ -101,6 +98,7 @@ function Index() {
         setLoading(true);
         const record = new FormData();
         record.append("image", imagePreview);
+        record.append("link",link)
         try {
             const main = new Details();
             const response = await main.sisterschoolsAdd(record);
@@ -123,10 +121,6 @@ function Index() {
             setLoading(false);
         }
     };
-
-
-
-
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -239,6 +233,17 @@ function Index() {
                                         }
 
                                     </div>
+                                    <div>
+                                    <label className="block text-sm font-medium text-[#212121]">Link</label>
+                                    <input
+                                        type="text"
+                                        name="qualification"
+                                        value={link}
+                                        onChange={handleChange}
+                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-[#0367F7] outline-0"
+                                        required
+                                    />
+                                </div>
                                     <div className="flex justify-end">
                                         <button
                                             type="submit"

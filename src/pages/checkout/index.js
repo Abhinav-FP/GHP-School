@@ -85,6 +85,11 @@ export default function Index() {
   const CurrentDate = new Date();
 
   const handleSubmit = async () => {
+    if(totalPrice === 0)
+      {
+        toast.error("Amount can't be 0!")
+        return;
+      }
     setLoading(true);
     const main = new Details();
     const record = new FormData();
@@ -106,7 +111,8 @@ export default function Index() {
             localStorage.setItem("response", JSON.stringify(response));
             saveUserData(response.razorpay_payment_id, totalPrice)
             savePaymentDetails(response.razorpay_order_id, response.razorpay_payment_id, "success"); // Pass 'success'
-            router.push(`success/${response.razorpay_payment_id}`)
+      router.push(`/success/${response.razorpay_payment_id}`)
+         
           },
           prefill: {
             name: "Customer Name",
@@ -128,7 +134,7 @@ export default function Index() {
           const paymentId = error?.metadata?.payment_id;
           if (orderId && paymentId) {
             savePaymentDetails(orderId, paymentId, "failed");
-            // router.push(`cancel/${paymentId}`)
+            router.push(`/cancel/${paymentId}`)
              // Pass 'failed'
           } else {
             console.error("Failed to retrieve Razorpay order or payment ID");
@@ -160,6 +166,7 @@ export default function Index() {
       formdata.append("product_name", itemNames);
       formdata.append("payment_status", payment_status); // Include payment status
       const response = await main.PaymentSave(formdata);
+
       if (response?.data?.status) {
         toast.success(response.data.message);
       } else {
