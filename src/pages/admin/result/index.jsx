@@ -294,17 +294,7 @@ function Index() {
                                             <option value="" disabled>
                                                 Select Class
                                             </option>
-                                            <option value="I">I</option>
-                                            <option value="II">II</option>
-                                            <option value="III">III</option>
-                                            <option value="IV">IV</option>
-                                            <option value="V">V</option>
-                                            <option value="VI">VI</option>
-                                            <option value="VII">VII</option>
-                                            <option value="VIII">VIII</option>
-                                            <option value="IX">IX</option>
                                             <option value="X">X</option>
-                                            <option value="XI">XI</option>
                                             <option value="XII">XII</option>
                                         </select>
                                     </div>
