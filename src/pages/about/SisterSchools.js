@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Details from "../api/admin/Details";
 
 export default function SisterSchools() {
   const images = [
@@ -25,6 +26,33 @@ export default function SisterSchools() {
       imgsrc: "/About/School5.png",
     },
   ];
+  const [listing, setLisitng] = useState("");
+  const [Loading, setLoading] = useState(false);
+  const [count,setCount]=useState(0);
+  const principle = () => {
+    setLoading(true);
+    const main = new Details();
+    main
+      .sisterschoolsGet()
+      .then((r) => {
+        setLoading(false);
+        setLisitng(r?.data?.data);
+      })
+      .catch((err) => {
+        setLoading(false);
+        setLisitng([]);
+        console.log("error", err);
+        setCount(count+1);
+        if(count<=2)
+          {
+            principle();
+          }
+      });
+  };
+
+  useEffect(() => {
+    principle();
+  }, []);
   return (
     <div className="bg-white py-[50px] mt:py-[70px] lg:py-[100px]" id="sisterSchools">
       <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto">
@@ -34,17 +62,17 @@ export default function SisterSchools() {
             sister schools and colleges in Powai, Mumbai
           </h2>
           <div className="flex  flex-wrap -mx-2 -lg:mx-5 justify-center">
-            {images &&
-              images.map((item, index) => (
+            {listing &&
+              listing.map((item, index) => (
                 <div
                   key={index}
                   className="w-full sm:w-6/12 lg:w-4/12 px-2 lg:px-5 mb-4 lg:mb-10"
                 >
                   <a target="blank" href={item?.link} className="bg-white flex items-center justify-center">
                     <Image
-                      blurDataURL={`${item?.imgsrc}?q=1`}
+                      blurDataURL={`${item?.image}?q=1`}
                       placeholder="blur"
-                      src={item?.imgsrc}
+                      src={item?.image}
                       className=""
                       height={212}
                       width={348}

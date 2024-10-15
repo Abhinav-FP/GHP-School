@@ -4,7 +4,8 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Details from "../api/admin/Details";
 
 export default function Sports() {
   const slides = [
@@ -12,6 +13,33 @@ export default function Sports() {
     { bgImage: "/Facilities/Sports2.JPG" },
     { bgImage: "/Facilities/Sports3.JPG" },
   ];
+  const [listing, setLisitng] = useState("");
+  const [Loading, setLoading] = useState(false);
+  const [count,setCount]=useState(0);
+  const principle = () => {
+    setLoading(true);
+    const main = new Details();
+    main
+      .sportsGet()
+      .then((r) => {
+        setLoading(false);
+        setLisitng(r?.data?.sport);
+      })
+      .catch((err) => {
+        setLoading(false);
+        setLisitng([]);
+        console.log("error", err);
+        setCount(count+1);
+        if(count<=2)
+          {
+            principle();
+          }
+      });
+  };
+
+  useEffect(() => {
+    principle();
+  }, []);
 
   return (
     <div className="bg-white pb-[40px] md:pb-[80px] lg:pb-[100px]" id="sports">
@@ -44,16 +72,16 @@ export default function Sports() {
               navigation={true} // Enable navigation
               modules={[Autoplay, Pagination, Navigation]}
             >
-              {slides &&
-                slides.map((item, index) => (
+              {listing &&
+                listing.map((item, index) => (
                   <SwiperSlide
                     className="!h-[250px] sm:!h-[300px] lg:!h-[470px]"
                     key={index}
                   >
                     <Image
-                      blurDataURL={`${item?.bgImage}?q=1`}
+                      blurDataURL={`${item?.image}?q=1`}
                       placeholder="blur"
-                      src={item?.bgImage}
+                      src={item?.image}
                       alt="Sports"
                       objectFit="cover"
                       className="object-cover w-full !h-full"
