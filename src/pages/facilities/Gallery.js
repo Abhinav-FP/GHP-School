@@ -11,6 +11,7 @@ export default function Gallery() {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [count, setCount] = useState(0);
 
   // Fetch all gallery items
   const getGallery = () => {
@@ -26,6 +27,9 @@ export default function Gallery() {
         setLoading(false);
         setLisitng([]);
         console.log("error", err);
+        if (count <= 2) {
+          getGallery();
+        }
       });
   };
 
@@ -49,7 +53,7 @@ export default function Gallery() {
   useEffect(() => {
     getGallery(); // Fetch all gallery items on mount
   }, []);
-  console.log("listing",listing);
+  console.log("data", data);
 
   const handleImageClick = (name) => {
     getGallerybyCategory(name); // Fetch images by category when clicked
@@ -83,37 +87,39 @@ export default function Gallery() {
           School.
         </p>
 
-       { loading ? <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+        {loading ? (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
             {/* {[...Array(6)].map((_, index) => (
                 <div className="bg-gray-100 animate-pulse p-6 w-full h-[280px]"></div>
             ))} */}
-        </div>
-        :
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
-          {listing &&
-            listing.map((item, index) => (
-              <div
-                key={index}
-                className="relative w-full overflow-hidden h-full"
-                onClick={() => handleImageClick(item?.caption)}
-              >
-                <Image
-                  blurDataURL={`${item?.url}?q=1`}
-                  placeholder="blur"
-                  width={387}
-                  height={310}
-                  src={item?.url}
-                  alt={item?.caption}
-                  className="object-cover w-full h-full"
-                  loading="lazy"
-                />
-                <div className="galleryBg absolute bottom-0 left-0 h-full w-full z-0"></div>
-                <h3 className="capitalize absolute bottom-4 left-6 right-6 text-white z-10 merriweather-font font-normal text-xl lg:text-2xl">
-                  {item?.caption.replace("-", " ")}
-                </h3>
-              </div>
-            ))}
-        </div>}
+          </div>
+        ) : (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+            {listing &&
+              listing.map((item, index) => (
+                <div
+                  key={index}
+                  className="relative w-full overflow-hidden h-full cursor-pointer"
+                  onClick={() => handleImageClick(item?.caption)}
+                >
+                  <Image
+                    blurDataURL={`${item?.url}?q=1`}
+                    placeholder="blur"
+                    width={387}
+                    height={310}
+                    src={item?.url}
+                    alt={item?.caption}
+                    className="object-cover w-full h-full"
+                    loading="lazy"
+                  />
+                  <div className="galleryBg absolute bottom-0 left-0 h-full w-full z-0"></div>
+                  <h3 className="capitalize absolute bottom-4 left-6 right-6 text-white z-10 merriweather-font font-normal text-xl lg:text-2xl">
+                    {item?.caption.replace("-", " ")}
+                  </h3>
+                </div>
+              ))}
+          </div>
+        )}
 
         {/* Modal */}
         {showModal && data.length > 0 && (
@@ -141,11 +147,15 @@ export default function Gallery() {
                 className="max-w-full max-h-full"
                 loading="lazy"
               />
+              <div className="absolute bottom-6 left-0 text-white text-lg font-bold z-10">
+                <p className="px-4 py-2 inline-block rounded">
+                  {data[currentImageIndex]?.description}
+                </p>
+              </div>
               <button
                 className="absolute right-4 top-[50%] transform -translate-y-1/2 text-white z-10"
                 onClick={handleNext}
               >
-                
                 <GrNext size={20} />
               </button>
             </div>
