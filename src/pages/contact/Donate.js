@@ -90,7 +90,7 @@ function Donate() {
                   <p className="text-[#EE834E] text-lg lg:text-xl tracking-[-0.04em] uppercase mb-4 lg:mb-5">
                     AMOUNT : {formatMultiPrice(item?.price) || 0}
                   </p>
-                  <p className="text-[#666666] font-medium text-base gotham-font mb-1.5 tracking-[-0.04em] mb-5 md:mb-6 lg:mb-[30px]  min-h-[107px]">
+                  <p className="text-[#666666] font-medium text-base gotham-font mb-1.5 tracking-[-0.04em] mb-5 md:mb-6 lg:mb-[30px]  sm:min-h-[107px]">
                     {item.description}
                   </p>
                 </div>

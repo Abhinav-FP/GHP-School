@@ -2,10 +2,10 @@ import React from 'react'
 
 export default function Vision() {
   return (
-    <div className="bg-white py-[50px] md:py-[70px] lg:py-[100px]">
+    <div className="bg-white py-[50px] md:py-[70px] lg:py-[100px]" id="vision" >
         <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto">
           <div className="flex flex-wrap">
-            <div id="vision" className="w-full md:w-1/2 bg-[#EE843E] px-[30px] lg:px-[40px] py-10 md:py-16">
+            <div className="w-full md:w-1/2 bg-[#EE843E] px-[30px] lg:px-[40px] py-10 md:py-16">
               <h2 className="merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-2 text-[#1E1E1E]  tracking-[-0.04em] mb-2">Vision</h2>
               <h3 className="text-black text-xl lg:text-2xl merriweather-font tracking-[-0.04em] font-normal mb-1.5 lg:mb-2.5">“Steadfast in faith” </h3>
               <p className="tracking-[-0.04em] gotham-font text-white text-base font-medium ">We aim to rise above the ordinary by developing education which can transform lives and communities. Our school is a place of excellence where children can achieve full potential in their academic, creative, personal, physical, moral and spiritual development.</p>

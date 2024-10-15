@@ -3,7 +3,8 @@ import Details from "../api/admin/Details";
 
 export default function Faculty() {
   const [Teachers, setTeachers] = useState([])
-  const [Loading, setLoading] = useState(false)
+  const [Loading, setLoading] = useState(false);
+  const [count,setCount]=useState(0);
   const getFacilities = () => {
     setLoading(true);
     const main = new Details();
@@ -17,6 +18,11 @@ export default function Faculty() {
         setLoading(false);
         setTeachers([]);
         console.log("error", err);
+        setCount(count+1);
+        if(count<=2)
+          {
+            getFacilities();
+          }
       });
   };
 

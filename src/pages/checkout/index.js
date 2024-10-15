@@ -236,7 +236,15 @@ export default function Index() {
                       type="text"
                       name="contactNumber"
                       value={formData.contactNumber}
-                      onChange={handleChange}
+                      onChange={(e) => {
+                        if (
+                          e.target.value.length <= 10 &&
+                          /^[0-9]*$/.test(e.target.value)
+                        ) {
+                          handleChange(e);
+                        }
+                      }
+                    }
                       className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
                     />
                   </div>

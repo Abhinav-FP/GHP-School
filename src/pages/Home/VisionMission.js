@@ -13,7 +13,7 @@ export default function VisionMission() {
       heading: "Vision",
       text: "The School’s vision is to provide a learning environment that encourages children to bring out the best in themselves and which supports their all-round development, through discovering the joy of learning, awakening and illuminating their intellect in multi-dimensional ways, and instilling abiding values in themselves.",
       btnText: "About Us ",
-      to:"/about#vision",
+      to:"/about",
       imgsrc: Vision,
     },
     {

@@ -197,7 +197,15 @@ export default function JoinTeam() {
                     type="tel"
                     name="contactNo"
                     value={formData.contactNo}
-                    onChange={handleChange}
+                    onChange={(e) => {
+                      if (
+                        e.target.value.length <= 10 &&
+                        /^[0-9]*$/.test(e.target.value)
+                      ) {
+                        handleChange(e);
+                      }
+                    }
+                  }
                     className="border border-black border-opacity-10 px-3.5 py-2 w-full appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
                     required
                   />
