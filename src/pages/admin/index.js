@@ -7,13 +7,14 @@ import AdminLayout from "@/layout/AdminLayout";
 import Dashboard from "./dashboard/index"
 import { RiDeleteBinLine } from "react-icons/ri";
 import toast from "react-hot-toast";
+import Banner from "./banner";
 
 export default function Index() {
 
 
   return (
     <AdminLayout>
-      <Dashboard />
+      <Banner />
     </AdminLayout>
   );
 }

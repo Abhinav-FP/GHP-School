@@ -53,7 +53,7 @@ function SideBarAdmin() {
                         </Link>
                     </li> */}
                     <li>
-                        <Link href="/admin/banner"
+                        <Link href="/admin"
                             className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium hover:text-[#EE834E] ${pathname === "/admin/banner" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
                         >
                             <GiKnightBanner size={24} className="inline align-middle mr-[4px]" />

@@ -26,7 +26,7 @@ export default function VisionMission() {
     {
       heading: "Facilities",
       text: "Bal Vishwa Bharti School offers state-of-the-art classrooms, well-equipped science and computer labs, and a resource-rich library to foster academic excellence. The School Hall can accommodate 520 people.",
-      btnText: "View more",
+      btnText: "View More",
       to:"/facilities",
       imgsrc: Facilities,
     },

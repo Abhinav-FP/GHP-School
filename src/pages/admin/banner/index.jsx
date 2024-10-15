@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 import NoData from "../Component/NoData";
 import Delete from "./Delete";
 import AdminLayout from "@/layout/AdminLayout";
-function Index() {
+function Banner() {
     const [isOpen, setIsOpen] = useState(false);
     const [listing, setLisitng] = useState([])
     const [Loading, setLoading] = useState(false)
@@ -253,4 +253,4 @@ function Index() {
     </>);
 }
 
-export default Index;
+export default Banner;
