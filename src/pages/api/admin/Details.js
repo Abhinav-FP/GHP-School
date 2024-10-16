@@ -195,6 +195,9 @@ class Details extends Component {
   async  galleryAdd(data) {
     return Api.post(`/facilities/gallery/add`, data);
   }
+  async  galleryDelete(data) {
+    return Api.post(`/facilities/gallery/delete`, data);
+  }
   
 
   async admissionGet() {

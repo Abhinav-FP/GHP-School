@@ -143,7 +143,7 @@ export default function Gallery() {
                 className="max-w-full max-h-full"
                 loading="lazy"
               />
-              <div className="absolute bottom-6 left-0 text-white text-xl font-semibold z-10">
+              <div className="gallery-text absolute p-[15px] sm:p-[30px] w-full bottom-0 left-0 text-white capitalize text-lg sm:text-xl font-semibold z-10">
                 <p className="px-4 py-2 inline-block rounded">
                   {data[currentImageIndex]?.description}
                 </p>

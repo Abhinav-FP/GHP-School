@@ -9,14 +9,15 @@ import careerbg from "../../../../public/Career/careerbg.jpg";
 import Modal from "../Component/Modal";
 import Image from "../Component/Image";
 import AdminLayout from "@/layout/AdminLayout";
+import { IoIosArrowRoundBack } from "react-icons/io";
+import { FaRegTrashCan } from "react-icons/fa6";
 
 function Index() {
   const [listing, setLisitng] = useState([]);
-  const [data, setData] = useState([]); // Holds images fetched by category
   const [loading, setLoading] = useState(false);
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [currentGallery, setCurrentGallery] = useState([]);
-    const [showModal, setShowModal] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentGallery, setCurrentGallery] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [imagedataPreview, setImageDataPreview] = useState(null);
@@ -36,25 +37,18 @@ function Index() {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [data, setData] = useState([]); // Holds images fetched by category
+
   const [index, setIndex] = useState(0);
 
   const getGallery = () => {
     setLoading(true);
     const main = new Details();
     main
-      .admingallery()
+      .getGallery()
       .then((r) => {
         setLoading(false);
         setLisitng(r?.data?.data); // Changed `setLisitng` to `setListing`
-        // if (r && r.data && r.data.data) {
-        //     let arr = [];
-        //     r.data.data.forEach((item) => {
-        //         arr.push(item.title);
-        //         console.log(item.title);
-        //     });
-        //     console.log("folders", arr);
-        //     setFolders(arr || []);
-        // }
       })
       .catch((err) => {
         setLoading(false);
@@ -63,27 +57,28 @@ function Index() {
       });
   };
 
+  // Fetch images by category
+  const getGallerybyCategory = (name) => {
+    const main = new Details();
+    main
+      .getGallerybyCategory(name)
+      .then((r) => {
+        setLoading(false);
+        setData(r?.data?.data); // Save fetched images in `data`
+        setShowModal(true); // Only show modal after data is fetched
+        setCurrentImageIndex(0); // Reset image index to 0
+      })
+      .catch((err) => {
+        setData([]);
+        console.log("error", err);
+      });
+  };
+
   useEffect(() => {
     getGallery(); // Fetch all gallery items on mount
   }, []);
-
-  const handleImageClick = (images, index) => {
-    setCurrentGallery(images); // Set the clicked gallery's images
-    setCurrentImageIndex(index); // Set the current image index
-    setShowModal(true); // Show the modal
-};
-
-const handleNext = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % currentGallery.length); // Loop forward through images
-};
-
-const handlePrevious = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + currentGallery.length) % currentGallery.length); // Loop backward through images
-};
-
-const closeModal = () => {
-    setShowModal(false); // Close modal
-};
+  console.log("data", data);
+  console.log("listing", listing);
 
   const [isOpen, setIsOpen] = useState(false);
   const handleClose = () => {
@@ -96,6 +91,21 @@ const closeModal = () => {
       setSelectedImage(file);
       setImagePreview(URL.createObjectURL(file));
       uploadImage(file); // Pass the file directly here
+    }
+  };
+  const handleDelete = async (id) => {
+    try {
+      const main = new Details();
+      const response = await main.galleryDelete(id);
+      if (response?.data?.status) {
+        toast.success(response.data.message);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.log("error", error);
+      // alert(error?.response?.data?.message || "An error occurred");
+      toast.error(error?.response?.data?.message || "An error occurred");
     }
   };
 
@@ -172,126 +182,116 @@ const closeModal = () => {
     }
   };
 
-
-  const [showDetail, setShowDetail] = useState(false)
-  const handleGalleryClick = (e) => { 
-    setSelectedFolder(e);
-    setShowDetail(e)
-  } 
-
-
-  const [currentImage, setCurrentImage] = useState(0);
-  const [viewImage, setViewImage] = useState(null);
-
-  const OPENMODAL = () => {
-    const images = setSelectedFolder;
-    const handleNext = () => {
-        console.log("images",images)
-        setCurrentImage(images[1])
-    };
-    
-    const handlePrevious = () => {
-        console.log("images",images)
-        setCurrentImage(images[0])
-    };
-    
-    return <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
-        <div className="relative w-full h-full flex justify-center items-center">
-        <button
-            className="absolute top-4 right-4 text-white z-10"
-            onClick={closeModal}
-        >
-            <IoMdClose size={24} />
-        </button>
-        <button
-            className="absolute left-4 top-[50%] transform -translate-y-1/2 text-white z-10"
-            onClick={handlePrevious}>
-            <GrPrevious size={24} />
-        </button>
-        <Image
-            src={currentImage.url}
-            alt={currentImage.name}
-            className="max-w-full max-h-full object-contain"
-        />
-        <button
-            className="absolute right-4 top-[50%] transform -translate-y-1/2 text-white z-10"
-            onClick={handleNext}
-        >
-            <GrNext size={20} />
-        </button>
-        </div>
-    </div>
-  }
-
-
-  const GALLERYDETAI = () => { 
-    const images = selectedFolder 
-    return <>
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-5">
-        {images && images.map((m, i)=> {
-            return <img key={i} src={m.url} className="w-100 h-200"/>
-        })}
-    </div>
-    <OPENMODAL />
-    </>
-  }
+  const handleGalleryClick = (caption) => {
+    console.log("clicked", caption);
+    getGallerybyCategory(caption);
+  };
   return (
     <>
       <AdminLayout>
         <div className="md:flex flex-wrap bg-[#F5F6FB] listings-start">
           <SideBarAdmin />
-          <div className="w-full lg:ml-[304px] lg:w-[calc(100%-304px)]">
-            <Header title={"Gallery"} />
-            <div className="px-4 py-2 lg:px-10 lg:py-2.5">
+          {showModal ? (
+            <div className="w-full lg:ml-[304px] lg:w-[calc(100%-304px)]">
               <div className="bg-white rounded-[20px] mb-[30px]">
                 <div className="py-3 py-4 lg:py-[23px] px-4 md:px-6 lg:px-10 flex flex-wrap justify-between items-center border-b border-black  border-opacity-10">
-                  <h3 className=" text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">
-                    Gallery{" "}
+                  <h3 className="flex gap-3 items-center capitalize text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">
+                    <span
+                      className="cursor-pointer"
+                      onClick={() => setShowModal(false)}
+                    >
+                      <IoIosArrowRoundBack size={40} />
+                    </span>
+                    {data[0]?.caption}
                   </h3>
-                  <button
-                    onClick={() => setIsOpen(true)}
-                    className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150"
-                  >
-                    Add New Gallery
-                  </button>
                 </div>
               </div>
               <div className="bg-white rounded-[20px] mb-[30px]">
                 <div className="py-3 lg:py-[23px] px-4 md:px-6 lg:px-10 flex flex-wrap justify-between listings-center border-b border-black border-opacity-10">
-                  { selectedFolder ? <GALLERYDETAI  />
-                  :
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-5">
-                    {listing &&
-                      listing.map((item, index) => (
+                    {data &&
+                      data.map((item, index) => (
                         <div
                           key={index}
                           className="relative w-full overflow-hidden cursor-pointer"
-                          onClick={() => handleGalleryClick(item.images)}>
+                          // onClick={() => handleGalleryClick(item?.caption)}
+                        >
                           <Image
-                            blurDataURL={`${
-                              item?.images[0]?.url || careerbg
-                            }?q=1`}
+                            blurDataURL={`${item?.url || careerbg}?q=1`}
                             placeholder="blur"
                             width={387}
                             height={310}
-                            src={item?.images[0]?.url || careerbg}
-                            alt={item?.images[0]?.name}
+                            src={item?.url || careerbg}
+                            alt={item?.name}
                             className="object-cover"
                             loading="lazy"
                           />
                           <div className="galleryBg absolute bottom-0 left-0 h-full w-full z-0"></div>
-                          <h3 className="capitalize absolute bottom-4 left-6 right-6 text-white z-10 merriweather-font font-normal text-xl lg:text-2xl">
-                            {item?.title ? item?.title.replace("-", " ") : ""}
-                          </h3>
+
+                          {/* Trash icon */}
+                          <div
+                            className="absolute top-2 right-2 z-10 cursor-pointer bg-white "
+                            onClick={() => handleDelete(item?._id)}
+                          >
+                            <span className="p-1">
+                            <FaRegTrashCan size={20} color="#FF0000"/>
+                            </span>
+                          </div>
                         </div>
                       ))}
-                  </div>}
-
-                  
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="w-full lg:ml-[304px] lg:w-[calc(100%-304px)]">
+              <Header title={"Gallery"} />
+              <div className="px-4 py-2 lg:px-10 lg:py-2.5">
+                <div className="bg-white rounded-[20px] mb-[30px]">
+                  <div className="py-3 py-4 lg:py-[23px] px-4 md:px-6 lg:px-10 flex flex-wrap justify-between items-center border-b border-black  border-opacity-10">
+                    <h3 className=" text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">
+                      Gallery{" "}
+                    </h3>
+                    <button
+                      onClick={() => setIsOpen(true)}
+                      className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150"
+                    >
+                      Add New Gallery
+                    </button>
+                  </div>
+                </div>
+                <div className="bg-white rounded-[20px] mb-[30px]">
+                  <div className="py-3 lg:py-[23px] px-4 md:px-6 lg:px-10 flex flex-wrap justify-between listings-center border-b border-black border-opacity-10">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-5">
+                      {listing &&
+                        listing.map((item, index) => (
+                          <div
+                            key={index}
+                            className="relative w-full overflow-hidden cursor-pointer"
+                            onClick={() => handleGalleryClick(item?.caption)}
+                          >
+                            <Image
+                              blurDataURL={`${item?.url || careerbg}?q=1`}
+                              placeholder="blur"
+                              width={387}
+                              height={310}
+                              src={item?.url || careerbg}
+                              alt={item?.name}
+                              className="object-cover"
+                              loading="lazy"
+                            />
+                            <div className="galleryBg absolute bottom-0 left-0 h-full w-full z-0"></div>
+                            <h3 className="capitalize absolute bottom-4 left-6 right-6 text-white z-10 merriweather-font font-normal text-xl lg:text-2xl">
+                              {item?.title ? item?.title.replace("-", " ") : ""}
+                            </h3>
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
 
           {isOpen && (
             <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
