@@ -22,7 +22,7 @@ export default function Directors() {
         setCount(count+1);
         if(count<=2)
           {
-            principle();
+            director();
           }
       });
   };

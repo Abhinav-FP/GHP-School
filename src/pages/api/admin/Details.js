@@ -148,6 +148,9 @@ class Details extends Component {
   async donationget() {
     return Api.get(`/donation/get/`);
   }
+  async getInvoice(data) {
+    return Api.get(`/donation/invoice/get/${data}`);
+  }
   async vacancyGet() {
     return Api.get(`/career/vacancy/get`);
   }
