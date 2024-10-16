@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { formatMultiPrice } from "@/hooks/ValueData";
-import { removeItem } from "@/redux/cartSlice";
+import {clearCart, removeItem } from "@/redux/cartSlice";
 import Details from "../api/admin/Details";
 import { useRazorpay, RazorpayOrderOptions } from "react-razorpay";
 import { useRouter } from "next/router";
@@ -22,20 +22,19 @@ export default function Index() {
     return sum + Number(item?.price * item?.quantity);
   }, 0);
 
-  const itemNames = cartItemsRedux.map(item => item.name);
-
+  const itemNames = cartItemsRedux.map((item) => item.name);
 
   // Form state
   const [formData, setFormData] = useState({
-    fullName: '',
-    contactNumber: '',
+    fullName: "",
+    contactNumber: "",
     aadhaarCard: null,
     panCard: null,
-    emailAddress: '',
+    emailAddress: "",
   });
 
   const handleUpload = async (event) => {
-    ("event", event);
+    "event", event;
     let name = event.target.name;
     let file = event.target.files[0];
     if (!file) {
@@ -66,7 +65,7 @@ export default function Index() {
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
 
-    if (type === 'file') {
+    if (type === "file") {
       setFormData({
         ...formData,
         [name]: files[0], // for file inputs, we use files[0] to get the first selected file
@@ -86,11 +85,20 @@ export default function Index() {
   const CurrentDate = new Date();
 
   const handleSubmit = async () => {
-    if(totalPrice === 0)
-      {
-        toast.error("Amount can't be 0!")
-        return;
-      }
+    if (totalPrice === 0) {
+      toast.error("Amount can't be 0!");
+      return;
+    }
+    if (
+      formData?.fullName === "" ||
+      formData?.contactNumber === "" ||
+      formData?.aadhaarCard === null ||
+      formData?.panCard === null ||
+      formData?.emailAddress === ""
+    ) {
+      toast.error("Please fill the complete form");
+      return;
+    }
     setLoading(true);
     const main = new Details();
     const record = new FormData();
@@ -110,10 +118,14 @@ export default function Index() {
           handler: function (response) {
             toast.success("Payment Successful");
             localStorage.setItem("response", JSON.stringify(response));
-            saveUserData(response.razorpay_payment_id, totalPrice)
-            savePaymentDetails(response.razorpay_order_id, response.razorpay_payment_id, "success"); // Pass 'success'
-      router.push(`/success/${response.razorpay_payment_id}`)
-         
+            saveUserData(response.razorpay_payment_id, totalPrice);
+            savePaymentDetails(
+              response.razorpay_order_id,
+              response.razorpay_payment_id,
+              "success"
+            ); // Pass 'success'
+            router.push(`/success/${response.razorpay_payment_id}`);
+            dispatch(clearCart());
           },
           prefill: {
             name: "Customer Name",
@@ -135,8 +147,8 @@ export default function Index() {
           const paymentId = error?.metadata?.payment_id;
           if (orderId && paymentId) {
             savePaymentDetails(orderId, paymentId, "failed");
-            router.push(`/cancel/${paymentId}`)
-             // Pass 'failed'
+            router.push(`/cancel/${paymentId}`);
+            // Pass 'failed'
           } else {
             console.error("Failed to retrieve Razorpay order or payment ID");
           }
@@ -152,7 +164,6 @@ export default function Index() {
       setLoading(false);
     }
   };
-
 
   const savePaymentDetails = async (orderId, paymentId, payment_status) => {
     setLoading(true);
@@ -180,7 +191,7 @@ export default function Index() {
     }
   };
 
-  const saveUserData = async(paymentId, price) => {
+  const saveUserData = async (paymentId, price) => {
     try {
       const main = new RenderDetails();
       const data = new FormData();
@@ -193,16 +204,19 @@ export default function Index() {
       data.append("payment_id", paymentId);
       const response = await main.donationUserAdd(data);
       if (response?.data?.status) {
-        toast.success(response.data.message);
+        // toast.success(response.data.message);
+        console.log("Render api success",response.data.message)
       } else {
-        toast.error(response.data.message);
+        // toast.error(response.data.message);
+        console.log("Render api error",response.data.message)
       }
     } catch (error) {
-      toast.error(error?.response?.data?.data?.message || "An error occurred");
+      // toast.error(error?.response?.data?.data?.message || "An error occurred");
+      console.log("Render api error",error?.response?.data?.data?.message)
     } finally {
       setLoading(false);
-    }    
-  }
+    }
+  };
 
   return (
     <Layout>
@@ -244,8 +258,7 @@ export default function Index() {
                         ) {
                           handleChange(e);
                         }
-                      }
-                    }
+                      }}
                       className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
                     />
                   </div>
@@ -335,7 +348,9 @@ export default function Index() {
                               </div>
                               <div className="w-[calc(100%-71px)] lg:w-[calc(100%-91px)] max-w-[179px] pl-2.5 tracking-[-0.04em] text-[#1E1E1E] font-medium merriweather-font font-normal text-base md:text-lg lg:text-xl">
                                 {item.name}
-                                <button onClick={() => handleRemove(item.id)}>Remove</button>
+                                <button onClick={() => handleRemove(item.id)}>
+                                  Remove
+                                </button>
                               </div>
                             </div>
                           </td>
