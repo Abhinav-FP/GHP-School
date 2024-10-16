@@ -11,6 +11,7 @@ import Image from "../Component/Image";
 import AdminLayout from "@/layout/AdminLayout";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { FaRegTrashCan } from "react-icons/fa6";
+import toast from "react-hot-toast";
 
 function Index() {
   const [listing, setLisitng] = useState([]);
@@ -93,12 +94,15 @@ function Index() {
       uploadImage(file); // Pass the file directly here
     }
   };
-  const handleDelete = async (id) => {
+  const handleDelete = async (item) => {
     try {
       const main = new Details();
-      const response = await main.galleryDelete(id);
+      const record = new FormData();
+    record.append("id", item?._id);      
+      const response = await main.galleryDelete(record);
       if (response?.data?.status) {
         toast.success(response.data.message);
+        getGallerybyCategory(item?.caption);
       } else {
         toast.error(response.data.message);
       }
@@ -230,12 +234,10 @@ function Index() {
 
                           {/* Trash icon */}
                           <div
-                            className="absolute top-2 right-2 z-10 cursor-pointer bg-white "
-                            onClick={() => handleDelete(item?._id)}
+                            className="absolute top-0 right-0 z-10 cursor-pointer bg-white"
+                            onClick={() => handleDelete(item)}
                           >
-                            <span className="p-1">
-                            <FaRegTrashCan size={20} color="#FF0000"/>
-                            </span>
+                            <FaRegTrashCan size={22} color="#FF0000"/>
                           </div>
                         </div>
                       ))}
@@ -282,7 +284,7 @@ function Index() {
                             />
                             <div className="galleryBg absolute bottom-0 left-0 h-full w-full z-0"></div>
                             <h3 className="capitalize absolute bottom-4 left-6 right-6 text-white z-10 merriweather-font font-normal text-xl lg:text-2xl">
-                              {item?.title ? item?.title.replace("-", " ") : ""}
+                              {item?.caption ? item?.caption.replace("-", " ") : ""}
                             </h3>
                           </div>
                         ))}
