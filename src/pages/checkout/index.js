@@ -9,6 +9,7 @@ import { useRazorpay, RazorpayOrderOptions } from "react-razorpay";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import axios from "axios";
+import RenderDetails from "../api/render/RenderDetails";
 export default function Index() {
   const router = useRouter();
   const { error, isLoading, Razorpay } = useRazorpay();
@@ -181,7 +182,7 @@ export default function Index() {
 
   const saveUserData = async(paymentId, price) => {
     try {
-      const main = new Details();
+      const main = new RenderDetails();
       const data = new FormData();
       data.append("name", formData?.fullName);
       data.append("number", formData?.contactNumber);
