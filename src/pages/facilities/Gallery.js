@@ -87,8 +87,8 @@ export default function Gallery() {
   };
 
   return (
-    <div className="bg-white pb-[40px] md:pb-[80px] lg:pb-[100px]">
-      <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto" id="activities">
+    <div className="bg-white pb-[40px] md:pb-[80px] lg:pb-[100px]" id="activities">
+      <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto">
         <h2 className="merriweather-font font-normal text-2xl md:text-3xl lg:text-4xl mb-2.5 text-[#1E1E1E] tracking-[-0.04em] text-center">
           Gallery
         </h2>
@@ -134,7 +134,7 @@ export default function Gallery() {
                 <GrPrevious size={24} />
               </button>
               <Image
-                blurDataURL={`${data[currentImageIndex]?.url}?q=1`}
+                blurDataURL={`${data[currentImageIndex]?.url}?q=40`}
                 placeholder="blur"
                 src={data[currentImageIndex]?.url}
                 alt={data[currentImageIndex]?.caption}

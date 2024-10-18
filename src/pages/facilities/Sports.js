@@ -23,7 +23,7 @@ export default function Sports() {
       .sportsGet()
       .then((r) => {
         setLoading(false);
-        setLisitng(r?.data?.sport);
+        setLisitng([...r?.data?.sport, ...r?.data?.sport,...r?.data?.sport,...r?.data?.sport,...r?.data?.sport,]);
       })
       .catch((err) => {
         setLoading(false);
