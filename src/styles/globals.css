@@ -288,3 +288,23 @@ html{
 .gallery-text{
   background: linear-gradient(0deg, rgb(0 0 0 / 81%) 30%, rgba(0, 212, 255, 0) 100%)
 }
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  animation: shimmer 1.5s infinite;
+  background: linear-gradient(
+    to right,
+    #e0e0e0 0%,
+    #f7f7f7 20%,
+    #e0e0e0 40%,
+    #e0e0e0 100%
+  );
+  background-size: 1000px 100%;
+}
