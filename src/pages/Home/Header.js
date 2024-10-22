@@ -355,34 +355,46 @@ export default function Header() {
             {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
             <Link
               href="/about"
-              className="capitalize px-3 py-2 block text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]"
+              className={
+                "capitalize px-3 py-2 block text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] " +
+                (url === "/about" ? "text-[#EE834E]" : "text-[#1E1E1E]")
+              }
             >
               About
             </Link>
             <Link
               href="/academics"
               className={
-                "capitalize px-3 py-2 block  text-base xl:text-lg tracking-[-0.04em] font-medium  hover:text-[#0367F7]  " +
-                (url.startsWith("/subscription") ? "text-[#0367F7]" : "")
+                "capitalize px-3 py-2 block  text-base xl:text-lg tracking-[-0.04em] font-medium  hover:text-[#EE834E]  " +
+                (url === "/academics" ? "text-[#EE834E]" : "text-[#1E1E1E]")
               }
             >
               Academics
             </Link>
             <Link
               href="/facilities"
-              className="capitalize px-3 py-2 block  text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]"
+              className={
+                "capitalize px-3 py-2 block  text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] " +
+                (url === "/facilities" ? "text-[#EE834E]" : "text-[#1E1E1E]")
+              }
             >
               Facilities
             </Link>
             <Link
               href="/admissions"
-              className="capitalize px-3 py-2 block text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]"
+              className={
+                "capitalize px-3 py-2 block text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] " +
+                (url === "/admissions" ? "text-[#EE834E]" : "text-[#1E1E1E]")
+              }
             >
               Admissions
             </Link>
             <Link
               href="/contact"
-              className="capitalize px-3 py-2 block text-base xl:text-lg tracking-[-0.04em] font-medium text-black hover:text-[#0367F7]"
+              className={
+                "capitalize px-3 py-2 block text-base xl:text-lg tracking-[-0.04em] font-medium hover:text-[#EE834E] " +
+                (url === "/contact" ? "text-[#EE834E]" : "text-[#1E1E1E]")
+              }
             >
               Contact
             </Link>
