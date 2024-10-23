@@ -296,7 +296,7 @@ export default function Index() {
                       className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
                     />
                   </div>
-                  <div className="w-full">
+                  <div className="w-full hidden lg:block">
                     <button
                       onClick={handleSubmit}
                       className="button-animation  lg:w-[253px]  rounded px-8 lg:px-12 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]"
@@ -307,7 +307,7 @@ export default function Index() {
                 </div>
               </div>
             </div>
-            <div className="w-full lg:w-6/12 px-4 md:px-6 lg:px-10">
+            <div className="w-full lg:w-6/12 px-4 md:px-6 lg:px-10 mt-3 lg:mt-0">
               <div className="pt-4 lg:pt-[28px] pb-4 lg:pb-[18px]  border-b border-black border-opacity-10">
                 <h2 className="merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-0 text-[#1E1E1E]  tracking-[-0.04em]">
                   Your Sponsorships
@@ -354,10 +354,10 @@ export default function Index() {
                               </div>
                             </div>
                           </td>
-                          <td className="text-[#1E1E1E] font-medium text-base py-3.5 px-3 tracking-[-0.04em] border-b border-black border-opacity-10">
+                          <td className="tracking-[-0.04em] text-[#666666] font-noraml text-base py-3.5 px-3   border-b border-black border-opacity-10  merriweather-font">
                             {item.quantity}
                           </td>
-                          <td className="text-[#EE834E] text-right font-medium text-base py-3.5 px-3 pr-0 tracking-[-0.04em] border-b border-black border-opacity-10">
+                          <td className="text-[#EE834E] text-right font-medium text-base lg:text-xl py-3.5 px-3 pr-0 tracking-[-0.04em] border-b border-black border-opacity-10">
                             {formatMultiPrice(item.price) || 0}
                           </td>
                         </tr>
@@ -367,17 +367,25 @@ export default function Index() {
                     <tr>
                       <td
                         colSpan={2}
-                        className="text-[#1E1E1E] uppercase merriweather-font font-normal text-xl lg:text-2xl py-3.5 tracking-[-0.04em] border-b border-black border-opacity-10"
+                        className="text-[#1E1E1E] font-normal text-xl lg:text-2xl py-3.5 tracking-[-0.04em] border-b border-black border-opacity-10  merriweather-font"
                       >
                         Total
                       </td>
-                      <td className="text-[#EE834E] text-right py-3.5 px-3 pr-0 tracking-[-0.04em] text-xl lg:text-2xl border-b border-black border-opacity-10 merriweather-font">
+                      <td className="text-[#EE834E] text-right py-3.5 px-3 pr-0 tracking-[-0.04em] text-base lg:text-xl font-medium border-b border-black border-opacity-10 ">
                         {formatMultiPrice(totalPrice) || 0}
                       </td>
                     </tr>
                   </tfoot>
                 </table>
               </div>
+              <div className="w-full lg:hidden mt-6">
+                    <button
+                      onClick={handleSubmit}
+                      className="button-animation  lg:w-[253px]  rounded px-8 lg:px-12 py-2 lg:py-3.5 text-white text-base lg:text-lg font-normal tracking-[-0.04em]"
+                    >
+                      Pay Now
+                    </button>
+                  </div>
             </div>
           </div>
         </div>

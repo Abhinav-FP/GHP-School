@@ -79,7 +79,7 @@ export default function Success() {
               Download Invoice
             </a>
           ) : (
-            <p>
+            <p className='max-w-[708px] mx-auto text-[#666666] text-base font-medium gotham-font tracking-[-0.04em] mb-4 lg:mb-[28px]'>
               The invoice has not been generated yet. It will be shared with you
               via email shortly.
             </p>

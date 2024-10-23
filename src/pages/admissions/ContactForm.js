@@ -431,7 +431,7 @@ function ContactForm() {
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Scholar’s register no (official use only)
+                Scholar’s register no. <span className="lowercase">(official use only)</span>
               </label>
               <input
                 type="number"

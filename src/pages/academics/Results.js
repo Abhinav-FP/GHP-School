@@ -7,7 +7,7 @@ const ProfileCard = ({ percentage, name, imagesrc }) => {
       <Image
        blurDataURL={`${imagesrc}?q=1`}
                       placeholder="blur"
-        className="max-w-full mx-auto rounded-full h-[160px] w-[160px] lg:h-[210px] lg:w-[210px] object-cover object-top block mb-6 md:mb-8 lg:mb-10"
+        className="max-w-full mx-auto rounded-full h-[120px] w-[120px] md:h-[160px] md:w-[160px] lg:h-[210px] lg:w-[210px] object-cover object-top block mb-6 md:mb-8 lg:mb-10"
         src={imagesrc}
         alt={name}
         width={210}
@@ -17,7 +17,7 @@ const ProfileCard = ({ percentage, name, imagesrc }) => {
       <h3 className="text-[#EE834E] merriweather-font font-normal tracking-[-0.04em] text-center mb-1 text-lg md:text-xl lg:text-2xl">
         {percentage}%
       </h3>
-      <p className="text-[#1E1E1E] text-base font-medium uppercase tracking-[-0.04em]">
+      <p className="text-[#1E1E1E] text-sm md:text-base font-medium uppercase tracking-[-0.04em]">
         {name}
       </p>
     </div>
