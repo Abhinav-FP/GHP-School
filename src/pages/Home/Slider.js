@@ -89,6 +89,15 @@ export default function Slider() {
         </div>
       ) : (
         <div className="sticky top-0 lg:top-5 z-[-1]">
+            <div className="absolute h-full flex z-[2] items-center left-0 w-full top-1/2 -translate-y-1/2 sliderbg ">
+              <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
+                <h2 className="merriweather-font font-medium tracking-[-0.04em] text-center text-3xl text-white md:text-4xl lg:text-5xl mb-3">
+                Welcome to Bal Vishwa Bharti School
+                </h2>
+                <p className="max-w-[759px] mx-auto font-medium tracking-[-0.04em] text-white text-center text-sm md:text-base lg:text-xl">At Bal Vishwa Bharti School, we are committed to nurturing young minds through holistic education, fostering academic excellence, and instilling strong moral values to shape the leaders of tomorrow.
+                </p>
+              </div>
+            </div>
           <Swiper
             spaceBetween={50}
             slidesPerView={1}
@@ -128,16 +137,7 @@ export default function Slider() {
                       height="1000"
                       priority="true"
                     />
-                    <div className="absolute h-full flex items-center left-0 w-full top-1/2 -translate-y-1/2 sliderbg ">
-                      <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
-                        <h2 className="merriweather-font font-medium tracking-[-0.04em] text-center text-3xl  md:text-4xl lg:text-5xl mb-3">
-                          {slide?.heading}
-                        </h2>
-                        <p className="max-w-[759px] mx-auto font-medium tracking-[-0.04em]  text-center text-sm md:text-base lg:text-xl">
-                          {slide?.text}
-                        </p>
-                      </div>
-                    </div>
+                    
                   </div>
                 </SwiperSlide>
               ))}
@@ -149,7 +149,7 @@ export default function Slider() {
           <div className="grid gap-5 lg:gap-5 grid-cols-3 sm:grid-cols-3 md:grid-cols-3  lg:grid-cols-5 lg:flex flex-wrap justify-between ">
             {/* Item 1 */}
             <div className="flex flex-col text-white lg:min-w-[100px]">
-              <h3 className="uppercase text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
+              <h3 className="uppercase text-lg md:text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
                 520 students
               </h3>
               <p className="uppercase font-medium tracking-[-0.04em] text-sm md:text-base">
@@ -158,7 +158,7 @@ export default function Slider() {
             </div>
             {/* Item 2 */}
             <div className="flex flex-col text-white lg:min-w-[100px]">
-              <h3 className="uppercase text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
+              <h3 className="uppercase text-lg md:text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
                 100% Results
               </h3>
               <p className="uppercase font-medium tracking-[-0.04em] text-sm md:text-base">
@@ -167,7 +167,7 @@ export default function Slider() {
             </div>
             {/* Item 3 */}
             <div className="flex flex-col text-white lg:min-w-[100px]">
-              <h3 className="uppercase text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
+              <h3 className="uppercase text-lg md:text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
               800
               </h3>
               <p className="uppercase font-medium tracking-[-0.04em] text-sm md:text-base">
@@ -176,7 +176,7 @@ export default function Slider() {
             </div>
             {/* Item 4 */}
             <div className="hidden md:flex flex-col text-white lg:min-w-[100px]">
-              <h3 className="uppercase text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
+              <h3 className="uppercase text-lg md:text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
               25:1
               </h3>
               <p className="uppercase font-medium tracking-[-0.04em] text-sm md:text-base">
@@ -185,7 +185,7 @@ export default function Slider() {
             </div>
             {/* Item 5 */}
             <div className="hidden md:flex flex-col text-white lg:min-w-[100px]">
-              <h3 className="uppercase text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
+              <h3 className="uppercase text-lg md:text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
               35+
               </h3>
               <p className="uppercase font-medium tracking-[-0.04em] text-sm md:text-base">

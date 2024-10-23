@@ -115,9 +115,9 @@ export default function Donation() {
       </nav>
       <div className="w-full bg-white pb-[50px] md:pb-[70px] lg:pb-[100px]">
         <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
-          <div className="flex flex-wrap -mx-5 items-center">
-            <div className="w-full md:w-6/12 px-5">
-              <div className="bg-[#f9f9f9] h-[500px] w-[500px] flex items-center justify-center">
+          <div className="flex flex-wrap -mx-4 lg:-mx-5 items-center">
+            <div className="w-full md:w-6/12 px-4 lg:px-5">
+              <div className="bg-[#f9f9f9] mb-5 md:mb-0 h-[580px] flex items-center justify-center">
                 <Image
                   blurDataURL={`${listing?.photo}?q=1`}
                   placeholder="blur"
@@ -129,7 +129,7 @@ export default function Donation() {
                 />
               </div>
             </div>
-            <div className="w-full md:w-6/12 px-5">
+            <div className="w-full md:w-6/12 px-4 lg:px-5">
               <h1 className="merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#1E1E1E]  tracking-[-0.04em]">
                 {listing?.name} 
               </h1>
@@ -142,7 +142,7 @@ export default function Donation() {
                 </p>
               </div>
               <div className="flex mb-4 lg:mb-6 ">
-                <div className="min-w-[140px] flex border border-[#EE834E] rounded mr-4 lg:mr-[23px] py-[12px] justify-center items-center">
+                <div className="min-w-[140px] flex border border-[#EE834E] rounded mr-4 lg:mr-[23px] py-[10px] lg:py-[12px] justify-center items-center">
                   <button
                     className="text-[#EE834E] font-medium text-2xl tracking-[-0.04em]"
                     onClick={decrement}

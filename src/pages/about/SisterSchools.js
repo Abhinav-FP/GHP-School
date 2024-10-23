@@ -61,14 +61,14 @@ export default function SisterSchools() {
           <h2 className="merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-6 lg:mb-[30px] text-[#1E1E1E]  tracking-[-0.04em] mb-2 capitalize text-center">
             sister schools and colleges in Powai, Mumbai
           </h2>
-          <div className="flex  flex-wrap -mx-2 -lg:mx-5 justify-center">
+          <div className="flex  flex-wrap -mx-2 lg:-mx-5 justify-center">
             {listing &&
               listing.map((item, index) => (
                 <div
                   key={index}
                   className="w-full sm:w-6/12 lg:w-4/12 px-2 lg:px-5 mb-4 lg:mb-10"
                 >
-                  <a target="blank" href={item?.link} className="bg-white flex items-center justify-center h-[212px] w-[348px]">
+                  <a target="blank" href={item?.link} className="bg-white flex items-center justify-center h-[212px]">
                     <Image
                       blurDataURL={`${item?.image}?q=1`}
                       placeholder="blur"

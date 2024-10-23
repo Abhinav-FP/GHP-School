@@ -23,14 +23,11 @@ export default function NotFound() {
               <Link
                 href="/"
                 className="block text-[#EE834E] button-animation-border hover:text-white border border-[#EE834E] hover:border-[#ECCD6E]  text-base lg:text-lg rounded px-6 md:px-12 py-2 text-center tracking-[-0.04em]"
-              >
-                Back to Home
-              </Link>
+              >Back to Home </Link>
             </div>
           </div>
         </div>
       </div>
-
     </Layout>
   );
 }
