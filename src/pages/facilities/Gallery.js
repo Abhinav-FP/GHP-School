@@ -98,15 +98,15 @@ export default function Gallery() {
 
         {loading ? (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
-            {/* Loading skeleton or placeholder can be added here */}
+                 <div class="border-gray-300 h-20 w-20 animate-spin rounded-full border-8 border-t-blue-600" />
           </div>
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
             {listing && listing.map((item, index) => (
               <div key={index} className="relative w-full overflow-hidden h-full cursor-pointer" onClick={() => handleImageClick(item?.caption)}>
                 <Image
-                  blurDataURL={`${item?.url}?q=1`}
-                  placeholder="blur"
+                  // blurDataURL={`${item?.url}?q=1`}
+                  // placeholder="blur"
                   width={387}
                   height={310}
                   src={item?.url}
@@ -134,14 +134,14 @@ export default function Gallery() {
                 <GrPrevious size={24} />
               </button>
               <Image
-                blurDataURL={`${data[currentImageIndex]?.url}?q=40`}
-                placeholder="blur"
+                // blurDataURL={`${data[currentImageIndex]?.url}?q=40`}
+                // placeholder="blur"
                 src={data[currentImageIndex]?.url}
                 alt={data[currentImageIndex]?.caption}
                 layout="fill"
                 objectFit="contain"
                 className="max-w-full max-h-full"
-                loading="lazy"
+                // loading="lazy"
               />
               <div className="gallery-text absolute p-[15px] sm:p-[30px] w-full bottom-0 left-0 text-white capitalize text-lg sm:text-xl font-semibold z-10">
                 <p className="px-4 py-2 inline-block rounded">

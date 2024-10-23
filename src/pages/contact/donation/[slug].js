@@ -92,15 +92,15 @@ export default function Donation() {
         <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
           <ol className="flex w-full flex-wrap items-center py-6 lg:pt-12 lg:pb-8 ">
             <li className="flex cursor-pointer items-center text-base md:text-lg lg:text-xl font-medium  antialiased text-[#7f7f7f]  transition-colors duration-300 hover:text-[#EE834E]">
-              <a href="#">Home</a>
+              <Link href="/">Home</Link>
               <span className="pointer-events-none mx-1 select-none  text-base md:text-lg lg:text-xl font-medium  antialiased text-[#7f7f7f]">
                 /
               </span>
             </li>
             <li className="flex cursor-pointer items-center text-base md:text-lg lg:text-xl font-medium  antialiased text-[#7f7f7f] transition-colors duration-300 hover:text-[#EE834E]">
-              <a href="#">
+              <Link href="/contact">
                 <span>Contact us</span>
-              </a>
+              </Link>
               <span className="pointer-events-none mx-2 select-none text-base md:text-lg lg:text-xl font-medium  antialiased text-[#7f7f7f]">
                 /
               </span>
@@ -117,15 +117,15 @@ export default function Donation() {
         <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
           <div className="flex flex-wrap -mx-5 items-center">
             <div className="w-full md:w-6/12 px-5">
-              <div className="bg-[#f9f9f9] h-[580px] flex items-center justify-center">
+              <div className="bg-[#f9f9f9] h-[500px] w-[500px] flex items-center justify-center">
                 <Image
                   blurDataURL={`${listing?.photo}?q=1`}
                   placeholder="blur"
                   src={listing?.photo}
                   alt="Img"
                   loading="lazy"
-                  width="500"
-                  height="500"
+                  width={1000}
+                  height={1000}
                 />
               </div>
             </div>
@@ -190,7 +190,7 @@ export default function Donation() {
                   }}
                 >
                   Share
-                  <FaShareAlt/>
+                  <FaShareAlt />
                 </div>
                 {/* <ul className="flex flex-wrap items-center space-x-3">
                   <li>

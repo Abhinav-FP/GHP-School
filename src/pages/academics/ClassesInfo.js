@@ -97,8 +97,8 @@ export default function ClassesInfo() {
                                 className="block mx-auto mb-6 min-h-[233px] object-cover"
                                 src={bgImage}
                                 alt={`img-${imgIndex}`}
-                                width={347}
-                                height={303}
+                                width={1000}
+                                height={1000}
                                 loading="lazy"
                               />
                             </div>

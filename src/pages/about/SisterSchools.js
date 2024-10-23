@@ -68,14 +68,14 @@ export default function SisterSchools() {
                   key={index}
                   className="w-full sm:w-6/12 lg:w-4/12 px-2 lg:px-5 mb-4 lg:mb-10"
                 >
-                  <a target="blank" href={item?.link} className="bg-white flex items-center justify-center">
+                  <a target="blank" href={item?.link} className="bg-white flex items-center justify-center h-[212px] w-[348px]">
                     <Image
                       blurDataURL={`${item?.image}?q=1`}
                       placeholder="blur"
                       src={item?.image}
                       className=""
-                      height={212}
-                      width={348}
+                      height={1000}
+                      width={1000}
                       alt="BVBS sister schools"
                       loading="lazy"
                     />

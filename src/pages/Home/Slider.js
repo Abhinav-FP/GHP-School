@@ -146,21 +146,52 @@ export default function Slider() {
       )}
       <div className="z-[1] relative bg-[#EE834E] py-[35px] md:py-[40px] lg:py-[62px]">
         <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
-          <div className="grid gap-5 lg:gap-5 grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-5 lg:flex flex-wrap justify-between ">
-            {data &&
-              data?.map((item, index) => (
-                <div
-                  className="flex flex-col text-white lg:min-w-[100px]"
-                  key={index}
-                >
-                  <h3 className="uppercase text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
-                    {item?.text1}
-                  </h3>
-                  <p className="uppercase font-medium tracking-[-0.04em] text-sm md:text-base">
-                    {item?.text2}
-                  </p>
-                </div>
-              ))}
+          <div className="grid gap-5 lg:gap-5 grid-cols-3 sm:grid-cols-3 md:grid-cols-3  lg:grid-cols-5 lg:flex flex-wrap justify-between ">
+            {/* Item 1 */}
+            <div className="flex flex-col text-white lg:min-w-[100px]">
+              <h3 className="uppercase text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
+                520 students
+              </h3>
+              <p className="uppercase font-medium tracking-[-0.04em] text-sm md:text-base">
+                from Nursery to <br /> Grade XII
+              </p>
+            </div>
+            {/* Item 2 */}
+            <div className="flex flex-col text-white lg:min-w-[100px]">
+              <h3 className="uppercase text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
+                100% Results
+              </h3>
+              <p className="uppercase font-medium tracking-[-0.04em] text-sm md:text-base">
+                achieved in Grade <br /> X and XII, RBSE 2024
+              </p>
+            </div>
+            {/* Item 3 */}
+            <div className="flex flex-col text-white lg:min-w-[100px]">
+              <h3 className="uppercase text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
+              800
+              </h3>
+              <p className="uppercase font-medium tracking-[-0.04em] text-sm md:text-base">
+              people Assembly <br /> Hall Capacity
+              </p>
+            </div>
+            {/* Item 4 */}
+            <div className="hidden md:flex flex-col text-white lg:min-w-[100px]">
+              <h3 className="uppercase text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
+              25:1
+              </h3>
+              <p className="uppercase font-medium tracking-[-0.04em] text-sm md:text-base">
+              student-teacher <br/> ratio
+              </p>
+            </div>
+            {/* Item 5 */}
+            <div className="hidden md:flex flex-col text-white lg:min-w-[100px]">
+              <h3 className="uppercase text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
+              35+
+              </h3>
+              <p className="uppercase font-medium tracking-[-0.04em] text-sm md:text-base">
+              years <br /> in Education
+              </p>
+            </div>
           </div>
         </div>
       </div>

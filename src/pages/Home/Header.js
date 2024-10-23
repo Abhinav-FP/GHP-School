@@ -22,9 +22,9 @@ export default function Header() {
             <div className="flex-shrink-0">
               <Link href="/">
                 <Image
-                  className="max-w-[165px] "
-                  height={91}
-                  width={165}
+                  className="max-w-[165px] h-[91px]"
+                  height={1000}
+                  width={1000}
                   layout="fixed"
                   src={Logo}
                   alt="BVBS School logo"

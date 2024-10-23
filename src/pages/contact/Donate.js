@@ -71,13 +71,13 @@ function Donate() {
                 className="flex flex-col justify-start w-full sm:w-6/12 lg:w-3/12 px-2.5 mb-3 lg:mb-0"
                 key={index}
               >
-                <div className="w-full h-[207px] bg-[#f9f9f9]">
+                <div className="w-[285px] h-[207px] bg-[#f9f9f9]">
                   <Image
                     blurDataURL={`${item.photo}?q=1`}
                     placeholder="blur"
                     className="mx-auto mb-4 lg:mb-5 block"
-                    width={285}
-                    height={207}
+                    width={1000}
+                    height={1000}
                     src={item.photo}
                     alt={item.name}
                     loading="lazy"

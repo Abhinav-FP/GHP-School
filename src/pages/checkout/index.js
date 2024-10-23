@@ -57,8 +57,7 @@ export default function Index() {
       alert("File uploaded successfully!");
     } catch (error) {
       console.error("Upload Error:", error);
-      alert("Error uploading file. Check console for details.");
-    } finally {
+      alert("Error uploading file. Please try again.");
     }
   };
 

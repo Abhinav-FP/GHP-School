@@ -67,7 +67,7 @@ export default function JoinTeam() {
     const main = new Details();
     try {
       const res = await main.vacancyapply(formData);
-      if ( res && res?.data) {
+      if (res && res?.data) {
         toast.success(res.data.message);
         setFormData({
           name: "",
@@ -83,16 +83,13 @@ export default function JoinTeam() {
       } else {
         toast.error(res.message);
         setFormLoading(false);
-
       }
     } catch (error) {
       console.log(error);
       toast.error("An error occurred while submitting.");
       setFormLoading(false);
-
     } finally {
       setFormLoading(false);
-
     }
   };
 
@@ -204,8 +201,7 @@ export default function JoinTeam() {
                       ) {
                         handleChange(e);
                       }
-                    }
-                  }
+                    }}
                     className="border border-black border-opacity-10 px-3.5 py-2 w-full appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
                     required
                   />
@@ -259,11 +255,12 @@ export default function JoinTeam() {
                     Tell us about yourself{" "}
                   </label>
                   <textarea
+                    rows={5}
                     name="about"
                     value={formData.about}
                     onChange={handleChange}
-                    className="bg-white border border-black border-opacity-10 px-3.5 py-2 w-full appearance-none h-11 lg:h-[139px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
-                  ></textarea>
+                    className="bg-white border border-black border-opacity-10 px-3.5 py-2 w-full appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                  />
                 </div>
                 <div className="w-full md:w-6/12 px-2.5 mb-4 lg:mb-0 g-recaptcha">
                   <ReCAPTCHA
