@@ -10,6 +10,8 @@ import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import axios from "axios";
 import RenderDetails from "../api/render/RenderDetails";
+import { FaRegTrashCan } from "react-icons/fa6";
+
 export default function Index() {
   const router = useRouter();
   const { error, isLoading, Razorpay } = useRazorpay();
@@ -32,6 +34,9 @@ export default function Index() {
     panCard: null,
     emailAddress: "",
   });
+
+  
+
 
   const handleUpload = async (event) => {
     "event", event;
@@ -217,6 +222,14 @@ export default function Index() {
     }
   };
 
+  useEffect(() => {
+    if(totalPrice===0)
+      {
+        toast.error("Your cart is empty!");
+        router.push("/contact#donation")
+      }
+  }, []);
+
   return (
     <Layout>
       <div className="w-full bg-white py-[50px] md:py-[70px] lg:py-[100px]">
@@ -333,22 +346,22 @@ export default function Index() {
                         <tr key={index}>
                           <td className="text-[#1E1E1E] font-medium text-base py-3.5 tracking-[-0.04em] border-b border-black border-opacity-10">
                             <div className="flex items-center ">
-                              <div className="bg-[#E1E1E1] w-[70px] lg:w-[91px]">
+                              <div className="bg-[#E1E1E1] w-[70px] lg:w-[91px] ">
                                 <Image
                                   blurDataURL={`${item.imgUrl}?q=1`}
                                   placeholder="blur"
-                                  width={91}
-                                  height={86}
+                                  width={588}
+                                  height={240}
                                   src={item.imgUrl}
                                   alt={item.name}
                                   className="object-cover max-w-full"
                                   loading="lazy"
                                 />
                               </div>
-                              <div className="w-[calc(100%-71px)] lg:w-[calc(100%-91px)] max-w-[179px] pl-2.5 tracking-[-0.04em] text-[#1E1E1E] font-medium merriweather-font font-normal text-base md:text-lg lg:text-xl">
+                              <div className="flex items-center w-[calc(100%-71px)] lg:w-[calc(100%-91px)] max-w-[179px] pl-2.5 tracking-[-0.04em] text-[#1E1E1E] font-medium merriweather-font font-normal text-base md:text-lg lg:text-xl">
                                 {item.name}
-                                <button onClick={() => handleRemove(item.id)}>
-                                  Remove
+                                <button className="ml-2" onClick={() => handleRemove(item.id)}>
+                                <FaRegTrashCan  size={16}/>
                                 </button>
                               </div>
                             </div>

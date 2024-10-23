@@ -15,7 +15,14 @@ export default function Banner() {
 
   return (
     <>
-      <div className="top-0 lg:top-5 z-[-1]">
+      <div className="top-0 lg:top-5 z-[-1] relative">
+      <div className="absolute h-full flex items-center left-0 w-full top-1/2 -translate-y-1/2 sliderbg z-20">
+                    <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
+                      <h2 className="capitalize merriweather-font font-medium tracking-[-0.04em] text-center text-3xl text-white md:text-4xl lg:text-5xl mb-3">
+                      Creating the Perfect Learning Environment
+                      </h2>
+                    </div>
+                  </div>
         <Swiper
           spaceBetween={50}
           slidesPerView={1}
@@ -50,13 +57,7 @@ export default function Banner() {
                   alt="BVBS School Facilities" layout="responsive" width="1000" height="1000"
                   priority="true"
                 />
-                  <div className="absolute h-full flex items-center left-0 w-full top-1/2 -translate-y-1/2 sliderbg ">
-                    <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
-                      <h2 className="capitalize merriweather-font font-medium tracking-[-0.04em] text-center text-3xl  md:text-4xl lg:text-5xl mb-3">
-                      Creating the Perfect Learning Environment
-                      </h2>
-                    </div>
-                  </div>
+                  
                 </div>
               </SwiperSlide>
             ))}
