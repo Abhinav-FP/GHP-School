@@ -4,12 +4,15 @@ import Image from 'next/image';
 import ThankyouImage from '../../../public/ThankYou/thankyou.png';
 import { useRouter } from 'next/router';
 import Details from '../api/admin/Details';
+import { useDispatch } from 'react-redux';
+import { clearCart } from '@/redux/cartSlice';
 
 export default function Success() {
   const router = useRouter();
   const slug = router.query.success;
   const [listing, setListing] = useState("");
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const link = () => {
     if (slug) {
@@ -28,6 +31,9 @@ export default function Success() {
         });
     }
   };
+  useEffect(()=>{
+  dispatch(clearCart());
+  },[])
 
   useEffect(() => {
     let interval;
