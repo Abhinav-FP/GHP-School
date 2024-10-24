@@ -4,6 +4,7 @@ import Details from "../api/admin/Details";
 import { useRazorpay, RazorpayOrderOptions } from "react-razorpay";
 import { FiEdit } from "react-icons/fi";
 import Router from "next/router";
+import axios from "axios";
 
 function ContactForm() {
   const { error, isLoading, Razorpay } = useRazorpay();
@@ -37,6 +38,8 @@ function ContactForm() {
     belongs: "",
     facility: "",
     image: "",
+    birth: "",
+    additional: "",
   });
   const [formloading, setFormLoading] = useState(false); // Loading state
   const [checkboxes, setCheckboxes] = useState({
@@ -56,19 +59,18 @@ function ContactForm() {
 
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
-    
+
     if (file) {
       const fileSizeInMB = file.size / (1024 * 1024);
       if (fileSizeInMB > 2) {
-        alert("File size exceeds 2 MB. Please upload a smaller image."); 
-        return; 
+        alert("File size exceeds 2 MB. Please upload a smaller image.");
+        return;
       }
       setSelectedImage(file);
       setImagePreview(URL.createObjectURL(file));
       await uploadImage(file);
     }
   };
-  
 
   const uploadImage = async (file) => {
     const myHeaders = new Headers();
@@ -126,13 +128,13 @@ function ContactForm() {
       if (res && res.data && res.data.orderId) {
         const options = {
           key: RAZOPAY_KEY,
-          amount: totalPrice *100,
+          amount: totalPrice * 100,
           currency: "INR",
           name: "Your Company Name",
           description: "Payment for services",
           order_id: res.data.orderId,
           handler: function (response) {
-            if(response.razorpay_payment_id){
+            if (response.razorpay_payment_id) {
               toast.success("Payment Successful");
               localStorage.setItem("response", JSON.stringify(response));
               handleSubmit();
@@ -141,7 +143,7 @@ function ContactForm() {
                 response.razorpay_payment_id,
                 "success"
               );
-        Router.push(`/successform/${response.razorpay_payment_id}`);
+              Router.push(`/successform/${response.razorpay_payment_id}`);
             }
           },
           prefill: {
@@ -164,7 +166,7 @@ function ContactForm() {
           const paymentId = error?.metadata?.payment_id;
           if (orderId && paymentId) {
             savePaymentDetails(orderId, paymentId, "failed");
-            Router.push(`/cancel/${response.razorpay_payment_id}`)
+            Router.push(`/cancel/${response.razorpay_payment_id}`);
           } else {
             console.error("Failed to retrieve Razorpay order or payment ID");
           }
@@ -228,6 +230,33 @@ function ContactForm() {
       setRecord((prevState) => ({ ...prevState, dobWords: formattedDate }));
     }
   };
+  const handleUpload = async (event) => {
+    "event", event;
+    let name = event.target.name;
+    let file = event.target.files[0];
+    if (!file) {
+      alert("Please select a file to upload.");
+      return;
+    }
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "ghp-cloudinary");
+    try {
+      const response = await axios.post(
+        `https://api.cloudinary.com/v1_1/desw1fnsw/raw/upload`,
+        formData
+      );
+
+      setRecord((prevData) => ({
+        ...prevData,
+        [name]: response.data.secure_url,
+      }));
+      alert("File uploaded successfully!");
+    } catch (error) {
+      console.error("Upload Error:", error);
+      alert("Error uploading file. Please try again.");
+    }
+  };
 
   const handleSubmit = async () => {
     setFormLoading(true);
@@ -267,6 +296,8 @@ function ContactForm() {
           belongs: "",
           facility: "",
           image: "",
+          birth: "",
+          additional: "",
         });
         setFormLoading(false);
       } else {
@@ -280,7 +311,7 @@ function ContactForm() {
       setFormLoading(false);
     }
   };
-
+  console.log("record", record);
   return (
     <div className="bg-white py-[50px] md:py-[70px] lg:py-[100px]">
       <form
@@ -308,7 +339,8 @@ function ContactForm() {
                 />
               ) : (
                 <span className="px-4 py-8 block w-40 h-40 object-cover border border-gray-300 mb-4 rounded-md text-black">
-                  Please upload <br/>an image here
+                  Please upload <br />
+                  an image here
                 </span>
               )}
               <label className="absolute top-1 right-1 p-1 bg-gray-200 rounded-full cursor-pointer hover:bg-gray-300">
@@ -327,7 +359,7 @@ function ContactForm() {
           <div className="flex flex-wrap -mx-2.5">
             <div className="w-full lg:w-8/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Class
+                Class*
               </label>
               <select
                 className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
@@ -406,32 +438,45 @@ function ContactForm() {
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Date of Admission
+                Date of Admission*
               </label>
               <input
                 type="date"
                 name="date"
                 value={record.date}
                 onChange={handleChange}
+                max={new Date().toISOString().split("T")[0]}
                 className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
-              />
-            </div>
-            <div className="w-full lg:w-4/12 px-2.5 mb-5">
-              <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Aadhar No.
-              </label>
-              <input
-                type="number"
-                name="aadhar"
-                value={record.aadhar}
-                onChange={handleChange}
-                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
                 required
               />
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Scholar’s register no. <span className="lowercase">(official use only)</span>
+                Aadhar No.*
+              </label>
+              <input
+                type="text"
+                name="aadhar"
+                value={record.aadhar}
+                required
+                onChange={(e) => {
+                  const valueWithoutSpaces = e.target.value.replace(/\s+/g, ""); // Remove spaces to check length
+                  if (
+                    valueWithoutSpaces.length <= 12 &&
+                    /^[0-9\s]*$/.test(e.target.value)
+                  ) {
+                    // Allow digits and spaces
+                    handleChange(e);
+                  }
+                }}
+                maxLength="16" // Optional adjustment to allow space characters, if needed
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+              />
+            </div>
+            <div className="w-full lg:w-4/12 px-2.5 mb-5">
+              <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
+                Scholar’s register no.{" "}
+                <span className="lowercase">(official use only)</span>
               </label>
               <input
                 type="number"
@@ -443,7 +488,7 @@ function ContactForm() {
             </div>
             <div className="w-full lg:w-8/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Full Name{" "}
+                Full Name*{" "}
               </label>
               <input
                 type="text"
@@ -456,7 +501,7 @@ function ContactForm() {
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Type of Admission{" "}
+                Type of Admission*{" "}
               </label>
               <select
                 className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
@@ -475,14 +520,16 @@ function ContactForm() {
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Date of Birth
+                Date of Birth*
               </label>
               <input
                 type="date"
                 name="dob"
                 value={record.dob}
                 onChange={handleChange}
+                max={new Date().toISOString().split("T")[0]}
                 className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                required
               />
             </div>
             <div className="w-full lg:w-8/12 px-2.5 mb-5">
@@ -499,7 +546,7 @@ function ContactForm() {
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Father’s name
+                Father’s name*
               </label>
               <input
                 type="text"
@@ -507,11 +554,12 @@ function ContactForm() {
                 value={record?.fatherName}
                 onChange={handleChange}
                 className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                required
               />
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Occupation{" "}
+                Occupation*{" "}
               </label>
               <input
                 type="text"
@@ -519,6 +567,7 @@ function ContactForm() {
                 value={record?.fatherOccupation}
                 onChange={handleChange}
                 className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                required
               />
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
@@ -529,6 +578,7 @@ function ContactForm() {
                 type="text"
                 name="fatherPhone"
                 value={record?.fatherPhone}
+                required
                 onChange={(e) => {
                   if (
                     e.target.value.length <= 10 &&
@@ -543,25 +593,27 @@ function ContactForm() {
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Mother’s name
+                Mother’s name*
               </label>
               <input
                 type="text"
                 name="motherName"
                 value={record?.motherName}
                 onChange={handleChange}
+                required
                 className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
               />
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Occupation{" "}
+                Occupation*{" "}
               </label>
               <input
                 type="text"
                 name="motherOccupation"
                 value={record?.motherOccupation}
                 onChange={handleChange}
+                required
                 className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
               />
             </div>
@@ -573,6 +625,7 @@ function ContactForm() {
                 type="text"
                 name="motherPhone"
                 value={record?.motherPhone}
+                required
                 onChange={(e) => {
                   if (
                     e.target.value.length <= 10 &&
@@ -587,25 +640,27 @@ function ContactForm() {
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Guardian’s name
+                Guardian’s name*
               </label>
               <input
                 type="text"
                 name="guardianName"
                 value={record?.guardianName}
                 onChange={handleChange}
+                required
                 className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
               />
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Occupation{" "}
+                Occupation*{" "}
               </label>
               <input
                 type="text"
                 name="guardianOccupation"
                 value={record?.guardianOccupation}
                 onChange={handleChange}
+                required
                 className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
               />
             </div>
@@ -617,6 +672,7 @@ function ContactForm() {
                 type="text"
                 name="guardianPhone"
                 value={record?.guardianPhone}
+                required
                 onChange={(e) => {
                   if (
                     e.target.value.length <= 10 &&
@@ -631,13 +687,14 @@ function ContactForm() {
             </div>
             <div className="w-full lg:w-12/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Father’s/Guardian’s Address
+                Father’s/Guardian’s Address*
               </label>
               <textarea
                 type="text"
                 name="address"
                 value={record?.address}
                 onChange={handleChange}
+                required
                 className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
               ></textarea>
             </div>
@@ -656,37 +713,40 @@ function ContactForm() {
             </div>
             <div className="w-full lg:w-6/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Student’s Email
+                Student’s Email*
               </label>
               <input
                 type="email"
                 name="email"
                 value={record?.email}
                 onChange={handleChange}
+                required
                 className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
               />
             </div>
             <div className="w-full lg:w-8/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Last School attended
+                Last School attended*
               </label>
               <input
                 type="text"
                 name="school"
                 value={record?.school}
                 onChange={handleChange}
+                required
                 className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
               />
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Class passed & Percentage
+                Class passed & Percentage*
               </label>
               <input
                 type="text"
                 name="class_percentage"
                 value={record?.class_percentage}
                 onChange={handleChange}
+                required
                 className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
               />
             </div>
@@ -702,9 +762,31 @@ function ContactForm() {
                 className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
               />
             </div>
+            <div className="w-full lg:w-6/12 px-2.5 mb-5">
+              <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
+                Birth Certificate
+              </label>
+              <input
+                type="file"
+                name="birth"
+                onChange={handleUpload}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+              />
+            </div>
+            <div className="w-full lg:w-6/12 px-2.5 mb-5">
+              <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
+                Any Additional Documents
+              </label>
+              <input
+                type="file"
+                name="additional"
+                onChange={handleUpload}
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+              />
+            </div>
             <div className="w-full lg:w-12/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Candidate belongs to{" "}
+                Candidate belongs to*{" "}
               </label>
               <div className="flex flex-wrap gap-1.5 lg:gap-3">
                 {["sc", "st", "obc", "general", "sbc", "ews", "other"].map(
@@ -720,6 +802,7 @@ function ContactForm() {
                         value={category}
                         onChange={handleChange}
                         checked={record.belongs === category}
+                        required
                         className="w-5 h-5 lg:w-6 lg:h-6 bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
                         aria-labelledby={category}
                         aria-describedby={category}
@@ -737,7 +820,7 @@ function ContactForm() {
             </div>
             <div className="w-full lg:w-12/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Whether conveyance facility needed
+                Whether conveyance facility needed*
               </label>
               <div className="flex flex-wrap -mx-2.5">
                 <div className="w-6/12 px-2.5 mb-2 lg:mb-0">
@@ -749,6 +832,7 @@ function ContactForm() {
                       value="yes"
                       onChange={handleChange}
                       checked={record.facility === "yes"}
+                      required
                       className="w-5 h-5 lg:w-6 lg:h-6 bg-transparent rounded-full border border-gray-300 focus:ring-0 checked:bg-white checked:border-[#EE834E] cursor-pointer"
                       aria-labelledby="yes"
                       aria-describedby="yes"

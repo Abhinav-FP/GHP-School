@@ -79,11 +79,11 @@ export default function Infrastructure() {
                     <Image
                       blurDataURL={`${item?.imgsrc}?q=1`}
                       placeholder="blur"
-                      className="mb-3 lg:mb-5"
+                      className="mb-3 lg:mb-5 w-[40px] h-[40px]"
                       src={item?.imgsrc}
                       alt={item?.title}
-                      width={40}
-                      height={40}
+                      width={1000}
+                      height={1000}
                       loading="lazy"
                     />
                     <h3 className="text-[#1E1E1E] text-xl lg:text-2xl merriweather-font tracking-[-0.04em] font-normal mb-3 lg:mb-[10px]">

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatMultiPrice } from "@/hooks/ValueData";
 import Details from "../api/admin/Details";
+import Loader from "@/Component/Loader";
 
 function Donate() {
   // const TuitionFees = [
@@ -64,6 +65,9 @@ function Donate() {
           Donate Today, Shape Tomorrow
         </h2>
         <p className="text-[#666666] font-medium text-base gotham-font text-center mb-1.5 tracking-[-0.04em] text-center mb-8 md:mb-10 lg:mb-14 mx-auto max-w-[883px] text-center">{`Support BVBS School's mission as an NGO by contributing to our initiatives. You can sponsor a child’s education, donate books and stationery, or sponsor a set of uniforms. In addition, your contributions are eligible for tax benefits under Section 80G. Contact us to make a difference in our students' lives while enjoying tax benefits.`}</p>
+        {Loading ? (
+              <Loader />
+            ) : (
         <div className="flex flex-wrap -mx-2.5 ">
           {listing &&
             listing?.map((item, index) => (
@@ -71,13 +75,13 @@ function Donate() {
                 className="flex flex-col justify-start w-full sm:w-6/12 lg:w-3/12 px-2.5 mb-3 lg:mb-0"
                 key={index}
               >
-                <div className="w-full h-[207px] bg-[#f9f9f9]">
+                <div className="w-[285px] h-[207px] bg-[#f9f9f9]">
                   <Image
                     blurDataURL={`${item.photo}?q=1`}
                     placeholder="blur"
                     className="mx-auto mb-4 lg:mb-5 block"
-                    width={285}
-                    height={207}
+                    width={1000}
+                    height={1000}
                     src={item.photo}
                     alt={item.name}
                     loading="lazy"
@@ -105,6 +109,7 @@ function Donate() {
               </div>
             ))}
         </div>
+        )}
       </div>
     </div>
   );

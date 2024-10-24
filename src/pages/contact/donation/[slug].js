@@ -9,6 +9,7 @@ import Details from "@/pages/api/admin/Details";
 import { formatMultiPrice } from "@/hooks/ValueData";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { FaShareAlt } from "react-icons/fa";
+import Loader from "@/Component/Loader";
 
 export default function Donation() {
   const router = useRouter();
@@ -92,15 +93,15 @@ export default function Donation() {
         <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
           <ol className="flex w-full flex-wrap items-center py-6 lg:pt-12 lg:pb-8 ">
             <li className="flex cursor-pointer items-center text-base md:text-lg lg:text-xl font-medium  antialiased text-[#7f7f7f]  transition-colors duration-300 hover:text-[#EE834E]">
-              <a href="#">Home</a>
+              <Link href="/">Home</Link>
               <span className="pointer-events-none mx-1 select-none  text-base md:text-lg lg:text-xl font-medium  antialiased text-[#7f7f7f]">
                 /
               </span>
             </li>
             <li className="flex cursor-pointer items-center text-base md:text-lg lg:text-xl font-medium  antialiased text-[#7f7f7f] transition-colors duration-300 hover:text-[#EE834E]">
-              <a href="#">
+              <Link href="/contact">
                 <span>Contact us</span>
-              </a>
+              </Link>
               <span className="pointer-events-none mx-2 select-none text-base md:text-lg lg:text-xl font-medium  antialiased text-[#7f7f7f]">
                 /
               </span>
@@ -115,84 +116,87 @@ export default function Donation() {
       </nav>
       <div className="w-full bg-white pb-[50px] md:pb-[70px] lg:pb-[100px]">
         <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
-          <div className="flex flex-wrap -mx-4 lg:-mx-5 items-center">
-            <div className="w-full md:w-6/12 px-4 lg:px-5">
-              <div className="bg-[#f9f9f9] mb-5 md:mb-0 h-[580px] flex items-center justify-center">
-                <Image
-                  blurDataURL={`${listing?.photo}?q=1`}
-                  placeholder="blur"
-                  src={listing?.photo}
-                  alt="Img"
-                  loading="lazy"
-                  width="500"
-                  height="500"
-                />
-              </div>
-            </div>
-            <div className="w-full md:w-6/12 px-4 lg:px-5">
-              <h1 className="merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#1E1E1E]  tracking-[-0.04em]">
-                {listing?.name} 
-              </h1>
-              <div className="text-[#EE834E] text-lg font-medium tracking-[-0.04em] uppercase mb-0">
-                AMOUNT : {formatMultiPrice(listing?.price) || 0}
-              </div>
-              <div className="mt-5 lg:mt-[30px] mb-8 lg:mb-10 pt-5 lg:pt-[30px]  border-t border-black border-opacity-10">
-                <p className="text-[#666666] font-medium text-base gotham-font mb-0 tracking-[-0.04em]">
-                  {listing?.description}
-                </p>
-              </div>
-              <div className="flex mb-4 lg:mb-6 ">
-                <div className="min-w-[140px] flex border border-[#EE834E] rounded mr-4 lg:mr-[23px] py-[10px] lg:py-[12px] justify-center items-center">
-                  <button
-                    className="text-[#EE834E] font-medium text-2xl tracking-[-0.04em]"
-                    onClick={decrement}
-                  >
-                    -
-                  </button>
-                  <div className="text-[#EE834E] font-medium text-lg text-center w-[50px] mx-3.5 border-l border-r border-black border-opacity-10 py-[2px] tracking-[-0.04em]">
-                    {Qty}
-                  </div>
-                  <button
-                    className="text-[#EE834E] font-medium text-2xl tracking-[-0.04em]"
-                    onClick={Increment}
-                  >
-                    +
-                  </button>
+          {Loading ? (
+            <Loader />
+          ) : (
+            <div className="flex flex-wrap -mx-4 lg:-mx-5 items-center">
+              <div className="w-full md:w-6/12 px-4 lg:px-5">
+                <div className="bg-[#f9f9f9] mb-5 md:mb-0 h-[580px] flex items-center justify-center">
+                  <Image
+                    blurDataURL={`${listing?.photo}?q=1`}
+                    placeholder="blur"
+                    src={listing?.photo}
+                    alt="Img"
+                    loading="lazy"
+                    width={1000}
+                    height={1000}
+                  />
                 </div>
-                <div className="w-full">
-                  <button
-                    className={`relative block w-full text-[#EE834E] border border-[#EE834E]  text-base lg:text-lg rounded px-4 py-3.5 text-center tracking-[-0.04em] 
+              </div>
+              <div className="w-full md:w-6/12 px-4 lg:px-5">
+                <h1 className="merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#1E1E1E]  tracking-[-0.04em]">
+                  {listing?.name} 
+                </h1>
+                <div className="text-[#EE834E] text-lg font-medium tracking-[-0.04em] uppercase mb-0">
+                  AMOUNT : {formatMultiPrice(listing?.price) || 0}
+                </div>
+                <div className="mt-5 lg:mt-[30px] mb-8 lg:mb-10 pt-5 lg:pt-[30px]  border-t border-black border-opacity-10">
+                  <p className="text-[#666666] font-medium text-base gotham-font mb-0 tracking-[-0.04em]">
+                    {listing?.description}
+                  </p>
+                </div>
+                <div className="flex mb-4 lg:mb-6 ">
+                  <div className="min-w-[140px] flex border border-[#EE834E] rounded mr-4 lg:mr-[23px] py-[10px] lg:py-[12px] justify-center items-center">
+                    <button
+                      className="text-[#EE834E] font-medium text-2xl tracking-[-0.04em]"
+                      onClick={decrement}
+                    >
+                      -
+                    </button>
+                    <div className="text-[#EE834E] font-medium text-lg text-center w-[50px] mx-3.5 border-l border-r border-black border-opacity-10 py-[2px] tracking-[-0.04em]">
+                      {Qty}
+                    </div>
+                    <button
+                      className="text-[#EE834E] font-medium text-2xl tracking-[-0.04em]"
+                      onClick={Increment}
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div className="w-full">
+                    <button
+                      className={`relative block w-full text-[#EE834E] border border-[#EE834E]  text-base lg:text-lg rounded px-4 py-3.5 text-center tracking-[-0.04em] 
     ${
       isAdded
         ? "button-animation text-white border-[#ECCD6E]"
         : "button-animation-border hover:text-white   hover:border-[#ECCD6E]"
     } transition-all duration-500`}
-                    onClick={handleAddItem}
-                    disabled={isAdded}
+                      onClick={handleAddItem}
+                      disabled={isAdded}
+                    >
+                      {isAdded ? "Added to cart" : "Add to cart"}
+                    </button>
+                  </div>
+                </div>
+                <div className="w-full mb-8 lg:mb-10">
+                  <Link
+                    href="/checkout"
+                    className="block w-full text-white button-animation hover:text-white   border border-[#EE834E] hover:border-[#ECCD6E] text-base lg:text-lg rounded px-4 py-3.5 text-center tracking-[-0.04em]"
                   >
-                    {isAdded ? "Added to cart" : "Add to cart"}
-                  </button>
+                    Continue to checkout
+                  </Link>
                 </div>
-              </div>
-              <div className="w-full mb-8 lg:mb-10">
-                <Link
-                  href="/checkout"
-                  className="block w-full text-white button-animation hover:text-white   border border-[#EE834E] hover:border-[#ECCD6E] text-base lg:text-lg rounded px-4 py-3.5 text-center tracking-[-0.04em]"
-                >
-                  Continue to checkout
-                </Link>
-              </div>
-              <div className="w-full flex flex-wrap items-center">
-                <div
-                  className="flex gap-2 mr-1.5 cursor-pointer items-center text-[#666666] text-sm font-medium  tracking-[-0.04em]"
-                  onClick={() => {
-                    handleShare();
-                  }}
-                >
-                  Share
-                  <FaShareAlt/>
-                </div>
-                {/* <ul className="flex flex-wrap items-center space-x-3">
+                <div className="w-full flex flex-wrap items-center">
+                  <div
+                    className="flex gap-2 mr-1.5 cursor-pointer items-center text-[#666666] text-sm font-medium  tracking-[-0.04em]"
+                    onClick={() => {
+                      handleShare();
+                    }}
+                  >
+                    Share
+                    <FaShareAlt />
+                  </div>
+                  {/* <ul className="flex flex-wrap items-center space-x-3">
                   <li>
                     <Link href="/" target="_blank" rel="noopener noreferrer">
                       <svg
@@ -262,9 +266,10 @@ export default function Donation() {
                     </Link>
                   </li>
                 </ul> */}
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </Layout>

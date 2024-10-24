@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import React, { useEffect, useState } from "react";
 import Details from "../api/admin/Details";
+import Loader from "@/Component/Loader";
 
 export default function Sports() {
   const slides = [
@@ -44,6 +45,9 @@ export default function Sports() {
   return (
     <div className="bg-white pb-[40px] md:pb-[80px] lg:pb-[100px]" id="sports">
       <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto">
+      {Loading ? (
+              <Loader />
+            ) : (
         <div className="flex flex-wrap items-center bg-[#EE834E]">
           <div className="h-full w-full lg:w-5/12 text-white px-[40px] py-[50px]">
             <div className="">
@@ -94,6 +98,7 @@ export default function Sports() {
             </Swiper>
           </div>
         </div>
+        )}
       </div>
     </div>
   );
