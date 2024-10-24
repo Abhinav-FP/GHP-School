@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Details from "../api/admin/Details";
+import Loader from "@/Component/Loader";
 
 function Vacancie({ listing, loading, handleClick }) {
   const VacancieList = [
@@ -31,7 +32,9 @@ function Vacancie({ listing, loading, handleClick }) {
           contribute to a legacy of inspiring young minds and fostering a love
           for learning.
         </p>
-
+        {loading ? (
+              <Loader />
+            ) : (
         <div className="w-full space-y-3 lg:space-y-5">
           {listing &&
             listing.map((item, index) => (
@@ -63,6 +66,7 @@ function Vacancie({ listing, loading, handleClick }) {
               </div>
             ))}
         </div>
+        )}
       </div>
     </div>
   );
