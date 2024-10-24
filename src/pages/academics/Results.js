@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Details from "../api/admin/Details";
+import Loader from "@/Component/Loader";
 const ProfileCard = ({ percentage, name, imagesrc }) => {
   return (
     <div className="text-center list px-4 mb-5 xl:mb-0">
@@ -100,6 +101,9 @@ export default function Results() {
         <h3 className="tracking-[-0.04em] merriweather-font text-[#1E1E1E] text-lg md:text-xl lg:text-2xl mb-6 lg:mb-[36px] text-center">
           Grade X
         </h3>
+        {Loading ? (
+              <Loader />
+            ) : (
         <div className="flex flex-wrap result-box text-center justify-center  ">
           {result &&
             result
@@ -113,6 +117,7 @@ export default function Results() {
                 />
               ))}
         </div>
+        )}
         <div className="pt-12 mt-12 border-t border-black border-opacity-10">
           <h3 className="tracking-[-0.04em] merriweather-font text-[#1E1E1E] text-lg md:text-xl lg:text-2xl mb-4 text-center">
             Grade XII
@@ -150,6 +155,9 @@ export default function Results() {
             </button>
           </div>
           {/* {XIIdata && XIIdata[selected] && ( */}
+          {Loading ? (
+              <Loader />
+            ) : (
           <div className="flex flex-wrap result-box text-center justify-center  ">
             {result &&
               result
@@ -165,6 +173,7 @@ export default function Results() {
                   />
                 ))}
           </div>
+          )}
           {/* // )} */}
         </div>
       </div>

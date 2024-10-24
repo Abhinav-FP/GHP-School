@@ -2,6 +2,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import PrincipalImg from "../../../public/About/Principal.png";
 import Details from "../api/admin/Details";
+import Loader from "@/Component/Loader";
 
 export default function Principal() {
   const [listing, setLisitng] = useState("");
@@ -37,6 +38,9 @@ export default function Principal() {
         <h2 className="merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-2 text-[#1E1E1E]  tracking-[-0.04em] mb-4 lg:mb-[37px] text-center ">
           Message from the Principal
         </h2>
+        {Loading ? (
+          <Loader/>
+        ) : (
         <div className="flex flex-wrap -mx-2.5 items-center">
           <div className="w-full md:w-6/12 px-2.5 ">
             <div className="text-center">
@@ -61,6 +65,7 @@ export default function Principal() {
             </p>
           </div>
         </div>
+        )}
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import Details from "../api/admin/Details";
 import { GrNext } from "react-icons/gr";
 import { GrPrevious } from "react-icons/gr";
 import { IoMdClose } from "react-icons/io";
+import Loader from "@/Component/Loader";
 
 export default function Gallery() {
   const [listing, setLisitng] = useState([]);
@@ -97,9 +98,7 @@ export default function Gallery() {
         </p>
 
         {loading ? (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
-                 <div class="border-gray-300 h-20 w-20 animate-spin rounded-full border-8 border-t-blue-600" />
-          </div>
+          <Loader/>
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
             {listing && listing.map((item, index) => (

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Details from "../api/admin/Details";
+import Loader from "@/Component/Loader";
 
 export default function SisterSchools() {
   const images = [
@@ -61,6 +62,9 @@ export default function SisterSchools() {
           <h2 className="merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-6 lg:mb-[30px] text-[#1E1E1E]  tracking-[-0.04em] mb-2 capitalize text-center">
             sister schools and colleges in Powai, Mumbai
           </h2>
+          {Loading ? (
+          <Loader/>
+        ) : (
           <div className="flex  flex-wrap -mx-2 lg:-mx-5 justify-center">
             {listing &&
               listing.map((item, index) => (
@@ -83,6 +87,7 @@ export default function SisterSchools() {
                 </div>
               ))}
           </div>
+          )}
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import SchoolBg from "../../../public/About/schoolbg.png";
 import Details from "../api/admin/Details";
+import Loader from "@/Component/Loader";
 
 export default function ComingSoon() {
   const [listing, setLisitng] = useState("");
@@ -33,6 +34,10 @@ export default function ComingSoon() {
   }, []);
 
   return (
+    <>
+    {Loading ? (
+          <Loader/>
+        ) : (
     <div className="relative">
       <Image
         blurDataURL={`${listing?.image}?q=1`}
@@ -56,5 +61,7 @@ export default function ComingSoon() {
         </div>
       </div>
     </div>
+    )}
+    </>
   );
 }
