@@ -446,7 +446,7 @@ function ContactForm() {
                 value={record.date}
                 onChange={handleChange}
                 max={new Date().toISOString().split("T")[0]}
-                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                className="border border-black border-op-acity10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none text-left"
                 required
               />
             </div>
@@ -528,7 +528,7 @@ function ContactForm() {
                 value={record.dob}
                 onChange={handleChange}
                 max={new Date().toISOString().split("T")[0]}
-                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none text-left"
                 required
               />
             </div>
