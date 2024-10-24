@@ -329,6 +329,7 @@ export default function Index() {
                 <table className="w-full">
                   <thead>
                     <tr>
+                      <td></td>
                       <td className="text-[#1E1E1E] text-base py-3 tracking-[-0.04em] uppercase merriweather-font font-normal border-b border-black border-opacity-10">
                         Product
                       </td>
@@ -344,6 +345,11 @@ export default function Index() {
                     {cartItemsRedux &&
                       cartItemsRedux.map((item, index) => (
                         <tr key={index}>
+                          <td className="text-[#1E1E1E] font-medium text-base py-3.5 pr-2 tracking-[-0.04em] border-b border-black border-opacity-10">
+                              <button className="ml-2 text-[#ff0000]" onClick={() => handleRemove(item.id)}>
+                                <FaRegTrashCan  size={14}/>
+                                </button>
+                          </td>
                           <td className="text-[#1E1E1E] font-medium text-base py-3.5 tracking-[-0.04em] border-b border-black border-opacity-10">
                             <div className="flex items-center ">
                               <div className="bg-[#E1E1E1] w-[70px] lg:w-[91px] ">
@@ -360,9 +366,7 @@ export default function Index() {
                               </div>
                               <div className="flex items-center w-[calc(100%-71px)] lg:w-[calc(100%-91px)] max-w-[179px] pl-2.5 tracking-[-0.04em] text-[#1E1E1E] font-medium merriweather-font font-normal text-base md:text-lg lg:text-xl">
                                 {item.name}
-                                <button className="ml-2" onClick={() => handleRemove(item.id)}>
-                                <FaRegTrashCan  size={16}/>
-                                </button>
+                                
                               </div>
                             </div>
                           </td>
@@ -378,7 +382,7 @@ export default function Index() {
                   <tfoot>
                     <tr>
                       <td
-                        colSpan={2}
+                        colSpan={3}
                         className="text-[#1E1E1E] font-normal text-xl lg:text-2xl py-3.5 tracking-[-0.04em] border-b border-black border-opacity-10  merriweather-font"
                       >
                         Total
