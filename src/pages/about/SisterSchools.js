@@ -65,7 +65,7 @@ export default function SisterSchools() {
           {Loading ? (
           <Loader/>
         ) : (
-          <div className="flex  flex-wrap -mx-2 lg:-mx-5 justify-center">
+          <div className="flex flex-wrap -mx-2 lg:-mx-5 justify-center">
             {listing &&
               listing.map((item, index) => (
                 <div
@@ -77,7 +77,7 @@ export default function SisterSchools() {
                       blurDataURL={`${item?.image}?q=1`}
                       placeholder="blur"
                       src={item?.image}
-                      className=""
+                      className="w-auto max-h-[170px]"
                       height={1000}
                       width={1000}
                       alt="BVBS sister schools"
