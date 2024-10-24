@@ -89,6 +89,10 @@ export default function Donation() {
 
   return (
     <Layout>
+      {Loading ? (
+            <Loader />
+          ) : (
+            <>
       <nav aria-label="breadcrumb" className="w-full">
         <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
           <ol className="flex w-full flex-wrap items-center py-6 lg:pt-12 lg:pb-8 ">
@@ -108,7 +112,7 @@ export default function Donation() {
             </li>
             <li className="flex items-center text-base md:text-lg lg:text-xl font-medium  antialiased text-[#7f7f7f] transition-colors duration-300 hover:text-[#EE834E]">
               <span className="font-medium text-[#7f7f7f] transition-colors">
-                Tuition Fees
+              {listing?.name}
               </span>
             </li>
           </ol>
@@ -116,9 +120,7 @@ export default function Donation() {
       </nav>
       <div className="w-full bg-white pb-[50px] md:pb-[70px] lg:pb-[100px]">
         <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
-          {Loading ? (
-            <Loader />
-          ) : (
+          
             <div className="flex flex-wrap -mx-4 lg:-mx-5 items-center">
               <div className="w-full md:w-6/12 px-4 lg:px-5">
                 <div className="bg-[#f9f9f9] mb-5 md:mb-0 h-[580px] flex items-center justify-center">
@@ -269,9 +271,11 @@ export default function Donation() {
                 </div>
               </div>
             </div>
-          )}
         </div>
       </div>
+      </>
+          )}
+
     </Layout>
   );
 }

@@ -236,6 +236,7 @@ export default function JoinTeam() {
                     value={formData.experience}
                     onChange={handleChange}
                     className="border border-black border-opacity-10 px-3.5 py-2 w-full appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                    required
                   />
                 </div>
 
@@ -248,6 +249,7 @@ export default function JoinTeam() {
                     name="resume"
                     onChange={handleUpload}
                     className="bg-white border border-black border-opacity-10 px-3.5 py-2 w-full appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                    required
                   />
                 </div>
                 <div className="w-full md:w-12/12 px-2.5 mb-4 lg:mb-6">
