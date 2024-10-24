@@ -311,7 +311,7 @@ function ContactForm() {
       setFormLoading(false);
     }
   };
-console.log("record",record);
+  console.log("record", record);
   return (
     <div className="bg-white py-[50px] md:py-[70px] lg:py-[100px]">
       <form
@@ -460,20 +460,23 @@ console.log("record",record);
                 value={record.aadhar}
                 required
                 onChange={(e) => {
+                  const valueWithoutSpaces = e.target.value.replace(/\s+/g, ""); // Remove spaces to check length
                   if (
-                    e.target.value.length <= 12 &&
-                    /^[0-9]*$/.test(e.target.value)
+                    valueWithoutSpaces.length <= 12 &&
+                    /^[0-9\s]*$/.test(e.target.value)
                   ) {
+                    // Allow digits and spaces
                     handleChange(e);
                   }
                 }}
-                maxLength="12"
+                maxLength="16" // Optional adjustment to allow space characters, if needed
                 className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
               />
             </div>
             <div className="w-full lg:w-4/12 px-2.5 mb-5">
               <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
-                Scholar’s register no. <span className="lowercase">(official use only)</span>
+                Scholar’s register no.{" "}
+                <span className="lowercase">(official use only)</span>
               </label>
               <input
                 type="number"
