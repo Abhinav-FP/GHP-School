@@ -23,8 +23,8 @@ export default function ClassesInfo() {
       Subtitle: "Learners Aged: 6 - 11 years",
       content: `At BVBS, we believe that knowledge is actively constructed by the student, not passively absorbed from textbooks. In our primary classes, 'hands-on' learning is essential for developing lifelong competencies. Following the RBSE curriculum, we design activities that cater to children's interests—communication, inquiry, construction, and artistic expression. Aligned with our philosophy, "Let learning be a joy and teaching a pleasure," we enrich education through field trips, experiments, hobbies, and life skills, aiming to develop each child's potential and prepare them for a rapidly evolving world.`,
       bgImages: [
-        "/Academic/primaryimg01.png",
-        "/Academic/primaryimg02.png",
+        "/Academic/primaryimg01.jpg",
+        "/Academic/primaryimg02.jpeg",
         "/Academic/primaryimg03.png",
       ],
     },
@@ -94,7 +94,7 @@ export default function ClassesInfo() {
                               <Image
                                 blurDataURL={`${bgImage}?q=1`}
                                 placeholder="blur"
-                                className="block mx-auto mb-6 min-h-[233px] object-cover"
+                                className="block mx-auto mb-6 h-[233px] object-cover"
                                 src={bgImage}
                                 alt={`img-${imgIndex}`}
                                 width={1000}
