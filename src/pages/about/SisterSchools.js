@@ -70,14 +70,14 @@ export default function SisterSchools() {
               listing.map((item, index) => (
                 <div
                   key={index}
-                  className="w-full sm:w-6/12 lg:w-4/12 px-2 lg:px-5 mb-4 lg:mb-10"
+                  className="w-full sm:w-6/12 lg:w-4/12 px-2 lg:px-8 mb-4 lg:mb-10"
                 >
                   <a target="blank" href={item?.link} className="bg-white flex items-center justify-center h-[212px] p-5">
                     <Image
                       blurDataURL={`${item?.image}?q=1`}
                       placeholder="blur"
                       src={item?.image}
-                      className="w-auto max-h-[170px]"
+                      className="w-auto max-h-[140px]"
                       height={1000}
                       width={1000}
                       alt="BVBS sister schools"

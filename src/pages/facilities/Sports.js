@@ -93,6 +93,7 @@ export default function Sports() {
                       width={692}
                       loading="lazy"
                     />
+                    
                   </SwiperSlide>
                 ))}
             </Swiper>
