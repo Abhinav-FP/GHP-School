@@ -130,6 +130,30 @@ function ViewAdmission({ item }) {
                                         </tr>
                                     </tbody>
                                 </table>
+                                
+                                <h3 className="merriweather-font font-normal  text-lg md:text-xl  mb-0 text-[#1E1E1E]  tracking-[-0.04em] mt-6">Documents Uploaded:</h3>
+                                {item?.birth || item?.additional ? 
+                                <table className="min-w-full table-auto mt-2">
+                                    <thead>
+                                        <tr className="bg-[#36C9B4] text-white">
+                                            <th width="25%"  className="text-white text-left text-sm px-3 lg:px-5 py-2 tracking-[-0.04em] capitalize font-medium">Name</th>
+                                            <th width="75%"  className="text-white text-left text-sm px-3 lg:px-5 py-2 tracking-[-0.04em] capitalize font-medium">Link</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-gray-200">
+                                        <tr>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">Birth Cerificate:</td>
+                                            <td className="text-[#0000FF] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal"><a href={item?.birth} target="blank">Click here</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">Additional Document:</td>
+                                            <td className="text-[#0000FF] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal"><a href={item?.additional} target="blank">Click here</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                :
+                                <p className="text-sm tracking-[-0.04em] text-[#666666]">No Documents were uploaded by the student</p>
+                                }
                             </div>
                         </div>
                     </div>
