@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Details from "../api/admin/Details";
 import { useRazorpay, RazorpayOrderOptions } from "react-razorpay";
@@ -51,6 +51,15 @@ function ContactForm() {
     provisionalAdmission: false,
   });
   const totalPrice = record.type === "new" ? 500 : 200;
+
+  useEffect(() => {
+    try{
+      const renderserverstarting = axios.get("https://ghp-school-backend.onrender.com");
+    }
+    catch(error){
+      console.log("Failed to start render server")
+    }
+  }, []);
 
   // Image uploader logic here
   const [selectedImage, setSelectedImage] = useState(null);
