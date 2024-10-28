@@ -22,6 +22,8 @@ function Index() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [imagedataPreview, setImageDataPreview] = useState(null);
+  const [imageUploading, setImageUploading] = useState(false);
+  const [error, setError] = useState(false);
   const [folders, setFolders] = useState([
     "annual Day",
     "assembly",
@@ -89,6 +91,7 @@ function Index() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      setImageUploading(true);
       setSelectedImage(file);
       setImagePreview(URL.createObjectURL(file));
       uploadImage(file); // Pass the file directly here
@@ -136,6 +139,13 @@ function Index() {
       );
       console.log("response", response);
       if (!response.ok) {
+        setImageUploading(false);
+        setError(true);
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      if (!response?.data?.success) {
+        setImageUploading(false);
+        setError(true);
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
@@ -143,13 +153,19 @@ function Index() {
       if (data?.data?.link) {
         console.log("Image uploaded successfully!");
         setUrl(data.data.link);
+        setImageUploading(false);
+        setError(false);
       } else {
         setUrl("DUMMY LINK");
+        setImageUploading(false);
+      setError(true);
         // alert("Failed to upload image.")
         // return false
       }
     } catch (error) {
       console.error("Error:", error);
+      setImageUploading(false);
+      setError(true);
     }
   };
 
@@ -403,12 +419,20 @@ function Index() {
                       />
                     </div>
                     <div className="flex justify-center">
+                    {error ? (
+                      <p className="mx-auto text-red-600 capitalize">
+                        Error uploading image. Please try again.
+                      </p>
+                    ) : imageUploading ? (
+                      <p className="mx-auto">Image Uploading in progress...</p>
+                    ) : (
                       <button
-                        onClick={handleSubmit}
-                        className="text-white button-animation text-sm font-normal rounded-xl w-full tracking-[-0.03em] p-3 border-0 min-w-[100px] rounded-md"
-                      >
-                        {loading ? "Saving..." : "Save"}
-                      </button>
+                      onClick={handleSubmit}
+                      className="text-white button-animation text-sm font-normal rounded-xl w-full tracking-[-0.03em] p-3 border-0 min-w-[100px] rounded-md"
+                    >
+                      {loading ? "Saving..." : "Save"}
+                    </button>
+                    )}
                     </div>
                   </div>
                 </div>

@@ -19,6 +19,8 @@ function Index() {
   const [imagedataPreview, setImageDataPreview] = useState(null);
   const [listing, setListing] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [imageUploading, setImageUploading] = useState(false);
+  const [error, setError] = useState(false);
   const [deltedata, setDelete] = useState("");
   const handleopen = (item) => {
     setIsDeleteOpen(true);
@@ -27,6 +29,7 @@ function Index() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      setImageUploading(true);
       setSelectedImage(file);
       setImagePreview(URL.createObjectURL(file));
       uploadImage(file);
@@ -77,14 +80,25 @@ function Index() {
         redirect: "follow",
       });
       if (!response.ok) {
+        setImageUploading(false);
+        setError(true);
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      if (!response?.data?.success) {
+        setImageUploading(false);
+        setError(true);
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
       if (data?.data?.link) {
         setImageDataPreview(data.data.link);
+        setImageUploading(false);
+        setError(false);
       }
     } catch (error) {
       console.error("Error:", error);
+      setImageUploading(false);
+      setError(true);
     }
   };
 
@@ -244,12 +258,20 @@ function Index() {
                     )}
                   </div>
                   <div className="flex justify-end">
-                    <button
+                  {error ? (
+                      <p className="mx-auto text-red-600 capitalize">
+                        Error uploading image. Please try again.
+                      </p>
+                    ) : imageUploading ? (
+                      <p className="mx-auto">Image Uploading in progress...</p>
+                    ) : (
+                      <button
                       type="submit"
                       className="text-white button-animation text-sm font-normal tracking-[-0.03em] py-2 px-4 border-0 min-w-[100px] rounded-md"
                     >
                       {loading ? "Saving..." : "Save"}
                     </button>
+                    )}
                   </div>
                 </div>
               </form>

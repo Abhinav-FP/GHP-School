@@ -24,6 +24,8 @@ function Index() {
   const [loadingDelete, setLoadingDelete] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  const [imageUploading, setImageUploading] = useState(false);
+  const [error, setError] = useState(false);
   const [imagedataPreview, setImageDataPreview] = useState(null);
   const router = useRouter();
   const [deltedata, setDelete] = useState("");
@@ -59,6 +61,7 @@ function Index() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      setImageUploading(true);
       setSelectedImage(file);
       setImagePreview(URL.createObjectURL(file));
       uploadImage(file); // Pass the file directly here
@@ -83,15 +86,26 @@ function Index() {
         redirect: "follow",
       });
       if (!response.ok) {
+        setImageUploading(false);
+        setError(true);
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      if (!response?.data?.success) {
+        setImageUploading(false);
+        setError(true);
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
       console.log('Image uploaded successfully:', data);
       if (data?.data?.link) {
         setImageDataPreview(data.data.link);
+        setImageUploading(false);
+        setError(false)
       }
     } catch (error) {
       console.error('Error:', error);
+      setImageUploading(false);
+      setError(true);
     }
   };
 
@@ -297,8 +311,14 @@ function Index() {
                         placeholder="Enter description"
                       />
                     </div>
-
-                    <div className="flex justify-start">
+                    {error ? (
+                      <p className="mx-auto text-red-600 capitalize">
+                        Error uploading image. Please try again.
+                      </p>
+                    ) : imageUploading ? (
+                      <p className="mx-auto">Image Uploading in progress...</p>
+                    ) : (
+                      <div className="flex justify-start">
                       <button
                         type="submit"
                         className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-4 outline-none focus:outline-none ease-linear transition-all duration-150"
@@ -306,6 +326,7 @@ function Index() {
                         {loadingSubmit ? "Submitting..." : "Submit"}
                       </button>
                     </div>
+                    )}
                   </div>
                 </form>
               </div>

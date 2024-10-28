@@ -16,8 +16,8 @@ function Banner() {
   const [Loading, setLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
-  const [imageUploading, setImageUploading] = useState(null);
-  const [error, setError] = useState(null);
+  const [imageUploading, setImageUploading] = useState(false);
+  const [error, setError] = useState(false);
   const [imagedataPreview, setImageDataPreview] = useState(null);
   const [formdata, setFormdata] = useState({
     photo: "",
@@ -62,9 +62,9 @@ function Banner() {
   };
 
   const handleImageChange = (e) => {
-    setImageUploading(true);
     const file = e.target.files[0];
     if (file) {
+      setImageUploading(true);
       setSelectedImage(file);
       setImagePreview(URL.createObjectURL(file));
       uploadImage(file); // Pass the file directly here
@@ -89,6 +89,11 @@ function Banner() {
         redirect: "follow",
       });
       if (!response.ok) {
+        setImageUploading(false);
+        setError(true);
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      if (!response?.data?.success) {
         setImageUploading(false);
         setError(true);
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -182,12 +187,12 @@ function Banner() {
                             </div>
                           </div>
 
-                          <h3 className="lg:min-h-[64px] merriweather-font font-normal tracking-[-0.04em] text-xl lg:text-[24px] text-[#1E1E1E] mb-2 lg:mb-2.5">
+                          {/* <h3 className="lg:min-h-[64px] merriweather-font font-normal tracking-[-0.04em] text-xl lg:text-[24px] text-[#1E1E1E] mb-2 lg:mb-2.5">
                             {item?.heading}
                           </h3>
                           <p className="text-[#666666] font-medium text-base gotham-font mb-1.5 tracking-[-0.04em] mb-5 md:mb-6 lg:mb-[30px]  min-h-[107px]">
                             {item?.text}
-                          </p>
+                          </p> */}
                         </div>
                       ))}
                     </div>
@@ -252,11 +257,12 @@ function Banner() {
                   </div>
                   {/* Submit Button */}
                   <div className="flex justify-end pt-3 px-6 lg:px-10 ">
-                    {error ?
-                    <p>Image Uploading in progress...</p>
-                     :                     
-                    (imageUploading ? (
-                      <p>Image Uploading in progress...</p>
+                    {error ? (
+                      <p className="mx-auto text-red-600 capitalize">
+                        Error uploading image. Please try again.
+                      </p>
+                    ) : imageUploading ? (
+                      <p className="mx-auto">Image Uploading in progress...</p>
                     ) : (
                       <button
                         type="submit"
@@ -265,7 +271,7 @@ function Banner() {
                       >
                         {Loading ? "Processing.." : "Banner"}
                       </button>
-                    ))}
+                    )}
                   </div>
                 </form>
               </div>

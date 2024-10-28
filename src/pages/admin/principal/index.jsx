@@ -16,6 +16,8 @@ function Index() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [imagedataPreview, setImageDataPreview] = useState(null);
+    const [imageUploading, setImageUploading] = useState(false);
+  const [error, setError] = useState(false);
     const [listing, setListing] = useState([]);
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
@@ -27,6 +29,7 @@ function Index() {
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
+            setImageUploading(true);
             setSelectedImage(file);
             setImagePreview(URL.createObjectURL(file));
             uploadImage(file); // Pass the file directly here
@@ -52,15 +55,26 @@ function Index() {
                 redirect: "follow",
             });
             if (!response.ok) {
+                setImageUploading(false);
+                setError(true);
                 throw new Error(`HTTP error! Status: ${response.status}`);
-            }
+              }
+              if (!response?.data?.success) {
+                setImageUploading(false);
+                setError(true);
+                throw new Error(`HTTP error! Status: ${response.status}`);
+              }
             const data = await response.json();
             console.log('Image uploaded successfully:', data);
             if (data?.data?.link) {
                 setImageDataPreview(data.data.link);
+                setImageUploading(false);
+                setError(false);
             }
         } catch (error) {
             console.error('Error:', error);
+            setImageUploading(false);
+            setError(true);
         }
     };
 
@@ -150,11 +164,11 @@ function Index() {
                 <div className="md:flex flex-wrap bg-[#F5F6FB] listings-start">
                     <SideBarAdmin />
                     <div className="w-full lg:ml-[304px] lg:w-[calc(100%-304px)]">
-                        <Header title={"Manage Principle"} />
+                        <Header title={"Manage Principal"} />
                         <div className="px-4 py-2 lg:px-10 lg:py-2.5">
                             <div className="bg-white rounded-[20px] mb-[30px]">
                                 <div className="py-3 lg:py-[23px] px-4 md:px-6 lg:px-10 flex flex-wrap justify-between listings-center border-b border-black border-opacity-10">
-                                    <h3 className="text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">Principle</h3>
+                                    <h3 className="text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">Principal</h3>
                                 </div>
                                 <div className="overflow-x-auto">
                                     {loading ? (
@@ -209,7 +223,7 @@ function Index() {
                         <Modal isOpen={isOpen} onClose={handleClose}>
                             <div className="relative bg-white w-full rounded-[30px] lg:rounded-[40px] h-auto m-auto">
                                 <div className="border-b border-black border-opacity-10 pt-6 pb-5 px-6 lg:pt-8 lg:pb-6 lg:px-10">
-                                    <h2 className="text-xl lg:text-2xl  text-[#212121] tracking-[-0.04em] font-semibold mb-0">Principle  </h2>
+                                    <h2 className="text-xl lg:text-2xl  text-[#212121] tracking-[-0.04em] font-semibold mb-0">Principal  </h2>
                                 </div>
                                 <div className="py-6 lg:py-8 ">
                                     <div className=' max-h-full overflow-y-auto customscroll px-6 lg:px-10 '>
@@ -239,12 +253,20 @@ function Index() {
                                             {imagePreview && <img src={imagePreview} alt="Preview" className="mt-2 w-48 h-48 object-cover text-center" />}
                                         </div>
                                         <div className="flex justify-end pt-3 px-6 lg:px-10 ">
-                                            <button type="submit"
-                                                onClick={handleSubmit}
-                                                className="w-full text-white bg-[#0367F7] hover:text-[#0367F7] hover:bg-white text-[17px] font-medium tracking-[-0.04em] h-11 lg:h-[54px] py-2.5 px-12 border border-[#0367F7] rounded-full outline-none focus:outline-none ease-linear transition-all duration-150">
-                                                {/* {Loading ? "Processing.." : "fees"} */}
-                                                Principle
-                                            </button>
+                                        {error ? (
+                      <p className="mx-auto text-red-600 capitalize">
+                        Error uploading image. Please try again.
+                      </p>
+                    ) : imageUploading ? (
+                      <p className="mx-auto">Image Uploading in progress...</p>
+                    ) : (
+                        <button type="submit"
+                        onClick={handleSubmit}
+                        className="w-full text-white bg-[#0367F7] hover:text-[#0367F7] hover:bg-white text-[17px] font-medium tracking-[-0.04em] h-11 lg:h-[54px] py-2.5 px-12 border border-[#0367F7] rounded-full outline-none focus:outline-none ease-linear transition-all duration-150">
+                        {/* {Loading ? "Processing.." : "fees"} */}
+                        Principal
+                    </button>
+                    )}
                                         </div>
                                     </div>
                                 </div>
