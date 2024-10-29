@@ -88,9 +88,9 @@ export default function Sports() {
                       src={item?.image}
                       alt="Sports"
                       objectFit="cover"
-                      className="object-cover w-full !h-full"
-                      height={470}
-                      width={692}
+                      className="object-cover w-[692px] !h-[470px]"
+                      height={1000}
+                      width={1000}
                       loading="lazy"
                     />
                     
