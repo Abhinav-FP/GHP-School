@@ -94,6 +94,7 @@ function Banner() {
         setError(true);
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
+      console.log("response?.data",response?.data);
       if (response?.data?.success !== true) {
         console.log("Error in success line");
         setImageUploading(false);
