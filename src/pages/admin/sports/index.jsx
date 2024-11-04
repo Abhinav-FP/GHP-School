@@ -29,6 +29,13 @@ function Index() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      const fileSizeInMB = file.size / (1024 * 1024);
+      if (fileSizeInMB > 4) {
+        alert("File size exceeds 4 MB. Please upload a smaller image.");
+        return;
+      }
+    }
+    if (file) {
       setImageUploading(true);
       setSelectedImage(file);
       setImagePreview(URL.createObjectURL(file));
@@ -84,11 +91,11 @@ function Index() {
         setError(true);
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      if (!response?.data?.success) {
-        setImageUploading(false);
-        setError(true);
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
+      // if (!response?.data?.success) {
+      //   setImageUploading(false);
+      //   setError(true);
+      //   throw new Error(`HTTP error! Status: ${response.status}`);
+      // }
       const data = await response.json();
       if (data?.data?.link) {
         setImageDataPreview(data.data.link);

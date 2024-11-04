@@ -64,6 +64,13 @@ function Banner() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      const fileSizeInMB = file.size / (1024 * 1024);
+      if (fileSizeInMB > 4) {
+        alert("File size exceeds 4 MB. Please upload a smaller image.");
+        return;
+      }
+    }
+    if (file) {
       setImageUploading(true);
       setSelectedImage(file);
       setImagePreview(URL.createObjectURL(file));
@@ -94,13 +101,13 @@ function Banner() {
         setError(true);
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      console.log("response?.data",response);
-      if (response?.data?.success !== true) {
-        console.log("Error in success line");
-        setImageUploading(false);
-        setError(true);
-        throw new Error(`HTTP error! Status: ${response.status}`);
-    }
+    //   console.log("response?.data",response);
+    //   if (response?.data?.success !== true) {
+    //     console.log("Error in success line");
+    //     setImageUploading(false);
+    //     setError(true);
+    //     throw new Error(`HTTP error! Status: ${response.status}`);
+    // }
       const data = await response.json();
       console.log("Image uploaded successfully:", data);
       if (data?.data?.link) {
