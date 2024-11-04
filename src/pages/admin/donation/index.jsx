@@ -85,11 +85,11 @@ function Index() {
         body: formdata,
         redirect: "follow",
       });
-      if (!response.ok) {
-        setImageUploading(false);
-        setError(true);
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
+      // if (!response.ok) {
+      //   setImageUploading(false);
+      //   setError(true);
+      //   throw new Error(`HTTP error! Status: ${response.status}`);
+      // }
       if (!response?.data?.success) {
         setImageUploading(false);
         setError(true);
@@ -291,7 +291,14 @@ function Index() {
                         type="text"
                         name="price"
                         value={formData.price}
-                        onChange={handleChange}
+                        onChange={(e) => {
+                          if (
+                            /^[0-9]*$/.test(e.target.value)
+                          ) {
+                            handleChange(e);
+                          }
+                        }}
+                        maxLength="10"
                         className="w-full h-11 lg:h-[54px]  appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
                         placeholder="Enter price"
                       />

@@ -89,11 +89,13 @@ function Banner() {
         redirect: "follow",
       });
       if (!response.ok) {
+        console.log("Error in ok line");
         setImageUploading(false);
         setError(true);
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       if (!response?.data?.success) {
+        console.log("Error in success line");
         setImageUploading(false);
         setError(true);
         throw new Error(`HTTP error! Status: ${response.status}`);
