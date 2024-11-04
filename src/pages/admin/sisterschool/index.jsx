@@ -118,7 +118,7 @@ function Index() {
     e.preventDefault();
     setLoading(true);
     const record = new FormData();
-    record.append("image", imagePreview);
+    record.append("image", imagedataPreview);
     record.append("link", link);
     try {
       const main = new Details();

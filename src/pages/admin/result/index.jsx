@@ -111,6 +111,10 @@ function Index() {
       const data = await response.json();
       if (data?.data?.link) {
         setImageDataPreview(data.data.link);
+        setFormData((prevData) => ({
+          ...prevData,
+          photo: data.data.link,
+        }));
         setImageUploading(false);
         setError(false);
       }

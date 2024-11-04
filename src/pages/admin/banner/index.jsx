@@ -112,6 +112,13 @@ function Banner() {
       console.log("Image uploaded successfully:", data);
       if (data?.data?.link) {
         setImageDataPreview(data.data.link);
+        if (data?.data?.link) {
+        setImageDataPreview(data.data.link);
+        setFormdata((prevData) => ({
+          ...prevData,
+          photo: data.data.link,
+        }));
+      }
         setImageUploading(false);
         setError(false);
       }
