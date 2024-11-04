@@ -131,7 +131,7 @@ function Index() {
     const record = new FormData();
     record.append("rollNo", formData.rollNo);
     record.append("name", formData.name);
-    record.append("photo", imagePreview);
+    record.append("photo", formData.photo);
     record.append("grade", formData.grade);
     record.append("stream", formData.stream);
     record.append("percentage", formData.percentage);
