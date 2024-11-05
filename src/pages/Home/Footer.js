@@ -36,8 +36,8 @@ export default function Footer() {
                   {/* <span className="hidden md:inline">/</span> */}
                    {/* <br className="md:hidden"></br>  */}
                    {" "}
-                  <a href="mailto:bvbschool74@gmail.com">
-                    bvbschool74@gmail.com
+                  <a href="mailto:bvbpschool@yahoo.com">
+                  bvbpschool@yahoo.com
                   </a>
                 </p>
                 <p className="min-w-[200px] flex-wrap justify-center sm:min-w-[420px] flex md:block relative md:pl-6 text-[#1E1E1E] opacity-90 tracking-[-0.04em] text-base font-medium gotham-font">

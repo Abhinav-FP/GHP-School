@@ -4,6 +4,8 @@ import CareerBg from "../../../public/Career/careerbg.jpg";
 import Image from "next/image";
 import JoinTeam from "./JoinTeam";
 import Vacancie from "./Vacancie";
+import Principal from "../about/Principal";
+import Faculty from "../about/Faculty";
 // import MegaUpload from "./MegaUpload";
 
 export default function index() {
@@ -22,6 +24,8 @@ export default function index() {
         />
       </div>
       <JoinTeam />
+      <Principal/>
+      <Faculty/>
       {/* <Vacancie /> */}
       {/* <FileUpload/> */}
     </Layout>

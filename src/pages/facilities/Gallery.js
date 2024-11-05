@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Details from "../api/admin/Details";
 import { GrNext } from "react-icons/gr";
 import { GrPrevious } from "react-icons/gr";
@@ -8,13 +8,14 @@ import Loader from "@/Component/Loader";
 
 export default function Gallery() {
   const [listing, setLisitng] = useState([]);
-  const [data, setData] = useState([]); // Holds images fetched by category
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [count, setCount] = useState(0);
 
-  // Fetch all gallery items
+  const modalRef = useRef(null);
+
   const getGallery = () => {
     setLoading(true);
     const main = new Details();
@@ -34,16 +35,15 @@ export default function Gallery() {
       });
   };
 
-  // Fetch images by category
   const getGallerybyCategory = (name) => {
     const main = new Details();
     main
       .getGallerybyCategory(name)
       .then((r) => {
         setLoading(false);
-        setData(r?.data?.data); // Save fetched images in `data`
-        setShowModal(true); // Only show modal after data is fetched
-        setCurrentImageIndex(0); // Reset image index to 0
+        setData(r?.data?.data);
+        setShowModal(true);
+        setCurrentImageIndex(0);
       })
       .catch((err) => {
         setData([]);
@@ -52,39 +52,46 @@ export default function Gallery() {
   };
 
   useEffect(() => {
-    getGallery(); // Fetch all gallery items on mount
+    getGallery();
   }, []);
 
   useEffect(() => {
-    // Lock body scroll when modal is open
     if (showModal) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
 
-    // Cleanup on unmount or when modal closes
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setShowModal(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
     return () => {
-      document.body.style.overflow = 'unset';
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "unset";
     };
   }, [showModal]);
 
   const handleImageClick = (name) => {
-    getGallerybyCategory(name); // Fetch images by category when clicked
+    getGallerybyCategory(name);
   };
 
   const handleNext = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % data.length); // Loop forward through images
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % data.length);
   };
 
   const handlePrevious = () => {
     setCurrentImageIndex(
       (prevIndex) => (prevIndex - 1 + data.length) % data.length
-    ); // Loop backward through images
+    );
   };
 
   const closeModal = () => {
-    setShowModal(false); // Close modal
+    setShowModal(false);
   };
 
   return (
@@ -98,56 +105,64 @@ export default function Gallery() {
         </p>
 
         {loading ? (
-          <Loader/>
+          <Loader />
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
-            {listing && listing.map((item, index) => (
-              <div key={index} className="relative w-full overflow-hidden h-full cursor-pointer" onClick={() => handleImageClick(item?.caption)}>
-                <Image
-                  // blurDataURL={`${item?.url}?q=1`}
-                  // placeholder="blur"
-                  width={387}
-                  height={310}
-                  src={item?.url}
-                  alt={item?.caption}
-                  className="object-cover w-full h-full"
-                  loading="lazy"
-                />
-                <div className="galleryBg absolute bottom-0 left-0 h-full w-full z-0"></div>
-                <h3 className="capitalize absolute bottom-4 left-6 right-6 text-white z-10 merriweather-font font-normal text-xl lg:text-2xl">
-                  {item?.caption.replace("-", " ")}
-                </h3>
-              </div>
-            ))}
+            {listing &&
+              listing.map((item, index) => (
+                <div
+                  key={index}
+                  className="relative w-full overflow-hidden h-full cursor-pointer"
+                  onClick={() => handleImageClick(item?.caption)}
+                >
+                  <Image
+                    width={387}
+                    height={310}
+                    src={item?.url}
+                    alt={item?.caption}
+                    className="object-cover w-full h-full"
+                    loading="lazy"
+                  />
+                  <div className="galleryBg absolute bottom-0 left-0 h-full w-full z-0"></div>
+                  <h3 className="capitalize absolute bottom-4 left-6 right-6 text-white z-10 merriweather-font font-normal text-xl lg:text-2xl">
+                    {item?.caption.replace("-", " ")}
+                  </h3>
+                </div>
+              ))}
           </div>
         )}
 
-        {/* Modal */}
         {showModal && data.length > 0 && (
           <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
-            <div className="relative w-full h-full flex justify-center items-center">
+            <div
+              ref={modalRef}
+              className="relative w-full h-full flex justify-center items-center"
+            >
               <button className="absolute top-4 right-4 text-white z-10" onClick={closeModal}>
                 <IoMdClose size={24} />
               </button>
-              <button className="absolute left-4 top-[50%] transform -translate-y-1/2 text-white z-10" onClick={handlePrevious}>
+              <button
+                className="absolute left-4 top-[50%] transform -translate-y-1/2 text-white z-10"
+                onClick={handlePrevious}
+              >
                 <GrPrevious size={24} />
               </button>
               <Image
-                // blurDataURL={`${data[currentImageIndex]?.url}?q=40`}
-                // placeholder="blur"
                 src={data[currentImageIndex]?.url}
                 alt={data[currentImageIndex]?.caption}
                 layout="fill"
                 objectFit="contain"
                 className="max-w-full max-h-full"
-                // loading="lazy"
               />
               <div className="gallery-text absolute p-[15px] sm:p-[30px] w-full bottom-0 left-0 text-white capitalize text-lg sm:text-xl font-semibold z-10">
                 <p className="px-4 py-2 inline-block rounded">
                   {data[currentImageIndex]?.description}
                 </p>
               </div>
-              <button className="absolute right-4 top-[50%] transform -translate-y-1/2 text-white z-10" onClick={handleNext}>
+              <button
+                className="absolute right-4 top-[50%] transform -translate-y-1/2 text-white z-10"
+                onClick={handleNext}
+              >
                 <GrNext size={20} />
               </button>
             </div>

@@ -4,28 +4,28 @@ import React from "react";
 export default function Houses() {
   const houseData = [
     {
-      imagesrc: "/Facilities/House1.png",
+      imagesrc: "/Facilities/House1.jpg",
       name: "Guru Vashishtha",
       color: "text-[#0E2A73]",
       paragraph:
         "Named after the revered sage and teacher of Lord Rama, Guru Vashishtha symbolizes wisdom, righteousness, and the pursuit of knowledge. This house inspires students to uphold moral values and seek enlightenment.",
     },
     {
-      imagesrc: "/Facilities/House2.png",
+      imagesrc: "/Facilities/House2.jpg",
       name: "Dronacharya",
       color: "text-[#8E0C16]",
       paragraph:
         "Named after the legendary teacher of the Pandavas and Kauravas, Dronacharya represents excellence in education, discipline, and mastery of skills. This house encourages students to strive for perfection in their endeavours.",
     },
     {
-      imagesrc: "/Facilities/House3.png",
+      imagesrc: "/Facilities/House3.jpg",
       name: "Chanakya",
       color: "text-[#F1A200]",
       paragraph:
         "Named after the ancient Indian philosopher and strategist, Chanakya embodies intelligence, strategy, and the art of leadership. This house motivates students to develop critical thinking and leadership qualities.",
     },
     {
-      imagesrc: "/Facilities/House4.png",
+      imagesrc: "/Facilities/House4.jpg",
       name: "Swami Vivekanand",
       color: "text-[#5A7C1E]",
       paragraph:
@@ -51,9 +51,9 @@ export default function Houses() {
                 <Image
                   blurDataURL={`${item.imagesrc}?q=1`}
                   placeholder="blur"
-                  className="mx-auto mb-4 lg:mb-5 block"
-                  width={190}
-                  height={210}
+                  className="mx-auto mb-4 lg:mb-5 block h-[210px] w-[190px]"
+                  width={2550}
+                  height={3258} 
                   src={item.imagesrc}
                   alt={item.name}
                   loading="lazy"

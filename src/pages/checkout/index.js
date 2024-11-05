@@ -33,10 +33,8 @@ export default function Index() {
     aadhaarCard: null,
     panCard: null,
     emailAddress: "",
+    panNumber:"",
   });
-
-  
-
 
   const handleUpload = async (event) => {
     "event", event;
@@ -98,7 +96,8 @@ export default function Index() {
       formData?.contactNumber === "" ||
       formData?.aadhaarCard === null ||
       formData?.panCard === null ||
-      formData?.emailAddress === ""
+      formData?.emailAddress === "" ||
+      formData?.panNumber === ""
     ) {
       toast.error("Please fill the complete form");
       return;
@@ -294,6 +293,24 @@ export default function Index() {
                       name="panCard"
                       onChange={handleUpload}
                       className="bg-white border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                    />
+                  </div>
+                  <div className="mb-4 lg:mb-6">
+                    <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
+                      PAN Number<em className="text-[#EE834E]">*</em>
+                    </label>
+                    <input
+                      type="text"
+                      name="panNumber"
+                      value={formData.panNumber}
+                      onChange={(e) => {
+                        if (
+                          e.target.value.length <= 10
+                        ) {
+                          handleChange(e);
+                        }
+                      }}
+                      className="border border-black border-opacity-10 px-3.5 py-2 w-full h-11 lg:h-14 appearance-none text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
                     />
                   </div>
                   <div className="mb-4 lg:mb-6">

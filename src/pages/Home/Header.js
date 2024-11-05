@@ -55,31 +55,31 @@ export default function Header() {
                           href="/about#vision"
                           className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
                         >
-                          Vision
+                          Vision & Mission
                         </Link>
                       </li>
                       <li>
                         <Link
-                          href="/about#mission"
+                          href="/about#mentor"
                           className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
                         >
-                          Mission
+                         Our Mentor
                         </Link>
                       </li>
-                      <li>
+                      {/* <li>
                         <Link
                           href="/about#faculty"
                           className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
                         >
                           Faculty
                         </Link>
-                      </li>
+                      </li> */}
                       <li>
                         <Link
                           href="/about#directors"
                           className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
                         >
-                          Founder & Directors
+                          Directors Desk
                         </Link>
                       </li>
                       <li>
@@ -197,7 +197,7 @@ export default function Header() {
                           href="/facilities#activities"
                           className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
                         >
-                          Activities
+                          Gallery
                         </Link>
                       </li>
                     </ul>
@@ -283,7 +283,7 @@ export default function Header() {
                           href="/careers"
                           className="block text-base py-2 px-5 xl:text-lg text-[#1E1E1E] hover:text-[#EE834E] tracking-[-0.04em] font-medium"
                         >
-                          Careers
+                          Careers & Faculty
                         </Link>
                       </li>
                     </ul>

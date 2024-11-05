@@ -25,8 +25,8 @@ export default function index() {
       <Vision/>
       <Mentor/>
       <Directors/>      
-      <Principal/>
-      <Faculty/>
+      {/* <Principal/> */}
+      {/* <Faculty/> */}
       <SisterSchools/>
       <ComingSoon/>
       </Layout>
