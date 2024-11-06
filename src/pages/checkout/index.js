@@ -203,6 +203,7 @@ export default function Index() {
       data.append("aadhar", formData?.aadhaarCard);
       data.append("pan", formData?.panCard);
       data.append("email", formData?.emailAddress);
+      data.append("pannumber", formData?.panNumber);
       data.append("amount", price);
       data.append("payment_id", paymentId);
       const response = await main.donationUserAdd(data);

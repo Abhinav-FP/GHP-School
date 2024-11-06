@@ -10,11 +10,11 @@ export default function App({ Component, pageProps }) {
     <>
       <Head>
         <link rel="icon" href="/favicon.png" />
-        <link rel="icon" href="/favicon-32x32.png" sizes="32x32" />
+        {/* <link rel="icon" href="/favicon-32x32.png" sizes="32x32" />
         <link rel="icon" href="/favicon-16x16.png" sizes="16x16" />
         <link rel="icon" href="/android-chrome-192x192.png" sizes="192x192" />
         <link rel="icon" href="/android-chrome-512x512.png" sizes="512x512" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" /> */}
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#ffffff" />
         <meta name="msapplication-TileImage" content="/android-chrome-512x512.png" />
