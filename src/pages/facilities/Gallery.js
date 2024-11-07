@@ -95,13 +95,17 @@ export default function Gallery() {
   };
 
   return (
-    <div className="bg-white pb-[40px] md:pb-[80px] lg:pb-[100px]" id="activities">
+    <div
+      className="bg-white pb-[40px] md:pb-[80px] lg:pb-[100px]"
+      id="activities"
+    >
       <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto">
         <h2 className="merriweather-font font-normal text-2xl md:text-3xl lg:text-4xl mb-2.5 text-[#1E1E1E] tracking-[-0.04em] text-center">
           Gallery
         </h2>
         <p className="max-w-[965px] text-center tracking-[-0.04em] mx-auto text-center text-[#666666] text-base font-medium mb-10 lg:mb-[50px]">
-          Explore our gallery to see the vibrant life and activities at BVBS School.
+          Explore our gallery to see the vibrant life and activities at BVBS
+          School.
         </p>
 
         {loading ? (
@@ -137,31 +141,51 @@ export default function Gallery() {
             <div
               ref={modalRef}
               className="relative w-full h-full flex justify-center items-center"
+              onClick={() => {
+                closeModal();
+              }}
             >
-              <button className="absolute top-4 right-4 text-white z-10" onClick={closeModal}>
+              <button
+                className="absolute top-4 right-4 text-white z-10"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  closeModal();
+                }}
+              >
                 <IoMdClose size={24} />
               </button>
+
               <button
                 className="absolute left-4 top-[50%] transform -translate-y-1/2 text-white z-10"
-                onClick={handlePrevious}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handlePrevious();
+                }}
               >
                 <GrPrevious size={24} />
               </button>
+
               <Image
                 src={data[currentImageIndex]?.url}
                 alt={data[currentImageIndex]?.caption}
                 layout="fill"
                 objectFit="contain"
                 className="max-w-full max-h-full"
+                onClick={(e) => e.stopPropagation()}
               />
+
               <div className="gallery-text absolute p-[15px] sm:p-[30px] w-full bottom-0 left-0 text-white capitalize text-lg sm:text-xl font-semibold z-10">
                 <p className="px-4 py-2 inline-block rounded">
                   {data[currentImageIndex]?.description}
                 </p>
               </div>
+
               <button
                 className="absolute right-4 top-[50%] transform -translate-y-1/2 text-white z-10"
-                onClick={handleNext}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleNext();
+                }}
               >
                 <GrNext size={20} />
               </button>
