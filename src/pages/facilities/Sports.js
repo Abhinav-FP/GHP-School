@@ -79,7 +79,7 @@ export default function Sports() {
               {listing &&
                 listing.map((item, index) => (
                   <SwiperSlide
-                    className="!h-[250px] sm:!h-[300px] lg:!h-[470px]"
+                    className=" lg:!h-[470px]"
                     key={index}
                   >
                     <Image
@@ -88,7 +88,7 @@ export default function Sports() {
                       src={item?.image}
                       alt="Sports"
                       objectFit="cover"
-                      className="object-cover w-[692px] !h-[470px]"
+                      className="object-cover w-full min-h-[340px] max-h-[340px] lg:max-h-full lg:!h-[470px]"
                       height={1000}
                       width={1000}
                       loading="lazy"

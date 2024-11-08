@@ -36,6 +36,15 @@ export default function Index() {
     panNumber:"",
   });
 
+  useEffect(() => {
+    try{
+      const renderserverstarting = axios.get("https://ghp-school-backend.onrender.com");
+    }
+    catch(error){
+      console.log("Failed to start render server")
+    }
+  }, []);
+
   const handleUpload = async (event) => {
     "event", event;
     let name = event.target.name;
@@ -88,9 +97,9 @@ export default function Index() {
     name: item.name,
     totalPrice: item.price * item.quantity
   }));
-  console.log("itemsjson",items);
+  // console.log("itemsjson",items);
   items=JSON.stringify(items);
-  console.log("itemsstringify",items);
+  // console.log("itemsstringify",items);
 
 
   const handleSubmit = async () => {
@@ -359,7 +368,7 @@ export default function Index() {
                       <td className="text-[#1E1E1E] text-base py-3 tracking-[-0.04em] uppercase merriweather-font font-normal border-b border-black border-opacity-10">
                         Product
                       </td>
-                      <td className="text-[#1E1E1E] text-base py-3 px-3 tracking-[-0.04em] uppercase merriweather-font font-normal border-b border-black border-opacity-10">
+                      <td className="text-[#1E1E1E] text-base py-3 px-3 tracking-[-0.04em] uppercase merriweather-font font-normal border-b border-black border-opacity-10 text-center">
                         QTY
                       </td>
                       <td className="text-[#1E1E1E]  text-right text-base py-3 px-3 tracking-[-0.04em] uppercase merriweather-font font-normal border-b border-black border-opacity-10 pr-0">
@@ -396,7 +405,7 @@ export default function Index() {
                               </div>
                             </div>
                           </td>
-                          <td className="tracking-[-0.04em] text-[#666666] font-noraml text-base py-3.5 px-3   border-b border-black border-opacity-10  merriweather-font">
+                          <td className="tracking-[-0.04em] text-[#1E1E1E] font-medium merriweather-font font-normal text-base md:text-lg lg:text-xl text-center">
                             {item.quantity}
                           </td>
                           <td className="text-[#EE834E] text-right font-medium text-base lg:text-xl py-3.5 px-3 pr-0 tracking-[-0.04em] border-b border-black border-opacity-10">

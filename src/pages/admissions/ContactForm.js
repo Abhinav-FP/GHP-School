@@ -52,15 +52,6 @@ function ContactForm() {
   });
   const totalPrice = record.type === "new" ? 500 : 200;
 
-  useEffect(() => {
-    try{
-      const renderserverstarting = axios.get("https://ghp-school-backend.onrender.com");
-    }
-    catch(error){
-      console.log("Failed to start render server")
-    }
-  }, []);
-
   // Image uploader logic here
   const [selectedImage, setSelectedImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
@@ -320,7 +311,7 @@ function ContactForm() {
       setFormLoading(false);
     }
   };
-  console.log("record", record);
+  // console.log("record", record);
   return (
     <div className="bg-white py-[50px] md:py-[70px] lg:py-[100px]">
       <form
