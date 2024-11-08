@@ -84,7 +84,14 @@ export default function Index() {
     dispatch(removeItem(id));
   };
 
-  const CurrentDate = new Date();
+  let items = cartItemsRedux.map(item => ({
+    name: item.name,
+    totalPrice: item.price * item.quantity
+  }));
+  console.log("itemsjson",items);
+  items=JSON.stringify(items);
+  console.log("itemsstringify",items);
+
 
   const handleSubmit = async () => {
     if (totalPrice === 0) {
@@ -206,6 +213,7 @@ export default function Index() {
       data.append("pannumber", formData?.panNumber);
       data.append("amount", price);
       data.append("payment_id", paymentId);
+      data.append("items", items);
       const response = await main.donationUserAdd(data);
       if (response?.data?.status) {
         // toast.success(response.data.message);
