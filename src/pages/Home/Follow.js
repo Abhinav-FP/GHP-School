@@ -4,17 +4,27 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import Link from "next/link";
+import axios from "axios";
 
 export default function Follow() {
   const [posts, setPosts] = useState();
   useEffect(() => {
+    try {
+      const tokenValidityIncrease = axios.get(
+        `https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${process.env.NEXT_PUBLIC_INSTAGRAM_TOKEN}`
+      );
+    } catch (error) {
+      console.log("Failed to start render server");
+    }
+  }, []);
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://graph.instagram.com/v21.0/17841469933835641/media?fields=id,caption,comments_count,like_count,media_url,video_url,media_type,permalink&access_token=IGQWRPaGJKcUF4dEtpYTVNaldCVGF4dTBERklrVnE5bWpGMDZAHM0dzRWdoODRmd0dWM244WlMyV25tT0tmM2xocGlqUGFkOW9XUmpUaU5ISVd0czdsY3UzcTZAYdDByTWpEWUF5aUN0WVRVRmNfZAGpDeEZAfNW9RUzQZD"
+          `https://graph.instagram.com/v21.0/${process.env.NEXT_PUBLIC_INSTAGRAM_ID}/media?fields=id,caption,comments_count,like_count,media_url,video_url,media_type,permalink&access_token=${process.env.NEXT_PUBLIC_INSTAGRAM_TOKEN}`
         );
         const data = await response.json();
-        setPosts([...data?.data,...data?.data]);
+        setPosts([...data?.data, ...data?.data]);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -52,9 +62,7 @@ export default function Follow() {
             posts?.map((item, index) => (
               <SwiperSlide key={index}>
                 <Link href={item?.permalink} target="blank">
-                <img src={item?.media_url} 
-                alt="instagram post"
-                />
+                  <img src={item?.media_url} alt="instagram post" />
                 </Link>
               </SwiperSlide>
             ))}
