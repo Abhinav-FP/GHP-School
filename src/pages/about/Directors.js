@@ -54,7 +54,7 @@ export default function Directors() {
   // ];
   return (
     <div
-      className="bg-white pb-[50px] md:pb-[70px] lg:pb-[100px]"
+      className="bg-white"
       id="directors"
     >
       <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto">
@@ -64,7 +64,7 @@ export default function Directors() {
         {Loading ? (
           <Loader/>
         ) : (
-          <div className="mx-auto lg:px-4 py-8 grid lg:grid-cols-2 gap-3.5 lg:gap-5">
+          <div className="mx-auto lg:px-4 pt-8 grid lg:grid-cols-2 gap-3.5 lg:gap-5">
             {listing &&
               listing.map((profile, index) => (
                 <div
