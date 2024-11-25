@@ -60,7 +60,7 @@ function EnquirySec() {
             <Image
               blurDataURL={`${InquiryformBanner}?q=1`}
               placeholder="blur"
-              className="w-full h-[833px]"
+              className="w-full h-full lg:h-[833px]"
               src={InquiryformBanner}
               alt="img"
               loading="lazy"

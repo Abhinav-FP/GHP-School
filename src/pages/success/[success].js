@@ -62,7 +62,7 @@ export default function Success() {
         <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4 text-center">
           <Image
             src={ThankyouImage}
-            className="mx-auto block mb-8 md:mb-10 lg:mb-14"
+            className="max-w-full w-auto block m-auto mb-8 md:mb-10 lg:mb-14 h-[325px]"
             alt="img"
           />
           <h2 className="merriweather-font font-normal text-2xl md:text-3xl lg:text-4xl mb-2 text-[#1E1E1E] tracking-[-0.04em] mb-3 lg:mb-4">

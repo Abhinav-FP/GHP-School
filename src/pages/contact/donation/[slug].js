@@ -93,7 +93,7 @@ export default function Donation() {
             <Loader />
           ) : (
             <>
-      <nav aria-label="breadcrumb" className="w-full">
+      <nav aria-label="breadcrumb" className="w-full bg-white">
         <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
           <ol className="flex w-full flex-wrap items-center py-6 lg:pt-12 lg:pb-8 ">
             <li className="flex cursor-pointer items-center text-base md:text-lg lg:text-xl font-medium  antialiased text-[#7f7f7f]  transition-colors duration-300 hover:text-[#EE834E]">
