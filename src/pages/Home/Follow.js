@@ -75,7 +75,7 @@ export default function Follow() {
                     className="w-full h-auto"
                   />
                   {/* Overlay */}
-                  <div className="w-[263px] absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                  <div className="w-full lg:w-[263px] absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
                     <p className="text-white text-sm text-start px-2 break-words overflow-hidden">
                       {item?.caption?.split(" ").slice(0, 10).join(" ")}
                       {item?.caption?.split(" ").length > 10 && " ..."}
