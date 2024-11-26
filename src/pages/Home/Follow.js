@@ -47,6 +47,10 @@ export default function Follow() {
               spaceBetween: 20,
             },
             768: {
+              slidesPerView: 3,
+              spaceBetween: 40,
+            },
+            900: {
               slidesPerView: 4,
               spaceBetween: 40,
             },
@@ -60,30 +64,30 @@ export default function Follow() {
         >
           {posts &&
             posts
-            .filter((item) => item?.media_type === "IMAGE")
-            .map((item, index) => (
-              <SwiperSlide key={index}>
-                <Link
-                  href={item?.permalink}
-                  target="blank"
-                  className="relative group"
-                >
-                  {/* Image */}
-                  <img
-                    src={item?.media_url}
-                    alt="Instagram post"
-                    className="w-full h-auto"
-                  />
-                  {/* Overlay */}
-                  <div className="w-full lg:w-[263px] absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                    <p className="text-white text-sm text-start px-2 break-words overflow-hidden">
-                      {item?.caption?.split(" ").slice(0, 10).join(" ")}
-                      {item?.caption?.split(" ").length > 10 && " ..."}
-                    </p>
-                  </div>
-                </Link>
-              </SwiperSlide>
-            ))}
+              .filter((item) => item?.media_type === "IMAGE")
+              .map((item, index) => (
+                <SwiperSlide key={index}>
+                  <Link
+                    href={item?.permalink}
+                    target="blank"
+                    className="relative group"
+                  >
+                    {/* Image */}
+                    <img
+                      src={item?.media_url}
+                      alt="Instagram post"
+                      className="w-full h-auto"
+                    />
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                      <p className="text-white text-sm text-start px-2 break-words overflow-hidden">
+                        {item?.caption?.split(" ").slice(0, 10).join(" ")}
+                        {item?.caption?.split(" ").length > 10 && " ..."}
+                      </p>
+                    </div>
+                  </Link>
+                </SwiperSlide>
+              ))}
         </Swiper>
       </div>
     </div>
