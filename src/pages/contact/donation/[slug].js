@@ -90,7 +90,9 @@ export default function Donation() {
   return (
     <Layout>
       {Loading ? (
-            <Loader />
+        <div className="min-h-[40vh] md:min-h-[60vh] bg-white flex items-center justify-center mx-auto">
+        <Loader />
+      </div>      
           ) : (
             <>
       <nav aria-label="breadcrumb" className="w-full bg-white">

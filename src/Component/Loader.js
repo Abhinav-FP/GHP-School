@@ -3,7 +3,7 @@ import React from 'react'
 export default function Loader() {
   return (
     <div role="status"
-          className="flex justify-center mt-10">
+          className="flex justify-center pt-10">
             <svg
               aria-hidden="true"
               className="w-12 h-12 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
