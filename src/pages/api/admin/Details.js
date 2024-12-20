@@ -23,8 +23,8 @@ class Details extends Component {
   async deleteFaculty(data) {
     return Api.post("/about/faculty/delete", data);
   }
-  async verify() {
-    return Api.get("/user/profile");
+  async verify(signal) {
+    return Api.get("/user/profile", { signal });
   }
 
   async gethomebanner() {

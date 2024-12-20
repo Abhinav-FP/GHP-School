@@ -9,9 +9,9 @@ export default function AdminLayout({ children, title, subhead }) {
   const [Loading, setLoading] = useState(false)
   const router = useRouter();
   const [content, setContent] = useState([]);
-  const fetchData = () => {
+  const fetchData = (signal) => {
     const main = new Details();
-    const response = main.verify();
+    const response = main.verify(signal);
     response
       .then((res) => {
         if (res.data) {
