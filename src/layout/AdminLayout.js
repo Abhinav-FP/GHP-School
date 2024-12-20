@@ -25,10 +25,6 @@ export default function AdminLayout({ children, title, subhead }) {
       });
   }
 
-  useEffect(() => {
-    fetchData()
-  }, []);
-
 
   useEffect(() => {
     const controller = new AbortController();
