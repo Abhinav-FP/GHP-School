@@ -4,7 +4,7 @@ import React from "react";
 const TermsAndConditions = () => {
   return (
     <Layout>
-    <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div className="bg-white min-h-screen flex items-center justify-center">
       <div className="p-8 shadow-lg rounded-lg w-full">
         <h1 className="text-3xl font-bold mb-6 text-gray-800">
           Terms and Conditions
