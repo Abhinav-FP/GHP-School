@@ -56,31 +56,34 @@ export default function Footer() {
                  <span className="inline-flex min-w-[95px] md:block ">Quick Links</span>
               </h3>
               <div className="space-y-2.5 text-center md:text-left flex md:block justify-center flex-col items-center">
-                <p className="min-w-[180px] flex  relative md:pl-6 text-[#1E1E1E] opacity-90 tracking-[-0.04em] text-base font-medium gotham-font">
+                <p className="min-w-[180px] flex pl-4 sm:pl-[0px] relative text-[#1E1E1E] opacity-90 tracking-[-0.04em] text-base font-medium gotham-font">
                   <Link
-                    href="/careers"
+                    href="/terms&conditions"
                     className="text-[#1E1E1E] hover:text-[#EE834E]"
                   >
-                    <HiOutlineBriefcase  size={18} className="md:absolute left-0 md:top-1/2 md:-translate-y-1/2 align-text-top inline mr-2 md:mr-0" />{" "}
-                    Careers
+                    {/* <HiOutlineBriefcase  size={18} className="md:absolute left-0 md:top-1/2 md:-translate-y-1/2 align-text-top inline mr-2 md:mr-0" />{" "}
+                    Careers */}
+                    Terms & Conditions
                   </Link>
                 </p>
-                <p className="min-w-[180px] flex  relative md:pl-6 text-[#1E1E1E] opacity-90 tracking-[-0.04em] text-base font-medium gotham-font">
+                <p className="min-w-[180px] flex pl-4 sm:pl-[0px] relative text-[#1E1E1E] opacity-90 tracking-[-0.04em] text-base font-medium gotham-font">
                   <Link
-                    href="/contact#donate"
+                    href="/privacypolicy"
                     className="text-[#1E1E1E] hover:text-[#EE834E]"
                   >
-                    <BiDonateHeart size={18} className="md:absolute left-0 md:top-1/2 md:-translate-y-1/2 align-text-top inline mr-2 md:mr-0" />{" "}
-                    Sponsor/ Donations
+                    {/* <BiDonateHeart size={18} className="md:absolute left-0 md:top-1/2 md:-translate-y-1/2 align-text-top inline mr-2 md:mr-0" />{" "}
+                    Sponsor/ Donations */}
+                    Privacy Policy
                   </Link>
                 </p>
-                <p className="min-w-[180px] flex  relative md:pl-6 text-[#1E1E1E] opacity-90 tracking-[-0.04em] text-base font-medium gotham-font">
+                <p className="min-w-[180px] flex pl-4 sm:pl-[0px] relative text-[#1E1E1E] opacity-90 tracking-[-0.04em] text-base font-medium gotham-font">
                   <Link
-                    href="/facilities#infrastructure"
+                    href="/cancellationpolicy"
                     className="text-[#1E1E1E] hover:text-[#EE834E]"
                   >
-                    <LuSchool size={18} className="md:absolute left-0 md:top-1/2 md:-translate-y-1/2 align-text-top inline mr-2 md:mr-0" />{" "}
-                    Infrastructure
+                    {/* <LuSchool size={18} className="md:absolute left-0 md:top-1/2 md:-translate-y-1/2 align-text-top inline mr-2 md:mr-0" />{" "}
+                    Infrastructure */}
+                    Cancellation Policy
                   </Link>
                 </p>
               </div>
