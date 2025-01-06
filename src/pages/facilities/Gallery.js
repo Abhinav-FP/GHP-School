@@ -12,7 +12,7 @@ export default function Gallery() {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
 
   const modalRef = useRef(null);
 
@@ -29,9 +29,9 @@ export default function Gallery() {
         setLoading(false);
         setLisitng([]);
         console.log("error", err);
-        if (count <= 2) {
-          getGallery();
-        }
+        // if (count <= 2) {
+        //   getGallery();
+        // }
       });
   };
 

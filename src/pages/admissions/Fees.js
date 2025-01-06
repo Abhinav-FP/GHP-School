@@ -6,7 +6,7 @@ import Loader from "@/Component/Loader";
 export default function Fees() {
   const [Fees, setFees] = useState([]);
   const [Loading, setLoading] = useState(false);
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
   const getFeesStruture = () => {
     setLoading(true);
     const main = new Details();
@@ -20,10 +20,10 @@ export default function Fees() {
         setLoading(false);
         setTeachers([]);
         console.log("error", err);
-        setCount(count + 1);
-        if (count <= 2) {
-          principle();
-        }
+        // setCount(count + 1);
+        // if (count <= 2) {
+        //   principle();
+        // }
       });
   };
 

@@ -29,7 +29,7 @@ export default function SisterSchools() {
   ];
   const [listing, setLisitng] = useState("");
   const [Loading, setLoading] = useState(false);
-  const [count,setCount]=useState(0);
+  // const [count,setCount]=useState(0);
   const principle = () => {
     setLoading(true);
     const main = new Details();
@@ -43,11 +43,11 @@ export default function SisterSchools() {
         setLoading(false);
         setLisitng([]);
         console.log("error", err);
-        setCount(count+1);
-        if(count<=2)
-          {
-            principle();
-          }
+        // setCount(count+1);
+        // if(count<=2)
+        //   {
+        //     principle();
+        //   }
       });
   };
 

@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 function AdmissionLine() {
   const [listing, setListing] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
 
   const getBanner = () => {
     setLoading(true);
@@ -19,10 +19,10 @@ function AdmissionLine() {
       })
       .catch((err) => {
         setLoading(false);
-        setCount(count + 1);
-        if (count <= 2) {
-          getBanner();
-        }
+        // setCount(count + 1);
+        // if (count <= 2) {
+        //   getBanner();
+        // }
         console.log("error", err);
       });
   };

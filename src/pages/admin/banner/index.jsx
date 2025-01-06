@@ -25,7 +25,7 @@ function Banner() {
     paragraph: "",
     text: "",
   });
-  const[count,setCount]=useState(0);
+  // const[count,setCount]=useState(0);
   const handleClose = () => {
     setIsOpen(false);
   };
@@ -43,11 +43,11 @@ function Banner() {
       })
       .catch((err) => {
         setLoading(false);
-        if(count<=2)
-          {
-            setCount(count+1);
-            BannerGetData();
-          }
+        // if(count<=2)
+        //   {
+        //     setCount(count+1);
+        //     BannerGetData();
+        //   }
         setLisitng([]);
         console.log("error", err);
       });
