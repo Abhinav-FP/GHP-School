@@ -130,7 +130,7 @@ function ContactForm() {
           key: RAZOPAY_KEY,
           amount: totalPrice * 100,
           currency: "INR",
-          name: "Your Company Name",
+          name: "BAL VISHWA BHARTI PUBLIC SR. SEC. SCHOOL",
           description: "Payment for services",
           order_id: res.data.orderId,
           handler: function (response) {

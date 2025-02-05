@@ -68,7 +68,7 @@ export default function Login() {
                 <div className="space-y-5">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-gray-700 tracking-wide">Email</label>
-                    <input className="mt-1 p-4 border rounded-full w-full  w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400" type="email"
+                    <input className="mt-1 p-4 w-full  text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400" type="email"
                       name="email"
                       value={record.email}
                       onChange={handleInputs}

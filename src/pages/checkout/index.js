@@ -131,7 +131,7 @@ export default function Index() {
           key: RAZOPAY_KEY,
           amount: totalPrice,
           currency: "INR",
-          name: "Your Company Name",
+          name: "BAL VISHWA BHARTI PUBLIC SR. SEC. SCHOOL",
           description: "Payment for services",
           order_id: res.data.orderId,
           handler: function (response) {
@@ -147,9 +147,9 @@ export default function Index() {
             dispatch(clearCart());
           },
           prefill: {
-            name: "Customer Name",
-            email: "customer@example.com",
-            contact: "1234567890",
+            name: formData?.fullName,
+            email: formData?.emailAddress,
+            contact: formData?.contactNumber,
           },
           notes: {
             address: "Razorpay Corporate Office",
