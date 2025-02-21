@@ -112,7 +112,7 @@ function Index() {
                                                         Class
                                                     </th>
                                                     <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
-                                                        Syllabus
+                                                        Download
                                                     </th>
                                                     <th className="pr-4 md:pr-6 lg:pr-10 pl-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em] text-center">
                                                         Action
@@ -134,7 +134,7 @@ function Index() {
                                                                 href={item?.link}
                                                                 target="_blank"
                                                                 className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
-                                                                Syllabus
+                                                                Click Here
                                                             </Link>
                                                         </td>
 

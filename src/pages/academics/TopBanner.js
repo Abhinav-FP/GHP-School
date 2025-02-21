@@ -9,7 +9,7 @@ export default function index() {
   const getNotificationdata = () => {
       setLoading(true);
       const main = new Details();
-      main.AcademyFind()
+      main.Academy()
           .then((r) => {
               console.log(r)
               setLoading(false);
@@ -45,7 +45,7 @@ export default function index() {
             <button
               onClick={() =>
               (window.location.href =
-                "https://drive.google.com/uc?export=download&id=1yUkPqi_dp_amTZMtSO3V7wb-jSGSXhYw")
+                `${listing?.link || ""}`)
               }
               className="button-animation text-white inline-block tracking-[-0.04em] rounded text-lg font-normal px-16 py-3.5"
             >

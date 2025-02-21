@@ -11,6 +11,8 @@ import SideBarAdmin from "../Component/SideBar";
 import Faculty from "./faculty";
 import Loading from "../Component/Loading";
 import { BiEdit } from "react-icons/bi";
+import { RxDragHandleDots2 } from "react-icons/rx";
+
 
 export default function Index() {
   const [loading, setLoading] = useState(false);
@@ -67,12 +69,18 @@ export default function Index() {
           const formData = new FormData();
           formData.append("id", draggedItem._id);
           formData.append("oldPosition", draggedItem.srNo);
-          formData.append("newPosition", index + 1);
+          if(index+1>draggedItem.srNo){
+            formData.append("newPosition", index + 1);
+          }
+          else{
+            formData.append("newPosition", index + 1);
+          }
           const response = main.moveFaculty(formData);
           response
             .then((res) => {
               if (res && res?.data && res?.data?.status) {
                 toast.success(res.data.message);
+                getTeachers();
               } else {
                 toast.error(res.data.message);
               }
@@ -100,8 +108,8 @@ export default function Index() {
         ref={ref}
         style={{ opacity: isDragging ? 0.5 : 1 }}
       >
-       <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-          {index + 1}
+       <td className="flex gap-2 pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
+       <RxDragHandleDots2 />{index + 1}
         </td>
         <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
           {item?.name}

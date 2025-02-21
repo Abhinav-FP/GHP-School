@@ -78,19 +78,19 @@ class Details extends Component {
 
   }
   async AcadmeyAdd(data) {
-    return Api.post("/academics/academicies/add", data);
-
-  }async AcademyEdit(data) {
-    return Api.post("/academics/academicies/edit", data);
+    return Api.post("/academics/calendar/add", data);
 
   }
+  
+  async AcademyEdit(data) {
+    return Api.post("/academics/calendar/edit", data);
+
+  }
+
   async Academy() {
-    return Api.get("/academics/academicies/get");
+    return Api.get("/academics/calendar/get");
   }
 
-  async AcademyFind() {
-    return Api.get("/academics/academicies/find");
-  }
   async Notification() {
     return Api.get("/academics/notification/get");
   }
