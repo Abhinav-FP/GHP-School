@@ -17,6 +17,9 @@ class Details extends Component {
   async addFaculty(data) {
     return Api.post("/about/faculty/add", data);
   }
+  async editFaculty(data) {
+    return Api.post("/about/faculty/Edit", data);
+  }
   async moveFaculty(data) {
     return Api.post("/about/faculty/move", data);
   }
@@ -50,7 +53,6 @@ class Details extends Component {
 
   async Sysllabas() {
     return Api.get("/academics/syllabus/get");
-
   }
 
   async SysllabasAdd(data) {
@@ -179,6 +181,9 @@ class Details extends Component {
 
   async ResultAdd(data) {
     return Api.post(`/result/add` ,data);
+  }
+  async ResultEdit(data) {
+    return Api.post(`/result/Edit`, data);
   }
   async ResultDelete(data) {
     return Api.post(`/result/delete`, data);

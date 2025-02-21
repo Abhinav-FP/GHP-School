@@ -3,13 +3,16 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import Modal from '../Component/Modal';
+import { BiEdit } from 'react-icons/bi';
 
-export default function Faculty({getTeachers}) {
+export default function Faculty({getTeachers ,item}) {
+  console.log('item', item);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    subjects: '',
-    grades: ''
+    name: item?.name ||'',
+    subjects: item?.subjects ||  '',
+    grades: item?.grades ||  '',
+    srNo : item?.srNo || ""
   });
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
@@ -34,7 +37,9 @@ export default function Faculty({getTeachers}) {
     data.append("name", formData.name);
     data.append("subjects", formData.subjects);
     data.append("grades", formData.grades);
-    const response = main.addFaculty(data);
+    data.append("srNo", formData.srNo);
+    data.append("_id", item?._id || '');
+    const response =   item?._id ? (  main.editFaculty(data)) : (  main.addFaculty(data)) ;
     ("response", response);
     response
       .then((res) => {
@@ -66,14 +71,19 @@ export default function Faculty({getTeachers}) {
       <button
         onClick={() => setIsOpen(true)}
         className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
-        Add New Faculty
+       {item?._id ? 
+       <BiEdit />
+       : 'Add New Faculty'}
       </button>
       {isOpen &&
         <Modal isOpen={isOpen} onClose={handleClose}>
           <div className="relative bg-white w-full rounded-[30px] lg:rounded-[40px] h-auto m-auto">
-
             <div className="border-b border-black border-opacity-10 pt-6 pb-5 px-6 lg:pt-8 lg:pb-6 lg:px-10">
-              <h2 className="text-xl lg:text-2xl  text-[#212121] tracking-[-0.04em] font-semibold mb-0">Add New Faculty </h2>
+              <h2 className="text-xl lg:text-2xl  text-[#212121] tracking-[-0.04em] font-semibold mb-0">
+                {
+                  item?._id? 'Edit Faculty' : 'Add New Faculty'
+                }
+                 </h2>
             </div>
             <div className="py-6 lg:py-8 ">
               <form onSubmit={handleSubmit}>
