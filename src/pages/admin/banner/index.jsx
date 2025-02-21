@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import NoData from "../Component/NoData";
 import Delete from "./Delete";
 import AdminLayout from "@/layout/AdminLayout";
+import ListAcademy from "./ListAcademy";
 function Banner() {
   const [isOpen, setIsOpen] = useState(false);
   const [listing, setLisitng] = useState([]);
@@ -224,6 +225,7 @@ function Banner() {
               </div>
             </div>
           </div>
+          <ListAcademy/>
         </div>
         {isOpen && (
           <Modal isOpen={isOpen} onClose={handleClose}>

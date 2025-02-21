@@ -10,6 +10,7 @@ import Header from "../Component/Header";
 import SideBarAdmin from "../Component/SideBar";
 import Faculty from "./faculty";
 import Loading from "../Component/Loading";
+import { BiEdit } from "react-icons/bi";
 
 export default function Index() {
   const [loading, setLoading] = useState(false);
@@ -112,6 +113,7 @@ export default function Index() {
           {item?.grades}
         </td>
         <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#ff0000] tracking-[-0.03em]">
+          <div className="flex items-center justify-center gap-3">
           <div 
           onClick={() => {
               handleDelete(item?.srNo);
@@ -119,6 +121,8 @@ export default function Index() {
             className="text-[#fff] h-[30px] w-[30px] bg-[#ff0000] bg-opacity-80 hover:bg-opacity-100 rounded inline-flex items-center justify-center cursor-pointer">
             <RiDeleteBinLine 
             size={16} />
+          </div>
+          <Faculty item={item} getTeachers={getTeachers}/>
           </div>
         </td>
       </tr>

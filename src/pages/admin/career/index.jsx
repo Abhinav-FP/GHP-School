@@ -94,7 +94,8 @@ function Index() {
                                                         <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">{index + 1}</td>
                                                         <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">{item.name} {item?.surname}</td>
                                                         <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">{item.email}</td>
-                                                        <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">{item.position}</td>
+                                                        <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">{item.position === "other" ? `Other ${item.other_position}` : item.position}
+                                                        </td>
                                                       
                                                         <td className="px-3 py-4 text-[15px] font-medium text-[#46494D]">{item.about}</td>
                                                         <td className="px-3 py-4 text-[15px] font-medium text-[#46494D]">{item.experience}</td>

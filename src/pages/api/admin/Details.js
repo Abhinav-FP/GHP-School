@@ -17,14 +17,17 @@ class Details extends Component {
   async addFaculty(data) {
     return Api.post("/about/faculty/add", data);
   }
+  async editFaculty(data) {
+    return Api.post("/about/faculty/Edit", data);
+  }
   async moveFaculty(data) {
     return Api.post("/about/faculty/move", data);
   }
   async deleteFaculty(data) {
     return Api.post("/about/faculty/delete", data);
   }
-  async verify(signal) {
-    return Api.get("/user/profile", { signal });
+  async verify() {
+    return Api.get("/user/profile");
   }
 
   async gethomebanner() {
@@ -50,7 +53,10 @@ class Details extends Component {
 
   async Sysllabas() {
     return Api.get("/academics/syllabus/get");
+  }
 
+  async Notification() {
+    return Api.get("/academics/notification/get");
   }
 
   async SysllabasAdd(data) {
@@ -63,6 +69,31 @@ class Details extends Component {
 
   }
 
+  async NotificationDelete(data) {
+    return Api.post("/academics/notification/delete", data);
+
+  }
+  async NotificationDelete(data) {
+    return Api.post("/academics/notification/delete", data);
+
+  }
+  async AcadmeyAdd(data) {
+    return Api.post("/academics/academicies/add", data);
+
+  }async AcademyEdit(data) {
+    return Api.post("/academics/academicies/edit", data);
+
+  }
+  async Academy() {
+    return Api.get("/academics/academicies/get");
+  }
+
+  async AcademyFind() {
+    return Api.get("/academics/academicies/find");
+  }
+  async Notification() {
+    return Api.get("/academics/notification/get");
+  }
   async getdirector() {
     return Api.get("/about/director/get");
   }
@@ -161,10 +192,19 @@ class Details extends Component {
   async syllabusAdd(data) {
     return Api.post(`/academics/syllabus/add`,data);}
     
+    async updateSyllabus(data) {
+    return Api.post(`/academics/syllabus/edit`, data);
+  }
   async AddCard(data) {
     return Api.post(`/payment/create`, data);
   }
 
+  async NotificationAdd(data) {
+    return Api.post(`/academics/notification/add`,data);}
+    
+    async NotificationEdit(data) {
+    return Api.post(`/academics/notification/edit`, data);
+  }
   async PaymentSave(data) {
     return Api.post(`/payment/verify-payment`, data);
   }
@@ -179,6 +219,9 @@ class Details extends Component {
 
   async ResultAdd(data) {
     return Api.post(`/result/add` ,data);
+  }
+  async ResultEdit(data) {
+    return Api.post(`/result/Edit`, data);
   }
   async ResultDelete(data) {
     return Api.post(`/result/delete`, data);

@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useRouter } from 'next/router';
 import { AiOutlineProduct } from "react-icons/ai";
 import { CiSliderHorizontal } from "react-icons/ci";
-import { FaWpforms } from "react-icons/fa";
+import { FaBell, FaWpforms } from "react-icons/fa";
 import { CiUser } from "react-icons/ci";
 import { RiUserSearchLine } from "react-icons/ri";
 import { TbUserSearch } from "react-icons/tb";
@@ -57,7 +57,7 @@ function SideBarAdmin() {
                             className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium hover:text-[#EE834E] ${pathname === "/admin/banner" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
                         >
                             <GiKnightBanner size={24} className="inline align-middle mr-[4px]" />
-                            Banner
+                            Banner & Calendar
                         </Link>
                     </li>
                     <li>
@@ -132,7 +132,7 @@ function SideBarAdmin() {
                             className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium   text-[#0367F7] hover:text-[#EE834E] ${pathname === "/admin/fees" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
                         >
                             <RiPriceTag2Line size={24} className="inline align-middle mr-[4px]" />
-                            &nbsp;  Fees 
+                            &nbsp;  Fees
                         </Link>
                     </li>
                     <li>
@@ -150,6 +150,14 @@ function SideBarAdmin() {
                         >
                             <GrScorecard size={24} className="inline align-middle mr-[4px]" />
                             &nbsp; Result
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/admin/notification"
+                            className={`px-[15px] flex flex-wrap items-center py-[7px] rounded-full text-base tracking-[-0.03em] font-medium hover:text-[#EE834E] ${pathname === "/admin/admissionform" ? 'bg-[#EE834E] bg-opacity-10 text-[#EE834E]' : 'text-[#8D929A] '}`}
+                        >
+                            <FaBell size={24} className="inline align-middle mr-[4px]" />
+                            Notification
                         </Link>
                     </li>
                     <li>
@@ -193,6 +201,8 @@ function SideBarAdmin() {
                             &nbsp; Payment History
                         </Link>
                     </li>
+
+
 
                     <li>
                         <button onClick={handleLogout} className="px-[15px] flex flex-wrap items-center py-[7px]  rounded-full text-base tracking-[-0.03em] font-medium text-[#FF1B1B] hover:text-[#EE834E]">

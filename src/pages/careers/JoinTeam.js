@@ -20,6 +20,7 @@ export default function JoinTeam() {
     contactNo: "",
     position: "",
     experience: "",
+    other_position:"",
     resume: null,
     about: "",
   });
@@ -224,8 +225,11 @@ export default function JoinTeam() {
                           {item?.designation}
                         </option>
                       ))}
+                    <option value="other">Other</option>
+
                   </select>
                 </div>
+               
                 <div className="w-full md:w-6/12 px-2.5 mb-4 lg:mb-6">
                   <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                     Experience (in years){" "}
@@ -240,6 +244,21 @@ export default function JoinTeam() {
                   />
                 </div>
 
+                {formData.position === "other" && (
+                    <div className="w-full  px-2.5 mb-4 lg:mb-6">
+                    <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
+                      Please specifiy the Position 
+                    </label>
+                    <input
+                      type="text"
+                      name="other_position"
+                      value={formData.other_position}
+                      onChange={handleChange}
+                      className="border border-black border-opacity-10 px-3.5 py-2 w-full appearance-none h-11 lg:h-[54px] text-[#1E1E1E] tracking-[-0.04em] leading-tight focus:outline-none"
+                      required
+                    />
+                  </div>
+                )}
                 <div className="w-full md:w-12/12 px-2.5 mb-4 lg:mb-6">
                   <label className="inline-block text-base text-[#1E1E1E] tracking-[-0.04em] opacity-80 mb-2 lg:mb-2.5 uppercase">
                     Upload resume{" "}

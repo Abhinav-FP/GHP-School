@@ -1,7 +1,32 @@
-import React from "react";
 import AcademicBg from "../../../public/Academic/academic_bg.png";
+import React, { useState, useEffect } from "react";
+import Details from "../api/admin/Details";
 
 export default function index() {
+  const [listing, setLisitng] = useState([])
+  console.log("listing", listing)
+  const [Loading, setLoading] = useState(false)
+  const getNotificationdata = () => {
+      setLoading(true);
+      const main = new Details();
+      main.AcademyFind()
+          .then((r) => {
+              console.log(r)
+              setLoading(false);
+              console.log("r.data.Notification", r?.data?.academics)
+              setLisitng(r?.data?.academics);
+          })
+          .catch((err) => {
+              setLoading(false);
+              setLisitng([]);
+              console.log("error", err);
+          });
+  };
+
+  useEffect(() => {
+      getNotificationdata();
+  }, []);
+
   return (
     <>
       <div
@@ -16,16 +41,30 @@ export default function index() {
           <p className="text-black font-medium tracking-[-0.04em]  text-center text-sm md:text-base lg:text-xl mb-6 lg:mb-10">
             (2024 - 2025)
           </p>
-          <div className="text-center">
+          <div className="flex justify-center gap-4 mx-3 text-center">
             <button
               onClick={() =>
-                (window.location.href =
-                  "https://drive.google.com/uc?export=download&id=1yUkPqi_dp_amTZMtSO3V7wb-jSGSXhYw")
+              (window.location.href =
+                "https://drive.google.com/uc?export=download&id=1yUkPqi_dp_amTZMtSO3V7wb-jSGSXhYw")
               }
               className="button-animation text-white inline-block tracking-[-0.04em] rounded text-lg font-normal px-16 py-3.5"
             >
               Download
             </button>
+
+            {/* <button
+              onClick={() =>
+                window.open(
+                  "https://drive.google.com/file/d/1yUkPqi_dp_amTZMtSO3V7wb-jSGSXhYw/view",
+                  "_blank",
+                  "noopener,noreferrer"
+                )
+              }
+              className="button-animation text-white inline-block tracking-[-0.04em] rounded text-lg font-normal px-16 py-3.5"
+            >
+              View
+            </button> */}
+
           </div>
         </div>
       </div>
