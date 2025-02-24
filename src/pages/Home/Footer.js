@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export default function Footer() {
   const today = new Date();
-  const year = today.getFullYear();
+  const year = today?.getFullYear();
   return (
     <>
       <div className="z-[1] relative bg-[#FCFBF4] py-[40px] md:py-[60px] lg:py-[70px] ">
@@ -119,7 +119,7 @@ export default function Footer() {
       <div className="z-[1] relative bg-[#FCFBF4] border-t border-black border-opacity-10 py-5">
         <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto">
           <p className="text-[#1E1E1E] opacity-50 tracking-[-0.04em] font-medium text-center text-base">
-            © Bal Vishwa Bharti School, {year}
+            © Bal Vishwa Bharti School, {year || ""}
           </p>
         </div>
       </div>
