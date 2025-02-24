@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 import Loading from "../Component/Loading";
 import NoData from "../Component/NoData";
 import AdminLayout from "@/layout/AdminLayout";
-import AddResult from "./AddResult";
+import AddResult from "./Addresult";
 
 function Index() {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
