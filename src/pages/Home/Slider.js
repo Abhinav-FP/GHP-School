@@ -84,8 +84,8 @@ export default function Slider() {
           </div>
         </div>
       ) : (
-        <div className="flex flex-wrap sticky top-0 lg:top-20 z-[1]">
-          <div className="w-full lg:w-8/12">
+        <div className="flex flex-wrap lg:sticky top-0 lg:top-20 z-[1]">
+          <div className="w-full lg:w-8/12 sticky top-20 lg:relative lg:top-0 z-[1]">
             <div className="relative ">
               <div className="absolute h-full flex z-[2] items-center left-0 w-full top-1/2 -translate-y-1/2 sliderbg ">
                 <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
@@ -142,13 +142,13 @@ export default function Slider() {
               </Swiper>
             </div>
           </div>
-          <div className="w-full lg:w-4/12">
-            <div className="bg-[#ECE1C5] py-[30px] lg:py-[40px] px-[30px] lg:px-[50px] h-full ">
-              <div className="bg-[#EE834E] notice-bg h-full rounded-lg lg:rounded-[20px]">
-                <div className="border-b border-white border-opacity-50 py-5 lg:py-6">
+          <div className="w-full lg:w-4/12 relative z-[5]">
+            <div className="bg-[#ECE1C5] py-[30px] lg:py-[40px] px-[30px] lg:px-[50px] min-h-full lg:flex">
+              <div className="bg-[#EE834E] flex-col lg:flex lg:flex-wrap  lg:absolute lg:top-[40px] lg:bottom-[40px] lg:left-[50px] lg:right-[50px] notice-bg rounded-lg lg:rounded-[20px]  ">
+                <div className="border-b w-full border-white border-opacity-50 py-5 lg:py-6">
                   <h3 className="merriweather-font text-xl lg:text-2xl tracking-[-0.04em] text-center text-white">Circulars</h3>
                 </div>
-                <div className="max-h-[500px] custom-scroll-bar overflow-y-auto">
+                <div className=" w-full max-h-[500px] lg:max-h-[calc(100%-82px)] custom-scroll-bar overflow-y-auto">
                   <ul>
                     {Notification?.map((item, index) => {
                       return (
