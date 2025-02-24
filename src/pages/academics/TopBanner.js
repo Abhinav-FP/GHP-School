@@ -2,29 +2,28 @@ import AcademicBg from "../../../public/Academic/academic_bg.png";
 import React, { useState, useEffect } from "react";
 import Details from "../api/admin/Details";
 
-export default function index() {
+export default function Index({getFinancialYear}) {
   const [listing, setLisitng] = useState([])
-  console.log("listing", listing)
   const [Loading, setLoading] = useState(false)
-  const getNotificationdata = () => {
-      setLoading(true);
-      const main = new Details();
-      main.Academy()
-          .then((r) => {
-              console.log(r)
-              setLoading(false);
-              console.log("r.data.Notification", r?.data?.academics)
-              setLisitng(r?.data?.academics);
-          })
-          .catch((err) => {
-              setLoading(false);
-              setLisitng([]);
-              console.log("error", err);
-          });
+  const getcalendar = () => {
+    setLoading(true);
+    const main = new Details();
+    main.Academy()
+      .then((r) => {
+        console.log(r)
+        setLoading(false);
+        console.log("r.data.Notification", r?.data?.academics)
+        setLisitng(r?.data?.academics);
+      })
+      .catch((err) => {
+        setLoading(false);
+        setLisitng([]);
+        console.log("error", err);
+      });
   };
 
   useEffect(() => {
-      getNotificationdata();
+    getcalendar();
   }, []);
 
   return (
@@ -39,7 +38,9 @@ export default function index() {
             Academic Year at a Glance
           </h1>
           <p className="text-black font-medium tracking-[-0.04em]  text-center text-sm md:text-base lg:text-xl mb-6 lg:mb-10">
-            (2024 - 2025)
+            ({getFinancialYear()})  
+
+            
           </p>
           <div className="flex justify-center gap-4 mx-3 text-center">
             <button

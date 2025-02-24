@@ -10,7 +10,7 @@ export default function AddNotification({ item, getNotificationdata }) {
         "text": item?.text || "",
         "link": item?.link || "",
         "_id": item?._id || "",
-        "content"  :item?.content || ""
+        "content": item?.content || ""
     });
     const [Loading, setLoading] = useState(false)
     const handleClose = () => {
@@ -52,11 +52,15 @@ export default function AddNotification({ item, getNotificationdata }) {
     };
     return (
         <>
-            <button onClick={() => setIsOpen(true)} className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
-                {item?._id ?
-                    <BiEdit />
-                    : "Add Notification"}
-            </button>
+            {item?._id ?
+                <div className=" h-[30px] w-[30px] bg-[#46494D]    text-white button-animation bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center">
+                    <BiEdit size={18} />
+                </div>
+                :
+                <button onClick={() => setIsOpen(true)} className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
+                    Add Notification
+                </button>
+            }
             {isOpen &&
                 <Modal isOpen={isOpen} onClose={handleClose}>
                     <div className="relative bg-white w-full rounded-[30px] lg:rounded-[40px] h-auto m-auto">
@@ -93,7 +97,7 @@ export default function AddNotification({ item, getNotificationdata }) {
                                             rows="5"
                                             className="w-full font-semibold appearance-none block bg-white text-[#46494D] text-base border border-gray-300 rounded-lg py-3 px-3 lg:px-5 leading-tight focus:outline-none"
                                         >
-                                            </textarea>
+                                        </textarea>
                                         {/* <p message={errors?.name} className="!text-red-600" /> */}
                                     </div>
                                     <div className="mb-3 lg:mb-[25px]">

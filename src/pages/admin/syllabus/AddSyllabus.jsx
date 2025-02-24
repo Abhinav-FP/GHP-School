@@ -45,11 +45,20 @@ export default function AddSyllabus({ item, getsyllabusdata }) {
     };
     return (
         <>
-            <button onClick={() => setIsOpen(true)} className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
+          {item?._id ?
+                        <div className=" h-[30px] w-[30px] bg-[#46494D]    text-white button-animation bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center">
+                            <BiEdit size={18} />
+                        </div>
+                        :
+                        <button onClick={() => setIsOpen(true)} className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
+                          Add Syllabus
+                        </button>
+                    }
+            {/* <button onClick={() => setIsOpen(true)} className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
                 {item?._id ? 
                 <BiEdit/>
                 : "Add Syllabus"} 
-            </button>
+            </button> */}
             {isOpen &&
                 <Modal isOpen={isOpen} onClose={handleClose}>
                     <div className="relative bg-white w-full rounded-[30px] lg:rounded-[40px] h-auto m-auto">

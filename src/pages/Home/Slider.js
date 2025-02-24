@@ -36,32 +36,28 @@ export default function Slider() {
       });
   };
 
+  const [Notification, setNotification] = useState([])
+
+  const getNotificationdata = () => {
+    setLoading(true);
+    const main = new Details();
+    main.Notification()
+      .then((r) => {
+        console.log(r)
+        setLoading(false);
+        setNotification(r?.data?.Notification);
+      })
+      .catch((err) => {
+        setLoading(false);
+        setNotification([]);
+        console.log("error", err);
+      });
+  };
+
   useEffect(() => {
     getbanner();
+    getNotificationdata();
   }, []);
-
-  const data = [
-    {
-      text1: "520 students",
-      text2: ["from Nursery to ", <br key="1" />, "Grade XII"],
-    },
-    {
-      text1: "100% Results",
-      text2: ["achieved in Grade", <br key="2" />, " X and XII, RBSE 2024"],
-    },
-    {
-      text1: "800",
-      text2: ["people Assembly", <br key="3" />, "Hall Capacity"],
-    },
-    {
-      text1: "25:1",
-      text2: ["student-teacher", <br key="4" />, "ratio"],
-    },
-    {
-      text1: "35+",
-      text2: ["years", <br key="5" />, "in Education"],
-    },
-  ];
 
   return (
     <>
@@ -152,39 +148,26 @@ export default function Slider() {
                 <div className="border-b border-white border-opacity-50 py-5 lg:py-6">
                   <h3 className="merriweather-font text-xl lg:text-2xl tracking-[-0.04em] text-center text-white">Circulars</h3>
                 </div>
-                <div className="max-h-[500px] custom-scroll-bar overflow-y-auto">  
-                    <ul>
-                       <li className="[&:not(:last-child)]:border-b border-white border-opacity-50 p-4 lg:p-6">
-                            <h3 className="font-medium text-white text-base uppercase mb-2 ">Academic Syllabus for Session 2024-25</h3> 
-                            <p className="font-medium text-white text-base mb-3 tracking-[-0.04em]">Please view the syllabus for the upcoming academic session.</p>
-                            <button className=" button-animation-white text-[#EE834E] hover:text-white border border-[#EE834E] hover:border-[#ECCD6E]  text-base lg:text-lg rounded px-7 py-2 text-center tracking-[-0.04em]">View</button>
-                       </li>
-                       <li className="[&:not(:last-child)]:border-b border-white border-opacity-50 p-4 lg:p-6">
-                            <h3 className="font-medium text-white text-base uppercase mb-2 ">Academic Syllabus for Session 2024-25</h3> 
-                            <p className="font-medium text-white text-base mb-3 tracking-[-0.04em]">Please view the syllabus for the upcoming academic session.</p>
-                            <button className=" button-animation-white text-[#EE834E] hover:text-white border border-[#EE834E] hover:border-[#ECCD6E]  text-base lg:text-lg rounded px-7 py-2 text-center tracking-[-0.04em]">View</button>
-                       </li>
-                       <li className="[&:not(:last-child)]:border-b border-white border-opacity-50 p-4 lg:p-6">
-                            <h3 className="font-medium text-white text-base uppercase mb-2 ">Academic Syllabus for Session 2024-25</h3> 
-                            <p className="font-medium text-white text-base mb-3 tracking-[-0.04em]">Please view the syllabus for the upcoming academic session.</p>
-                            <button className=" button-animation-white text-[#EE834E] hover:text-white border border-[#EE834E] hover:border-[#ECCD6E]  text-base lg:text-lg rounded px-7 py-2 text-center tracking-[-0.04em]">View</button>
-                       </li>
-                       <li className="[&:not(:last-child)]:border-b border-white border-opacity-50 p-4 lg:p-6">
-                            <h3 className="font-medium text-white text-base uppercase mb-2 ">Academic Syllabus for Session 2024-25</h3> 
-                            <p className="font-medium text-white text-base mb-3 tracking-[-0.04em]">Please view the syllabus for the upcoming academic session.</p>
-                            <button className=" button-animation-white text-[#EE834E] hover:text-white border border-[#EE834E] hover:border-[#ECCD6E]  text-base lg:text-lg rounded px-7 py-2 text-center tracking-[-0.04em]">View</button>
-                       </li>
-                       <li className="[&:not(:last-child)]:border-b border-white border-opacity-50 p-4 lg:p-6">
-                            <h3 className="font-medium text-white text-base uppercase mb-2 ">Academic Syllabus for Session 2024-25</h3> 
-                            <p className="font-medium text-white text-base mb-3 tracking-[-0.04em]">Please view the syllabus for the upcoming academic session.</p>
-                            <button className=" button-animation-white text-[#EE834E] hover:text-white border border-[#EE834E] hover:border-[#ECCD6E]  text-base lg:text-lg rounded px-7 py-2 text-center tracking-[-0.04em]">View</button>
-                       </li>
-                       <li className="[&:not(:last-child)]:border-b border-white border-opacity-50 p-4 lg:p-6">
-                            <h3 className="font-medium text-white text-base uppercase mb-2 ">Academic Syllabus for Session 2024-25</h3> 
-                            <p className="font-medium text-white text-base mb-3 tracking-[-0.04em]">Please view the syllabus for the upcoming academic session.</p>
-                            <button className=" button-animation-white text-[#EE834E] hover:text-white border border-[#EE834E] hover:border-[#ECCD6E]  text-base lg:text-lg rounded px-7 py-2 text-center tracking-[-0.04em]">View</button>
-                       </li>
-                    </ul>
+                <div className="max-h-[500px] custom-scroll-bar overflow-y-auto">
+                  <ul>
+                    {Notification?.map((item, index) => {
+                      return (
+                        <li className="[&:not(:last-child)]:border-b border-white border-opacity-50 p-4 lg:p-6" key={index}>
+                          <h3 className="font-medium text-white text-base uppercase mb-2">{item?.text}</h3>
+                          <p className="line-clamp-2  font-medium text-white text-base mb-3 tracking-[-0.04em] " >{item?.content}</p>
+                          <button
+                            onClick={() =>
+                              window.open(
+                                item?.viewLink,
+                                "_blank",
+                                "noopener,noreferrer"
+                              )}
+                            className="button-animation-white text-[#EE834E] hover:text-white border border-[#EE834E] hover:border-[#ECCD6E] text-base lg:text-lg rounded px-7 py-2 text-center tracking-[-0.04em]">View</button>
+                        </li>
+                      );
+                    })}
+
+                  </ul>
                 </div>
 
               </div>
@@ -197,14 +180,14 @@ export default function Slider() {
         <div className="mx-auto container sm:container md:container lg:max-w-[1204px] px-4">
           <div className="grid gap-5 lg:gap-5 grid-cols-3 sm:grid-cols-3 md:grid-cols-3  lg:grid-cols-5 lg:flex flex-wrap justify-between ">
             {/* Item 1 */}
-            <div className="flex flex-col text-white lg:min-w-[100px]">
+            {/* <div className="flex flex-col text-white lg:min-w-[100px]">
               <h3 className="uppercase text-lg md:text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
                 520 students
               </h3>
               <p className="uppercase font-medium tracking-[-0.04em] text-sm md:text-base">
                 from Nursery to <br /> Grade XII
               </p>
-            </div>
+            </div> */}
             {/* Item 2 */}
             <div className="flex flex-col text-white lg:min-w-[100px]">
               <h3 className="uppercase text-lg md:text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
@@ -224,7 +207,7 @@ export default function Slider() {
               </p>
             </div>
             {/* Item 4 */}
-            <div className="hidden md:flex flex-col text-white lg:min-w-[100px]">
+            <div className=" flex flex-col text-white lg:min-w-[100px]">
               <h3 className="uppercase text-lg md:text-xl lg:text-2xl merriweather-font tracking-[-0.04em] md:mb-2">
                 25:1
               </h3>

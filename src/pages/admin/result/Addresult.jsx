@@ -4,13 +4,13 @@ import { BiEdit } from "react-icons/bi";
 import toast from "react-hot-toast";
 import Details from "@/pages/api/admin/Details";
 
-export default function AddResult({item ,  resultgetData}) {
+export default function AddResult({ item, resultgetData }) {
     const [loading, setLoading] = useState(false);
     const handleClose = () => {
         setIsOpen(false);
-      };
+    };
     const [selectedImage, setSelectedImage] = useState(null);
-    const [imagePreview, setImagePreview] = useState(item?.photo ||null);
+    const [imagePreview, setImagePreview] = useState(item?.photo || null);
     const [imagedataPreview, setImageDataPreview] = useState(null);
     const [imageUploading, setImageUploading] = useState(false);
     const [error, setError] = useState(false);
@@ -109,7 +109,7 @@ export default function AddResult({item ,  resultgetData}) {
         try {
             const main = new Details();
             const response =
-            item?._id ? (await main.ResultEdit(record)) : (await main.ResultAdd(record)) ;
+                item?._id ? (await main.ResultEdit(record)) : (await main.ResultAdd(record));
             if (response?.data?.status) {
                 toast.success(response.data.message);
                 handleClose(); // Close any modal or form after success
@@ -134,21 +134,22 @@ export default function AddResult({item ,  resultgetData}) {
     };
     return (
         <>
-            <button
-                onClick={() => setIsOpen(true)}
-                className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150"
-            >
-                 {item?._id ? 
-       <BiEdit />
-       : ' Add New Result'}
-               
-            </button>
+            {item?._id ?
+                <div
+                    className=" h-[30px] w-[30px] bg-[#46494D]    text-white button-animation bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center">
+                    <BiEdit size={18} />
+                </div>
+                :
+                <button onClick={() => setIsOpen(true)} className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
+                    Add New Result
+                </button>
+            }
             {isOpen && (
                 <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
                     <div className="relative bg-white w-full rounded-[30px] lg:rounded-[40px] m-auto">
                         <div className="border-b border-black border-opacity-10 pt-6 pb-5 px-6">
                             <h2 className="text-xl lg:text-2xl text-[#212121] font-semibold">
-                                { item?._id? "Edit Result" : "Add New Result" }
+                                {item?._id ? "Edit Result" : "Add New Result"}
                             </h2>
                         </div>
                         <form onSubmit={handleSubmit} className="p-6">
@@ -257,7 +258,7 @@ export default function AddResult({item ,  resultgetData}) {
                                         step="0.01"
                                         onChange={(event) => {
                                             const value = Number(event.target.value);
-                                            if ( Number(value) >= 0 && Number(value) <= 100) {
+                                            if (Number(value) >= 0 && Number(value) <= 100) {
                                                 handleChange(event);
                                             }
                                         }}

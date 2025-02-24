@@ -5,7 +5,7 @@ import SideBarAdmin from "../Component/SideBar";
 import React, { useState, useEffect } from "react";
 import NoData from "../Component/NoData";
 import AdminLayout from "@/layout/AdminLayout";
-import AddAcademy from "./AddAcademy";
+import AddCalendar from "./AddCalendar";
 import { FaEye } from "react-icons/fa";
 import Link from "next/link";
 function ListAcademy() {
@@ -48,7 +48,7 @@ function ListAcademy() {
                     {/* <div className="py-3 py-4 lg:py-[23px] px-4 md:px-6 lg:px-10 flex flex-wrap justify-between items-center border-b border-black  border-opacity-10">
                         <h3 className=" text-base lg:text-lg font-semibold text-[#1E1E1E] mb-3 sm:mb-0 tracking-[-0.03em]">Manage Academic Calendar
                         </h3>
-                        // <AddAcademy getNotificationdata={getNotificationdata} /> 
+                        // <AddCalendar getNotificationdata={getNotificationdata} /> 
                     </div> */}
                     <div className="overflow-x-auto">
                         {Loading ? (
@@ -65,7 +65,7 @@ function ListAcademy() {
                                                 S. No.
                                             </th>
                                             <th className="pl-4 md:pl-6 lg:pl-10 pr-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em]">
-                                             Download
+                                                Download
                                             </th>
                                             <th className="pr-4 md:pr-6 lg:pr-10 pl-3 py-3 lg:py-3.5 text-sm font-medium text-[#8D929A] text-left uppercase tracking-[-0.03em] text-center">
                                                 Action
@@ -74,31 +74,31 @@ function ListAcademy() {
                                     </thead>
                                     <tbody>
                                         {/* {listing && listing?.map((item, index) => ( */}
-                                            <tr className="bg-white border-t transition duration-300 ease-in-out hover:bg-gray-100">
-                                                <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                    1.
-                                                </td>
-                                                <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-                                                    <Link
-                                                        href={listing?.link || ""}
+                                        <tr className="bg-white border-t transition duration-300 ease-in-out hover:bg-gray-100">
+                                            <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
+                                                1.
+                                            </td>
+                                            <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
+                                                <Link
+                                                    href={listing?.link || ""}
+                                                    target="_blank"
+                                                    className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
+                                                    Click Here
+                                                </Link>
+                                            </td>
+                                            <td className="px-3 py-4 text-[15px] font-medium text-[#46494D]  tracking-[-0.03em] space-x-2">
+                                                <div className="flex space-x-2 justify-center">
+                                                    <a
+                                                        href={listing?.viewLink}
                                                         target="_blank"
-                                                        className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
-                                                        Click Here
-                                                    </Link>
-                                                </td>
-                                                <td className="px-3 py-4 text-[15px] font-medium text-[#46494D]  tracking-[-0.03em] space-x-2">
-                                                    <div className="flex space-x-2 justify-center">
-                                                        <a
-                                                            href={listing?.viewLink || ""}
-                                                            target="_blank"
-                                                            className="cursor-pointer">
-                                                            <FaEye size={24} />
-                                                        </a>
-                                                        {/* <Delete id={item?._id} getNotificationdata={getNotificationdata} /> */}
-                                                        <AddAcademy item={listing} getNotificationdata={getNotificationdata} />
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                        className=" h-[30px] w-[30px] bg-[#46494D]    text-black   bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center">
+                                                        <FaEye size={18} />
+                                                    </a>
+                                                    {/* <Delete id={item?._id} getNotificationdata={getNotificationdata} /> */}
+                                                    <AddCalendar item={listing} getNotificationdata={getNotificationdata} />
+                                                </div>
+                                            </td>
+                                        </tr>
                                         {/* ))} */}
                                     </tbody>
                                 </table>

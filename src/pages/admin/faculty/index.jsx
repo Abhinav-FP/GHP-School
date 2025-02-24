@@ -109,7 +109,8 @@ export default function Index() {
         style={{ opacity: isDragging ? 0.5 : 1 }}
       >
        <td className="flex gap-2 pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
-       <RxDragHandleDots2 />{index + 1}
+       {/* <RxDragHandleDots2 />*/}
+       {index + 1} 
         </td>
         <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D] tracking-[-0.03em]">
           {item?.name}

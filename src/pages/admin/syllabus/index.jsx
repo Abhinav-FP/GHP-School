@@ -144,8 +144,8 @@ function Index() {
                                                             <a
                                                                 href={item?.viewLink}
                                                                 target="_blank"
-                                                                className="cursor-pointer">
-                                                                <FaEye size={24} />
+                                                                className=" h-[30px] w-[30px] bg-[#46494D]  text-black  bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center">
+                                                                <FaEye size={18} />
                                                             </a>
                                                             {/* <Delete id={item?._id} getsyllabusdata={getsyllabusdata} /> */}
                                                                 <AddSyllabus  item={item} getsyllabusdata={getsyllabusdata} />

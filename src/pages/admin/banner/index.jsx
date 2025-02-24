@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 import NoData from "../Component/NoData";
 import Delete from "./Delete";
 import AdminLayout from "@/layout/AdminLayout";
-import ListAcademy from "./ListAcademy";
+import Calendar from "./Calendar";
 function Banner() {
   const [isOpen, setIsOpen] = useState(false);
   const [listing, setLisitng] = useState([]);
@@ -108,24 +108,24 @@ function Banner() {
         setError(true);
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-    //   console.log("response?.data",response);
-    //   if (response?.data?.success !== true) {
-    //     console.log("Error in success line");
-    //     setImageUploading(false);
-    //     setError(true);
-    //     throw new Error(`HTTP error! Status: ${response.status}`);
-    // }
+      //   console.log("response?.data",response);
+      //   if (response?.data?.success !== true) {
+      //     console.log("Error in success line");
+      //     setImageUploading(false);
+      //     setError(true);
+      //     throw new Error(`HTTP error! Status: ${response.status}`);
+      // }
       const data = await response.json();
       console.log("Image uploaded successfully:", data);
       if (data?.data?.link) {
         setImageDataPreview(data.data.link);
         if (data?.data?.link) {
-        setImageDataPreview(data.data.link);
-        setFormdata((prevData) => ({
-          ...prevData,
-          photo: data.data.link,
-        }));
-      }
+          setImageDataPreview(data.data.link);
+          setFormdata((prevData) => ({
+            ...prevData,
+            photo: data.data.link,
+          }));
+        }
         setImageUploading(false);
         setError(false);
       }
@@ -225,7 +225,7 @@ function Banner() {
               </div>
             </div>
           </div>
-          <ListAcademy/>
+          <Calendar />
         </div>
         {isOpen && (
           <Modal isOpen={isOpen} onClose={handleClose}>

@@ -164,11 +164,11 @@ function Index() {
                               {item.percentage}
                             </td>
                             <td className="px-3 py-4 text-[15px] font-medium text-[#46494D]  space-x-2">
+                              {/* SVG for delete icon */}
                               <button
                                 onClick={() => handleopen(item?._id)}
                                 className="text-[#FF1B1B] h-[30px] w-[30px] bg-[#FF1B1B] bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center"
                               >
-                                {/* SVG for delete icon */}
                                 <svg
                                   width="16"
                                   height="18"

@@ -99,10 +99,10 @@ function Index() {
                                                                 <a
                                                                     href={item?.viewLink}
                                                                     target="_blank"
-                                                                    className="cursor-pointer">
-                                                                    <FaEye size={24} />
+                                                                    className=" h-[30px] w-[30px] bg-[#46494D] bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center">
+                                                                    <FaEye size={18} />
                                                                 </a>
-                                                                {/* <Delete id={item?._id} getNotificationdata={getNotificationdata} /> */}
+                                                                <Delete id={item?._id} getNotificationdata={getNotificationdata} />
                                                                 <AddNotification item={item} getNotificationdata={getNotificationdata} />
                                                             </div>
                                                         </td>
