@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { BiEdit } from 'react-icons/bi';
 
 export default function AddNotification({ item, getNotificationdata }) {
+    console.log("item" ,item)
     const [isOpen, setIsOpen] = useState(false);
     const [formdata, setFormdata] = useState({
         "text": item?.text || "",
@@ -53,7 +54,7 @@ export default function AddNotification({ item, getNotificationdata }) {
     return (
         <>
             {item?._id ?
-                <div className=" h-[30px] w-[30px] bg-[#46494D]    text-white button-animation bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center">
+                <div  onClick={() => setIsOpen(true)} className=" h-[30px] w-[30px] bg-[#46494D]   cursor-pointer  text-white button-animation bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center">
                     <BiEdit size={18} />
                 </div>
                 :
