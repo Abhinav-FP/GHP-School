@@ -64,7 +64,7 @@ export default function Follow() {
         >
           {posts &&
             posts
-              .filter((item) => item?.media_type === "IMAGE")
+              .filter((item) => item?.media_type === "IMAGE" || item?.media_type === "CAROUSEL_ALBUM")
               .map((item, index) => (
                 <SwiperSlide key={index}>
                   <Link
