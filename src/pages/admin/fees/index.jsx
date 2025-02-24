@@ -39,10 +39,6 @@ function Index() {
         setIsOpen(false);
     };
 
-
-    console.log("listing", listing)
-
-
     const handlesenddata = (item) => {
         setIsOpen(true);
         setFormdata({

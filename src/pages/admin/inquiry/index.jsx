@@ -18,7 +18,6 @@ function Index() {
         main
             .inquiryget()
             .then((r) => {
-                console.log("Fetched Data", r?.data?.enquiries);
                 setLoading(false);
                 setListing(r?.data?.enquiries || []); // Updated data structure handling
             })

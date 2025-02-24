@@ -72,7 +72,6 @@ function Index() {
             //     throw new Error(`HTTP error! Status: ${response.status}`);
             //   }
             const data = await response.json();
-            console.log('Image uploaded successfully:', data);
             if (data?.data?.link) {
                 setImageDataPreview(data.data.link);
                 setImageUploading(false);
@@ -86,8 +85,7 @@ function Index() {
     };
 
 
-    console.log("listing", listing)
-    console.log("formData", formData)
+    
     const router = useRouter();
 
     const handlesenddata = (item) => {

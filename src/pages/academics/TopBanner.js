@@ -2,7 +2,7 @@ import AcademicBg from "../../../public/Academic/academic_bg.png";
 import React, { useState, useEffect } from "react";
 import Details from "../api/admin/Details";
 
-export default function Index({getFinancialYear}) {
+export default function Index({calendardata}) {
   const [listing, setLisitng] = useState([])
   const [Loading, setLoading] = useState(false)
   const getcalendar = () => {
@@ -10,9 +10,7 @@ export default function Index({getFinancialYear}) {
     const main = new Details();
     main.Academy()
       .then((r) => {
-        console.log(r)
         setLoading(false);
-        console.log("r.data.Notification", r?.data?.academics)
         setLisitng(r?.data?.academics);
       })
       .catch((err) => {
@@ -38,8 +36,7 @@ export default function Index({getFinancialYear}) {
             Academic Year at a Glance
           </h1>
           <p className="text-black font-medium tracking-[-0.04em]  text-center text-sm md:text-base lg:text-xl mb-6 lg:mb-10">
-            ({getFinancialYear()})  
-
+          ({calendardata})
             
           </p>
           <div className="flex justify-center gap-4 mx-3 text-center">

@@ -21,10 +21,6 @@ import { FaSchool } from "react-icons/fa6";
 
 function SideBarAdmin() {
     const pathname = usePathname();
-
-    const handleclick = () => {
-        console.log("logout")
-    };
     const [isOpen, SetIsopen] = useState(false);
     const router = useRouter();
     const handleLogout = () => {

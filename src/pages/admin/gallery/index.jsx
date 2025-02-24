@@ -80,8 +80,6 @@ function Index() {
   useEffect(() => {
     getGallery(); // Fetch all gallery items on mount
   }, []);
-  console.log("data", data);
-  console.log("listing", listing);
 
   const [isOpen, setIsOpen] = useState(false);
   const handleClose = () => {
@@ -144,7 +142,6 @@ function Index() {
         "https://api.imgur.com/3/upload",
         requestOptions
       );
-      console.log("response", response);
       if (!response.ok) {
         setImageUploading(false);
         setError(true);
@@ -156,9 +153,7 @@ function Index() {
       //   throw new Error(`HTTP error! Status: ${response.status}`);
       // }
       const data = await response.json();
-      console.log("data", data);
       if (data?.data?.link) {
-        console.log("Image uploaded successfully!");
         setUrl(data.data.link);
         setImageUploading(false);
         setError(false);
@@ -188,7 +183,6 @@ function Index() {
     record.append("caption", selectedFolder);
     record.append("title", title);
     record.append("description", description);
-    console.log("record", record);
     try {
       const main = new Details();
       const response = await main.GalleryAdd(record);
@@ -210,7 +204,6 @@ function Index() {
   };
 
   const handleGalleryClick = (caption) => {
-    console.log("clicked", caption);
     getGallerybyCategory(caption);
   };
   return (

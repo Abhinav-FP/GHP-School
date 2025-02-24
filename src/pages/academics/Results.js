@@ -25,7 +25,7 @@ const ProfileCard = ({ percentage, name, imagesrc }) => {
   );
 };
 
-export default function Results({getFinancialYear}) {
+export default function Results({calendardata}) {
   const [selected, setSelected] = useState("arts");
 
   const handleSelect = (category) => {
@@ -96,7 +96,8 @@ export default function Results({getFinancialYear}) {
         id="results"
       >
         <h2 className="merriweather-font font-normal capitalize text-2xl md:text-3xl lg:text-4xl mb-6 lg:mb-[36px] text-[#1E1E1E]  tracking-[-0.04em] text-center">
-          100% results  ({getFinancialYear()})
+          100% results
+            ({calendardata})
         </h2>
         <h3 className="tracking-[-0.04em] merriweather-font text-[#1E1E1E] text-lg md:text-xl lg:text-2xl mb-6 lg:mb-[36px] text-center">
           Grade X

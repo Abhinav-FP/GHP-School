@@ -6,7 +6,6 @@ import Modal from '../Component/Modal';
 import { BiEdit } from 'react-icons/bi';
 
 export default function Faculty({ getTeachers, item }) {
-  console.log('item', item);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: item?.name || '',

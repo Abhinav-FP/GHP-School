@@ -4,16 +4,11 @@ import Header from "../Component/Header";
 import LoadingData from "../Component/Loading";
 import SideBarAdmin from "../Component/SideBar";
 import React, { useState, useEffect } from "react";
-import Modal from "../Component/Modal";
-import { useRouter } from "next/router";
-import toast from "react-hot-toast";
 import moment from 'moment';
 import NoData from "../Component/NoData";
 import AdminLayout from "@/layout/AdminLayout";
 function Index() {
-    const [isOpen, setIsOpen] = useState(false);
     const [listing, setLisitng] = useState([])
-    console.log("listing", listing)
     const [Loading, setLoading] = useState(false)
     const getPayment = () => {
         setLoading(true);
@@ -21,7 +16,6 @@ function Index() {
         main.paymentget()
             .then((r) => {
                 setLoading(false);
-                console.log("r?.data?.Payment", r?.data?.Payment)
                 setLisitng(r?.data?.Payment);
             })
             .catch((err) => {

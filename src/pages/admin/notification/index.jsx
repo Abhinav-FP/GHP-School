@@ -20,9 +20,7 @@ function Index() {
         const main = new Details();
         main.Notification()
             .then((r) => {
-                console.log(r)
                 setLoading(false);
-                console.log("r.data.Notification", r?.data?.Notification)
                 setLisitng(r?.data?.Notification
                 );
             })
