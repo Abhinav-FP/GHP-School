@@ -7,9 +7,9 @@ import { BiEdit } from 'react-icons/bi';
 export default function AddSyllabus({ item, getsyllabusdata }) {
     const [isOpen, setIsOpen] = useState(false);
     const [formdata, setFormdata] = useState({
-        "text": item?.text ||  "",
-        "link": item?.link ||  "",
-        "_id" : item?._id || ""
+        "text": item?.text || "",
+        "link": item?.link || "",
+        "_id": item?._id || ""
     });
     const [Loading, setLoading] = useState(false)
     const handleClose = () => {
@@ -29,7 +29,7 @@ export default function AddSyllabus({ item, getsyllabusdata }) {
         const main = new Details();
         try {
             const res =
-            item?._id ? await main.updateSyllabus(formdata) :  await main.SysllabasAdd(formdata);
+                item?._id ? await main.updateSyllabus(formdata) : await main.SysllabasAdd(formdata);
             if (res?.data) {
                 toast.success(res.data.message);
                 handleClose();
@@ -45,15 +45,15 @@ export default function AddSyllabus({ item, getsyllabusdata }) {
     };
     return (
         <>
-          {item?._id ?
-                        <div onClick={() => setIsOpen(true)} className=" h-[30px] w-[30px] bg-[#46494D] cursor-pointer    text-white button-animation bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center">
-                            <BiEdit size={18} />
-                        </div>
-                        :
-                        <button onClick={() => setIsOpen(true)} className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
-                          Add Syllabus
-                        </button>
-                    }
+            {item?._id ?
+                <div onClick={() => setIsOpen(true)} className=" h-[30px] w-[30px] bg-[#46494D] cursor-pointer    text-white button-animation bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center">
+                    <BiEdit size={18} />
+                </div>
+                :
+                <button onClick={() => setIsOpen(true)} className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
+                    Add Syllabus
+                </button>
+            }
             {/* <button onClick={() => setIsOpen(true)} className="button-animation rounded text-white font-normal tracking-[-0.04em] text-sm font-normal py-2 px-3 xl:px-3.5  outline-none focus:outline-none ease-linear transition-all duration-150">
                 {item?._id ? 
                 <BiEdit/>
