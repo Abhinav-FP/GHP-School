@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Modal from '../Component/Modal';
 import { BiEdit } from "react-icons/bi";
 import toast from "react-hot-toast";
