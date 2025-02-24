@@ -105,10 +105,10 @@ function Index() {
                             <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#666666] tracking-[-0.03em]">
                               {item.class}
                             </td>
-                            <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#666666] tracking-[-0.03em]">
+                            <td className="capitalize pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#666666] tracking-[-0.03em]">
                               {item?.school}
                             </td>
-                            <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#666666] tracking-[-0.03em]">
+                            <td className="capitalize pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#666666] tracking-[-0.03em]">
                               {item?.type}
                             </td>
                             <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#666666] tracking-[-0.03em]">

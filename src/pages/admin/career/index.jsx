@@ -91,7 +91,7 @@ function Index() {
                                                         <tr key={item.id} className="bg-white border-t transition duration-300 ease-in-out hover:bg-gray-100">
                                                             <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">{index + 1}</td>
                                                             <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">{item.name} {item?.surname} {item.email}</td>
-                                                            <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">{item.position === "other" ? `Other (${item.other_position})` : item.position}
+                                                            <td className="pl-4 md:pl-6 lg:pl-10 pr-3 py-4 text-[15px] font-medium text-[#46494D]">{item.position === "other" ? `Other - ${item.other_position}` : item.position}
                                                             </td>
 
                                                             <td className="px-3 py-4 text-[15px] font-medium text-[#46494D]">{item.about}</td>

@@ -49,9 +49,10 @@ export default function AddAcademy({ item, getNotificationdata }) {
     return (
         <>
 
-        {item?._id ?
+           {item?._id ?
               <div 
-              className=" h-[30px] w-[30px] bg-[#46494D]    text-white button-animation bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center">
+              onClick={() => setIsOpen(true)}
+              className=" h-[30px] w-[30px] bg-[#46494D]   cursor-pointer  text-white button-animation bg-opacity-10 hover:bg-opacity-30 rounded inline-flex items-center justify-center">
                 <BiEdit size={18} />
               </div>
               :

@@ -8,7 +8,9 @@ import AdminLayout from "@/layout/AdminLayout";
 import AddCalendar from "./AddCalendar";
 import { FaEye } from "react-icons/fa";
 import Link from "next/link";
-function ListAcademy() {
+function 
+
+ListAcademy() {
     const [listing, setLisitng] = useState([])
     // console.log("listing", listing)
     const [Loading, setLoading] = useState(false)

@@ -53,7 +53,7 @@ function ViewAdmission({ item }) {
                     <></>
                   )}
                   <div className="flex flex-col">
-                    <h2 className="merriweather-font font-normal  text-lg md:text-xl  mb-0 text-[#1E1E1E]  tracking-[-0.04em] ">
+                    <h2 className="capitalize merriweather-font font-normal  text-lg md:text-xl  mb-0 text-[#1E1E1E]  tracking-[-0.04em] ">
                       {item.name}
                     </h2>
                     <p className="text-sm tracking-[-0.04em] text-[#666666]">
@@ -106,9 +106,9 @@ function ViewAdmission({ item }) {
                     </tr>
                     <tr>
                       <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">
-                        Cast:
+                        Category:
                       </td>
-                      <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">
+                      <td className="capitalize text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">
                         {item.belongs}
                       </td>
                     </tr>
@@ -141,16 +141,20 @@ function ViewAdmission({ item }) {
                         Father:
                       </td>
                       <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">
+                        <span className="capitalize">
                         {item.fatherName} (Phone: {item.fatherPhone},
                         Occupation: {item.fatherOccupation}, Email:{" "}
+                        </span>
+                        <span>
                         {item?.fatheremail})
+                        </span>
                       </td>
                     </tr>
                     <tr>
                       <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">
                         Mother:
                       </td>
-                      <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">
+                      <td className="capitalize text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">
                         {item.motherName} (Phone: {item.motherPhone},
                         Occupation: {item.motherOccupation})
                       </td>
@@ -159,7 +163,7 @@ function ViewAdmission({ item }) {
                       <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">
                         Guardian:
                       </td>
-                      <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">
+                      <td className="capitalize text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">
                         {item.guardianName} (Phone: {item.guardianPhone},
                         Occupation: {item.guardianOccupation})
                       </td>
@@ -200,7 +204,7 @@ function ViewAdmission({ item }) {
                       <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">
                         Facility:
                       </td>
-                      <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">
+                      <td className="capitalize text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">
                         {item.facility}
                       </td>
                     </tr>
@@ -208,7 +212,7 @@ function ViewAdmission({ item }) {
                       <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">
                         Optional:
                       </td>
-                      <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">
+                      <td className="capitalize text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">
                         {item.optional}
                       </td>
                     </tr>
@@ -224,12 +228,12 @@ function ViewAdmission({ item }) {
                       <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">
                         School:
                       </td>
-                      <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">
+                      <td className="capitalize text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">
                         {item.school}
                       </td>
                     </tr>
                     <tr>
-                      <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">
+                      <td className="capitalize text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">
                         Sibling:
                       </td>
                       <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">
@@ -240,7 +244,7 @@ function ViewAdmission({ item }) {
                       <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-medium">
                         Type:
                       </td>
-                      <td className="text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">
+                      <td className="capitalize text-[#666666] text-base px-3 lg:px-5 py-2 tracking-[-0.04em] border border-black border-opacity-10 font-normal">
                         {item.type}
                       </td>
                     </tr>
