@@ -40,6 +40,7 @@ function Index() {
     };
 
     const handlesenddata = (item) => {
+        console.log("item",item);
         setIsOpen(true);
         setFormdata({
             "grade": item?.grade || "",
@@ -90,7 +91,12 @@ function Index() {
         try {
             let res;
             if (Id) {
-                res = await main.feesEdit(formdata);
+                let updatedFormData = {
+                    ...formdata,
+                    id: Id, 
+                };
+            
+                res = await main.feesEdit(updatedFormData);
             } else {
                 res = await main.feesAdd(formdata);
             }
@@ -113,6 +119,7 @@ function Index() {
                 toast.error(res.message);
             }
         } catch (error) {
+            console.log("error",error);
             toast.error("An error occurred while updating.");
         } finally {
             setLoading(false);
