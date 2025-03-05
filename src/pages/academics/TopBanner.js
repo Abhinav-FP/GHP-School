@@ -36,7 +36,7 @@ export default function Index({calendardata}) {
             Academic Year at a Glance
           </h1>
           <p className="text-black font-medium tracking-[-0.04em]  text-center text-sm md:text-base lg:text-xl mb-6 lg:mb-10">
-          ({calendardata})
+          ({calendardata || ""})
             
           </p>
           <div className="flex justify-center gap-4 mx-3 text-center">

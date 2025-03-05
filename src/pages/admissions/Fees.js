@@ -31,11 +31,32 @@ export default function Fees() {
     getFeesStruture();
   }, []);
 
+   const [calendarData, setCalendarData] = useState("");
+  
+    useEffect(() => {
+      getFinancialYear();
+    }, [calendarData]); // Ensure 'calendarData' exists in state
+  
+    function getFinancialYear() {
+      const today = new Date();
+      const currentYear = today.getFullYear();
+      const currentMonth = today.getMonth() + 1; // Months are 0-based, so +1
+      
+      let financialYear;
+      if (currentMonth < 4) {
+        financialYear = `${currentYear - 1}-${currentYear}`;
+      } else {
+        financialYear = `${currentYear}-${currentYear + 1}`;
+      }
+  
+      setCalendarData(financialYear);
+    }
+
   return (
     <div className="bg-white pb-[40px] md:pb-[80px] lg:pb-[100px]" id="fees">
       <div className="container sm:container md:container lg:max-w-[1204px] px-4 mx-auto">
         <h2 className="merriweather-font font-normal  text-2xl md:text-3xl lg:text-4xl mb-3 lg:mb-4 text-[#1E1E1E]  tracking-[-0.04em] text-center">
-          Fee Structure
+          Fee Structure ({calendarData || ""})
         </h2>
         <div className="overflow-x-auto mb-6 lg:mb-8">
           <table className="border border-gray-200 w-full">
