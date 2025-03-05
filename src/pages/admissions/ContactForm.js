@@ -50,7 +50,7 @@ function ContactForm() {
     noResponsibility: false,
     provisionalAdmission: false,
   });
-  const totalPrice = record.type === "new" ? 500 : 200;
+  const totalPrice = record.type === "new" ? 1000 : 500;
 
   // Image uploader logic here
   const [selectedImage, setSelectedImage] = useState(null);
