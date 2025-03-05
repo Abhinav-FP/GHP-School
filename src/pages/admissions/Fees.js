@@ -33,24 +33,25 @@ export default function Fees() {
 
    const [calendarData, setCalendarData] = useState("");
   
+   function getFinancialYear() {
+     const today = new Date();
+     const currentYear = today.getFullYear();
+     const currentMonth = today.getMonth() + 1; // Months are 0-based, so +1
+     
+     let financialYear;
+     if (currentMonth < 3) {
+       financialYear = `${currentYear - 1}-${currentYear}`;
+     } else {
+       financialYear = `${currentYear}-${currentYear + 1}`;
+     }
+ 
+     setCalendarData(financialYear);
+   }
+
     useEffect(() => {
       getFinancialYear();
     }, [calendarData]); // Ensure 'calendarData' exists in state
   
-    function getFinancialYear() {
-      const today = new Date();
-      const currentYear = today.getFullYear();
-      const currentMonth = today.getMonth() + 1; // Months are 0-based, so +1
-      
-      let financialYear;
-      if (currentMonth < 4) {
-        financialYear = `${currentYear - 1}-${currentYear}`;
-      } else {
-        financialYear = `${currentYear}-${currentYear + 1}`;
-      }
-  
-      setCalendarData(financialYear);
-    }
 
   return (
     <div className="bg-white pb-[40px] md:pb-[80px] lg:pb-[100px]" id="fees">
