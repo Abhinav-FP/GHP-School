@@ -84,6 +84,7 @@ export default function AddSyllabus({ item, getsyllabusdata }) {
                                             <option value="" disabled>
                                                 Select Class
                                             </option>
+                                            <option value="Nursery">Nursery</option>
                                             <option value="LKG">LKG</option>
                                             <option value="UKG">UKG</option>
                                             <option value="class I">I</option>
