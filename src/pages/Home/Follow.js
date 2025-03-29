@@ -76,7 +76,7 @@ export default function Follow() {
                     <img
                       src={item?.media_url}
                       alt="Instagram post"
-                      className="w-full h-auto"
+                      className="w-full h-[300px] sm:h-[270px]"
                     />
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
